@@ -75,7 +75,8 @@
     grid-template-areas:
       "h1 h1"
       "hero hero"
-      "rule lines";
+      "rule lines"
+      "sayhi lines";
     align-items: baseline;
     gap: var(--space-3);
   }
@@ -97,6 +98,19 @@
     align-self: center;
     margin: 0;
     min-width: 2rem;
+  }
+  .say-hi {
+    grid-area: sayhi;
+    align-self: end;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--paper);
+    text-shadow: 0 2px 4px rgba(0,0,0,.35);
+    white-space: nowrap;
   }
   .head-lines { grid-area: lines; max-width: 46ch; text-align: right; }
   .hero-line {
@@ -451,11 +465,13 @@
       grid-template-areas:
         "h1"
         "hero"
+        "sayhi"
         "lines";
       gap: 0.1rem;
     }
     .board-head h1 { font-size: 1.4rem; }
     .board-head .head-rule { display: none; }
+    .say-hi { font-size: 0.95rem; }
     .head-lines { text-align: left; max-width: none; }
     .hero-line { font-size: 0.85rem; max-width: none; }
     .smallprint { font-size: 0.72rem; }
@@ -527,6 +543,7 @@
     <!-- STUB:hero-line — one sentence only: one neighbor is fixing this lot so the block's kids have somewhere to be -->
       <p class="hero-line">Hey, I’m Rob and I’ve been trying to keep this lot clean for all the kids that have moved in over the last few years, <span class="head-tail">but I’d like to do a little more and breathe a little life back into our old Earp Street Playground - it might not be a playground anymore, but it can still be beautiful.</span></p>
     <hr class="head-rule">
+    <h2 class="say-hi">Come say hi!</h2>
     <div class="head-lines">
       <!-- STUB:footer-note — small print: where the lot is, who to look for -->
       <p class="smallprint">If you see a blonde guy with a tape measure and a sketchbook (or neck deep in weeds), come say hi! <span class="head-tail">I have so many questions about this old lot, and I'd love to hear more about the history of the lot and the planters!</span></p>
