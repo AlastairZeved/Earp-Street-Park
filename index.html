@@ -329,6 +329,11 @@
     background: #fffdf6;
   }
   .punch .what, .need .what { font-weight: 700; }
+  /* plan titles stand on their own line and end with a generated colon */
+  .punch .what {
+    display: block;
+  }
+  .punch .what::after { content: ":"; }
   .need li { margin: 0 0 var(--space-2); padding-left: var(--space-3); border-left: 3px solid var(--rust); }
   /* the owner's materials list, nested under the "Materials" ask */
   .need .materials { margin: 0.25rem 0 0; padding-left: 1.1rem; list-style: disc; }
