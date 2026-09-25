@@ -37,6 +37,7 @@
     --font-body:    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
     --font-stub:    "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    color-scheme: light dark;
     --space-1: 0.35rem;
     --space-2: 0.75rem;
     --space-3: 1.25rem;
@@ -511,6 +512,49 @@
 
   @media (prefers-reduced-motion: reduce) {
     .note { transition: none; }
+  }
+
+  /* ---------- Dark: the same board at night — same materials, dimmer light ---------- */
+  /* Remaps the existing :root tokens (same hues, lower luminance) so the fliers
+     still read as paper, the fence still reads as chain-link, and the rust
+     marker keeps its identity. Also re-tones the few hard-coded surfaces
+     (#fffdf6 photo mats / checkbox fill / form inputs / comparison frame and
+     the ruled-line gradient) so dark mode isn't glare-white in the corners. */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:       #3a3329;  /* dim paper — the fliers are still paper */
+      --paper-shade: #322c24;  /* ruled/fill-in areas, a shade below the sheet */
+      --ink:         #ede5d3;  /* light ink */
+      --ink-faded:   #b5ac9b;  /* archive entries — older = faded */
+      --rule:        #6b6355;
+      --rust:        #dd8a4a;  /* marker ink, lifted to hold AA on dark paper */
+      --fence:       #2c2b29;  /* chain-link at dusk — darker, NOT black: the
+                                  diamond gradients are drawn from this token */
+    }
+    /* header text sits on the fence and was var(--paper) (cream on gray);
+       in dark, paper is dark — lift it to the light ink */
+    .board-head h1,
+    .say-hi,
+    .hero-line,
+    .cmp-tag { color: var(--ink); }
+    .board-head .head-rule { border-top-color: var(--rule); }
+    figure.photo,
+    .punch li::before,
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    .cmp { background: #2b2720; }   /* the white photo mats/inputs go dusk-dark */
+    .note-lines,
+    .head-lines {
+      background-image:
+        repeating-linear-gradient(to bottom, transparent 0 calc(1.7rem - 1px), rgba(237,229,211,.14) calc(1.7rem - 1px) 1.7rem);
+    }
+    @media (max-width: 760px) {
+      .note-lines {
+        background-image:
+          repeating-linear-gradient(to bottom, transparent 0 calc(1.1rem - 1px), rgba(237,229,211,.14) calc(1.1rem - 1px) 1.1rem);
+      }
+    }
   }
 </style>
 </head>
