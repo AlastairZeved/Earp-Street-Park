@@ -18,8 +18,8 @@
 <!-- BOARD BUILD t_c6a093b1 — re-architecture of the linear notice sheet into one
      spatial board: one viewport, no document scroll in any direction, desktop or
      phone. The board IS the chain-link fence. Position encodes meaning:
-     left = what happened (This Week), center = the lot as it stands (comparison
-     window), right = what's planned and needed (The Plan & The Ask), bottom
+     left = what happened (What We've Done), center = the lot as it stands (comparison
+     window), right = what's planned and needed (What I'd Like To Do), bottom
      center = your turn (Stories & Suggestions). Notes expand in place; the
      tapped sheet lifts flat and grows, its neighbors recede. Inline vanilla JS
      only, zero external requests, no framework, no build step. -->
@@ -193,25 +193,16 @@
     margin: 0;
     font-size: clamp(0.9rem, 1.3vw, 1rem);
   }
-  .note-hint {
-    position: absolute;
-    left: var(--space-3); right: var(--space-3); bottom: var(--space-2);
-    font-family: var(--font-stub);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--rust);
-  }
-  /* the open-for-business cover: invisible button laid over the whole collapsed sheet */
+  /* the title itself is the toggle: transparent, borderless, inherits h2 type */
   .note-toggle {
-    position: absolute;
-    inset: 0;
-    width: 100%;
     border: none;
     background: transparent;
     cursor: pointer;
     padding: 0;
-    z-index: 4;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
   }
   /* faint ruled lines: the empty part of the sheet is where the next entries go */
   .note-lines {
@@ -225,25 +216,10 @@
   .note--week .note-lines    { top: 7rem; }
   .note--plan .note-lines    { top: 10rem; }
   .note--stories .note-lines { top: 5.8rem; }
-  .note.expanded .note-toggle,
   .note.expanded .note-title,
   .note.expanded .note-face,
-  .note.expanded .note-hint,
   .note.expanded .note-lines { display: none; }
-  /* visually hidden but inside the box — far offsets leak into scroll overflow */
-  .visually-hidden {
-    position: absolute;
-    width: 1px; height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    white-space: nowrap;
-    border: 0;
-    padding: 0;
-  }
   .note-toggle:focus-visible { outline: 3px solid var(--rust); outline-offset: -3px; }
-  .note.expanded .note-toggle { display: none; }
 
   /* ---------- Note panel: behind the expansion ---------- */
   .note-panel {
@@ -280,7 +256,7 @@
   .panel-close:hover { background: var(--rust); color: var(--paper); }
   .panel-close:focus-visible { outline: 3px solid var(--rust); outline-offset: 1px; }
 
-  /* ---------- This Week entries ---------- */
+  /* ---------- What We've Done entries ---------- */
   .entry { border-bottom: 1px dashed var(--rule); padding: var(--space-2) 0 var(--space-3); }
   .entry:last-of-type { border-bottom: none; }
   .entry-date {
@@ -310,7 +286,7 @@
   figure.photo img { display: block; width: 100%; max-height: 15rem; object-fit: cover; }
   figure.photo figcaption { font-size: 0.85rem; color: var(--ink-faded); padding-top: var(--space-1); }
 
-  /* ---------- The Plan & The Ask ---------- */
+  /* ---------- What I'd Like To Do ---------- */
   .plan-sub {
     font-family: var(--font-display);
     font-size: 1rem;
@@ -346,7 +322,7 @@
     color: var(--rust);
   }
 
-  /* ---------- Stories & Suggestions: the reply form ---------- */
+  /* ---------- Give me a shout!: the reply form ---------- */
   form {
     background: var(--paper-shade);
     border: 1px solid var(--rule);
@@ -510,7 +486,6 @@
       text-overflow: ellipsis;
       vertical-align: baseline;
     }
-    .note-hint { left: var(--space-2); right: var(--space-2); bottom: 0.2rem; font-size: 0.62rem; }
     /* phones keep the header faces to their front lines: the tail of the owner's
        hero/footer text stays in the page (screen readers announce it) but does
        not take viewport height. Wide screens show the full text. */
@@ -557,18 +532,14 @@
 
   <section class="field" id="field" aria-label="The board: what happened, what's planned, your turn">
 
-    <!-- ============ LEFT PIN: THIS WEEK — what happened ============ -->
+    <!-- ============ LEFT PIN: WHAT WE'VE DONE — what happened ============ -->
     <article class="note note--week" id="note-week">
       <div class="note-lines" aria-hidden="true"></div>
-      <h2 class="note-title">This Week</h2>
+      <h2 class="note-title"><button class="note-toggle" aria-expanded="false" aria-controls="panel-week">What We've Done</button></h2>
       <p class="note-face">Lots of weeding! I didn’t realize how quickly it can get overgrown across the fencing and in the planters.</p>
-      <span class="note-hint" aria-hidden="true">Open the week &rsaquo;</span>
-      <button class="note-toggle" aria-expanded="false" aria-controls="panel-week">
-        <span class="visually-hidden">Open This Week</span>
-      </button>
-      <div class="note-panel" id="panel-week" role="group" aria-label="This Week, full entries">
+      <div class="note-panel" id="panel-week" role="group" aria-label="What We've Done, full entries">
         <div class="panel-head">
-          <button class="panel-close" type="button" data-close aria-label="Close This Week">Fold it back</button>
+          <button class="panel-close" type="button" data-close aria-label="Close What We've Done">Fold it back</button>
         </div>
 
         <!-- STUB:week-entry-1-date — date of the most recent workday (no workday has happened yet: hand-fill line) -->
@@ -634,15 +605,11 @@
     <!-- ============ RIGHT PIN: THE PLAN & THE ASK — what's planned and needed ============ -->
     <article class="note note--plan" id="note-plan">
       <div class="note-lines" aria-hidden="true"></div>
-      <h2 class="note-title">The Plan &amp; The Ask</h2>
+      <h2 class="note-title"><button class="note-toggle" aria-expanded="false" aria-controls="panel-plan">What I'd Like To Do</button></h2>
       <p class="note-face">A fence, a sign, new boards, trees in the planters &mdash; and the people, materials, and truck to make it happen.</p>
-      <span class="note-hint" aria-hidden="true">Open the plan &rsaquo;</span>
-      <button class="note-toggle" aria-expanded="false" aria-controls="panel-plan">
-        <span class="visually-hidden">Open The Plan and The Ask</span>
-      </button>
-      <div class="note-panel" id="panel-plan" role="group" aria-label="The Plan and The Ask, full lists">
+      <div class="note-panel" id="panel-plan" role="group" aria-label="What I'd Like To Do, full lists">
         <div class="panel-head">
-          <button class="panel-close" type="button" data-close aria-label="Close The Plan and The Ask">Fold it back</button>
+          <button class="panel-close" type="button" data-close aria-label="Close What I'd Like To Do">Fold it back</button>
         </div>
 
         <h3 class="plan-sub">The plan</h3>
@@ -695,18 +662,14 @@
       </div>
     </article>
 
-    <!-- ============ BOTTOM-CENTER PIN: STORIES & SUGGESTIONS — your turn ============ -->
+    <!-- ============ BOTTOM-CENTER PIN: GIVE ME A SHOUT! — your turn ============ -->
     <article class="note note--stories" id="note-stories">
       <div class="note-lines" aria-hidden="true"></div>
-      <h2 class="note-title">Stories &amp; Suggestions</h2>
+      <h2 class="note-title"><button class="note-toggle" aria-expanded="false" aria-controls="panel-stories">Give me a shout!</button></h2>
       <p class="note-face">So I’ve heard a lot of stories about this old lot, how it used to be a playground, what it used to be for all the kids and the parents on the block.</p>
-      <span class="note-hint" aria-hidden="true">Open &amp; write &rsaquo;</span>
-      <button class="note-toggle" aria-expanded="false" aria-controls="panel-stories">
-        <span class="visually-hidden">Open Stories and Suggestions</span>
-      </button>
-      <div class="note-panel" id="panel-stories" role="group" aria-label="Stories and Suggestions, with the reply form">
+      <div class="note-panel" id="panel-stories" role="group" aria-label="Give me a shout!, with the reply form">
         <div class="panel-head">
-          <button class="panel-close" type="button" data-close aria-label="Close Stories and Suggestions">Fold it back</button>
+          <button class="panel-close" type="button" data-close aria-label="Close Give me a shout!">Fold it back</button>
         </div>
 
         <!-- STUB:stories-intro — the ask for memories: the lot may have been a playground ~50 years ago -->
