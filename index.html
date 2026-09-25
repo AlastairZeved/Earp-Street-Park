@@ -121,12 +121,30 @@
     color: var(--paper);
     font-size: clamp(0.85rem, 1.5vw, 1.02rem);
     text-shadow: 0 1px 3px rgba(0,0,0,.4);
+    font-weight: 400;  /* #16: subtitle not bold */
   }
   .smallprint {
     margin: 0.15rem 0 0;
     color: rgba(244,239,227,.95);
     font-size: 0.78rem;
     text-shadow: 0 1px 2px rgba(0,0,0,.35);
+    font-weight: 400;  /* #16: subtitle not bold */
+  }
+  /* #17: flier-styled "Come say hi!" title above smallprint on right side */
+  .say-hi.flier {
+    font-family: var(--font-stub);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    text-shadow: none;
+    margin: 0 0 0.25rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(236,227,199,.78);
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    display: inline-block;
+    transform: rotate(-1deg);
   }
 
   /* ---------- The field: a pinned arrangement, not a stack ---------- */
@@ -209,6 +227,23 @@
     color: inherit;
     letter-spacing: inherit;
     text-transform: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+  /* #21: expand/caret indicator on clickable headers */
+  .note-toggle::after {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .note.expanded .note-toggle::after {
+    transform: rotate(-135deg);
   }
   /* faint ruled lines: the empty part of the sheet is where the next entries go */
   .note-lines {
@@ -310,7 +345,7 @@
     border: 2px solid var(--ink);
     background: #fffdf6;
   }
-  .punch .what, .need .what { font-weight: 700; }
+  .punch .what, .need .what { font-weight: 400; }  /* #22: only headers bold */
   /* plan titles stand on their own line and end with a generated colon */
   .punch .what {
     display: block;
@@ -336,7 +371,7 @@
     margin-top: var(--space-2);
   }
   .field-row { margin: 0 0 var(--space-3); }
-  label { display: block; font-weight: 700; margin-bottom: var(--space-1); }
+  label { display: block; font-weight: 400; margin-bottom: var(--space-1); }  /* #22: only headers bold */
   label .optional { font-weight: 400; color: var(--ink-faded); font-size: 0.85rem; }
   input[type="text"],
   input[type="email"],
@@ -469,7 +504,7 @@
     .board-head h1 { font-size: 1.3rem; }
     .head-lines { display: none; }
 
-    /* 2. the lead wonder sheet — Come say hi! kicker + the full hero paragraph */
+    /* 2. the lead wonder sheet — the full hero paragraph */
     .note--lead {
       grid-area: lead;
       display: block;
@@ -495,17 +530,6 @@
     }
     .note--lead::before { left: 8%;  transform: rotate(-4deg); }
     .note--lead::after  { right: 8%; transform: rotate(3deg); }
-    .say-hi {
-      margin: 0 0 8px;
-      font-family: var(--font-stub);
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--rust);
-      font-weight: 700;
-      text-shadow: none;
-      white-space: normal;
-    }
     .hero-line {
       margin: 0;
       max-width: none;
@@ -513,6 +537,23 @@
       font-size: 0.9rem;
       color: var(--ink);
       text-shadow: none;
+    }
+
+    /* #17 phone: flier-styled "Come say hi!" above smallprint in board-foot */
+    .board-foot .say-hi.flier {
+      font-family: var(--font-stub);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rust);
+      text-shadow: none;
+      margin: 0 0 0.25rem;
+      padding: 0.1rem 0.4rem;
+      background: rgba(236,227,199,.78);
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+      display: inline-block;
+      transform: rotate(-1deg);
     }
 
     /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
@@ -679,11 +720,11 @@
     <!-- STUB:hero-line — one sentence only: one neighbor is fixing this lot so the block's kids have somewhere to be -->
       <hr class="head-rule">
     <article class="note--lead">
-    <h2 class="say-hi">Come say hi!</h2>
     <p class="hero-line">Hey, I’m Rob and I’ve been trying to keep this lot clean for all the kids that have moved in over the last few years, <span class="head-tail">but I’d like to do a little more and breathe a little life back into our old Earp Street Playground - it might not be a playground anymore, but it can still be beautiful.</span></p>
     </article>
     <div class="head-lines">
       <!-- STUB:footer-note — small print: where the lot is, who to look for -->
+      <h2 class="say-hi flier">Come say hi!</h2>
       <p class="smallprint">If you see a blonde guy with a tape measure and a sketchbook (or neck deep in weeds), come say hi! <span class="head-tail">I have so many questions about this old lot, and I'd love to hear more about the history of the lot and the planters!</span></p>
     </div>
   </header>
@@ -774,7 +815,7 @@
     <article class="note note--plan" id="note-plan">
       <div class="note-lines" aria-hidden="true"></div>
       <h2 class="note-title"><button class="note-toggle" aria-expanded="false" aria-controls="panel-plan">What I'd Like To Do</button></h2>
-      <p class="note-face">A fence, a sign, new boards, trees in the planters &mdash; and the people, materials, and truck to make it happen.</p>
+      <p class="note-face">A fence, a sign, new boards, trees in the planters &mdash; and the people and materials to make it happen.</p>
       <div class="note-panel" id="panel-plan" role="group" aria-label="What I'd Like To Do, full lists">
         <div class="panel-head">
           <button class="panel-close" type="button" data-close aria-label="Close What I'd Like To Do">Fold it back</button>
@@ -821,11 +862,6 @@
               <li>Bollard caps</li>
             </ul>
           </li>
-          <li>
-            <span class="what">A truck</span>
-            <!-- STUB:need-truck — what needs hauling, when (no date: one afternoon, generic) -->
-            Something with an open bed for one afternoon: scrap and old wood out, lumber and trees in. If you have one and a free afternoon, the form on this board works.
-          </li>
         </ul>
       </div>
     </article>
@@ -834,19 +870,16 @@
     <article class="note note--stories" id="note-stories">
       <div class="note-lines" aria-hidden="true"></div>
       <h2 class="note-title"><button class="note-toggle" aria-expanded="false" aria-controls="panel-stories">Give me a shout!</button></h2>
-      <p class="note-face">So I’ve heard a lot of stories about this old lot, how it used to be a playground, what it used to be for all the kids and the parents on the block.</p>
+      <p class="note-face">So I’ve heard a lot of stories about this old lot, how it used to be a playground, what it used to be for all the kids and the parents on the block. And I'm not here to turn it into anything that it already wasn't - a clean, safe place for the kids that parents will feel safe with their kids playing at.</p>
       <div class="note-panel" id="panel-stories" role="group" aria-label="Give me a shout!, with the reply form">
         <div class="panel-head">
           <button class="panel-close" type="button" data-close aria-label="Close Give me a shout!">Fold it back</button>
         </div>
 
-        <!-- STUB:stories-intro — the ask for memories: the lot may have been a playground ~50 years ago -->
-        <p>So I’ve heard a lot of stories about this old lot, how it used to be a playground, what it used to be for all the kids and the parents on the block. And I’m not here to turn it into anything that it already wasn’t - a clean, safe place for the kids that parents will feel safe with their kids playing at.</p>
+        <!-- STUB:stories-fields-note — the one-line note saying name and email are optional -->
+        <p class="fine">"You've gotta ask the older folks on the block about those planters, they're older than me and ain't nothing been planted in them since I’ve been alive."</p>
 
         <form method="POST" action="https://formspree.io/f/mbglkalb">
-          <!-- STUB:stories-fields-note — the one-line note saying name and email are optional -->
-          <p class="fine">“You’ve gotta ask the older folks on the block about those planters, they’re older than me and ain’t nothing been planted in them since I’ve been alive.”</p>
-
           <div class="field-row">
             <label for="story">Your story or suggestion</label>
             <textarea id="story" name="story" required></textarea>
@@ -869,7 +902,7 @@
 </main>
 
 <footer class="board-foot">
-  <p class="smallprint">If you see a blonde guy with a tape measure and a sketchbook (or neck deep in weeds), come say hi! I have so many questions about this old lot, and I'd love to hear more about the history of the lot and the planters!</p>
+  <p class="smallprint"><span class="say-hi flier">Come say hi!</span> If you see a blonde guy with a tape measure and a sketchbook (or neck deep in weeds), come say hi! I have so many questions about this old lot, and I'd love to hear more about the history of the lot and the planters!</p>
 </footer>
 
 <script>
