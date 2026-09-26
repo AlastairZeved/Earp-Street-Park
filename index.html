@@ -17,7 +17,7 @@
 <meta name="description" content="One neighbor is fixing up the Earp Street lot — no group, no committee — so the kids who already play here have somewhere worth being. Follow the work, see what's next, and share your stories of the lot.">
 <!-- BOARD BUILD t_c6a093b1 — re-architecture of the linear notice sheet into one
      spatial board: one viewport, no document scroll in any direction, desktop or
-     phone. The board IS the chain-link fence. Position encodes meaning:
+     phone. The board IS the wooden fence. Position encodes meaning:
      left = what happened (What We've Done), center = the lot as it stands (comparison
      window), right = what's planned and needed (What We'd Like To Do), bottom
      center = your turn (Stories & Suggestions). Notes expand in place; the
@@ -33,7 +33,8 @@
     --ink-faded:    #66625a;  /* archive entries — older = faded */
     --rule:         #b9b3a4;
     --rust:         #a34a1a;  /* marker ink: dates, lead words, the pin */
-    --fence:        #63615f;  /* chain-link behind the notices */
+    --fence:        #6b6055;  /* day cedar, sun-silvered — #31 */
+    --fence-tile:   url("data:image/webp;base64,UklGRhwFAABXRUJQVlA4IBAFAACwVgCdASoAAgACPpVKoU0lo6MioxCoSLASiWlLls+fVwb8/zeMK3r/y6vL9jUuyBuu7SGljnwblZNH+tZ7l/z1Eb8+IANb9fm0PsRGbXAePaQSRjm7s8CNziFwHlnb9KwyxnDu4jMQxpACyGxpF5+ta8itYsJLx0R63+LAHPlwn1USSQMT6xWfkzodpfUzdIxZ2zM9x8wg+rCZiecVCqP2Np97+7CI40fdhCpPkgYn1hiWt6Dnwt/oijIBQ0o9UEo5gd1nIxDzt3mOmDsfOzeVdceRp/a31Hcg1w9LT+pZioiMbdYmuriwNpEl89jua3swOiX+3JPPQpDMglDqwuwBBwjHkuPVW1/1i4KO6DiYr3YMRGIx4VZYwBzpATCwGMo7yipBPFqWQ8z8ogF0wiSG0iSwGRRmnQagpWdSVvVbX/tjD4kz5aGvEJRKdxnzvRFhb6oPqwvPPthPjF53oy6DKS0VRJrC2RM/omD3xDl1icaxEyKDSN2JLucGMfvcYiMO0vrWAOnOTQfVhcU1TBJKdKMcSLYh2l9awBStI/7lmgBZEHyCBiczmBRfWsAUixh6SKJhHQmLiYQhW0oryV35qRj//GMmOzQBTqj1akDOP5BAxPh4T76lAeUQC7BIeluRxm2YHdn8mecOfM/L5UP3JUzr78V9OkOI13w9sEkZDzYC4p413vi+aB+1tPGK93LMDDyGAU7WkTCGnIKO7ayOz/6ZnnbvLEkXQUjTjdYmuEmIIr3XczPO3eYyGRXvX/cIr3eTriXXd4tSyHlpPEhwGNDIvP7clCu4w7S+ZPtt3i0fG2iONH3YQ7QFugDaRJcwO6xXH46HSb/6G4w/spxGdELAVPBeeymU5MfSJgxwVSIlreUfvdwbsc+XCfVgLym7Kf2U7sXEmphDMc+XCfVgMcASQdkMKnfVheeTwwAA/v3wfr1ITvjQClLSDRwVaExwXp9vhAy3UoWVDBx8FcCrHTLynrJbysfoOQNbYH3A7cfJ+2lpBfM1p0rwVv/htES6GnRWuz5+M+pjDBmnrLe+IzYm3JTKm84/DRpZebjEk4k2QBakFat+x0WH2LLJjNjgC2+sarsyLDue7mJINOpmNBc6KftAW4aHFsQbDqWh2xcTL8qHtuKmX1of0oeYhpqzhrhziH7pGz2vV37+V8JuJ7G3qXa15D5xfvCRBtbAdelQ51vxev0WLQTiVzXipf5Wuq+vUqC4HDJGxKpSt8jLLgi281aH8gmSozEYHTufZfyogMgG8xdXN6Kh+4YuVpXrKYaZI+GCKoHEv5A0jN9AJ7PHHOpCgZY+WxseTJa9X86gxL3q7zNo8HjT/11XowhK1KMuaKJ4GXXMzOV4fjVLbeAktz5J6AG64oeJuq3+tDvOK/Hhtmip6eLNU+uMRucKRQ80rA9LpRP33yHPtIK/Qm1P3L5AXo+8S+knnFHXqkjlhJ3D6lHgKp2+2/gKuf9Dy2RchxlGAgtzXw6wwdXUf58NljRzhhyLRllBKhIGRpI7hfTCpVIFHIrVNlIwhyXhrX4ETmAlqEJ4h8yz9rEGZ6OnXw6Q0mDxY+MDBaFuo7QHbqUPxPkdSqMjl8LUsQJAhRB+gmGEqHFei39oXzwJDhdfWYI0cpefpp8A6zUULqf7i7te+oKZrhnpiaajMZhby9mqwvIPkHfgu5LjpHpcVFVuoXC0lbXE5L9w34s6Qvy5K7HTH6abCj1JvEjJgAA=");
     --font-body:    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
     --font-stub:    "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -53,11 +54,11 @@
     font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.5;
-    background-color: var(--fence);
-    /* chain-link diamond, drawn in CSS — no image, no request */
-    background-image:
-      repeating-linear-gradient(45deg,  rgba(255,255,255,.09) 0 1px, transparent 1px 16px),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,.09) 0 1px, transparent 1px 16px);
+    background-color: var(--fence);   /* shows through the tile's gap pixels and while the tile decodes */
+    /* #31: weathered vertical cedar boards, sun-silvered — authored 512x512 seamless
+       WebP tile inlined as a data URI (zero requests, self-contained), repeat both axes */
+    background-image: var(--fence-tile);
+    background-repeat: repeat;
   }
 
   .board {
@@ -656,7 +657,7 @@
 
   /* ---------- Dark: the same board at night — same materials, dimmer light ---------- */
   /* Remaps the existing :root tokens (same hues, lower luminance) so the fliers
-     still read as paper, the fence still reads as chain-link, and the rust
+     still read as paper, the fence still reads as weathered boards, and the rust
      marker keeps its identity. Also re-tones the few hard-coded surfaces
      (#fffdf6 photo mats / checkbox fill / form inputs / comparison frame and
      the ruled-line gradient) so dark mode isn't glare-white in the corners. */
@@ -668,8 +669,8 @@
       --ink-faded:   #b5ac9b;  /* archive entries — older = faded */
       --rule:        #6b6355;
       --rust:        #dd8a4a;  /* marker ink, lifted to hold AA on dark paper */
-      --fence:       #2c2b29;  /* chain-link at dusk — darker, NOT black: the
-                                  diamond gradients are drawn from this token */
+      --fence:       #2e2921;  /* the same boards at dusk — darker, NOT black */
+      --fence-tile:   url("data:image/webp;base64,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");
     }
     /* header text sits on the fence and was var(--paper) (cream on gray);
        in dark, paper is dark — lift it to the light ink */
