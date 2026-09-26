@@ -566,7 +566,7 @@
     .window { display: none; }
     .note--week    { grid-area: week;    width: auto; height: auto; margin: 10px 0 0; transform: rotate(0.5deg);  z-index: 2; }
     .snapshot      { display: block; grid-area: snap; }
-    .note--plan    { grid-area: plan;    width: 97%;  margin: -7px auto 0; transform: rotate(-0.3deg); z-index: 3; }
+    .note--plan    { grid-area: plan;    width: 97%;  margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above */
     .note--stories { grid-area: stories; width: 94%;  margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }
 
     .note::before, .note::after { width: 4.6rem; height: 1.5rem; top: -0.65rem; }
@@ -576,7 +576,7 @@
     /* the snapshot print: white border, tape, mono caption — no fake before/after */
     .snapshot {
       background: #fffdf6;
-      padding: 6px 6px 22px;  /* extra margin below the caption: the plan sheet's tape overlaps the band bottom by ~17px */
+      padding: 6px 6px 14px;  /* #41: the print's chin — even white margin below the photo, matching the 6px sides */
       box-shadow: 0 7px 18px rgba(0,0,0,.45);
       transform: rotate(-0.8deg);
       position: relative;
