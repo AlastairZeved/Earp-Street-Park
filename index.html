@@ -76,13 +76,15 @@
   .board-head {
     display: grid;
     grid-template-columns: 1fr auto;
+    /* #59: the title pane is cut to a title row (h1 left, the Come Say Hi
+       flier right), the hero row, then the rule full-width — the flier
+       block moves up beside the title (amends #46's desktop pin). */
     grid-template-areas:
-      "h1 h1"
-      "hero hero"
-      "rule lines"
-      "sayhi lines";
+      "h1 lines"
+      "hero lines"
+      "rule rule";
     align-items: baseline;
-    gap: var(--space-3);
+    gap: var(--space-2);  /* #59: was --space-3 */
   }
   .board-head h1 {
     grid-area: h1;
@@ -93,6 +95,7 @@
     letter-spacing: 0.01em;
     text-shadow: 0 2px 4px rgba(0,0,0,.35);
     white-space: nowrap;
+    line-height: 1.1;  /* #59: the default ~1.49 box cost ~13px of pane height */
   }
   .board-head .head-rule {
     grid-area: rule;
@@ -116,11 +119,12 @@
     text-shadow: 0 2px 4px rgba(0,0,0,.35);
     white-space: nowrap;
   }
-  .head-lines { grid-area: lines; max-width: 46ch; text-align: right; }
+  /* #59: align-self start — the block now spans the title + hero rows */
+  .head-lines { grid-area: lines; max-width: 46ch; text-align: right; align-self: start; }
   .hero-line {
     grid-area: hero;
     margin: 0;
-    max-width: 58em;
+    max-width: 72em;  /* #59: was 58em — the hero wraps to 2 lines at wide viewports */
     color: var(--paper);
     font-size: clamp(0.85rem, 1.5vw, 1.02rem);
     text-shadow: 0 1px 3px rgba(0,0,0,.4);
@@ -178,7 +182,10 @@
   }
   .note--week    { left: 1.2%;  top: 2%;  width: 23%;   height: 96%; transform: rotate(-0.5deg); }
   .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: 96%; transform: rotate(0.5deg); }
-  .note--stories { left: 25.5%; top: 65%; width: 49%;   height: 33%; transform: rotate(-0.3deg); }
+  /* #56: the stories sheet holds the WHOLE form at first paint — height is
+     content-driven, bottom edge pinned where it sat (98% of the field), top
+     edge free to rise (the #48 mechanic). No scroll, no clip, no shrink. */
+  .note--stories { left: 25.5%; bottom: 2%; width: 49%; transform: rotate(-0.3deg); }
 
   /* two strips of tape holding each sheet to the fence */
   .note::before,
@@ -223,12 +230,10 @@
   .note--week,
   .note--plan,
   .note--stories { display: flex; flex-direction: column; }
+  /* #56: the stories form left this group — it is no longer a scroll region
+     on any viewport; the base `form` rule styles it alone. */
   #panel-week,
-  #panel-plan,
-  /* #49 (owner ruling B, chat 2026-09-29): the stories sheet joins them with
-     the SAME mechanism — the form itself is the third scroll region (no
-     wrapper invented); the sheet's geometry is untouched. */
-  #note-stories form {
+  #panel-plan {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;               /* the only scrolling on the page is inside these sheets */
@@ -238,6 +243,11 @@
        phone alike); the replaced rule's --space-2 top padding was invented. */
     padding: var(--space-3);
   }
+  /* #57: the scroll regions take keyboard focus (tabindex=0 in the markup) so
+     keyboard users can scroll them — the page's existing .cmp-handle focus
+     treatment, verbatim. */
+  #panel-week:focus-visible,
+  #panel-plan:focus-visible { outline: 3px solid var(--rust); outline-offset: 2px; }
 
   /* ---------- What We've Done entries ---------- */
   .entry { border-bottom: 1px dashed var(--rule); padding: var(--space-2) 0 var(--space-3); }
@@ -506,7 +516,7 @@
     .note--week    { grid-area: week;    width: auto; height: auto; margin: 10px 0 0; transform: rotate(0.5deg);  z-index: 2; }
     .snapshot      { display: block; grid-area: snap; }
     .note--plan    { grid-area: plan;    width: 97%;  margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above */
-    .note--stories { grid-area: stories; width: 94%;  margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }
+    .note--stories { grid-area: stories; width: 94%;  height: auto; margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }  /* #56: height auto — the form prints inside the paper */
 
     .note::before, .note::after { width: 4.6rem; height: 1.5rem; top: -0.65rem; }
     .note::before { left: 8%; }
@@ -564,11 +574,10 @@
     /* Tinkerbell ruling (t_599fbaee comments 295/297): on phone the week and
        plan sheets print full-length IN FLOW — the page scrolls, not the
        sheets. Mirrors main's old .note-panel phone override
-       (position:static / overflow:visible). Desktop keeps its three internal
-       scroll regions (week, plan, stories — #49 ruling B). */
+       (position:static / overflow:visible). Desktop keeps its two internal
+       scroll regions (week, plan — #56 retired the stories form's). */
     #panel-week,
-    #panel-plan,
-    #note-stories form { overflow: visible; }  /* #49 ruling B extends to phone: the stories sheet prints full-length in flow too */
+    #panel-plan { overflow: visible; }
 
   }
 
@@ -639,7 +648,7 @@
     <article class="note note--week" id="note-week">
       <h2 class="note-title">What We've Done</h2>
       <p class="note-face">Lots of weeding! I didn’t realize how quickly it can get overgrown across the fencing and in the planters.</p>
-      <div class="note-panel" id="panel-week" role="group" aria-label="What We've Done, full entries">
+      <div class="note-panel" id="panel-week" tabindex="0" role="group" aria-label="What We've Done, full entries">
 
         <article class="entry">
           <span class="entry-date">9/25/2026</span>
@@ -693,7 +702,7 @@
     <article class="note note--plan" id="note-plan">
       <h2 class="note-title">What We'd Like To Do</h2>
       <p class="note-face">A fence, a sign, new boards, trees in the planters &mdash; and the people and materials to make it happen.</p>
-      <div class="note-panel" id="panel-plan" role="group" aria-label="What We'd Like To Do, full lists">
+      <div class="note-panel" id="panel-plan" tabindex="0" role="group" aria-label="What We'd Like To Do, full lists">
         <ul class="punch">
           <li>
             <span class="what">A fence along the street edge</span>
