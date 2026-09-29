@@ -20,9 +20,12 @@ New assertions the new composition demands (both viewports, exit 0):
 4. Phone 480x860: the page DOES scroll (owner's standing amendment).
 5. No `figure.photo` and no `<img>` inside `#note-week`; zero hits for the
    removed archive stubs ("Nothing here yet." / "Still nothing.").
-6. Exactly TWO scroll regions, vertical only — #panel-week and #panel-plan:
-   computed overflow-y auto, overflow-x hidden (or not scrollable), and
-   content taller than the region at 1280x800. No third element scrolls.
+6. Scroll regions are viewport-scoped (steering comment 302 on the QA card,
+   superseded 2026-09-29): at 1280x800 exactly TWO, vertical only —
+   #panel-week and #panel-plan, overflow-y auto, overflow-x hidden, content
+   taller than the region, no third element scrolls. At the mobile
+   breakpoint ZERO internal scroll regions — both panels flow with the page
+   (Tinkerbell rulings, t_599fbaee comments 295/297).
 7. The #note-stories form renders at first paint with no interaction and
    its rect intersects the viewport (readily visible, no toggle).
 8. `.head-lines` (the Come Say Hi flier) is visible on phone and
@@ -199,10 +202,15 @@ def main():
                         f"scroll regions: {ids} (want exactly #panel-plan + #panel-week) @ {label}",
                     )
                 else:
+                    # Steering comment 299 on the QA card ("exactly TWO internal
+                    # scroll regions") was superseded by the follow-up comment:
+                    # the phone ruling of record is that BOTH sheets print
+                    # full-length in flow and the PAGE scrolls — so the phone
+                    # viewport asserts ZERO internal scroll regions.
                     check(
                         "c9",
-                        all(i in ("panel-plan", "panel-week") for i in ids),
-                        f"scroll regions: {ids} (phone: regions flow with the page — no foreign scroll region) @ {label}",
+                        ids == [],
+                        f"scroll regions: {ids} (phone: zero internal scroll regions — both panels flow) @ {label}",
                     )
                 for r in regions:
                     check(

@@ -229,7 +229,10 @@
     min-height: 0;
     overflow-y: auto;               /* the only scrolling on the page is inside these sheets */
     overflow-x: hidden;             /* only vertical scrolling allowed */
-    padding-top: var(--space-2);
+    /* gate-2 fix (QA verdict 2026-09-29): restore the dissolved .note-panel's
+       padding — main carried padding: var(--space-3) on the panel (base and
+       phone alike); the replaced rule's --space-2 top padding was invented. */
+    padding: var(--space-3);
   }
 
   /* ---------- What We've Done entries ---------- */
@@ -553,6 +556,14 @@
       box-shadow: 0 1px 3px rgba(0,0,0,.12);
     }
     .note--plan .need li { border-left: none; padding-left: 0; }
+
+    /* Tinkerbell ruling (t_599fbaee comments 295/297): on phone the week and
+       plan sheets print full-length IN FLOW — the page scrolls, not the
+       sheets. Mirrors main's old .note-panel phone override
+       (position:static / overflow:visible). Desktop keeps its two internal
+       scroll regions. */
+    #panel-week,
+    #panel-plan { overflow: visible; }
 
   }
 
