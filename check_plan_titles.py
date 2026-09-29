@@ -21,13 +21,21 @@ New assertions the new composition demands (both viewports, exit 0):
 5. No `figure.photo` and no `<img>` inside `#note-week`; zero hits for the
    removed archive stubs ("Nothing here yet." / "Still nothing.").
 6. Scroll regions are viewport-scoped (steering comment 302 on the QA card,
-   superseded 2026-09-29): at 1280x800 exactly TWO, vertical only —
-   #panel-week and #panel-plan, overflow-y auto, overflow-x hidden, content
-   taller than the region, no third element scrolls. At the mobile
-   breakpoint ZERO internal scroll regions — both panels flow with the page
-   (Tinkerbell rulings, t_599fbaee comments 295/297).
-7. The #note-stories form renders at first paint with no interaction and
-   its rect intersects the viewport (readily visible, no toggle).
+   superseded 2026-09-29; extended by owner ruling B on #49, chat
+   2026-09-29): at 1280x800 exactly THREE, vertical only — #panel-week,
+   #panel-plan, and #note-stories form (the stories sheet's internal
+   scroll, ruling B), overflow-y auto, overflow-x hidden, content taller
+   than the region, no fourth element scrolls. At the mobile breakpoint
+   ZERO internal scroll regions — all three sheets flow with the page
+   (Tinkerbell rulings, t_599fbaee comments 295/297; phone amendment to
+   ruling B).
+7. The #note-stories form renders at first paint with no interaction
+   (desktop) and its rect intersects the viewport (readily visible, no
+   toggle). Ruling B additions: the .note--stories sheet's bounding rect
+   does NOT intersect the comparison window's (the window is never
+   covered), the form's scroll range is reachable (scrollHeight >
+   clientHeight) and scrolling to the bottom puts the submit button inside
+   the viewport.
 8. `.head-lines` (the Come Say Hi flier) is visible on phone and
    `.board-foot` is absent from the DOM.
 9. #43 honeypot: `input[name="_gotcha"]` exists inside the form, is
@@ -171,7 +179,8 @@ def main():
                     f"'Nothing here yet.'={week['nothing']} 'Still nothing.'={week['still']} (want 0/0/False/False) @ {label}",
                 )
 
-                # --- c9: exactly TWO scroll regions, vertical only ---
+                # --- c9: exactly THREE scroll regions, vertical only ---
+                #     (week, plan, stories — owner ruling B on #49)
                 regions = page.evaluate(
                     """() => {
                          const out = [];
@@ -184,9 +193,13 @@ def main():
                            const scrollableX = el.scrollWidth > el.clientWidth &&
                                                (cs.overflowX === 'scroll' || cs.overflowX === 'auto');
                            if (scrollsY || scrollableX) {
+                             // the stories scroll region is the form itself (ruling B —
+                             // no wrapper invented); give it a stable readable label
+                             const id = el.matches('#note-stories form')
+                               ? 'stories-form'
+                               : (el.id || el.className || el.tagName);
                              out.push({
-                               id: el.id || el.className || el.tagName,
-                               oy: cs.overflowY, ox: cs.overflowX,
+                               id, oy: cs.overflowY, ox: cs.overflowX,
                                sh: el.scrollHeight, ch: el.clientHeight, scrollsY,
                              });
                            }
@@ -198,8 +211,8 @@ def main():
                 if width > 760:
                     check(
                         "c9",
-                        ids == ["panel-plan", "panel-week"],
-                        f"scroll regions: {ids} (want exactly #panel-plan + #panel-week) @ {label}",
+                        ids == ["panel-plan", "panel-week", "stories-form"],
+                        f"scroll regions: {ids} (want exactly #panel-plan + #panel-week + stories-form) @ {label}",
                     )
                 else:
                     # Steering comment 299 on the QA card ("exactly TWO internal
@@ -210,7 +223,7 @@ def main():
                     check(
                         "c9",
                         ids == [],
-                        f"scroll regions: {ids} (phone: zero internal scroll regions — both panels flow) @ {label}",
+                        f"scroll regions: {ids} (phone: zero internal scroll regions — all three sheets flow) @ {label}",
                     )
                 for r in regions:
                     check(
@@ -231,6 +244,23 @@ def main():
                 # on phone the form sits in the scrolling flow below the fold;
                 # "readily visible" = renders at first paint (no toggle) and is
                 # reachable in the page flow — so scroll it into view first
+                # (desktop: measured BEFORE any scroll — first paint, ruling B)
+                if width > 760:
+                    fp = page.evaluate(
+                        """() => {
+                             const f = document.querySelector('#note-stories form');
+                             const r = f.getBoundingClientRect();
+                             const vp = { l: 0, t: 0, r: innerWidth, b: innerHeight };
+                             const intersects = r.right > vp.l && r.left < vp.r && r.bottom > vp.t && r.top < vp.b;
+                             return { intersects, display: getComputedStyle(f).display };
+                           }"""
+                    )
+                    check(
+                        "c10",
+                        fp["intersects"] and fp["display"] != "none",
+                        f"stories form at FIRST PAINT (no scroll, no interaction): intersects-viewport="
+                        f"{fp['intersects']} display={fp['display']} @ {label}",
+                    )
                 page.evaluate("document.querySelector('#note-stories form').scrollIntoView()")
                 form = page.evaluate(
                     """() => {
@@ -249,6 +279,38 @@ def main():
                     f"rect-top={form and round(form['top'])} rect-h={form and round(form['height'])} "
                     f"intersects-viewport={form and form['intersects']} @ {label}",
                 )
+
+                # --- c13: #49 ruling B — window never covered, scroll reachable ---
+                if width > 760:
+                    rb = page.evaluate(
+                        """() => {
+                             const sheet = document.querySelector('#note-stories');
+                             const win = document.querySelector('.window');
+                             const a = sheet.getBoundingClientRect(), b = win.getBoundingClientRect();
+                             const overlap = !(a.right <= b.left || b.right <= a.left ||
+                                               a.bottom <= b.top || b.bottom <= a.top);
+                             const f = document.querySelector('#note-stories form');
+                             const scrollable = f.scrollHeight > f.clientHeight;
+                             f.scrollTop = f.scrollHeight;           // scroll the stories region to the bottom
+                             const btn = f.querySelector('button[type="submit"]').getBoundingClientRect();
+                             const btnVisible = btn.top >= 0 && btn.bottom <= innerHeight && btn.left >= 0 && btn.right <= innerWidth;
+                             return { overlap, scrollable, btnVisible,
+                                      sh: f.scrollHeight, ch: f.clientHeight };
+                           }"""
+                    )
+                    check(
+                        "c13",
+                        not rb["overlap"],
+                        f"ruling B: .note--stories rect does NOT intersect the comparison window "
+                        f"(overlap={rb['overlap']}) @ {label}",
+                    )
+                    check(
+                        "c13",
+                        rb["scrollable"] and rb["btnVisible"],
+                        f"ruling B: stories form scroll range reachable — scrollHeight={rb['sh']} "
+                        f"clientHeight={rb['ch']} (want >) and submit button inside viewport after "
+                        f"scrolling to bottom (btnVisible={rb['btnVisible']}) @ {label}",
+                    )
 
                 # --- c11: #46 flier visible on phone, footer gone, both viewports ---
                 flier = page.evaluate(
