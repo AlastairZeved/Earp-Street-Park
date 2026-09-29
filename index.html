@@ -219,12 +219,16 @@
   }
   /* #50 + #48 (owner steering 2026-09-29): the week and plan sheets print
      their content — vertical columns (title, face, then the body) whose
-     overflow scrolls INSIDE the sheet. Vertical only: these are the board's
-     only TWO scroll regions (the stories sheet does not scroll). */
+     overflow scrolls INSIDE the sheet. Vertical only. */
   .note--week,
-  .note--plan { display: flex; flex-direction: column; }
+  .note--plan,
+  .note--stories { display: flex; flex-direction: column; }
   #panel-week,
-  #panel-plan {
+  #panel-plan,
+  /* #49 (owner ruling B, chat 2026-09-29): the stories sheet joins them with
+     the SAME mechanism — the form itself is the third scroll region (no
+     wrapper invented); the sheet's geometry is untouched. */
+  #note-stories form {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;               /* the only scrolling on the page is inside these sheets */
@@ -560,10 +564,11 @@
     /* Tinkerbell ruling (t_599fbaee comments 295/297): on phone the week and
        plan sheets print full-length IN FLOW — the page scrolls, not the
        sheets. Mirrors main's old .note-panel phone override
-       (position:static / overflow:visible). Desktop keeps its two internal
-       scroll regions. */
+       (position:static / overflow:visible). Desktop keeps its three internal
+       scroll regions (week, plan, stories — #49 ruling B). */
     #panel-week,
-    #panel-plan { overflow: visible; }
+    #panel-plan,
+    #note-stories form { overflow: visible; }  /* #49 ruling B extends to phone: the stories sheet prints full-length in flow too */
 
   }
 
