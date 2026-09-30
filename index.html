@@ -203,10 +203,18 @@
                 transform .45s ease, opacity .3s ease;
   }
   .note--week    { left: 1.2%;  top: 2%;  width: 23%;   height: 96%; transform: rotate(-0.5deg); }
-  /* #63 + #70 + #76: the plan sheet keeps its top aligned with the week sheet and
-     reserves 194px below it — the Come Say Hi sheet's measured height at its #76
-     title size + the tape's 12.8px overhang + the same air the 150px line carried. */
-  .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: calc(96% - 194px); transform: rotate(0.5deg); }
+  /* #63 + #70 + #76 + #78: the plan sheet keeps its top aligned with the week sheet and
+     reserves room below it for the Come Say Hi flier. The reservation must track the
+     passage's own re-wrap (its 23.2vw smallprint column wraps 16 -> 6 lines as the
+     viewport widens, growing the flier 243px -> 139px). #76 pinned one px value (194px,
+     the 6-line height + tape + air) which cannot hold the plan clear of the taller,
+     narrow-viewport flier. Hence a clamp over a vw-derived headroom that grows as the
+     column narrows: the flier's measured height is 243px at 761vw (16 lines, plans need
+     259px) and 193px at 1220vw (11 lines, still needs 208px); a reserve of 360px - 12vw
+     clears every sampled width across the band with margin, and clamps to the #76 194px
+     minimum (its own 6-line height) wherever the wrap falls below the break-even width.
+     Bounds are agent-derived from the measured re-wrap; they are not an owner ruling. */
+  .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: calc(96% - clamp(194px, 360px - 12vw, 268px)); transform: rotate(0.5deg); }
   /* #56: the stories sheet holds the WHOLE form at first paint — height is
      content-driven, bottom edge pinned where it sat (98% of the field), top
      edge free to rise (the #48 mechanic). No scroll, no clip, no shrink. */
