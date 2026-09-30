@@ -122,11 +122,19 @@
   }
   /* #63: the flier block pins to the field's bottom-right — right edge flush
      with the plan sheet's (98.8%), bottom on the field's 98% line level with
-     the week and stories sheets. grid-area is its phone home (field grid);
-     max-width holds the smallprint to 3 lines at every width. */
+     the week and stories sheets. grid-area is its phone home (field grid).
+     Per the #70 ruling the block IS the sheet: paper surface, note shadow,
+     note tilt, passage ink — the same material cues as every other flier. */
   .head-lines {
-    grid-area: lines; max-width: 46ch; text-align: right; align-self: start;
+    grid-area: lines; text-align: left; align-self: start;
     position: absolute; right: 1.2%; bottom: 2%;
+    width: 23.2%;                     /* the plan sheet's own column (left 75.6% + 23.2% = 98.8%) */
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 0 8px 20px rgba(0,0,0,.4);  /* the .note sheet shadow, verbatim */
+    padding: 0.55rem 0.85rem 0.6rem;  /* the flier's paper margin */
+    transform: rotate(-0.5deg);       /* the week sheet's tilt */
+    z-index: 2;                       /* the note sheets' band */
   }
   .hero-line {
     grid-area: hero;
@@ -138,10 +146,10 @@
     font-weight: 400;  /* #16: subtitle not bold */
   }
   .smallprint {
-    margin: 0.15rem 0 0;
-    color: rgba(244,239,227,.95);
+    margin: 0;
+    color: var(--ink);          /* #70: prints ON paper now — sheet ink, not cream fence ink */
     font-size: 0.78rem;
-    text-shadow: 0 1px 2px rgba(0,0,0,.35);
+    text-shadow: none;
     font-weight: 400;  /* #16: subtitle not bold */
   }
   /* #17: flier-styled "Come say hi!" title above smallprint on right side */
@@ -151,14 +159,15 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--rust);
+    color: var(--rust);           /* #17/#29 still hold: marker ink on opaque paper */
     text-shadow: none;
     margin: 0 0 0.25rem;
-    padding: 0.15rem 0.5rem;
-    background: var(--paper);  /* #29: opaque chip — translucent hard-coded cream failed contrast in both themes */
-    box-shadow: 0 1px 3px rgba(0,0,0,.2);
-    display: inline-block;
-    transform: rotate(-1deg);
+    padding: 0;                   /* #70: chip dies — the sheet's paper margin anchors it */
+    background: none;             /* #70: no chip behind the title */
+    box-shadow: none;
+    display: block;               /* #70: left-anchored on the sheet */
+    text-align: left;
+    transform: none;
   }
 
   /* ---------- The field: a pinned arrangement, not a stack ---------- */
@@ -190,9 +199,10 @@
                 transform .45s ease, opacity .3s ease;
   }
   .note--week    { left: 1.2%;  top: 2%;  width: 23%;   height: 96%; transform: rotate(-0.5deg); }
-  /* #63: the plan sheet keeps its top in line with the week sheet and gives
-     96px (flier block 84 + --space-2 seam 12) to the Come Say Hi flier below. */
-  .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: calc(96% - 96px); transform: rotate(0.5deg); }
+  /* #63 + #70: the plan sheet keeps its top aligned with the week sheet and
+     reserves 150px (the Come Say Hi sheet ~131 + 12.8px tape + air) below it —
+     the flier has grown from a chip into a paper sheet. */
+  .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: calc(96% - 150px); transform: rotate(0.5deg); }
   /* #56: the stories sheet holds the WHOLE form at first paint — height is
      content-driven, bottom edge pinned where it sat (98% of the field), top
      edge free to rise (the #48 mechanic). No scroll, no clip, no shrink. */
@@ -213,6 +223,23 @@
   }
   .note::before { left: 9%;  transform: rotate(-4deg); }
   .note::after  { right: 9%; transform: rotate(3deg); }
+
+  /* #70: the Come Say Hi flier carries the same two tape strips as every other
+     sheet — .note's own values, verbatim (no invented texture). */
+  .head-lines::before,
+  .head-lines::after {
+    content: "";
+    position: absolute;
+    top: -0.8rem;
+    width: 5.5rem;
+    height: 1.7rem;
+    background: rgba(236,227,199,.78);
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .head-lines::before { left: 9%;  transform: rotate(-4deg); }
+  .head-lines::after  { right: 9%; transform: rotate(3deg); }
 
   /* Phone-composition elements (impl-13). No-ops on desktop: the lead-sheet
      wrapper dissolves (display: contents) so .say-hi/.hero-line keep their
@@ -447,17 +474,18 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--rust);
+      color: var(--rust);          /* #70: marker ink on the sheet, chip gone */
       text-shadow: none;
       margin: 0 0 0.25rem;
-      padding: 0.1rem 0.4rem;
-      background: var(--paper);  /* #29: opaque chip — translucent hard-coded cream failed contrast in both themes */
-      box-shadow: 0 1px 3px rgba(0,0,0,.2);
-      display: inline-block;
-      transform: rotate(-1deg);
+      padding: 0;
+      background: none;
+      box-shadow: none;
+      display: block;              /* #70: left-anchored on the sheet */
+      text-align: left;
+      transform: none;
     }
     .head-lines .smallprint { font-size: 0.72rem; line-height: 1.45; margin: 0; }
-    .head-lines { text-align: right; position: static; }  /* the flier passage right-aligns under the chip, as on desktop; #63: back in flow (the desktop bottom-right pin must not leak onto the phone grid) */
+    .head-lines { text-align: left; position: relative; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 23.2% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin) */
     /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
     .field {
       display: grid;
@@ -482,6 +510,9 @@
     .note::before, .note::after { width: 4.6rem; height: 1.5rem; top: -0.65rem; }
     .note::before { left: 8%; }
     .note::after  { right: 8%; }
+    .head-lines::before, .head-lines::after { width: 4.6rem; height: 1.5rem; top: -0.65rem; }  /* #70: phone tape, the .note phone values verbatim */
+    .head-lines::before { left: 8%; }
+    .head-lines::after  { right: 8%; }
 
     /* the snapshot print: white border, tape, mono caption — no fake before/after */
     .snapshot {
@@ -577,10 +608,6 @@
     input[type="text"],
     input[type="email"],
     textarea { background: #2b2720; }   /* the white checkbox fills/inputs go dusk-dark */
-    .head-lines {
-      background-image:
-        repeating-linear-gradient(to bottom, transparent 0 calc(1.7rem - 1px), rgba(237,229,211,.14) calc(1.7rem - 1px) 1.7rem);
-    }
     @media (max-width: 760px) {
       .note--plan .need { background: #332c20; }  /* the scrap stock goes dusk-dark */
     }
@@ -596,7 +623,7 @@
     <!-- STUB:hero-line — one sentence only: one neighbor is fixing this lot so the block's kids have somewhere to be -->
       <hr class="head-rule">
     <article class="note--lead">
-    <p class="hero-line">Hey, I’m Rob and I’ve been trying to keep this lot clean for all the kids that have moved in over the last few years, <span class="head-tail">but I’d like to do a little more and breathe a little life back into our old Earp Street Playground - it might not be a playground anymore, but it can still be beautiful.</span></p>
+    <p class="hero-line">Hey, we're Rob and Brian. We've been on the block a few years and we try to keep the abandoned lot on our block clean and weeded whenever we can. There's a few things there that we'd really love to restore like the picnic table, the two benches, maybe get something planted in those planters (we tried a blueberry bush and a blackberry bush, but those darn squirrels), maybe some fencing put back up on those old fence posts. This site is to find all of that info; what we're working on, things we're on the hunt for (like some pressure treated lumber and paint), and a contact form for any questions - though you can always just come up and chat with us.</p>
     </article>
   </header>
 
@@ -626,6 +653,11 @@
           <span class="entry-date">9/2/2026</span>
           <!-- STUB:week-entry-1-body — what got done, plain past-tense (nothing done yet: the honest start) -->
           <p>Lots of weeding! I didn’t realize how quickly it can get overgrown across the fencing and in the planters. With Fall approaching, that means we’re almost in tree planting season - and how good would some fruiting or shade trees look in those planters? Fig trees have been on my mind lately.</p>
+        </article>
+
+        <article class="entry">
+          <span class="entry-date">5/10/2026</span>
+          <p>Planted a blueberry bush and a blackberry bush! The blueberry bush was from Farm Philly and the blackberry bush I pulled from my garden. Not sure how they'll survive with the squirrels, but we'll find out!</p>
         </article>
 
       </div>
@@ -672,13 +704,8 @@
           </li>
         </ul>
 
-        <h3 class="plan-sub">What it needs</h3>
+        <h3 class="plan-sub">What we're on the hunt for</h3>
         <ul class="need">
-          <li>
-            <span class="what">People</span>
-            <!-- STUB:need-people — a count and a when (no workday is scheduled: ask, don't promise) -->
-            If anyone wants to help out, I’ll put together a day we can all go out and clean up the debris, weed the perimeter, maybe plant some things, maybe work on the table and benches, just let me know! I’d be grateful for any help - it’s a big lot!
-          </li>
           <li>
             <span class="what">Materials</span>
             <!-- STUB:need-materials — the actual materials and quantities (not measured yet: categories, no invented counts) -->
@@ -716,7 +743,7 @@
             </div>
           </div>
           <!-- STUB:stories-submit — the button label -->
-          <button type="submit">Share your story about this old lot!</button>
+          <button type="submit">Send</button>
       </form>
     </article>
 
