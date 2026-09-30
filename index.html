@@ -44,7 +44,7 @@
     --space-1: 0.35rem;
     --space-2: 0.75rem;
     --space-3: 1.25rem;
-    --stories-block: 28rem;  /* #61: the stories sheet's ~445px ceiling + clearance; the window yields this */
+    --stories-block: 19rem;  /* #75: re-measured after #74 — the reordered form prints ~294px on desktop (the sender no longer owns a full-width row), so the window can yield ~19rem instead of 28rem. #61's convention stands: the stories sheet's actual rendered height (now ~294px) + a few px clearance */
   }
 
   * { box-sizing: border-box; }
@@ -141,7 +141,7 @@
     margin: 0;
     max-width: 72em;  /* #59: was 58em — the hero wraps to 2 lines at wide viewports */
     color: var(--paper);
-    font-size: clamp(0.85rem, 1.5vw, 1.02rem);
+    font-size: 0.85rem;  /* #73: flat 0.85rem at every viewport — derived from the family small-text size (already used five times in the shipped sheet: .archive-head, .need .what, label .optional) and the hero clamp's own floor; the phone 0.9rem override is deleted because this base value covers it */
     text-shadow: 0 1px 3px rgba(0,0,0,.4);
     font-weight: 400;  /* #16: subtitle not bold */
   }
@@ -353,6 +353,13 @@
   .field-row { margin: 0 0 var(--space-3); }
   /* #61: Name + Email share one row so the whole form fits its sheet */
   .field-row--pair { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-3); margin: 0 0 var(--space-3); }
+  /* #74: the Send button sits BESIDE the story field on one row while the label
+     stays above on its own line. .field-row cannot itself be the flex row (the
+     label is its first child and must remain full-width), so the control +
+     button share one inner flex wrapper. */
+  .field-row--send { display: flex; align-items: stretch; gap: var(--space-3); }
+  .field-row--send textarea { flex: 1 1 auto; }
+  .field-row--send button { flex: 0 0 auto; }
   label { display: block; font-weight: 400; margin-bottom: var(--space-1); }  /* #22: only headers bold */
   label .optional { font-weight: 400; color: var(--ink-faded); font-size: 0.85rem; }
   input[type="text"],
@@ -401,7 +408,7 @@
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
-    object-fit: cover;
+    object-fit: contain;  /* #75: the whole 1.61-aspect lot photo, letterboxed on the stage's #fffdf6 mat instead of cropped */
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
@@ -461,7 +468,7 @@
       margin: 0;
       max-width: none;
       font-family: var(--font-display);
-      font-size: 0.9rem;
+      /* #73: the old 0.9rem override is deleted — the flat 0.85rem base covers phone too */
       color: var(--ink);
       text-shadow: none;
     }
@@ -574,6 +581,9 @@
     /* #61: the Name/Email pair stacks back to one column on phone */
     .field-row--pair { display: block; }
     .pair-cell + .pair-cell { margin-top: var(--space-3); }
+    /* #74: the story control + Send also stack back to one column on phone */
+    .field-row--send { display: block; }
+    .field-row--send button { margin-top: var(--space-2); }
 
   }
 
@@ -727,11 +737,6 @@
           <!-- #43: honeypot — Formspree's documented pattern. type="text" kept
                (scrapers skip type="hidden"); hidden with CSS instead. -->
           <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <div class="field-row">
-            <label for="story">What's on your mind?</label>
-            <textarea id="story" name="story" required></textarea>
-          </div>
-          <!-- #61: Name + Email paired on one row (stacks on phone) -->
           <div class="field-row field-row--pair">
             <div class="pair-cell">
               <label for="name">Name <span class="optional">(optional)</span></label>
@@ -742,8 +747,17 @@
               <input id="email" name="email" type="email" autocomplete="email">
             </div>
           </div>
-          <!-- STUB:stories-submit — the button label -->
-          <button type="submit">Send</button>
+          <!-- #74: the story field sits UNDER the Name/Email pair, and the Send
+               button shares the story field's row (beside the textarea) instead
+               of owning a full-width row below — this is what buys #75 its room. -->
+          <div class="field-row">
+            <label for="story">What's on your mind?</label>
+            <div class="field-row--send">
+              <textarea id="story" name="story" required></textarea>
+              <!-- STUB:stories-submit — the button label -->
+              <button type="submit">Send</button>
+            </div>
+          </div>
       </form>
     </article>
 
