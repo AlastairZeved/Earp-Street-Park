@@ -132,7 +132,7 @@
     background: var(--paper);
     color: var(--ink);
     box-shadow: 0 8px 20px rgba(0,0,0,.4);  /* the .note sheet shadow, verbatim */
-    padding: 0.55rem 0.85rem 0.6rem;  /* the flier's paper margin */
+    padding: var(--space-3) 0.85rem 0.6rem;  /* #76: top inset = the family paper margin (--space-3 = 1.25rem = 20px); sides and bottom unchanged */
     transform: rotate(-0.5deg);       /* the week sheet's tilt */
     z-index: 2;                       /* the note sheets' band */
   }
@@ -153,19 +153,23 @@
     font-weight: 400;  /* #16: subtitle not bold */
   }
   /* #17: flier-styled "Come say hi!" title above smallprint on right side */
+  /* #76 (owner ruling 2026-09-30): the flier title takes the .note-title
+     treatment — "there was no reason it should have been different". */
   .say-hi.flier {
-    font-family: var(--font-stub);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--rust);           /* #17/#29 still hold: marker ink on opaque paper */
-    text-shadow: none;
-    margin: 0 0 0.25rem;
-    padding: 0;                   /* #70: chip dies — the sheet's paper margin anchors it */
-    background: none;             /* #70: no chip behind the title */
+    font-family: var(--font-display);        /* .note-title, verbatim */
+    font-size: clamp(1rem, 1.6vw, 1.2rem);   /* .note-title, verbatim */
+    line-height: 1.5;                        /* .note-title declares none — the family computes to body's 1.5 */
+    letter-spacing: 0.07em;                  /* .note-title, verbatim */
+    text-transform: uppercase;               /* .note-title, verbatim */
+    font-weight: 700;                        /* .note-title declares none — the family computes to the h2 default 700 */
+    color: var(--ink);                       /* the sheet's own ink (.head-lines { color: var(--ink) }); the family prints titles in ink */
+    text-shadow: none;                       /* ink on paper — no fence shadow */
+    margin: 0 0 var(--space-2);              /* .note-title, verbatim */
+    padding-bottom: var(--space-1);          /* .note-title, verbatim — its only padding; top/left/right stay 0 */
+    border-bottom: 2px solid var(--ink);     /* .note-title, verbatim — the family underline */
+    background: none;                        /* #70: no chip behind the title */
     box-shadow: none;
-    display: block;               /* #70: left-anchored on the sheet */
+    display: block;                          /* #70: left-anchored on the sheet */
     text-align: left;
     transform: none;
   }
@@ -199,10 +203,10 @@
                 transform .45s ease, opacity .3s ease;
   }
   .note--week    { left: 1.2%;  top: 2%;  width: 23%;   height: 96%; transform: rotate(-0.5deg); }
-  /* #63 + #70: the plan sheet keeps its top aligned with the week sheet and
-     reserves 150px (the Come Say Hi sheet ~131 + 12.8px tape + air) below it —
-     the flier has grown from a chip into a paper sheet. */
-  .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: calc(96% - 150px); transform: rotate(0.5deg); }
+  /* #63 + #70 + #76: the plan sheet keeps its top aligned with the week sheet and
+     reserves 194px below it — the Come Say Hi sheet's measured height at its #76
+     title size + the tape's 12.8px overhang + the same air the 150px line carried. */
+  .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: calc(96% - 194px); transform: rotate(0.5deg); }
   /* #56: the stories sheet holds the WHOLE form at first paint — height is
      content-driven, bottom edge pinned where it sat (98% of the field), top
      edge free to rise (the #48 mechanic). No scroll, no clip, no shrink. */
@@ -475,19 +479,18 @@
 
     /* #46 phone: the Come Say Hi flier prints at the top of the flow — same
        chip/smallprint sizes the footer carried, new scope, nothing invented */
+    /* #76 phone: the flier title takes the .note-title treatment at the
+       phone sizes too — the family's phone block, verbatim */
     .head-lines .say-hi.flier {
-      font-family: var(--font-stub);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--rust);          /* #70: marker ink on the sheet, chip gone */
+      font-size: 1rem;                       /* .note-title phone, verbatim */
+      margin: 0 0 7px;                       /* .note-title phone, verbatim */
+      padding-bottom: 4px;                   /* .note-title phone, verbatim */
+      border-bottom: 2px solid var(--ink);   /* .note-title phone, verbatim */
+      display: block;                        /* .note-title phone, verbatim */
+      color: var(--ink);
       text-shadow: none;
-      margin: 0 0 0.25rem;
-      padding: 0;
       background: none;
       box-shadow: none;
-      display: block;              /* #70: left-anchored on the sheet */
       text-align: left;
       transform: none;
     }
