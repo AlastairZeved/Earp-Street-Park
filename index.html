@@ -44,7 +44,7 @@
     --space-1: 0.35rem;
     --space-2: 0.75rem;
     --space-3: 1.25rem;
-    --stories-block: 19rem;  /* #75: re-measured after #74 — the reordered form prints ~294px on desktop (the sender no longer owns a full-width row), so the window can yield ~19rem instead of 28rem. #61's convention stands: the stories sheet's actual rendered height (now ~294px) + a few px clearance */
+    --stories-block: 18rem;  /* #75 convention, re-measured for #81: form prints ~294px with the 7rem textarea; the #81 4rem textarea (3 visible lines) trims it further — 18rem holds clearance */
   }
 
   * { box-sizing: border-box; }
@@ -386,7 +386,7 @@
     border-radius: 0;
     padding: var(--space-1) var(--space-2);
   }
-  textarea { min-height: 7rem; resize: vertical; }
+  textarea { min-height: 4rem; resize: vertical; overflow-y: auto; }
   input:focus, textarea:focus, button:focus-visible { outline: 3px solid var(--rust); outline-offset: 1px; }
   .fine { font-size: 0.85rem; color: var(--ink-faded); margin: 0 0 var(--space-3); }
   button[type="submit"] {
@@ -414,6 +414,8 @@
     box-shadow: 0 6px 18px rgba(0,0,0,.35);
     overflow: hidden;
     transform: rotate(0.35deg);
+    border-left: 4px solid var(--rust);   /* on-brand vertical frame */
+    border-right: 4px solid var(--rust);  /* on-brand vertical frame */
   }
   .cmp-stage { position: relative; width: 100%; height: 100%; overflow: hidden; }
   .cmp-stage img {
@@ -507,10 +509,11 @@
     /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
     .field {
       display: grid;
-      grid-template-columns: 57% 1fr;
+      grid-template-columns: 1fr;
       grid-template-areas:
         "lines lines"  /* #63: the Come Say Hi flier keeps its #46 top-of-flow phone pin */
-        "week snap"
+        "snap snap"
+        "week week"
         "plan plan"
         "stories stories";
       column-gap: 2.5%;
