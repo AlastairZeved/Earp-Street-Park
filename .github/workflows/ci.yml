@@ -39,13 +39,19 @@ jobs:
     steps:
       # On pull_request, GITHUB_REF is refs/pull/<n>/merge (the merge ref the
       # suites must judge); on push, it is the pushed branch. A shallow fetch
-      # of exactly that ref stands in for actions/checkout. $GITHUB_REF is a
-      # server-controlled context value, never untrusted input.
+      # of exactly that ref stands in for actions/checkout. The repository is
+      # private, so the fetch authenticates with the run's own token — the
+      # standard Basic-header form actions/checkout itself uses. $GITHUB_REF
+      # and $GITHUB_TOKEN are server-provided context values, never untrusted
+      # input.
       - name: check out the ref under test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git init -q .
           git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
-          git fetch -q --depth 1 origin "$GITHUB_REF"
+          git -c "http.extraheader=AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)" \
+            fetch -q --depth 1 origin "$GITHUB_REF"
           git checkout -q FETCH_HEAD
 
       # No setup-node: Node is preinstalled on ubuntu-latest and the suites
