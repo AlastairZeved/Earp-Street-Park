@@ -85,15 +85,16 @@ submissions as spam.
 
 ## §6 Delivery and truth-in-artifact
 
-The repository root IS the site; deploying is publishing `main`. The file is
-self-documenting by comment convention: CSS blocks cite their ruling numbers
-(#16, #22, #31, #64, #70, #75, #81, #86, …), distinguish "owner ruling" from
-"agent-derived", and `STUB:` markers name deploy-time fill-in points (the
-most recent workday's date and body are honest stubs — "nothing done yet: the
-honest start"). Deploy previews on Netlify are KEPT by ruling (B1): every
-proposed change is publicly reviewable before it is accepted. A declared
-GitHub Pages workflow (`.github/workflows/pages.yml`) makes the deploy a
-visible, checkable run rather than a silent one.
+The repository root IS the site. The site deploys from the `deploy` branch on
+Netlify (B10): `main` is the working branch, and the owner promotes it to
+`deploy` manually, once deploy-ready, with the fast-forward
+`git push origin main:deploy`. The file is self-documenting by comment
+convention: CSS blocks cite their ruling numbers (#16, #22, #31, #64, #70,
+#75, #81, #86, …), distinguish "owner ruling" from "agent-derived", and
+`STUB:` markers name deploy-time fill-in points (the most recent workday's
+date and body are honest stubs — "nothing done yet: the honest start").
+Deploy previews on Netlify are KEPT by ruling (B1): every proposed change is
+publicly reviewable before it is accepted.
 
 ## §7 How this specification changes
 
