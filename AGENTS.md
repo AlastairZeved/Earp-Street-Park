@@ -92,12 +92,19 @@ repository keeps no `package.json`; the suites use Node stdlib only.
 
 ## Shipping discipline (every `index.html` change)
 
-The site deploys from `main` — a merge IS a publish (B1 records this as an
-accepted risk). `.github/workflows/pages.yml` makes the deploy a declared,
-visible run; `.github/workflows/ci.yml` runs both suites on every PR. Docs-
-only changes skip the redeploy (`paths-ignore`). If your change moves a
-value `test/tokens.js` pins, you rewrite that assertion deliberately — say
-so in the commit message.
+The site deploys from the `deploy` branch on Netlify (B10, issue #89) — a
+merge to `main` is no longer a publish. `main` remains the working branch;
+`.github/workflows/ci.yml` runs both suites on every PR. When `main` is
+deploy-ready, the owner promotes it manually — a fast-forward push:
+
+```
+git push origin main:deploy
+```
+
+Netlify listens for `deploy` branch updates and publishes them. Docs-only
+changes skip nothing here — promotion is manual either way. If your change
+moves a value `test/tokens.js` pins, you rewrite that assertion deliberately
+— say so in the commit message.
 
 ## Commits and PRs
 
