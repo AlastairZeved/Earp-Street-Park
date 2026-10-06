@@ -44,7 +44,7 @@
     --space-1: 0.35rem;
     --space-2: 0.75rem;
     --space-3: 1.25rem;
-    --stories-block: 18rem;  /* #75 convention, re-measured for #81: form prints ~294px with the 7rem textarea; the #81 4rem textarea (3 visible lines) trims it further — 18rem holds clearance */
+    --stories-block: 19.25rem;  /* #75 convention, re-measured for #92: the compacted stories sheet prints 308px flat across desktop widths (chrome compacted one space-step: #92); 19.25rem seats the window's bottom edge on the sheet's top, tape printing over it as it does on every sheet — 18rem had let the window run 18px past the tape into the paper */
   }
 
   * { box-sizing: border-box; }
@@ -128,7 +128,7 @@
   .head-lines {
     grid-area: lines; text-align: left; align-self: start;
     position: absolute; right: 1.2%; bottom: 2%;
-    width: 23.2%;                     /* the plan sheet's own column (left 75.6% + 23.2% = 98.8%) */
+    width: 20.6%;                     /* the plan sheet's own column (#92: left 78.2% + 20.6% = 98.8%) */
     background: var(--paper);
     color: var(--ink);
     box-shadow: 0 8px 20px rgba(0,0,0,.4);  /* the .note sheet shadow, verbatim */
@@ -182,12 +182,16 @@
   }
 
   /* The lot window — one pinned photo, center of the board (#64). #61: it
-     keeps its top pin (in line with What We've Done) and 49% width, and
-     yields its height to the Give Me A Shout! sheet below. */
+     keeps its top pin (in line with What We've Done), and yields its height
+     to the Give Me A Shout! sheet below. #92: the print is 52.5% wide — the
+     widest the center column can go without crowding the week sheet (right
+     edge 21.7%) on the left or the plan sheet's 20.6% column at left 78.2%
+     on the right — and its height yields to the stories sheet's measured
+     floor. */
   .window {
     position: absolute;
-    left: 25.5%; top: 2%;
-    width: 49%; height: calc(96% - var(--stories-block));
+    left: 22.2%; top: 2%;
+    width: 52.5%; height: calc(96% - var(--stories-block));
     margin: 0;
     z-index: 1;
   }
@@ -202,23 +206,22 @@
     transition: left .45s ease, top .45s ease, width .45s ease, height .45s ease,
                 transform .45s ease, opacity .3s ease;
   }
-  .note--week    { left: 1.2%;  top: 2%;  width: 23%;   height: 96%; transform: rotate(-0.5deg); }
+  .note--week    { left: 1.2%;  top: 2%;  width: 20.5%; height: 96%; transform: rotate(-0.5deg); }  /* #92: 20.5% — yields width to the center column's #92 widening */
   /* #63 + #70 + #76 + #78: the plan sheet keeps its top aligned with the week sheet and
      reserves room below it for the Come Say Hi flier. The reservation must track the
-     passage's own re-wrap (its 23.2vw smallprint column wraps 16 -> 6 lines as the
-     viewport widens, growing the flier 243px -> 139px). #76 pinned one px value (194px,
-     the 6-line height + tape + air) which cannot hold the plan clear of the taller,
-     narrow-viewport flier. Hence a clamp over a vw-derived headroom that grows as the
-     column narrows: the flier's measured height is 243px at 761vw (16 lines, plans need
-     259px) and 193px at 1220vw (11 lines, still needs 208px); a reserve of 360px - 12vw
-     clears every sampled width across the band with margin, and clamps to the #76 194px
-     minimum (its own 6-line height) wherever the wrap falls below the break-even width.
-     Bounds are agent-derived from the measured re-wrap; they are not an owner ruling. */
-  .note--plan    { left: 75.6%; top: 2%;  width: 23.2%; height: calc(96% - clamp(194px, 360px - 12vw, 268px)); transform: rotate(0.5deg); }
+     passage's own re-wrap. #92 re-derived it for the narrowed 20.6% column (the flier
+     shares the plan sheet's column): the flier's measured height is 280px at 761vw
+     (16 lines), 225px at 1000vw, 192px at 1220vw and 174px at 1440vw; with tape (~13px)
+     and air (~6px) the need is flier + 19px, so a reserve of 470px - 19.2vw clears every
+     sampled width across the band with margin (324px at 761, 268px at 1050, 224px at
+     1280, 194px floor above 1440). The clamp keeps the #76 194px minimum wherever the
+     wrap falls below the break-even width. Bounds are agent-derived from the measured
+     re-wrap; they are not an owner ruling. */
+  .note--plan    { left: 78.2%; top: 2%;  width: 20.6%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px)); transform: rotate(0.5deg); }  /* #92: 20.6% — yields width to the center column's #92 widening; right edge stays at 98.8% */
   /* #56: the stories sheet holds the WHOLE form at first paint — height is
      content-driven, bottom edge pinned where it sat (98% of the field), top
      edge free to rise (the #48 mechanic). No scroll, no clip, no shrink. */
-  .note--stories { left: 25.5%; bottom: 2%; width: 49%; transform: rotate(-0.3deg); }
+  .note--stories { left: 22.2%; bottom: 2%; width: 52.5%; transform: rotate(-0.3deg); }
 
   /* two strips of tape holding each sheet to the fence */
   .note::before,
@@ -366,20 +369,25 @@
   }
 
   /* ---------- Give me a shout!: the reply form ---------- */
+  /* #92: the sheet's internal chrome is compacted to its measured minimum —
+     padding and row gaps drop one space-step each — so the form takes the
+     bottom 20-30% of the field and the freed height goes to the lot photo
+     above (the B6 mechanic). Inputs, the 4rem textarea floor (B6), the Send
+     row (B4/#74), and the sheet species are untouched. */
   form {
     background: var(--paper-shade);
     border: 1px solid var(--rule);
-    padding: var(--space-3);
-    margin-top: var(--space-2);
+    padding: var(--space-2);
+    margin-top: var(--space-1);
   }
-  .field-row { margin: 0 0 var(--space-3); }
+  .field-row { margin: 0 0 var(--space-2); }
   /* #61: Name + Email share one row so the whole form fits its sheet */
-  .field-row--pair { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-3); margin: 0 0 var(--space-3); }
+  .field-row--pair { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-2); margin: 0 0 var(--space-2); }
   /* #74: the Send button sits BESIDE the story field on one row while the label
      stays above on its own line. .field-row cannot itself be the flex row (the
      label is its first child and must remain full-width), so the control +
      button share one inner flex wrapper. */
-  .field-row--send { display: flex; align-items: stretch; gap: var(--space-3); }
+  .field-row--send { display: flex; align-items: stretch; gap: var(--space-2); }
   .field-row--send textarea { flex: 1 1 auto; }
   .field-row--send button { flex: 0 0 auto; }
   label { display: block; font-weight: 400; margin-bottom: var(--space-1); }  /* #22: only headers bold */
@@ -513,7 +521,7 @@
       transform: none;
     }
     .head-lines .smallprint { font-size: 0.72rem; line-height: 1.45; margin: 0; }
-    .head-lines { text-align: left; position: relative; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 23.2% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin) */
+    .head-lines { text-align: left; position: relative; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.6% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin) */
     /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
     .field {
       display: grid;
