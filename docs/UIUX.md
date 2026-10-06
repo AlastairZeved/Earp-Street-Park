@@ -198,7 +198,7 @@ your turn** (Stories & Suggestions)."
 
 | Element | Pin |
 |---|---|
-| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized — the week sheet's own width is the plan sheet's now too) |
+| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B17: the plan sheet leaves the right pane at 27.5%, so the two sheets' widths no longer match — the week sheet's 20.5% stands) |
 | `.window` | `left: 22%; top: 2%; width: 27.5%; height: calc(96% - var(--stories-block))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B17: the middle pane splits — the photo takes the pane's left half, equally sized with the plan sheet beside it) |
 | `.note--plan` | `left: 50.5%; top: 2%; width: 27.5%; height: calc(96% - var(--stories-block))` — B17: moved into the middle pane, the photo's right neighbor at equal width and height (22.0 + 27.5 + 1.0 fence air = 50.5; right edge at 78.0, the middle pane's edge). The B15/#102 flier-headroom clamp is retired with the right pane's plan sheet — `#panel-plan` keeps the sheet's vertical scrollbar |
 | `.note--stories` | `left: 22%; bottom: 2%; width: 56%` (B15: shares the middle pane's re-derived column) — never a scroll region, height content-driven |
