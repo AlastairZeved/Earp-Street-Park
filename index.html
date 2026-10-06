@@ -184,14 +184,14 @@
   /* The lot window — one pinned photo, center of the board (#64). #61: it
      keeps its top pin (in line with What We've Done), and yields its height
      to the Give Me A Shout! sheet below. #92: the print is 52.5% wide — the
-     widest the center column can go without colliding with the week sheet
-     (right edge 24.2%) on the left or the plan sheet's measured 23.2% column
-     at left 75.6% on the right — and its height yields to the stories sheet's
-     measured floor. */
+     widest the center column can go without crowding the week sheet (right
+     edge 21.7%) on the left or the plan sheet's 20.6% column at left 78.2%
+     on the right — and its height yields to the stories sheet's measured
+     floor. */
   .window {
     position: absolute;
     left: 22.2%; top: 2%;
-    width: 54%; height: calc(96% - var(--stories-block));
+    width: 52.5%; height: calc(96% - var(--stories-block));
     margin: 0;
     z-index: 1;
   }
