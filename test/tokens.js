@@ -93,16 +93,17 @@ for (const hex of documented) {
 }
 pass('census: ' + shipped.size + ' shipped hexes, all documented and all present');
 
-// --- [3] weight map (B9) --------------------------------------------------
-console.log('[3] weight map — B9: body text 400, bold only where ruled');
+// --- [3] weight map (B9 + B12) --------------------------------------------
+console.log('[3] weight map — B12: body text 400, bold only on titles/headers and the Send button');
 const grouped = /\.entry p,\s*\.note-face,\s*\.punch li[^{]*\{\s*font-weight:\s*400;/.test(HTML);
 if (!grouped) fail('the B9 grouped body-weight-400 rule is missing from index.html');
 const bodyBold = /\.note-face[^{}]*\{[^}]*font-weight:\s*(?!400)[1-9]/.test(HTML);
 if (bodyBold) fail('.note-face must not carry a bold weight (B9)');
-for (const [name, sel] of [['.entry-date', /\.entry-date\s*\{[^}]*font-weight:\s*700/], ['button[type=submit]', /button\[type=["']?submit["']?\]\s*\{[^}]*font-weight:\s*700/]]) {
-  if (!sel.test(HTML)) fail(name + ' lost its 700 weight (B9 leaves headers/dates/button bold)');
-}
-if (failures === 0) pass('B9 weight map intact: 400 body rule present, dates and Send bold');
+const datesPlain = /\.entry-date\s*\{[^}]*font-weight:\s*400(?:\s|;|$)/.test(HTML);
+if (!datesPlain) fail('.entry-date must be plain weight 400 (B12: dates go plain)');
+const sendBold = /button\[type=["']?submit["']?\]\s*\{[^}]*font-weight:\s*700/.test(HTML);
+if (!sendBold) fail('button[type=submit] lost its 700 weight (the owner ruled the Send button stays bold)');
+if (failures === 0) pass('B12 weight map intact: 400 body rule present, dates plain, Send bold');
 
 // --- [4] hard-coded surfaces documented (§2.3) ----------------------------
 console.log('[4] hard-coded surfaces — §2.3 documents the values beyond the tokens');

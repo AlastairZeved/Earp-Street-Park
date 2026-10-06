@@ -105,15 +105,16 @@ IS the fence; no other background treatment exists.
 | `--font-display` | `Georgia, "Iowan Old Style", "Times New Roman", serif` |
 | `--font-stub` | `"SFMono-Regular", Consolas, "Liberation Mono", monospace` |
 
-### §3.2 Weight map — B9's law
+### §3.2 Weight map — B9's law, amended by B12
 
-Body text is **plain weight (400)**; bold belongs to headers, titles, entry
-dates, and the Send button. Shipped as one grouped rule
+Body text is **plain weight (400)**; bold belongs to headers, titles, and the
+Send button (B12 — supersedes B9's entry-date exception). Shipped as one
+grouped rule
 (`.entry p, .note-face, .punch li, .need li, .need .materials li,
 .archive-head, .fine { font-weight: 400 }`) plus `label`,
 `.hero-line`, `.smallprint`, and `.punch .what`/`.need .what` all at 400.
 
-**Bold (700) appears only on:** `.entry-date`, `button[type=submit]`, and the
+**Bold (700) appears only on:** `button[type=submit]`, and the
 computed h2 default behind `.note-title`/`.say-hi.flier`.
 
 ### §3.3 Sizes
@@ -125,7 +126,7 @@ computed h2 default behind `.note-title`/`.say-hi.flier`.
 | `.note-title` | serif, `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
 | `.note-face` | `clamp(0.9rem, 1.3vw, 1rem)` (phone `0.85rem`) |
 | `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em |
-| `.entry-date` | `--font-stub`, 700, `--rust`, letter-spacing 0.04em |
+| `.entry-date` | `--font-stub`, 400 (B12), `--rust`, letter-spacing 0.04em |
 | `.smallprint` | `0.78rem` (phone `0.72rem`) |
 | `.say-hi.flier` | same treatment as `.note-title` verbatim (B5: "there was no reason it should have been different") |
 
