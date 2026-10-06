@@ -42,7 +42,8 @@ file's architecture comment, verbatim: "Position encodes meaning:
 left = what happened (What We've Done), center = the lot as it stands (one
 pinned photo, #64) above your turn and the ask (What We'd Like To Do beside
 Stories & Suggestions, #109 as amended in chat 2026-10-06 — the middle
-pane's bottom row), right = the Come Say Hi! flier. Every sheet prints its
+pane's bottom row), right = the WHAT WE NEED flier above the Come Say Hi!
+flier, stacked in the pane (#110, B23). Every sheet prints its
 content at rest; the week and plan sheets are the board's only scroll
 regions (vertical only)."
 
@@ -51,14 +52,18 @@ page scrolls and the sheets print full-length. Work performed stays visible:
 the week sheet is a dated log of what was done (weeding, planted bushes,
 dug-up planters), not a marketing page.
 
-## §4 The five surfaces
+## §4 The surfaces
 
 1. **Header** — "Earp Street Park" in cream serif on the fence, a double
    rule, and the hero passage ("Hey, we're Rob and Brian. …") printed
    directly on the fence. On phone the hero becomes a paper sheet of its own.
 2. **The Come Say Hi! flier** (bottom right) — a real paper flier (B5): tape,
    sheet shadow, left-anchored, inviting conversation in person ("come say
-   hi!").
+   hi!"). The right pane's top flier above it, since B23: **What We Need**
+   (#110) — the same flier species, top pinned level with the other two
+   panes below the header, its face a checkbox list of materials wanted
+   (slats, paint, a No Dumping sign, hip-height fencing, container trees);
+   not a scroll region.
 3. **What We've Done** (left sheet) — the dated work log; one of the two
    scroll regions.
 4. **The lot photo** (center window, the middle pane's top of stack — B18) —
