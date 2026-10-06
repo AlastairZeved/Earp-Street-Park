@@ -243,7 +243,6 @@ animate sheet reflow between viewports:
 `left .45s ease, top .45s ease, width .45s ease, height .45s ease, transform
 .45s ease, opacity .3s ease`. Nothing else transitions, animates, or
 keyframes. `prefers-reduced-motion: reduce` kills them (`transition: none`).
-
 ## §8 Radii and spacing
 
 One radius in the entire file: `border-radius: 0` on form inputs —
@@ -251,6 +250,22 @@ everything is square. Spacing tokens: `--space-1: 0.35rem`,
 `--space-2: 0.75rem`, `--space-3: 1.25rem`; deviations are declared raw
 values with ruling comments in `index.html` (e.g. the flier's
 `var(--space-3) 0.85rem 0.6rem` paper margin from B5's spec).
+
+## §9 The favicon (B14)
+
+One inline SVG data URI on `<link rel="icon">`, embedded in `index.html` —
+the repo ships no icon files. The drawing is a picnic bench side profile on a
+rounded-square field (rx 6 of 32): the field is the `--paper` tone, the
+tabletop and bench-seat planks `--fence`, the legs `--rust` — the owner's
+palette choice on issue #99: paper background, fence-brown bench, rust
+accents. The seat plank overhangs the legs; the legs pass behind it to the
+ground. An internal `@media (prefers-color-scheme: dark)` block inside the
+SVG applies the §2.2 remaps (`--paper #3a3329`, `--ink-faded #b5ac9b` for
+the planks — the dark `--fence` value is too close to the dark paper to
+survive 16px, so the planks take the dark faded-ink tan instead — and
+`--rust #dd8a4a`), so the icon re-tones with the browser's scheme. The SVG
+ships only hexes the tokens already declare — no new values enter the §2
+census.
 
 ---
 
