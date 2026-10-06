@@ -101,7 +101,7 @@ IS the fence; no other background treatment exists.
 
 | Token | Stack |
 |---|---|
-| `--font-body` | `-apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif` |
+| `--font-body` | `"Fira Sans", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif` (B24) |
 | `--font-display` | `Georgia, "Iowan Old Style", "Times New Roman", serif` |
 | `--font-stub` | `"SFMono-Regular", Consolas, "Liberation Mono", monospace` |
 
@@ -116,6 +116,14 @@ grouped rule
 
 **Bold (700) appears only on:** `button[type=submit]`, and the
 computed h2 default behind `.note-title`/`.say-hi.flier`.
+
+**B24 — the body stack leads with Fira Sans.** On machines where the only
+installed Roboto face is Bold, `font-weight: 400` fell back to the Bold face
+and every sans element on the page rendered bold (issue #114's render, the
+third bold complaint: the weight map was already correct — the family stack
+delivered a Bold-only family). Fira Sans exists with Regular + Bold, so the
+Send button keeps its true bold and every 400 element renders a true regular.
+The serif (`.note-title`, `h1`) and mono (`.entry-date`) species are unchanged.
 
 ### §3.3 Sizes
 
