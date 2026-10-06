@@ -1,11 +1,20 @@
 # Run the record and design contracts before merge.
 #
 # docs/DECISIONS.md is the owner's law, transcribed; docs/UIUX.md is the
-# rendering authority. test/records.js guards the B<n> citation space and the
-# Source-line requirement; test/tokens.js recomputes UIUX §2/§3 from the
+# rendering authority. test/records.js guards the B<n> citation space and
+# the Source-line requirement; test/tokens.js recomputes UIUX §2/§3 from the
 # shipped index.html so the documents and the render cannot drift apart.
 # Until now nothing ran these automatically — this runs them on every PR and
 # on push to main, before a bad change can reach the deploy branch (B10).
+#
+# Why `run:` steps instead of actions/checkout + actions/setup-node: this
+# repository's Actions policy is allowed_actions: local_only — external
+# actions (including GitHub's own) are refused and the run fails at startup
+# before any step executes. That was the cause of the startup_failure on
+# every CI run since this workflow was introduced (PR #90, #91, #95, and the
+# first v4-pin attempt in this PR — the version pin was never the problem).
+# git and Node are preinstalled on the runner, so zero external actions are
+# needed and the local_only policy is left untouched.
 
 name: CI
 
@@ -28,14 +37,26 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v7
+      # On pull_request, GITHUB_REF is refs/pull/<n>/merge (the merge ref the
+      # suites must judge); on push, it is the pushed branch. A shallow fetch
+      # of exactly that ref stands in for actions/checkout. The repository is
+      # private, so the fetch authenticates with the run's own token — the
+      # standard Basic-header form actions/checkout itself uses. $GITHUB_REF
+      # and $GITHUB_TOKEN are server-provided context values, never untrusted
+      # input.
+      - name: check out the ref under test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init -q .
+          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          git -c "http.extraheader=AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)" \
+            fetch -q --depth 1 origin "$GITHUB_REF"
+          git checkout -q FETCH_HEAD
 
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 20
-
-      # Browserless, stdlib only — no package.json (the repo ships index.html
-      # and the docs; see B2: no stray files). No browser ever boots.
+      # No setup-node: Node is preinstalled on ubuntu-latest and the suites
+      # are stdlib-only (no package.json — see B2: no stray files), so the
+      # preinstalled version is sufficient by construction.
       - name: records.js — the DECISIONS.md citation space
         run: node test/records.js
 
