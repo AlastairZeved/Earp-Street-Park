@@ -209,8 +209,11 @@ Sheet clearances are computed, never eyeballed: `--stories-row:
 clamp(308px, 524px - 19.8vw, 373px)` (B18, re-measured for the half-width
 stories sheet: 372.6px at 761vw where the Name/Email labels re-wrap, ~325px
 at 900–1000vw, flat 306–307px above 1100vw; the window yields the row's
-measured height at every sampled width, tape printing over the photo's
-bottom edge as on every sheet). Retires `--stories-block` (19.25rem) and the
+measured height at every sampled width — measured air of 0.9px at 761vw,
+1.8px at 1000vw, 2.8px at 1247vw, widening to 17–22px across the 800–1100vw
+band where the linear preferred term over-predicts the non-linear re-wrap,
+so the tape there prints over fence, not over the photo). Retires
+`--stories-block` (19.25rem) and the
 plan sheet's flier headroom clamp (`clamp(194px, 488px - 19.2vw, 342px)`,
 #76/#92/#102) — B18 no longer shares the flier's column. These are calc
 tokens, not guesses. #92's measured split at the issue's 1247×956

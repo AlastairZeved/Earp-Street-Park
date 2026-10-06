@@ -49,7 +49,7 @@
     --space-1: 0.35rem;
     --space-2: 0.75rem;
     --space-3: 1.25rem;
-    --stories-row: clamp(308px, 524px - 19.8vw, 373px);  /* #109 as amended (B18): the bottom row's measured height — the half-width stories sheet re-wraps taller in the narrow column: 372.6px at 761vw (the Name/Email labels re-wrap), 348.7 at 800, 324.8 at 900, 325 at 1000, 303.5 at 1100, then flat 306–307px above 1100 (a 308px floor clears the flat band). The clamp is the #76/#102 mechanic re-derived: the window yields the row's height at every sampled width, tape printing over the photo's bottom edge as on every sheet. Bounds are agent-derived from the measured re-wrap; they are not an owner ruling. Retires --stories-block (19.25rem) — the form no longer prints full pane width. */
+    --stories-row: clamp(308px, 524px - 19.8vw, 373px);  /* #109 as amended (B18): the bottom row's measured height — the half-width stories sheet re-wraps taller in the narrow column: 372.6px at 761vw (the Name/Email labels re-wrap), 348.7 at 800, 324.8 at 900, 325 at 1000, 303.5 at 1100, then flat 306–307px above 1100 (a 308px floor clears the flat band). The clamp is the #76/#102 mechanic re-derived: the window yields at least the row's measured height at every sampled width — measured air of 0.9px at 761, 1.8px at 1000, 2.8px at 1247, widening to 17–22px across the 800–1100 band where the linear preferred term over-predicts the non-linear re-wrap (safe direction: the photo sits a little proud of the sheets there rather than under them). Bounds are agent-derived from the measured re-wrap; they are not an owner ruling. Retires --stories-block (19.25rem) — the form no longer prints full pane width. */
   }
 
   * { box-sizing: border-box; }
@@ -591,13 +591,14 @@
     }
     .note { position: static; padding: 13px 16px 26px; }
     .middle-row { display: contents; }  /* #109 (B18): the desktop row wrapper dissolves — the sheets return to the phone grid by their own grid-areas */
-    .middle-row .note--plan,
-    .middle-row .note--stories { position: static; width: auto; height: auto; left: auto; top: auto; bottom: auto; margin-left: 3%; }  /* re-win the desktop row rules' specificity (position, width, the plan half's margin); the sheet rules below re-pin width — stories' own 6px 0 0 3% margin stands */
     .window { display: none; }
     .note--week    { grid-area: week;    width: auto; height: auto; margin: 20px 0 0; transform: rotate(0.5deg);  z-index: 2; }  /* #63: 10 -> 20px */
     .snapshot      { display: block; grid-area: snap; }
-    .note--plan    { grid-area: plan;    width: 97%;  height: 96%; margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above; #63: height 96% redeclared — the desktop calc must not leak */
-    .note--stories { grid-area: stories; width: 94%;  height: auto; margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }  /* #56: height auto — the form prints inside the paper */
+    /* .field- prefixes re-win the desktop .middle-row rules' 0,2,0 specificity
+       (#109, B18) — position, width, margins, and tilt are each re-pinned
+       here; an unprefixed .note--plan/.note--stories rule would lose. */
+    .field .note--plan    { position: static; grid-area: plan;    width: 97%;  height: 96%; margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above; #63/#109: height 96% redeclared — the desktop height mechanics (.middle-row insets) must not leak */
+    .field .note--stories { position: static; grid-area: stories; width: 94%;  height: auto; margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }  /* #56: height auto — the form prints inside the paper */
 
     .note::before, .note::after { width: 4.6rem; height: 1.5rem; top: -0.65rem; }
     .note::before { left: 8%; }
@@ -773,62 +774,62 @@
 
     <!-- ============ MIDDLE PANE, BOTTOM ROW: THE PLAN (left) + GIVE ME A SHOUT! (right) — #109 as amended by the owner in chat, 2026-10-06 (B18) ============ -->
     <div class="middle-row">
-    <article class="note note--plan" id="note-plan">
-      <h2 class="note-title">What We'd Like To Do</h2>
-      <div class="note-panel" id="panel-plan" tabindex="0" role="group" aria-label="What We'd Like To Do, full lists">
-        <ul class="punch">
-          <li>
-            <span class="what">A fence along the street edge</span>
-            <!-- STUB:nextup-fence — one line on the fence plan -->
-            Finding some sort of fencing we can rig onto the metal fence posts. I’m thinking wood pallets could do the job nicely (and free!)
-          </li>
-          <li>
-            <span class="what">A &ldquo;No Dumping&rdquo; sign</span>
-            <!-- STUB:nextup-sign — one line on the sign -->
-            Our block captain can request one for free, but if we don’t have a captain then I’ll keep an eye on Facebook marketplace for one.
-          </li>
-          <li>
-            <span class="what">Fresh slats on the picnic table and benches</span>
-            <!-- STUB:nextup-table-bench — one line on the wood work -->
-            We need some new wood for the benches and picnic table. They’re easy to replace and the current wood is too damaged to repair easily. Then we can paint them and get them looking nice! That’s 18 pieces of 2”x6” pressure treated lumber I’m looking for.
-          </li>
-          <li>
-            <span class="what">Trees in the existing planters</span>
-            <!-- STUB:nextup-trees — one line on the planting -->
-            Until I can get the Redevelopment Authority’s “permission” to do work restoring this lot as a park, we can’t request a tree from PHS. I’m working on getting “permission”, but until then if anyone knows of some free Fig trees or shade trees, let me know!
-          </li>
-        </ul>
-      </div>
-    </article>
-    <article class="note note--stories" id="note-stories">
-      <h2 class="note-title">Give me a shout!</h2>
-      <form method="POST" action="https://formspree.io/f/mbglkalb">
-          <!-- #43: honeypot — Formspree's documented pattern. type="text" kept
-               (scrapers skip type="hidden"); hidden with CSS instead. -->
-          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <div class="field-row field-row--pair">
-            <div class="pair-cell">
-              <label for="name">Name <span class="optional">(optional)</span></label>
-              <input id="name" name="name" type="text" autocomplete="name">
+      <article class="note note--plan" id="note-plan">
+        <h2 class="note-title">What We'd Like To Do</h2>
+        <div class="note-panel" id="panel-plan" tabindex="0" role="group" aria-label="What We'd Like To Do, full lists">
+          <ul class="punch">
+            <li>
+              <span class="what">A fence along the street edge</span>
+              <!-- STUB:nextup-fence — one line on the fence plan -->
+              Finding some sort of fencing we can rig onto the metal fence posts. I’m thinking wood pallets could do the job nicely (and free!)
+            </li>
+            <li>
+              <span class="what">A &ldquo;No Dumping&rdquo; sign</span>
+              <!-- STUB:nextup-sign — one line on the sign -->
+              Our block captain can request one for free, but if we don’t have a captain then I’ll keep an eye on Facebook marketplace for one.
+            </li>
+            <li>
+              <span class="what">Fresh slats on the picnic table and benches</span>
+              <!-- STUB:nextup-table-bench — one line on the wood work -->
+              We need some new wood for the benches and picnic table. They’re easy to replace and the current wood is too damaged to repair easily. Then we can paint them and get them looking nice! That’s 18 pieces of 2”x6” pressure treated lumber I’m looking for.
+            </li>
+            <li>
+              <span class="what">Trees in the existing planters</span>
+              <!-- STUB:nextup-trees — one line on the planting -->
+              Until I can get the Redevelopment Authority’s “permission” to do work restoring this lot as a park, we can’t request a tree from PHS. I’m working on getting “permission”, but until then if anyone knows of some free Fig trees or shade trees, let me know!
+            </li>
+          </ul>
+        </div>
+      </article>
+      <article class="note note--stories" id="note-stories">
+        <h2 class="note-title">Give me a shout!</h2>
+        <form method="POST" action="https://formspree.io/f/mbglkalb">
+            <!-- #43: honeypot — Formspree's documented pattern. type="text" kept
+                 (scrapers skip type="hidden"); hidden with CSS instead. -->
+            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="field-row field-row--pair">
+              <div class="pair-cell">
+                <label for="name">Name <span class="optional">(optional)</span></label>
+                <input id="name" name="name" type="text" autocomplete="name">
+              </div>
+              <div class="pair-cell">
+                <label for="email">Email <span class="optional">(optional)</span></label>
+                <input id="email" name="email" type="email" autocomplete="email">
+              </div>
             </div>
-            <div class="pair-cell">
-              <label for="email">Email <span class="optional">(optional)</span></label>
-              <input id="email" name="email" type="email" autocomplete="email">
+            <!-- #74: the story field sits UNDER the Name/Email pair, and the Send
+                 button shares the story field's row (beside the textarea) instead
+                 of owning a full-width row below — this is what buys #75 its room. -->
+            <div class="field-row">
+              <label for="story">What's on your mind?</label>
+              <div class="field-row--send">
+                <textarea id="story" name="story" required></textarea>
+                <!-- STUB:stories-submit — the button label -->
+                <button type="submit">Send</button>
+              </div>
             </div>
-          </div>
-          <!-- #74: the story field sits UNDER the Name/Email pair, and the Send
-               button shares the story field's row (beside the textarea) instead
-               of owning a full-width row below — this is what buys #75 its room. -->
-          <div class="field-row">
-            <label for="story">What's on your mind?</label>
-            <div class="field-row--send">
-              <textarea id="story" name="story" required></textarea>
-              <!-- STUB:stories-submit — the button label -->
-              <button type="submit">Send</button>
-            </div>
-          </div>
-      </form>
-    </article>
+        </form>
+      </article>
     </div><!-- /.middle-row -->
 
   </section>

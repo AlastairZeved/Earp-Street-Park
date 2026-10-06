@@ -251,9 +251,13 @@ sheet's `#panel-plan` scrollbar stands. `--stories-row: clamp(308px, 524px -
 re-wraps taller in the narrow column — measured 372.6px at 761vw (the
 Name/Email labels re-wrap), 348.7 at 800, 324.8 at 900, 325 at 1000, 303.5
 at 1100, then flat 306–307px above 1100; the clamp clears the measurement at
-every sampled width (bounds agent-derived, not an owner ruling). On phone
-the wrapper dissolves (`display: contents`) and the sheets return to the
-grid areas they already held. B17's equal-size law carries over unchanged —
+every sampled width (bounds agent-derived, not an owner ruling; measured
+air runs 0.9px at 761vw and 1.8px at 1000vw, widening to 17–22px across the
+800–1100vw band where the linear preferred term over-predicts the non-linear
+re-wrap — the tape prints over fence there, not over the photo). On phone
+the wrapper dissolves (`display: contents`) and the sheets return to their
+grid areas, their phone values re-pinned at `.field`-prefixed specificity so
+the desktop row rules cannot out-rank them. B17's equal-size law carries over unchanged —
 it now binds the plan and stories halves rather than the photo and the plan
 sheet. `docs/UIUX.md` §5/§5.1 and `docs/PRD.md` §3/§4 are amended in the
 same PR.
