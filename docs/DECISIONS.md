@@ -168,3 +168,15 @@ column: the flier's wrap (299px at 761vw … 174px at 1440vw) is 19px taller at
 ruling's scope). Derived numbers here are agent-derived from the
 owner-confirmed chat choices (middle 56%, sides 20.5% each, gaps 0.3%); the
 ruling's own words above are the owner's.
+
+### B16. A CSP ships as a Netlify `_headers` file — the first security-header change; B1's "no security headers" acceptance is superseded for headers only, the Referrer-Policy landmine is respected, and the issue's JS/sanitization items are ruled not-applicable (issue #105, the owner's rulings of record)
+
+**Source:** issue #105 (owner, ruling of record, delivered in the owner's session chat 2026-10-06 in answer to the measured conflicts presented there), transcribed verbatim: "Add _headers with the strong CSP above (supersedes B1's no-headers acceptance, transcribed as B16)"; on the issue's "prefer external .js files" item: "Rule it not-applicable — keep zero-JS law untouched"; on the issue's "sanitize/encode user-supplied content" item: "Rule it not-applicable — nothing renders user input"; and on the duplicate issue #106: "I deleted issue #106 as duplicate. No need to do anything. Work #105." — https://github.com/AlastairZeved/Earp-Street-Park/issues/105
+
+**The record.** The `_headers` file ships at the repository root (Netlify reads it from the `deploy` branch per B10) with the ruled policy, verbatim from the ruling:
+
+```
+default-src 'none'; img-src data:; style-src 'unsafe-inline'; form-action https://formspree.io; frame-ancestors 'none'; base-uri 'none'
+```
+
+plus `Referrer-Policy: strict-origin-when-cross-origin` — the exact value B1's standing caution names as the strictest setting that is safe for Formspree. `style-src 'unsafe-inline'` is unavoidable while the design system lives in one inline `<style>`; `img-src data:` covers the inlined photo prints and favicon. B1's "no security headers" acceptance is superseded **for headers only** — its other three accepted findings (no branch lock, the deleted dev script, unsigned authorship) stand untouched, as does the Referrer-Policy landmine. The issue's remaining items are ruled out by the owner: the page ships zero `<script>` tags (the "prefer external .js" ask is already the page's steady state, and repo law bans JavaScript regardless), and the page renders no user-supplied content — the form POSTs straight to Formspree, which renders submissions in its own dashboard.
