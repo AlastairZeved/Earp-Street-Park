@@ -222,3 +222,38 @@ sampled width (6.5px at 761vw, 0.5px at 1247vw, both bounding-box readings
 of the tilted sheets; the tape-printing-over convention holds). The lot
 print inside the narrower window pane takes the pane's width cap and centers
 vertically (the §4.2 mechanic, unchanged); the phone grid is untouched.
+
+### B18. The middle pane stacks instead: the lot photo takes the top of the pane at full width, and What We'd Like To Do and Give Me A Shout! share the row beneath it — plan on the left, stories on the right (the owner's chat amendment to issue #109, 2026-10-06; supersedes B17's photo-beside-plan render and retires `--stories-block`)
+
+**Source:** the owner's amendment to issue #109, stated in chat with the
+site's agent, 2026-10-06, transcribed verbatim: "Actually, we're going to
+make a different layout swap as an amendment to the issue now that I've seen
+the middle pane visually with three components in it. The image will stay at
+the top of the stack, but underneath it will be both \"WHAT WE'D LIKE TO
+DO\" AND \"GIVE ME A SHOUT!\" side by side. \"WHAT WE'D LIKE TO DO\" section
+belongs on the left and \"GIVE ME A SHOUT!\" belongs on the right. Does that
+make sense?" The agent confirmed and read the ruling back (photo on top at
+the pane's full 56% width; plan left / stories right beneath it; the right
+pane still only the Come Say Hi! flier, empty space standing) before
+implementing; the owner's review of this PR is the confirmation of record.
+The amendment is of record on issue #109, the issue it amends —
+https://github.com/AlastairZeved/Earp-Street-Park/issues/109
+
+**The record.** Same PR as B17. The middle pane is a stack: `.window`
+returns to the pane's full `width: 56%` and takes `height: calc(96% -
+var(--stories-row))`; a `.middle-row` wrapper (absolute, `left: 22% / bottom:
+2% / width: 56%`) holds the two sheets as equal halves — `.note--plan`
+(`left` half, absolute, `top: 0 / bottom: 0`, width 49.5%) and
+`.note--stories` (in flow, the row's height-setter per #56, `margin-left:
+50.5% / width: 49.5%`). 1% fence air sits between the halves. The plan
+sheet's `#panel-plan` scrollbar stands. `--stories-row: clamp(308px, 524px -
+19.8vw, 373px)` replaces `--stories-block` (19.25rem): the half-width form
+re-wraps taller in the narrow column — measured 372.6px at 761vw (the
+Name/Email labels re-wrap), 348.7 at 800, 324.8 at 900, 325 at 1000, 303.5
+at 1100, then flat 306–307px above 1100; the clamp clears the measurement at
+every sampled width (bounds agent-derived, not an owner ruling). On phone
+the wrapper dissolves (`display: contents`) and the sheets return to the
+grid areas they already held. B17's equal-size law carries over unchanged —
+it now binds the plan and stories halves rather than the photo and the plan
+sheet. `docs/UIUX.md` §5/§5.1 and `docs/PRD.md` §3/§4 are amended in the
+same PR.

@@ -190,39 +190,44 @@ document scroll in any direction. `.board` is `100vh/100dvh`; the `.field`
 children are absolutely pinned by percentage. Position encodes meaning
 (the file's own architecture comment, verbatim): "**left = what happened**
 (What We've Done), **center = the lot as it stands** (one pinned photo, #64)
-beside what's planned and needed (What We'd Like To Do, #109 — the middle
-pane's two halves), **right = the Come Say Hi! flier**, **bottom center =
-your turn** (Stories & Suggestions)."
+above your turn and the ask (What We'd Like To Do beside Stories &
+Suggestions, #109 as amended in chat 2026-10-06 — the middle pane's bottom
+row), **right = the Come Say Hi! flier**."
 
 ### §5.1 Desktop pins
 
 | Element | Pin |
 |---|---|
 | `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B17: the plan sheet leaves the right pane at 27.5%, so the two sheets' widths no longer match — the week sheet's 20.5% stands) |
-| `.window` | `left: 22%; top: 2%; width: 27.5%; height: calc(96% - var(--stories-block))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B17: the middle pane splits — the photo takes the pane's left half, equally sized with the plan sheet beside it) |
-| `.note--plan` | `left: 50.5%; top: 2%; width: 27.5%; height: calc(96% - var(--stories-block))` — B17: moved into the middle pane, the photo's right neighbor at equal width and height (22.0 + 27.5 + 1.0 fence air = 50.5; right edge at 78.0, the middle pane's edge). The B15/#102 flier-headroom clamp is retired with the right pane's plan sheet — `#panel-plan` keeps the sheet's vertical scrollbar |
-| `.note--stories` | `left: 22%; bottom: 2%; width: 56%` (B15: shares the middle pane's re-derived column) — never a scroll region, height content-driven |
+| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
+| `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row, holding `.note--plan` and `.note--stories` as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
+| `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the stories sheet's height exactly; `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
+| `.note--stories` | inside `.middle-row`: in flow, `margin-left: 50.5%; width: 49.5%` — B18: the row's right half and its height-setter (#56: never a scroll region, height content-driven) |
 | `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.5%` (#63 pin, B5: "leave exactly where they are"; B17: the right pane's only resident — the plan sheet no longer sits above it and the empty space is not filled) |
 
-Sheet clearances are computed, never eyeballed: `--stories-block: 19.25rem`
-(the compacted #92 form's measured 308px height). The plan sheet's flier
-headroom clamp (`clamp(194px, 488px - 19.2vw, 342px)`, #76/#92/#102) is
-retired by B17 — the plan sheet no longer shares a column with the flier.
-These are calc tokens, not guesses. #92's measured split at the issue's 1247×956
+Sheet clearances are computed, never eyeballed: `--stories-row:
+clamp(308px, 524px - 19.8vw, 373px)` (B18, re-measured for the half-width
+stories sheet: 372.6px at 761vw where the Name/Email labels re-wrap, ~325px
+at 900–1000vw, flat 306–307px above 1100vw; the window yields the row's
+measured height at every sampled width, tape printing over the photo's
+bottom edge as on every sheet). Retires `--stories-block` (19.25rem) and the
+plan sheet's flier headroom clamp (`clamp(194px, 488px - 19.2vw, 342px)`,
+#76/#92/#102) — B18 no longer shares the flier's column. These are calc
+tokens, not guesses. #92's measured split at the issue's 1247×956
 viewport: photo pane 55.3% of the middle pane's vertical space, stories
 sheet 40.6% — B13 records why the 70-80/20-30 ask cannot go lower without
 touching a ruled floor. Issue #101 changed the render B13 shipped: the mat
 hugs the print now (§4.2), and no ruled floor is touched —
-`--stories-block`, the B6 textarea floor, and #75's never-crop all stand.
+the B6 textarea floor and #75's never-crop all stand.
 Issue #102 re-derived the pins (B15): the side panes are equally sized
 (20.5% each), the middle pane is larger (56%) and centered between them —
 0.3% fence air each side, the middle column's center at exactly 50% of the
-field. The stories sheet shares that column, so the form is now 56% wide
-(not the #92 52.5%). Issue #109 split the middle pane itself (B17): the lot
-window takes the pane's left half (27.5% of the field) and What We'd Like To
-Do the right half beside it, equally sized at the window's height
-(`calc(96% - var(--stories-block))`) so they scale together; the right pane
-is now the Come Say Hi flier's alone, the empty space above it left standing.
+field. Issue #109 moved the plan sheet into the middle pane (B17: the pane
+split, photo beside plan); the owner's chat amendment of 2026-10-06 stacked
+it instead (B18): the photo takes the pane's top at full 56% width, and the
+plan and stories sheets share the pane's bottom row as equal halves — plan
+left, stories right — the right pane remaining the Come Say Hi flier's
+alone, the empty space above it left standing.
 
 ### §5.2 Scroll regions
 
