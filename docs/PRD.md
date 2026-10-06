@@ -41,9 +41,9 @@ The site is one spatial board, and the board IS the wooden fence — the
 file's architecture comment, verbatim: "Position encodes meaning:
 left = what happened (What We've Done), center = the lot as it stands (one
 pinned photo, #64) above your turn and the ask (What We'd Like To Do beside
-Stories & Suggestions, #109 as amended in chat 2026-10-06 — the middle
-pane's bottom row), right = the WHAT WE NEED flier above the Come Say Hi!
-flier, stacked in the pane (#110, B23). Every sheet prints its
+WHAT WE NEED, #122/B25 — the middle pane's bottom row), right = the Come Say
+Hi! flier with the GIVE US A SHOUT! sheet below it, stacked in the pane
+(#122, B25). Every sheet prints its
 content at rest; the week and plan sheets are the board's only scroll
 regions (vertical only)."
 
@@ -57,13 +57,12 @@ dug-up planters), not a marketing page.
 1. **Header** — "Earp Street Park" in cream serif on the fence, a double
    rule, and the hero passage ("Hey, we're Rob and Brian. …") printed
    directly on the fence. On phone the hero becomes a paper sheet of its own.
-2. **The Come Say Hi! flier** (bottom right) — a real paper flier (B5): tape,
+2. **The Come Say Hi! flier** (right pane, top — B25) — a real paper flier
+   (B5): tape,
    sheet shadow, left-anchored, inviting conversation in person ("come say
-   hi!"). The right pane's top flier above it, since B23: **What We Need**
-   (#110) — the same flier species, top pinned level with the other two
-   panes below the header, its face a checkbox list of materials wanted
-   (slats, paint, a No Dumping sign, hip-height fencing, container trees);
-   not a scroll region.
+   hi!"). The right pane's bottom sheet below it, since B25: **Give us a
+   shout!** (#122) — the contact form on its `.note` paper sheet, in the
+   fliers' 20.5% column; not a scroll region (#56).
 3. **What We've Done** (left sheet) — the dated work log; one of the two
    scroll regions.
 4. **The lot photo** (center window, the middle pane's top of stack — B18) —
@@ -74,8 +73,12 @@ dug-up planters), not a marketing page.
    amended in chat, B18) — the wish list as a bullet
    list, alone (B7: no intro statement, no materials list); it is the second
    scroll region.
-6. **Give us a shout!** (middle pane's bottom row, RIGHT half, beside What
-   We'd Like To Do — B18) — the contact form: name and email
+6. **What We Need** (middle pane's bottom row, RIGHT half, beside What
+   We'd Like To Do — B25, swapping in from the right pane) — the checkbox
+   flier (B23): materials wanted (slats, paint, a No Dumping sign, hip-height
+   fencing, container trees); not a scroll region.
+7. **Give us a shout!** (right pane, below the Come Say Hi! flier — B25) —
+   the contact form: name and email
    optional, story required, "Send" (B4), three visible lines with a
    scrollbar beyond (B6), posting to Formspree with a `_gotcha` honeypot.
    This is the site's one interactive act and its one external request.
