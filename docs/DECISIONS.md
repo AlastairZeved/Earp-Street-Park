@@ -365,3 +365,29 @@ ruling). The numbers are recorded here so a future copy edit or a shorter
 fit envelope can be ruled on with the render measured, not eyeballed. Come
 Say Hi's own bounding box is unchanged by this ruling (bottom 2% pin,
 field-relative, verified at every sampled width).
+
+### B24. The body font stack leads with Fira Sans — every sans element on the page renders in Fira Sans, not just the body paragraphs; the Bold-only Roboto install that made all 400 text render bold is routed around (issue #114, owner ruling in chat with the site's agent, 2026-10-06)
+
+**Source:** the owner's ruling in chat with the site's agent, 2026-10-06,
+transcribed verbatim: "Use Fira Sans and update the font so it's consistent
+throughout the page, not just the body texts." — https://github.com/AlastairZeved/Earp-Street-Park/issues/114
+
+**The record.** `--font-body` becomes `"Fira Sans", -apple-system, "Segoe UI",
+Roboto, "Helvetica Neue", Arial, sans-serif` — Fira Sans leads, the previous
+system fallbacks stand behind it. Measured root cause of #114: the shipped
+weight map already put every body element at 400 (B9/B12 verified live), but
+on the owner's machine the stack's first present family, Roboto, existed as a
+single Bold face (`~/.local/share/fonts/Roboto-Bold.ttf`, no Regular), so the
+browser drew weight 400 with the Bold face — every sans element on the page
+rendered bold while the monospace dates (a separate stack, landing on a
+regular face) printed thin beside them. The agent rendered the same paragraph
+at 400 and 700 and measured them pixel-identical (median stroke 5.0px, ink
+fraction 0.167 at 2x, platform font reported as Roboto for both) before
+presenting the conflict; the owner's screenshot letterforms match Roboto Bold.
+"Consistent throughout the page" is read as every element that uses the body
+stack — entries, lists, the hero, form labels, the button — one family. The
+serif species (`.note-title`, `h1`, Georgia stack) and the mono species
+(`.entry-date`, `--font-stub`) are separate pinned stacks and are unchanged.
+Fira Sans carries Regular and Bold on the owner's machine, so the Send
+button's 700 keeps a true bold. `docs/UIUX.md` §3.1 is amended in the same
+PR; no token or hex changes, so `test/tokens.js` needs no assertion rewrite.
