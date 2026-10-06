@@ -417,10 +417,15 @@ needs flier's natural re-wrap: 359.6px at 761vw, ~304 at 850–950, a flat
 ~288–291 band to 1350, ~235 at 1400 and above): `clamp(240px, 462px - 12vw,
 365px)`, measured air positive at every sampled width (6.3px at 761vw,
 10.7px at 1350, 6.2px at 1920) — the calc token is agent-derived, not an
-owner ruling. The phone render is untouched (grid-areas unchanged; the phone
-flier run still reads WHAT WE NEED above Come Say Hi!, the sheets keep their
-phone rows). Measured fit envelope, recorded so the owner can rule with the
-render measured (the B13/B23 pattern): the right pane's two sheets fit down
+owner ruling. The phone render keeps its structure (grid-areas unchanged; the
+phone flier run still reads WHAT WE NEED above Come Say Hi!, the sheets keep
+their phone rows), and the base phone `.head-lines` rule re-pins
+`top`/`right` to auto — the desktop 2%-pin family had begun leaking onto the
+phone fliers when B25 moved Come Say Hi! to the top pin; the run now prints
+at its true flow position (measured ~3px lower than the shipped render, the
+old bottom-pin leak removed). Measured fit envelope, recorded so the owner
+can rule with the render measured (the B13/B23 pattern): the right pane's
+two sheets fit down
 to ~723px of viewport height at 1247vw (air 8.5px) and 720px at 1280vw
 (5.6px); below that the GIVE US A SHOUT! sheet rides over the Come Say Hi!
 flier with no scroll fallback (176px of overlap at 761×720, where Come Say

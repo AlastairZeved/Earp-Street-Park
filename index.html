@@ -50,7 +50,7 @@
     --space-1: 0.35rem;
     --space-2: 0.75rem;
     --space-3: 1.25rem;
-    --stories-row: clamp(240px, 462px - 12vw, 365px);  /* #122 (B25): the bottom row's measured height — the row is now the WHAT WE NEED flier's natural height (the stories sheet swapped into the right pane): 359.6px at 761vw, 303.6 at 850, ~304 at 950, 286.6 at 1050, then a flat ~288–291 band to 1350 (the list re-wraps in discrete steps), dropping to ~235 at 1400 and above (flat to 1920). The clamp is the #76/#102 mechanic re-derived: the window yields at least the row's measured height at every sampled width — measured air of 5.4px at 761, 9.1px at 1350, 3.9px at 1920, over-reserving 35–59px across the 1050–1440 band where the flat re-wrap steps under the linear preferred term (safe direction: the photo sits a little proud of the row rather than under it). Bounds are agent-derived from the measured re-wrap; they are not an owner ruling. */
+    --stories-row: clamp(240px, 462px - 12vw, 365px);  /* #122 (B25): the bottom row's measured height — the row is now the WHAT WE NEED flier's natural height (the stories sheet swapped into the right pane): 359.6px at 761vw, 303.6 at 850, ~304 at 950, 286.6 at 1050, then a flat ~288–291 band to 1350 (the list re-wraps in discrete steps), dropping to ~235 at 1400 and above (flat to 1920). The clamp is the #76/#102 mechanic re-derived: the window yields at least the row's measured height at every sampled width — rendered photo-to-row air of 6.3px at 761vw, 10.7px at 1350vw, 6.2px at 1920vw, over-reserving 35–61px across the 1050–1440 band where the flat re-wrap steps under the linear preferred term (safe direction: the photo sits a little proud of the row rather than under it). Bounds are agent-derived from the measured re-wrap; they are not an owner ruling. */
   }
 
   * { box-sizing: border-box; }
@@ -605,8 +605,8 @@
       transform: none;
     }
     .head-lines .smallprint { font-size: 0.72rem; line-height: 1.45; margin: 0; }
-    .head-lines { text-align: left; position: relative; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.5% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin) */
-    .field .head-lines--needs { grid-area: needs; top: auto; right: auto; margin-left: 0; width: auto; position: relative; }  /* #110 (B23): its own phone row — the two fliers cannot share the #46 "lines" area; #122 (B25): margin-left/width re-pinned in the later cascade (the phone block's re-pin pattern) so the desktop .middle-row slot's 50.5%/49.5% cannot leak onto the phone grid; top/right: auto clear the desktop pin family */
+    .head-lines { text-align: left; position: relative; top: auto; right: auto; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.5% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin); #122 (B25): top/right auto re-pin the desktop pin family in the later cascade (the phone block's re-pin pattern) — the flier run is in flow at its true position */
+    .field .head-lines--needs { grid-area: needs; top: auto; margin-left: 0; width: auto; position: relative; }  /* #110 (B23): its own phone row — the two fliers cannot share the #46 "lines" area; #122 (B25): margin-left/width re-pinned in the later cascade (the phone block's re-pin pattern) so the desktop .middle-row slot's 50.5%/49.5% cannot leak onto the phone grid; top: auto re-pins the desktop pin family (the base phone rule clears the rest) */
     /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
     .field {
       display: grid;
@@ -630,7 +630,9 @@
     .snapshot      { display: block; grid-area: snap; }
     /* .field- prefixes re-win the desktop .middle-row rules' 0,2,0 specificity
        (#109, B18) — position, width, margins, and tilt are each re-pinned
-       here; an unprefixed .note--plan/.note--stories rule would lose. */
+       here (.note--plan's desktop rule is .middle-row-prefixed; .note--stories'
+       desktop rule is unprefixed since B25, but the prefix keeps the phone
+       block self-sufficient). */
     .field .note--plan    { position: static; grid-area: plan;    width: 97%;  height: 96%; margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above; #63/#109: height 96% redeclared — the desktop height mechanics (.middle-row insets) must not leak */
     .field .note--stories { position: static; grid-area: stories; width: 94%;  height: auto; margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }  /* #56: height auto — the form prints inside the paper */
 
