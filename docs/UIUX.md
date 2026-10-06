@@ -167,7 +167,10 @@ the pane's width — and the print fills it edge to edge
 coincides with full-bleed at that ratio), so no white mat margin is
 introduced at any window shape. When the pane is narrower than the
 height-derived mat (very tall windows) the width cap takes over and the mat
-centers vertically in the pane instead. The whole photograph, never cropped
+centers vertically in the pane instead. Browsers without container-query
+support (below the site's dvh floor in a few Firefox/Safari versions) fall
+back to the pre-#101 full-pane mat — photo letterboxed, #75 intact — rather
+than a missing photo. The whole photograph, never cropped
 (#75); drag/selection/pointer-events disabled. One static print of the lot as
 it stands — "no comparison, no second angle" (#64). No border lines of any
 kind (B8: "let the white space live"). The phone `.snapshot` print is the

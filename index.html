@@ -12,7 +12,10 @@
      self-contained: all photos are inlined as data URIs. When a real after
      photo exists, it replaces the single <img> inside .cmp-stage, re-inlined
      as a data URI the same way (update its alt text too). There is no folder
-     or "save after.jpg next to this file" step.
+     or "save after.jpg next to this file" step. If the replacement photo's
+     natural size is not 1600×995, update the 1600/995 ratio in the .cmp
+     width formula AND .cmp-stage's aspect-ratio (#101: the mat hugs the
+     print via that exact ratio — a stale ratio reintroduces letterboxing).
 -->
 <meta name="description" content="One neighbor is fixing up the Earp Street lot — no group, no committee — so the kids who already play here have somewhere worth being. Follow the work, see what's next, and share your stories of the lot.">
 <!-- BOARD BUILD t_c6a093b1 — re-architecture of the linear notice sheet into one
@@ -197,11 +200,8 @@
     width: 56%; height: calc(96% - var(--stories-block));
     margin: 0;
     z-index: 1;
-    /* size container so .cmp can size from the pane's height (issue #101) */
-    container-type: size;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* container-type + flex centering live in the @supports block below:
+       they are what lets .cmp size from the pane's height (issue #101). */
   }
 
   /* ---------- Notes: paper sheets pinned to the fence ---------- */
@@ -437,23 +437,41 @@
      it edge to edge, so no white mat margin ever appears. When the pane is
      narrower than that (very tall windows) the width cap takes over and the
      mat centers vertically in the pane instead. The caption reserve the old
-     height carried is gone: there is no caption in the frame. */
+     height carried is gone: there is no caption in the frame.
+
+     Fallback (browsers without container queries — below the site's dvh
+     floor in a few Firefox/Safari versions): the pre-#101 full-pane mat
+     still renders — photo letterboxed on the mat, #75 intact — instead of
+     collapsing to nothing. */
   .cmp {
     position: relative;
-    width: min(100%, calc((100cqh - 2 * var(--space-2)) * 1600 / 995 + 2 * var(--space-2)));
-    height: auto;
+    width: 100%;
+    height: calc(100% - 2.1rem);
     background: #fffdf6;
     padding: var(--space-2);
     box-shadow: 0 6px 18px rgba(0,0,0,.35);
     overflow: hidden;
     transform: rotate(0.35deg);
   }
-  .cmp-stage { position: relative; width: 100%; height: auto; aspect-ratio: 1600 / 995; overflow: hidden; }
+  .cmp-stage { position: relative; width: 100%; height: 100%; overflow: hidden; }
+  @supports (container-type: size) {
+    .window {
+      container-type: size;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cmp {
+      width: min(100%, calc((100cqh - 2 * var(--space-2)) * 1600 / 995 + 2 * var(--space-2)));
+      height: auto;
+    }
+    .cmp-stage { width: 100%; height: auto; aspect-ratio: 1600 / 995; }
+  }
   .cmp-stage img {
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
-    object-fit: contain;  /* #75: the whole lot photo, never cropped — the stage carries the print's own 1600/995 aspect (issue #101), so the print fills the stage edge to edge */
+    object-fit: contain;  /* #75: the whole lot photo, never cropped — with the stage at the print's own 1600/995 aspect (issue #101), the print fills the stage edge to edge */
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
