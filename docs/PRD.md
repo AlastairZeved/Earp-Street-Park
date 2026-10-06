@@ -38,11 +38,12 @@ taped-up sheet), and works in light and dark and on a phone.
 ## §3 The board (§UIUX 5)
 
 The site is one spatial board, and the board IS the wooden fence — the
-file's architecture comment, verbatim: "Position encodes meaning: left = what
-happened (What We've Done), center = the lot as it stands (one pinned photo,
-#64), right = what's planned and needed (What We'd Like To Do), bottom center
-= your turn (Stories & Suggestions). Every sheet prints its content at rest;
-the week and plan sheets are the board's only scroll regions (vertical
+file's architecture comment, verbatim: "Position encodes meaning:
+left = what happened (What We've Done), center = the lot as it stands (one
+pinned photo, #64) beside what's planned and needed (What We'd Like To Do,
+#109 — the middle pane's two halves), right = the Come Say Hi! flier, bottom
+center = your turn (Stories & Suggestions). Every sheet prints its content
+at rest; the week and plan sheets are the board's only scroll regions (vertical
 only)."
 
 One viewport on desktop — no document scroll in any direction. On phone the
@@ -63,7 +64,8 @@ dug-up planters), not a marketing page.
 4. **The lot photo** (center window) — one static print of the lot as it
    stands, whole, letterboxed on its white mat (#64: no comparison, no second
    angle; #75: contain, never crop; B8: no border lines).
-5. **What We'd Like To Do** (right sheet) — the wish list as a checkbox
+5. **What We'd Like To Do** (right half of the middle pane, beside the lot
+   photo — #109) — the wish list as a checkbox
    list, alone (B7: no intro statement, no materials list); it is the second
    scroll region.
 6. **Give me a shout!** (bottom center) — the contact form: name and email

@@ -180,3 +180,36 @@ default-src 'none'; img-src data:; style-src 'unsafe-inline'; form-action https:
 ```
 
 plus `Referrer-Policy: strict-origin-when-cross-origin` — the exact value B1's standing caution names as the strictest setting that is safe for Formspree. `style-src 'unsafe-inline'` is unavoidable while the design system lives in one inline `<style>`; `img-src data:` covers the inlined photo prints and favicon. B1's "no security headers" acceptance is superseded **for headers only** — its other three accepted findings (no branch lock, the deleted dev script, unsigned authorship) stand untouched, as does the Referrer-Policy landmine. The issue's remaining items are ruled out by the owner: the page ships zero `<script>` tags (the "prefer external .js" ask is already the page's steady state, and repo law bans JavaScript regardless), and the page renders no user-supplied content — the form POSTs straight to Formspree, which renders submissions in its own dashboard.
+
+### B17. The plan sheet moves into the middle pane, beside the lot photo at equal size; the form prints below both; the right pane keeps only the Come Say Hi flier, and the empty space left behind is not filled (issue #109, the owner's ruling of record; supersedes B15's right-pane pin of the plan sheet and retires the #76/#92/#102 flier-headroom clamp)
+
+**Source:** issue #109 (owner, ruling of record), transcribed verbatim: "The middle pane is too large for just one image stacked on top of one form.
+
+Move the \"What We'd Like to Do\" component to the middle pane, on the right side of the image and at the same height and width so they're equally sized (scaled where the image scales, maintaining the vertical scroll bar in the \"WHAT WE'D LIKE TO DO\" component).
+
+Once complete, the middle pane should read:
+
+\"IMAGE\" | \"WHAT WE'D LIKE TO DO\"
+       CONTACT FORM
+
+
+Once complete, the right pane should only contain the \"COME SAY HI!\" component. Do not move it, do not resize it, do not fill in the empty space left behind." — https://github.com/AlastairZeved/Earp-Street-Park/issues/109
+
+**The record.** Shipped as PR pending owner review. The middle pane splits
+into two equal halves: the lot window takes `left: 22% / width: 27.5%` and
+`.note--plan` moves to `left: 50.5% / width: 27.5%` — equal widths, 1% of
+fence air between them, both at `height: calc(96% - var(--stories-block))`
+so they scale together as the window scales; the plan sheet's own
+`#panel-plan` vertical scrollbar stands (`overflow-y: auto` unchanged), and
+the sheet species is untouched (same `.note` paper, tape, shadow, +0.5°
+tilt). The stories sheet (`left: 22% / width: 56%`, bottom 2%) prints below
+both, untouched. `.head-lines` (Come Say Hi!) is unmoved (`right: 1.2%,
+bottom: 2%, width: 20.5%`) and is now the right pane's only resident; the
+empty space above it is left as the ruling directs. With the plan sheet out
+of the right pane, the flier-headroom clamp
+(`clamp(194px, 488px - 19.2vw, 342px)`, #76/#92/#102) is retired — nothing
+shares the flier's column anymore. B15's plan-sheet pin (`left: 78.3% /
+width: 20.5%`) is superseded for the plan sheet only; B15's side panes and
+the centered 56% middle column stand. `docs/UIUX.md` §5/§5.1 and
+`docs/PRD.md` §3/§4 are amended by this ruling in the same PR; no token or
+hex changes, so `test/tokens.js` needs no assertion rewrite.
