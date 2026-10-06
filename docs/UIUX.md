@@ -188,10 +188,10 @@ children are absolutely pinned by percentage. Position encodes meaning
 | Element | Pin |
 |---|---|
 | `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (#92: yields width to the center column) |
-| `.window` | `left: 22.2%; top: 2%; width: 52.5%; height: calc(96% - var(--stories-block))`, z-index 1 (#92: the widest the center column can go between the week and plan sheets) |
-| `.note--plan` | `left: 78.2%; top: 2%; width: 20.6%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px))` — the clamp reserves headroom for the flier's re-wrap, re-derived at #92 for the narrowed 20.6% column (flier measures 280px at 761vw … 174px at 1440vw); the file notes these bounds are "agent-derived from the measured re-wrap; they are not an owner ruling" |
-| `.note--stories` | `left: 22.2%; bottom: 2%; width: 52.5%` — never a scroll region, height content-driven |
-| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.6%` (the plan sheet's own column, #63 pin, B5: "leave exactly where they are") |
+| `.window` | `left: 23.75%; top: 2%; width: 52.5%; height: calc(96% - var(--stories-block))`, z-index 1 (B15: centered on the board, equal 2.05% gaps to the week and plan sheets) |
+| `.note--plan` | `left: 78.3%; top: 2%; width: 20.5%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px))` — B15 re-derived the pin and width (the week sheet's 20.5%; right edge stays 98.8%); the clamp reserves headroom for the flier's re-wrap, re-measured at #92 for the narrowed column (flier measures 299px at 761vw … 174px at 1440vw) and re-checked at B15 for the 20.5% wrap; the file notes these bounds are "agent-derived from the measured re-wrap; they are not an owner ruling" |
+| `.note--stories` | `left: 23.75%; bottom: 2%; width: 52.5%` — never a scroll region, height content-driven (B15: centered on the board) |
+| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.5%` (the plan sheet's own column, #63 pin, B5: "leave exactly where they are"; width follows B15's 20.5% plan column) |
 
 Sheet clearances are computed, never eyeballed: `--stories-block: 19.25rem`
 (the compacted #92 form's measured 308px height) and the plan sheet's clamp

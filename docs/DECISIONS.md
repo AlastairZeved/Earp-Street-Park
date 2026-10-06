@@ -141,3 +141,22 @@ query applying the §2.2 remaps (`--paper #3a3329`, `--rust #dd8a4a`), with
 the planks taking the dark `--ink-faded` tan `#b5ac9b` — the dark `--fence`
 value measured too close to the dark paper to survive 16px. The SVG ships
 only hexes the tokens already declare.
+
+### B15. The board pins are re-derived so the middle column is centered and the gaps on both sides are equal (issue #102)
+
+**Source:** issue #102 (owner ruling, 2026-10-06): the owner ruled to
+re-derive the pins — the fix shape this issue asked for, given with the
+owner's verified arithmetic in the issue showing left gap 0.5% vs right
+gap 3.5% and the middle column's center at 48.45% (B13 re-anchored the
+widened 52.5% column at its old left pin instead of re-centering it). — https://github.com/AlastairZeved/Earp-Street-Park/issues/102
+
+**The record.** The three side-by-side columns are re-derived as one
+symmetric arrangement: the middle column (stories sheet and photo pane)
+keeps its 52.5% width and centers on the board's midline (`left: 23.75%`,
+right edge 76.25%); the plan sheet moves to `left: 78.3%` and takes the
+week sheet's 20.5% width (right edge 98.8% — the board's outer margins
+stay 1.2% on both sides). Both inner gaps measure 2.05%. The week sheet is
+untouched (`left: 1.2%; width: 20.5%`). The flier, which shares the plan
+column, re-derives its headroom clamp for the 20.5% wrap (the file's
+agent-derived-bounds note applies: re-measured, not ruled). UIUX §5.1 is
+amended to these values in the same change.

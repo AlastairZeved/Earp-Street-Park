@@ -129,7 +129,7 @@
   .head-lines {
     grid-area: lines; text-align: left; align-self: start;
     position: absolute; right: 1.2%; bottom: 2%;
-    width: 20.6%;                     /* the plan sheet's own column (#92: left 78.2% + 20.6% = 98.8%) */
+    width: 20.5%;                     /* the plan sheet's own column (B15: left 78.3% + 20.5% = 98.8%) */
     background: var(--paper);
     color: var(--ink);
     box-shadow: 0 8px 20px rgba(0,0,0,.4);  /* the .note sheet shadow, verbatim */
@@ -191,7 +191,7 @@
      floor. */
   .window {
     position: absolute;
-    left: 22.2%; top: 2%;
+    left: 23.75%; top: 2%;
     width: 52.5%; height: calc(96% - var(--stories-block));
     margin: 0;
     z-index: 1;
@@ -210,19 +210,19 @@
   .note--week    { left: 1.2%;  top: 2%;  width: 20.5%; height: 96%; transform: rotate(-0.5deg); }  /* #92: 20.5% — yields width to the center column's #92 widening */
   /* #63 + #70 + #76 + #78: the plan sheet keeps its top aligned with the week sheet and
      reserves room below it for the Come Say Hi flier. The reservation must track the
-     passage's own re-wrap. #92 re-derived it for the narrowed 20.6% column (the flier
-     shares the plan sheet's column): the flier's measured height is 280px at 761vw
+     passage's own re-wrap. #92 re-derived it for the narrowed 20.6% column and B15 re-checked it
+     for the 20.5% column (the flier shares the plan sheet's column): the flier's measured height is 280px at 761vw
      (16 lines), 225px at 1000vw, 192px at 1220vw and 174px at 1440vw; with tape (~13px)
      and air (~6px) the need is flier + 19px, so a reserve of 470px - 19.2vw clears every
      sampled width across the band with margin (324px at 761, 268px at 1050, 224px at
      1280, 194px floor above 1440). The clamp keeps the #76 194px minimum wherever the
      wrap falls below the break-even width. Bounds are agent-derived from the measured
      re-wrap; they are not an owner ruling. */
-  .note--plan    { left: 78.2%; top: 2%;  width: 20.6%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px)); transform: rotate(0.5deg); }  /* #92: 20.6% — yields width to the center column's #92 widening; right edge stays at 98.8% */
+  .note--plan    { left: 78.3%; top: 2%;  width: 20.5%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px)); transform: rotate(0.5deg); }  /* B15: re-derived to the week sheet's 20.5% width and left 78.3% — right edge stays at 98.8%, the 2.05% inner gaps equalize, the column centers */
   /* #56: the stories sheet holds the WHOLE form at first paint — height is
      content-driven, bottom edge pinned where it sat (98% of the field), top
      edge free to rise (the #48 mechanic). No scroll, no clip, no shrink. */
-  .note--stories { left: 22.2%; bottom: 2%; width: 52.5%; transform: rotate(-0.3deg); }
+  .note--stories { left: 23.75%; bottom: 2%; width: 52.5%; transform: rotate(-0.3deg); }  /* B15: centered on the board (23.75 + 52.5/2 = 50) */
 
   /* two strips of tape holding each sheet to the fence */
   .note::before,
