@@ -205,11 +205,10 @@ NEED held under B23), and the pane's bottom sheet is the **GIVE US A SHOUT!**
 form — the `.note` stories sheet in its own species (§4.1, −0.3° tilt,
 full-length form, not a scroll region), pinned `right: 1.2%; bottom: 2%;
 width: 20.5%` in the fliers' column. The **What We Need** flier (B23, issue
-#110) swaps into the middle pane's lower right under B25: the same
+(#110) sits in the middle pane's right half under B27: the same
 `.head-lines` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
-shadow, −0.5° tilt, `.say-hi.flier` title), now the right half of
-`.middle-row` (`margin-left: 50.5%; width: 49.5%`) and the bottom row's
-height-setter.
+shadow, −0.5° tilt, `.say-hi.flier` title), pinned `left: 50.5%;
+bottom: 2%; width: 27.5%` beneath the lot window.
 Its face is a checkbox list — the plan sheet's
 retired checkbox squares (2.1rem indent, 1.05rem square, 2px `--ink` border,
 `#fffdf6` fill; `#2b2720` dusk fill in dark), reinstated verbatim for this
@@ -230,31 +229,31 @@ One spatial board: `body { overflow: hidden }` on desktop — one viewport, no
 document scroll in any direction. `.board` is `100vh/100dvh`; the `.field`
 children are absolutely pinned by percentage. Position encodes meaning
 (the file's own architecture comment, verbatim): "**left = what happened**
-(What We've Done), **center = the lot as it stands** (one pinned photo, #64)
-above your turn and the ask (What We'd Like To Do beside WHAT WE NEED,
-#122/B25 — the middle pane's bottom row), **right = the Come Say Hi! flier
-with the GIVE US A SHOUT! sheet below it, stacked in the pane (#122, B25)**."
+(What We've Done), **center = the middle pane split into
+two equal halves (#126, B27)** — the plan sheet fills the left half at the
+pane's full height (expanded vertically instead of its scroll bar), and the
+lot photo (#64) sits above WHAT WE NEED in the right half; **right = the Come
+Say Hi! flier with the GIVE US A SHOUT! sheet below it, stacked in the pane
+(#122, B25)**."
 
 ### §5.1 Desktop pins
 
 | Element | Pin |
 |---|---|
 | `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B17: the plan sheet leaves the right pane at 27.5%, so the two sheets' widths no longer match — the week sheet's 20.5% stands) |
-| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
-| `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row; B25: holding `.note--plan` and the WHAT WE NEED flier as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
-| `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the height-setter's height exactly (B25: the WHAT WE NEED flier's natural height); `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
-| `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
+| `.window` | `left: 50.5%; top: 2%; width: 27.5%; height: calc(96% - var(--needs-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B27: the middle pane's right half, above the WHAT WE NEED flier) |
+| `.note--plan` | `left: 22%; top: 2%; width: 27.5%; height: 96%` — B27: the middle pane's left half at the pane's full height, expanded vertically instead of its vertical scroll bar (issue #126); `#panel-plan` keeps `overflow-y: auto` as the narrow-desktop fallback (B27's measured envelope). B18's bottom-row pin and B15's right-pane pin are superseded |
+| `.head-lines--needs` | `left: 50.5%; bottom: 2%; width: 27.5%` (B27) — B23 created the flier in the right pane; B25 swapped it into the middle pane's lower right; B27 pins it beneath the window in the pane's right half. Same flier species as Come Say Hi (§4.3) |
 | `.note--stories` | `right: 1.2%; bottom: 2%; width: 20.5%` (B25: the right pane's bottom sheet, in the fliers' column, below the Come Say Hi! flier — issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
 | `.head-lines` | `right: 1.2%; top: 2%; width: 20.5%` (#63 column pin, B5: "leave exactly where they are"; B25: the right pane's top flier — the GIVE US A SHOUT! sheet stacks below it). B23's `bottom: 2%` pin is superseded by B25 |
 
-Sheet clearances are computed, never eyeballed: `--stories-row:
-clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new
-height-setter — the WHAT WE NEED flier's natural re-wrap: 359.6px at 761vw,
-~304px at 850–950vw, a flat ~288–291px band to 1350vw, ~235px at 1400vw and
-above; the window yields the row's measured height at every sampled width —
-measured air of 6.3px at 761vw, 10.7px at 1350vw, 6.2px at 1920vw,
-over-reserving 35–61px where the flat re-wrap steps under the linear
-preferred term, so the tape there prints over fence, not over the photo).
+Sheet clearances are computed, never eyeballed: `--needs-row:
+clamp(240px, 517px - 13.9vw, 365px)` (B27, re-measured under the B26 face in
+the 27.5% column — the WHAT WE NEED flier's natural re-wrap: 359.6px at
+761vw, ~304–307 across 1000–1100vw, a flat ~289–291 band across 1150–1500vw,
+~235–236 from 1600vw up; the window yields the flier's measured height at
+every sampled width — measured air of 6.3px at 761vw, 27.5px at 1440vw,
+16.3px at 1920vw, 5.5px at 2560vw).
 These are calc tokens, not guesses. #92's measured split at the issue's
 1247×956
 viewport: photo pane 55.3% of the middle pane's vertical space, stories
@@ -272,13 +271,21 @@ plan and stories sheets share the pane's bottom row as equal halves — plan
 left, stories right. Issue #122 (B25) swaps the fliers: WHAT WE NEED takes
 the stories sheet's old right half of the bottom row, and the GIVE US A
 SHOUT! sheet moves to the right pane below the Come Say Hi! flier.
+Issue #126 (B27) splits the middle pane into two equal halves 50/50: the
+plan sheet fills the left half at the pane's full height, expanded
+vertically instead of its scroll bar, and the right half stacks the window
+above WHAT WE NEED, with the fence air between the halves; the side panes
+are untouched.
 
 ### §5.2 Scroll regions
 
 Exactly two on desktop: `#panel-week` and `#panel-plan` —
 `flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;`
 (vertical only), each `tabindex="0"` `role="group"` with an aria-label, so
-keyboard users can scroll them. On phone (≤760px, the only breakpoint) the
+keyboard users can scroll them. Since B27 the plan sheet stands at the
+middle pane's full height — expanded vertically per issue #126 — and its
+scroll region is the narrow-desktop fallback: the list fits without the bar
+from ~1240vw up, and the bar returns below that (B27's measured envelope). On phone (≤760px, the only breakpoint) the
 page scrolls instead — sheets print full-length in flow, `overflow: visible`
 (Tinkerbell ruling t_599fbaee).
 

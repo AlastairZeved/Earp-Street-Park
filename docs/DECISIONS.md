@@ -460,3 +460,46 @@ species' Georgia stack is replaced; sizes, uppercase, letter-spacing, the 2px
 ink underline are unchanged), and `--font-stub` (`.entry-date` keeps weight
 400 per B12, `--rust` and letter-spacing 0.04em unchanged). B24's Fira Sans
 stack is superseded. `docs/UIUX.md` §3 is amended in the same PR.
+
+### B27. The middle pane splits into four panes across the board — the middle pane halves 50/50, WHAT WE'D LIKE TO DO fills the left half at full height (expanded vertically instead of its vertical scroll bar), the lot photo sits above WHAT WE NEED in the right half, and the left-most and right-most panes are untouched (issue #126, owner ruling; supersedes B25's bottom-row arrangement in the middle pane)
+
+**Source:** issue #126 (owner), transcribed verbatim: "The middle pane (the wider one) needs to be split in half, 50/50. The left side will house the 'WHAT WE'D LIKE TO DO\" flier so it can be expanded vertically instead of using the vertical scroll bar. The right side will house the image on top and the \"WHAT WE NEED\" flier underneath it. No changes to either the left-most or right-most panes. Include padding between the two new panes we just made." — https://github.com/AlastairZeved/Earp-Street-Park/issues/126
+
+**The record.** Opened as PR pending owner review. The middle pane splits
+into two equal halves with the fence air between them: `.note--plan` takes
+the left half at the pane's full height (`left: 22%; top: 2%; width: 27.5%;
+height: 96%` — top line to the field's 98% line, expanded vertically per the
+ruling so the list prints without its scroll bar; the `#panel-plan` region
+keeps `overflow-y: auto` as the fallback for viewports where the list still
+re-wraps past the pane) and the right half stacks the lot window above the
+WHAT WE NEED flier — `.window` at `left: 50.5%; width: 27.5%; height:
+calc(96% - var(--needs-row))`, the flier pinned beneath it (`left: 50.5%;
+bottom: 2%; width: 27.5%`). The 1% of fence air between the halves
+(22% + 27.5% = 49.5%, the right half running 50.5%–78.0%) is the padding the
+ruling asks for — the B17/B18 fence-air convention, no new spacing value.
+The `.middle-row` wrapper is retired (its B18 job — pinning a shared bottom
+row — is gone); on phone the sheets return to their grid areas unchanged,
+the `.field`-prefixed re-pins now also clearing the desktop
+`left`/`bottom`/`width` half-pane pins. The left pane (`.note--week`) and
+the right pane (Come Say Hi! above GIVE US A SHOUT!) are untouched, exactly
+as the ruling directs. `--stories-row` is renamed `--needs-row` (its
+height-setter role is now the needs flier's alone) and re-derived under the
+B26 Montserrat Alternates face in the 27.5% column — the calc token is
+agent-derived, not an owner ruling. `docs/UIUX.md` §4.3/§5/§5.1 and
+`docs/PRD.md` §3/§4 are amended in the same PR; no hex changes, so
+`test/tokens.js` needs no assertion rewrite.
+
+**Measured outcome.** Agent-derived measurements at 956px viewport height:
+the window-to-flier air is positive at every sampled width (6.3px at 761vw,
+6.2 at 850, 62.2 at 1000, 54.5 at 1247, 27.5 at 1440, 19.1 at 1500, 16.3 at
+1920, 6.1 at 2000, 5.5 at 2560) — the re-fitted clamp clears the needs
+flier's measured re-wrap everywhere. The plan sheet stands at the pane's
+full height at every sampled width (717px at 761vw to 733px at 2560vw, the
+field's 98% line), and its list fits without the scroll bar from ~1240vw up
+(`#panel-plan` scroll gap 0 at 1247/1300/1350/1440/1500/1600/1920/2000);
+below that the scroll fallback returns — measured gap 980px at 761vw, 600 at
+850, 297 at 1000, 179 at 1050, 88–91 across 1150–1200 — because the five-item
+list re-wraps taller than any pane height in a 207–290px column, and the
+list's face size and weight are law (B22/B9/B12). The numbers are recorded
+here so the owner can rule with the render measured (the B13/B23 pattern) if
+the narrow-desktop band must lose the scroll bar some other way.

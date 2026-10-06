@@ -39,10 +39,11 @@ taped-up sheet), and works in light and dark and on a phone.
 
 The site is one spatial board, and the board IS the wooden fence — the
 file's architecture comment, verbatim: "Position encodes meaning:
-left = what happened (What We've Done), center = the lot as it stands (one
-pinned photo, #64) above your turn and the ask (What We'd Like To Do beside
-WHAT WE NEED, #122/B25 — the middle pane's bottom row), right = the Come Say
-Hi! flier with the GIVE US A SHOUT! sheet below it, stacked in the pane
+left = what happened (What We've Done), center = the middle pane split into
+two equal halves (#126, B27) — the plan sheet fills the left half at the
+pane's full height (expanded vertically instead of its scroll bar), and the
+lot photo (#64) sits above WHAT WE NEED in the right half; right = the Come
+Say Hi! flier with the GIVE US A SHOUT! sheet below it, stacked in the pane
 (#122, B25). Every sheet prints its
 content at rest; the week and plan sheets are the board's only scroll
 regions (vertical only)."
@@ -65,16 +66,17 @@ dug-up planters), not a marketing page.
    fliers' 20.5% column; not a scroll region (#56).
 3. **What We've Done** (left sheet) — the dated work log; one of the two
    scroll regions.
-4. **The lot photo** (center window, the middle pane's top of stack — B18) —
-   one static print of the lot as it
+4. **The lot photo** (middle pane's right half, top — B27) — one static print
+   of the lot as it
    stands, whole, letterboxed on its white mat (#64: no comparison, no second
    angle; #75: contain, never crop; B8: no border lines).
-5. **What We'd Like To Do** (middle pane's bottom row, LEFT half — #109 as
-   amended in chat, B18) — the wish list as a bullet
-   list, alone (B7: no intro statement, no materials list); it is the second
-   scroll region.
-6. **What We Need** (middle pane's bottom row, RIGHT half, beside What
-   We'd Like To Do — B25, swapping in from the right pane) — the checkbox
+5. **What We'd Like To Do** (middle pane's LEFT half at the pane's full
+   height — B27, expanded vertically instead of its vertical scroll bar,
+   issue #126) — the wish list as a bullet
+   list, alone (B7: no intro statement, no materials list); the second
+   scroll region is its narrow-desktop fallback (B27's measured envelope).
+6. **What We Need** (middle pane's right half, beneath the lot photo — B27;
+   swapped in from the right pane by B25) — the checkbox
    flier (B23): materials wanted (slats, paint, a No Dumping sign, hip-height
    fencing, container trees); not a scroll region.
 7. **Give us a shout!** (right pane, below the Come Say Hi! flier — B25) —
