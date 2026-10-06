@@ -24,7 +24,8 @@
      left = what happened (What We've Done), center = the lot as it stands (one
      pinned photo, #64) above your turn and the ask (What We'd Like To Do beside
      Stories & Suggestions, #109 as amended in chat 2026-10-06 — the middle
-     pane's bottom row), right = the Come Say Hi! flier. Every sheet prints its
+     pane's bottom row), right = the WHAT WE NEED flier above the Come Say Hi!
+     flier, stacked in the pane (#110, B23). Every sheet prints its
      content at rest; the week and plan sheets are the board's only scroll
      regions (vertical only).
      Inline vanilla JS only, zero external requests, no framework, no build
@@ -142,6 +143,17 @@
     padding: var(--space-3) 0.85rem 0.6rem;  /* #76: top inset = the family paper margin (--space-3 = 1.25rem = 20px); sides and bottom unchanged */
     transform: rotate(-0.5deg);       /* the week sheet's tilt */
     z-index: 2;                       /* the note sheets' band */
+  }
+  /* #110 (B23): the WHAT WE NEED flier — the second flier in the right pane,
+     stacked above the Come Say Hi! flier. It carries the .head-lines class so
+     it joins the flier species wholesale — same paper, tape strips, shadow,
+     −0.5° tilt, padding, and title treatment (no new styles, fonts, colors, or
+     components). The modifier adds only its pin: top 2% of the field, the same
+     top line as .note--week and .window, below the header, exactly as the
+     ruling directs. Come Say Hi! keeps its bottom pin untouched. */
+  .head-lines--needs {
+    top: 2%;
+    bottom: auto;
   }
   .hero-line {
     grid-area: hero;
@@ -283,6 +295,29 @@
   .head-lines::before { left: 9%;  transform: rotate(-4deg); }
   .head-lines::after  { right: 9%; transform: rotate(3deg); }
 
+  /* #110 (B23): the WHAT WE NEED list is checkbox style — the plan sheet's
+     retired checkbox species (the pre-#113 .punch squares), reinstated
+     verbatim for this flier's list only by the owner's in-chat ruling; the
+     plan sheet itself stays the #113 disc-bullet list (B22). */
+  .head-lines--needs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .head-lines--needs li {
+    position: relative;             /* the .punch li species, verbatim */
+    padding-left: 2.1rem;
+    margin: 0 0 var(--space-2);
+  }
+  .head-lines--needs li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.2rem;
+    width: 1.05rem; height: 1.05rem;
+    border: 2px solid var(--ink);
+    background: #fffdf6;
+  }
+
   /* Phone-composition elements (impl-13). No-ops on desktop: the lead-sheet
      wrapper dissolves (display: contents) so .say-hi/.hero-line keep their
      board-head grid areas unchanged; the snapshot print and footer smallprint
@@ -345,6 +380,7 @@
   .entry p,
   .note-face,
   .punch li,
+  .head-lines--needs li,
   .need li,
   .need .materials li,
   .archive-head,
@@ -565,11 +601,13 @@
     }
     .head-lines .smallprint { font-size: 0.72rem; line-height: 1.45; margin: 0; }
     .head-lines { text-align: left; position: relative; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.5% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin) */
+    .head-lines--needs { grid-area: needs; top: auto; }  /* #110 (B23): its own phone row — the two fliers cannot share the #46 "lines" area; top: auto re-pins the desktop modifier's 2% offset in the later cascade (the phone block's re-pin pattern) */
     /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
     .field {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-areas:
+        "needs needs"  /* #110 (B23): the WHAT WE NEED flier joins the top of the flier run, above the Come Say Hi! flier — the desktop stacking order */
         "lines lines"  /* #63: the Come Say Hi flier keeps its #46 top-of-flow phone pin */
         "snap snap"
         "week week"
@@ -693,7 +731,8 @@
     .board-head .head-rule { border-top-color: var(--rule); }
     input[type="text"],
     input[type="email"],
-    textarea { background: #2b2720; }   /* form inputs go dusk-dark */
+    textarea,
+    .head-lines--needs li::before { background: #2b2720; }   /* form inputs and the flier's checkbox squares go dusk-dark (B23: the retired checkbox species returns with its dark fill) */
     @media (max-width: 760px) {
       .note--plan .need { background: #332c20; }  /* the scrap stock goes dusk-dark */
     }
@@ -715,7 +754,19 @@
 
   <section class="field" id="field" aria-label="The board: what happened, what's planned, your turn">
 
-    <!-- ============ BOTTOM-RIGHT: COME SAY HI! — the right pane's only resident (#109) ============ -->
+    <!-- ============ RIGHT PANE, TOP: WHAT WE NEED — the ask, checkbox list (#110, B23) ============ -->
+    <div class="head-lines head-lines--needs">
+      <h2 class="say-hi flier">What We Need</h2>
+      <ul class="smallprint">
+        <li>18 pressure-treated slats, 2x6 10' long</li>
+        <li>Paint</li>
+        <li>A "No Dumping" sign (our Block Captain can request it)</li>
+        <li>Hip height fencing (maybe wood pallets would work?)</li>
+        <li>Container trees (trees that don't have sprawling roots)</li>
+      </ul>
+    </div>
+
+    <!-- ============ BOTTOM-RIGHT: COME SAY HI! — the right pane's bottom flier (#109; the WHAT WE NEED flier stacks above it, B23) ============ -->
     <div class="head-lines">
       <!-- STUB:footer-note — small print: where the lot is, who to look for -->
       <h2 class="say-hi flier">Come say hi!</h2>

@@ -69,7 +69,7 @@ column).
 
 | Value | Light role | Dark value |
 |---|---|---|
-| `#fffdf6` | the photo mat (`.cmp`), form inputs, the phone snapshot print | `#2b2720` ("form inputs go dusk-dark") |
+| `#fffdf6` | the photo mat (`.cmp`), form inputs, the phone snapshot print, the What We Need flier's checkbox squares (B23) | `#2b2720` ("form inputs go dusk-dark"; the checkbox squares go with them, B23) |
 | `#ece1c8` | phone-only scrap stock (`.note--plan .need`) | `#332c20` |
 
 ### §2.4 Shadows and tape
@@ -110,8 +110,8 @@ IS the fence; no other background treatment exists.
 Body text is **plain weight (400)**; bold belongs to headers, titles, and the
 Send button (B12 — supersedes B9's entry-date exception). Shipped as one
 grouped rule
-(`.entry p, .note-face, .punch li, .need li, .need .materials li,
-.archive-head, .fine { font-weight: 400 }`) plus `label`,
+(`.entry p, .note-face, .punch li, .head-lines--needs li, .need li, .need
+.materials li, .archive-head, .fine { font-weight: 400 }`) plus `label`,
 `.hero-line`, `.smallprint`, and `.need .what` all at 400.
 
 **Bold (700) appears only on:** `button[type=submit]`, and the
@@ -180,7 +180,21 @@ same photograph, cover-cropped to 140px, one tape strip, rotate −0.8°.
 ### §4.3 The flier
 
 The Come Say Hi block is a `.note` sheet in all respects — B5 is its ruling.
-Its values duplicate §4.1 verbatim; it carries no extra treatment.
+Its values duplicate §4.1 verbatim; it carries no extra treatment. The right
+pane holds a second flier above it since B23 (issue #110): **What We Need** —
+the same `.head-lines` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
+shadow, −0.5° tilt, `.say-hi.flier` title), pinned `top: 2%` instead of
+Come Say Hi's `bottom: 2%`. Its face is a checkbox list — the plan sheet's
+retired checkbox squares (2.1rem indent, 1.05rem square, 2px `--ink` border,
+`#fffdf6` fill; `#2b2720` dusk fill in dark), reinstated verbatim for this
+flier's list only by the owner's in-chat ruling; the plan sheet stays the B22
+disc-bullet list. The face prints at the `.smallprint` size (§3.3 — the
+flier species' own body size, the size Come Say Hi's face prints; the
+owner's in-chat size ruling). The list is not a scroll region. Come Say Hi's
+top tape prints over the needs flier's bottom edge where the pair sits close
+(the B18 tape-printing-over convention); the pair's measured fit envelope is
+recorded in B23 — minimum air +3.1px at the 761px floor at 956px height,
+height-dependent below that.
 
 ---
 
@@ -193,7 +207,8 @@ children are absolutely pinned by percentage. Position encodes meaning
 (What We've Done), **center = the lot as it stands** (one pinned photo, #64)
 above your turn and the ask (What We'd Like To Do beside Stories &
 Suggestions, #109 as amended in chat 2026-10-06 — the middle pane's bottom
-row), **right = the Come Say Hi! flier**."
+row), **right = the WHAT WE NEED flier above the Come Say Hi! flier, stacked
+in the pane (#110, B23)**."
 
 ### §5.1 Desktop pins
 
@@ -204,7 +219,8 @@ row), **right = the Come Say Hi! flier**."
 | `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row, holding `.note--plan` and `.note--stories` as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
 | `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the stories sheet's height exactly; `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
 | `.note--stories` | inside `.middle-row`: in flow, `margin-left: 50.5%; width: 49.5%` — B18: the row's right half and its height-setter (#56: never a scroll region, height content-driven) |
-| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.5%` (#63 pin, B5: "leave exactly where they are"; B17: the right pane's only resident — the plan sheet no longer sits above it and the empty space is not filled) |
+| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.5%` (#63 pin, B5: "leave exactly where they are"; B17: the plan sheet no longer sits above it and the empty space is not filled; B23: the pane's bottom flier — the WHAT WE NEED flier stacks above it) |
+| `.head-lines--needs` | `top: 2%; bottom: auto` (B23: the right pane's top flier — its top line matches `.note--week` and `.window`, below the header; `right: 1.2%` and the 20.5% column are the base `.head-lines` values, inherited; same species as Come Say Hi; content-height, no scroll region) |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:
 clamp(308px, 524px - 19.8vw, 373px)` (B18, re-measured for the half-width
@@ -244,7 +260,10 @@ page scrolls instead — sheets print full-length in flow, `overflow: visible`
 
 ### §5.3 Phone (≤760px)
 
-Single-column grid, areas `lines / snap / week / plan / stories`; `.window`
+Single-column grid, areas `needs / lines / snap / week / plan / stories`
+(B23 adds the needs flier at the top of the flier run, above Come Say Hi —
+the desktop stacking order; the #46 top-of-flow pin is not moved);
+`.window`
 hidden, `.snapshot` shown; the lead becomes a real paper sheet with its own
 tape; page-level scrolling with `overflow-x: clip` (horizontal scroll
 forbidden everywhere).

@@ -296,3 +296,72 @@ Trees in the existing planters Until I can get the Redevelopment Authority’s �
 - Repair the cracked pavement across the lot (working on getting some grant money to pay for it)"" — https://github.com/AlastairZeved/Earp-Street-Park/issues/113
 
 **The record.** The `.punch` list prints the five lines above, verbatim, with no title spans, no generated colon, and no `STUB:nextup-*` fill points (the ruling replaces the section's copy entirely, so the fill points go with the copy they were waiting to fill). The checkbox squares (`.punch li::before`, 1.05rem bordered box) are retired and the list joins the site's existing disc-bullet species (`.need .materials`: `list-style: disc`, 1.1rem indent) per the owner's confirmed choice — no invented marker. B7's record stands as history ("only the checkbox style list should be remaining"); B22 supersedes its rendered form: the sheet is the list alone, now in bullet style. The dark-mode checkbox-fill rule is amended to cover form inputs only. `docs/UIUX.md` §2.3/§3 and `docs/PRD.md` §3 are amended in the same PR.
+
+### B23. A new flier, "WHAT WE NEED", joins the right pane above the Come Say Hi! flier — a checkbox list; the checkbox squares return for this flier's list only; the third item's parenthesis closes (issue #110, the owner's ruling of record, with three in-chat rulings; amends B17's "right pane keeps only the Come Say Hi flier" render)
+
+**Source:** issue #110 (owner, ruling of record), transcribed verbatim: "Need a new flier component added to the right-most pane, above the section "COME SAY HI!".
+
+This component is titled:
+"WHAT WE NEED"
+
+The body should be a checkbox style list that reads:
+"- 18 pressure-treated slats, 2x6 10' long
+- Paint
+- A "No Dumping" sign (our Block Captain can request it"
+- Hip height fencing (maybe wood pallets would work?)
+- Container trees (trees that don't have sprawling roots)"
+
+
+The flier should be styled like all of the other flier components, no new styles, fonts, colors, or components are to be introduced.
+
+Once complete, the right pane should read:
+
+WHAT WE NEED
+COME SAY HI!
+
+
+Both components stacked on top of each other, with the top of "WHAT WE NEED" section aligned with the top of the other two panes, below the header. No scrollbar should be needed." — https://github.com/AlastairZeved/Earp-Street-Park/issues/110
+
+And the owner's three rulings in chat with the site's agent, 2026-10-06, on the questions the issue's text left open, transcribed verbatim: on the third list item, whose parenthesis the issue body leaves unclosed — "Close the paren: (our Block Captain can request it)"; on the list style, against B22's site-wide retirement of the checkbox squares — "Reinstate the retired checkbox squares for this flier's list only"; and on the list's text size, in answer to the measured conflict that at body 16px the two right-pane fliers overlap by 297px at the 761vw desktop floor while at the flier species' own `.smallprint` face size the pair clears at every sampled width — "List at .smallprint 0.78rem — the flier species' own body size; fits at every desktop width". The owner's review of this PR is the confirmation of record (the B18 pattern).
+
+**The record.** The new flier joins the Come Say Hi flier's own species
+(`.head-lines`): paper surface, note shadow, −0.5° tilt, the two tape strips,
+the `.say-hi.flier` title treatment (#76: "there was no reason it should have
+been different") — no new styles, fonts, colors, or components. Its only new
+values are its pin's top and bottom: `top: 2%` / `bottom: auto` — the right
+edge (`right: 1.2%`) and the 20.5% column are the base `.head-lines` values,
+inherited — the same
+top line as `.note--week` and `.window`, below the header, exactly as the
+ruling directs. The Come Say Hi flier keeps its `bottom: 2%` pin untouched
+(B5: "leave exactly where they are"); the two fliers stack in the pane, and
+the fence air between them is whatever the content leaves. The list prints
+the retired checkbox species verbatim — the pre-#113 `.punch` squares
+(2.1rem indent, 1.05rem square, 2px `--ink` border, `#fffdf6` fill), with
+their dark-mode dusk fill (`#2b2720`) restored alongside the form inputs'
+§2.3 remap — for this flier's list only; the plan sheet stays the B22
+disc-bullet list, and the list items carry plain weight per the B9/B12 body
+rule. The list's face prints at the `.smallprint` size (§3.3 — the flier
+species' own body size, the size Come Say Hi's face prints), per the owner's
+in-chat size ruling above. The list is not a scroll region ("No scrollbar
+should be needed") — it
+prints in full like every other flier's face. On phone the flier takes its
+own row at the top of the flier run, above the Come Say Hi flier (the #46
+top-of-flow pin is not moved — the needs flier stacks above it, the desktop
+reading order), re-pinned at `.field` specificity so the desktop top pin
+cannot leak (the B18 pattern). No token or hex change: `#fffdf6` and
+`#2b2720` are already shipped and documented (UIUX §2.3). `docs/UIUX.md`
+§2.3/§3/§4.3/§5 and `docs/PRD.md` §3/§4 are amended in the same PR.
+
+**Measured outcome.** Agent-derived measurements at 956px viewport height
+(the issue family's reference height): the needs flier's top line matches
+`.note--week`'s bounding-box top to 0.1px at 761/1000/1247/1440vw, and the
+air between the two fliers' bounding boxes runs +3.1px at 761vw, +39px at
+800vw, +110px at 900vw, +164px at 1000vw, +247px at 1247vw, +285px at 1440vw
+— the same clearance standard B17 accepted (0.5px). The minimum (+3.1px at
+the 761px floor) is less than one line of the `.smallprint` face, and the fit
+is height-dependent: at desktop windows shorter than ~950px the two fliers
+overlap with no scroll fallback (the list is not a scroll region, per the
+ruling). The numbers are recorded here so a future copy edit or a shorter
+fit envelope can be ruled on with the render measured, not eyeballed. Come
+Say Hi's own bounding box is unchanged by this ruling (bottom 2% pin,
+field-relative, verified at every sampled width).
