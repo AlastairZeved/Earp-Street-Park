@@ -158,13 +158,23 @@ serif and ink directly on the fence with text-shadow.
 ### §4.2 The photo print in a mat
 
 `.cmp`: `#fffdf6` mat, `padding: var(--space-2)`,
-`0 6px 18px rgba(0,0,0,.35)`, rotate 0.35°, `height: calc(100% - 2.1rem)`.
-The photo letterboxes via `object-fit: contain` — the whole 1.61-aspect
-photograph, never cropped (#75); drag/selection/pointer-events disabled. One
-static print of the lot as it stands — "no comparison, no second angle" (#64).
-No border lines of any kind (B8: "let the white space live"). The phone
-`.snapshot` print is the same photograph, cover-cropped to 140px, one tape
-strip, rotate −0.8°.
+`0 6px 18px rgba(0,0,0,.35)`, rotate 0.35°. The mat hugs the print (#101): it
+is as wide as the largest uncropped print the window pane can show — the
+print's own 1600/995 aspect (the shipped photograph's natural size) measured
+against the pane's height via its `container-type: size` (100cqh), capped by
+the pane's width — and the print fills it edge to edge
+(`.cmp-stage` carries `aspect-ratio: 1600 / 995`; `object-fit: contain`
+coincides with full-bleed at that ratio), so no white mat margin is
+introduced at any window shape. When the pane is narrower than the
+height-derived mat (very tall windows) the width cap takes over and the mat
+centers vertically in the pane instead. Browsers without container-query
+support (below the site's dvh floor in a few Firefox/Safari versions) fall
+back to the pre-#101 full-pane mat — photo letterboxed, #75 intact — rather
+than a missing photo. The whole photograph, never cropped
+(#75); drag/selection/pointer-events disabled. One static print of the lot as
+it stands — "no comparison, no second angle" (#64). No border lines of any
+kind (B8: "let the white space live"). The phone `.snapshot` print is the
+same photograph, cover-cropped to 140px, one tape strip, rotate −0.8°.
 
 ### §4.3 The flier
 
@@ -187,18 +197,25 @@ children are absolutely pinned by percentage. Position encodes meaning
 
 | Element | Pin |
 |---|---|
-| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (#92: yields width to the center column) |
-| `.window` | `left: 22.2%; top: 2%; width: 52.5%; height: calc(96% - var(--stories-block))`, z-index 1 (#92: the widest the center column can go between the week and plan sheets) |
-| `.note--plan` | `left: 78.2%; top: 2%; width: 20.6%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px))` — the clamp reserves headroom for the flier's re-wrap, re-derived at #92 for the narrowed 20.6% column (flier measures 280px at 761vw … 174px at 1440vw); the file notes these bounds are "agent-derived from the measured re-wrap; they are not an owner ruling" |
-| `.note--stories` | `left: 22.2%; bottom: 2%; width: 52.5%` — never a scroll region, height content-driven |
-| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.6%` (the plan sheet's own column, #63 pin, B5: "leave exactly where they are") |
+| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized — the week sheet's own width is the plan sheet's now too) |
+| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-block))`, z-index 1, `container-type: size`, flex-centered (B15/#101: the middle pane, larger and centered between the side panes — left 22%, right edge 78%, 0.3% fence air each side, center at exactly 50% of the field; the mat inside it hugs the print, §4.2) |
+| `.note--plan` | `left: 78.3%; top: 2%; width: 20.5%; height: calc(96% - clamp(194px, 488px - 19.2vw, 342px))` — B15: 20.5%, equal to the week sheet, left 78.3% so the middle pane centers; right edge stays at 98.8%. The clamp reserves headroom for the flier's re-wrap, re-measured at #102 for the 20.5% column (flier measures 299px at 761vw … 174px at 1440vw); the reserve rises +18px over the #92 values (342px at 761 … 194px floor above 1440) because the narrower column wraps the 761vw flier 19px taller — same margin `main` held; the 761-band overlap itself pre-exists on main (issue #78's band). These bounds are "agent-derived from the measured re-wrap; they are not an owner ruling" |
+| `.note--stories` | `left: 22%; bottom: 2%; width: 56%` (B15: shares the middle pane's re-derived column) — never a scroll region, height content-driven |
+| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.5%` (the plan sheet's own column, #63 pin, B5: "leave exactly where they are") |
 
 Sheet clearances are computed, never eyeballed: `--stories-block: 19.25rem`
 (the compacted #92 form's measured 308px height) and the plan sheet's clamp
 are calc tokens, not guesses. #92's measured split at the issue's 1247×956
 viewport: photo pane 55.3% of the middle pane's vertical space, stories
 sheet 40.6% — B13 records why the 70-80/20-30 ask cannot go lower without
-touching a ruled floor.
+touching a ruled floor. Issue #101 changed the render B13 shipped: the mat
+hugs the print now (§4.2), and no ruled floor is touched —
+`--stories-block`, the B6 textarea floor, and #75's never-crop all stand.
+Issue #102 re-derived the pins (B15): the side panes are equally sized
+(20.5% each), the middle pane is larger (56%) and centered between them —
+0.3% fence air each side, the middle column's center at exactly 50% of the
+field. The stories sheet shares that column, so the form is now 56% wide
+(not the #92 52.5%).
 
 ### §5.2 Scroll regions
 
