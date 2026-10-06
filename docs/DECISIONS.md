@@ -141,3 +141,30 @@ query applying the §2.2 remaps (`--paper #3a3329`, `--rust #dd8a4a`), with
 the planks taking the dark `--ink-faded` tan `#b5ac9b` — the dark `--fence`
 value measured too close to the dark paper to survive 16px. The SVG ships
 only hexes the tokens already declare.
+
+### B15. The panes re-derive: the left and right panes are equally sized, the middle pane is the larger pane and centered between them (issue #102, the owner's ruling of record)
+
+**Source:** issue #102, the owner's ruling of record, and the owner's chat
+sentence of 2026-10-06, transcribed verbatim: "the left and right panes
+should be equally sized. the middle pane is the larger pane and centered
+between them" — https://github.com/AlastairZeved/Earp-Street-Park/issues/102
+
+**The record.** The pins are re-derived within the layout law, not bypassed
+(the issue's own ruling comment: the layout law, UIUX §5.1 / B13 percentages,
+is not bypassed — the pins are re-derived within it). The board derives from
+symmetric 1.2% outer margins, equal side panes of 20.5% each, 0.3% fence air
+each side, and the middle pane larger and centered: `.note--week` stays
+`left 1.2% / width 20.5%`; the middle column (`.window` and `.note--stories`
+together) moves to `left 22% / width 56%`; `.note--plan` moves to
+`left 78.3% / width 20.5%` (equal to the week sheet's width); `.head-lines`
+keeps the plan sheet's own column at 20.5%. The middle pane's 56% width
+keeps B13's recorded ~55-60% and PR #104's shipped pane; the middle column
+centers at exactly 50% of the field (measured 50.00% at 761/1000/1220/1440
+vw). The plan sheet's flier headroom clamp is re-derived for the 0.1%-narrower
+column: the flier's wrap (299px at 761vw … 174px at 1440vw) is 19px taller at
+761vw than the #92 measurement, so the reserve rises to
+`clamp(194px, 488px - 19.2vw, 342px)` — the same clearance `main` held (the
+761-band overlap itself pre-exists on main, issue #78's band; not this
+ruling's scope). Derived numbers here are agent-derived from the
+owner-confirmed chat choices (middle 56%, sides 20.5% each, gaps 0.3%); the
+ruling's own words above are the owner's.

@@ -132,7 +132,7 @@
   .head-lines {
     grid-area: lines; text-align: left; align-self: start;
     position: absolute; right: 1.2%; bottom: 2%;
-    width: 20.6%;                     /* the plan sheet's own column (#92: left 78.2% + 20.6% = 98.8%) */
+    width: 20.5%;                     /* the plan sheet's own column (#92; #102: left 78.3% + 20.5% = 98.8%) */
     background: var(--paper);
     color: var(--ink);
     box-shadow: 0 8px 20px rgba(0,0,0,.4);  /* the .note sheet shadow, verbatim */
@@ -189,14 +189,13 @@
      keeps its top pin (in line with What We've Done), and yields its height
      to the Give Me A Shout! sheet below. #101: the mat hugs the print — the
      print scales with the window instead of letterboxing inside a full-width
-     mat, so no white mat margin is introduced at any window shape. The pane
-     widens past the #92 52.5% column into the corridor between the week
-     sheet (right edge 21.7%) and the plan sheet (left 78.2%), and the mat
-     centers in it; its height still yields to the stories sheet's measured
-     floor. */
+     mat, so no white mat margin is introduced at any window shape. #102:
+     the panes re-derive — side panes equal (20.5% each), the middle pane
+     larger (56%) and centered between them, 0.3% of fence air each side
+     (left 22.0%, right edge 78.0%). */
   .window {
     position: absolute;
-    left: 22.2%; top: 2%;
+    left: 22%; top: 2%;
     width: 56%; height: calc(96% - var(--stories-block));
     margin: 0;
     z-index: 1;
@@ -217,19 +216,22 @@
   .note--week    { left: 1.2%;  top: 2%;  width: 20.5%; height: 96%; transform: rotate(-0.5deg); }  /* #92: 20.5% — yields width to the center column's #92 widening */
   /* #63 + #70 + #76 + #78: the plan sheet keeps its top aligned with the week sheet and
      reserves room below it for the Come Say Hi flier. The reservation must track the
-     passage's own re-wrap. #92 re-derived it for the narrowed 20.6% column (the flier
-     shares the plan sheet's column): the flier's measured height is 280px at 761vw
-     (16 lines), 225px at 1000vw, 192px at 1220vw and 174px at 1440vw; with tape (~13px)
-     and air (~6px) the need is flier + 19px, so a reserve of 470px - 19.2vw clears every
-     sampled width across the band with margin (324px at 761, 268px at 1050, 224px at
-     1280, 194px floor above 1440). The clamp keeps the #76 194px minimum wherever the
+     passage's own re-wrap. #92 re-derived it for the narrowed column the flier
+     shares; #102 narrows it again (20.6% -> 20.5%, the week sheet's own width):
+     the flier's measured height is 299px at 761vw
+     (16 lines), 224px at 1000vw, 192px at 1220vw and 174px at 1440vw; with tape (~13px)
+     and air (~6px) the need is flier + 19px, so a reserve of 488px - 19.2vw clears every
+     sampled width across the band with the same margin main held (#102: 342px at 761,
+     286px at 1050, 242px at 1280, 194px floor above 1440 — +18px over the #92 values
+     because the 20.5% column wraps the 761vw flier 19px taller; the 761-band overlap
+     itself pre-exists on main, issue #78's band). The clamp keeps the #76 194px minimum wherever the
      wrap falls below the break-even width. Bounds are agent-derived from the measured
      re-wrap; they are not an owner ruling. */
-  .note--plan    { left: 78.2%; top: 2%;  width: 20.6%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px)); transform: rotate(0.5deg); }  /* #92: 20.6% — yields width to the center column's #92 widening; right edge stays at 98.8% */
+  .note--plan    { left: 78.3%; top: 2%;  width: 20.5%; height: calc(96% - clamp(194px, 488px - 19.2vw, 342px)); transform: rotate(0.5deg); }  /* #102: 20.5% — the side panes are equally sized (the week sheet's own width), left 78.3% so the middle pane centers; right edge stays at 98.8% */
   /* #56: the stories sheet holds the WHOLE form at first paint — height is
      content-driven, bottom edge pinned where it sat (98% of the field), top
      edge free to rise (the #48 mechanic). No scroll, no clip, no shrink. */
-  .note--stories { left: 22.2%; bottom: 2%; width: 52.5%; transform: rotate(-0.3deg); }
+  .note--stories { left: 22%; bottom: 2%; width: 56%; transform: rotate(-0.3deg); }  /* #102: the stories sheet shares the middle pane's re-derived column (left 22%, width 56%) so the middle pane centers as one */
 
   /* two strips of tape holding each sheet to the fence */
   .note::before,
@@ -554,7 +556,7 @@
       transform: none;
     }
     .head-lines .smallprint { font-size: 0.72rem; line-height: 1.45; margin: 0; }
-    .head-lines { text-align: left; position: relative; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.6% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin) */
+    .head-lines { text-align: left; position: relative; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.5% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin) */
     /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
     .field {
       display: grid;

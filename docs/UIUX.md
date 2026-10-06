@@ -197,11 +197,11 @@ children are absolutely pinned by percentage. Position encodes meaning
 
 | Element | Pin |
 |---|---|
-| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (#92: yields width to the center column) |
-| `.window` | `left: 22.2%; top: 2%; width: 56%; height: calc(96% - var(--stories-block))`, z-index 1, `container-type: size`, flex-centered (#101: the pane fills the corridor between the week sheet (right edge 21.7%) and the plan sheet at left 78.2%; the mat inside it hugs the print, §4.2, so the print may grow wider than the #92 52.5% column) |
-| `.note--plan` | `left: 78.2%; top: 2%; width: 20.6%; height: calc(96% - clamp(194px, 470px - 19.2vw, 324px))` — the clamp reserves headroom for the flier's re-wrap, re-derived at #92 for the narrowed 20.6% column (flier measures 280px at 761vw … 174px at 1440vw); the file notes these bounds are "agent-derived from the measured re-wrap; they are not an owner ruling" |
-| `.note--stories` | `left: 22.2%; bottom: 2%; width: 52.5%` — never a scroll region, height content-driven |
-| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.6%` (the plan sheet's own column, #63 pin, B5: "leave exactly where they are") |
+| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized — the week sheet's own width is the plan sheet's now too) |
+| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-block))`, z-index 1, `container-type: size`, flex-centered (B15/#101: the middle pane, larger and centered between the side panes — left 22%, right edge 78%, 0.3% fence air each side, center at exactly 50% of the field; the mat inside it hugs the print, §4.2) |
+| `.note--plan` | `left: 78.3%; top: 2%; width: 20.5%; height: calc(96% - clamp(194px, 488px - 19.2vw, 342px))` — B15: 20.5%, equal to the week sheet, left 78.3% so the middle pane centers; right edge stays at 98.8%. The clamp reserves headroom for the flier's re-wrap, re-measured at #102 for the 20.5% column (flier measures 299px at 761vw … 174px at 1440vw); the reserve rises +18px over the #92 values (342px at 761 … 194px floor above 1440) because the narrower column wraps the 761vw flier 19px taller — same margin `main` held; the 761-band overlap itself pre-exists on main (issue #78's band). These bounds are "agent-derived from the measured re-wrap; they are not an owner ruling" |
+| `.note--stories` | `left: 22%; bottom: 2%; width: 56%` (B15: shares the middle pane's re-derived column) — never a scroll region, height content-driven |
+| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.5%` (the plan sheet's own column, #63 pin, B5: "leave exactly where they are") |
 
 Sheet clearances are computed, never eyeballed: `--stories-block: 19.25rem`
 (the compacted #92 form's measured 308px height) and the plan sheet's clamp
@@ -211,6 +211,11 @@ sheet 40.6% — B13 records why the 70-80/20-30 ask cannot go lower without
 touching a ruled floor. Issue #101 changed the render B13 shipped: the mat
 hugs the print now (§4.2), and no ruled floor is touched —
 `--stories-block`, the B6 textarea floor, and #75's never-crop all stand.
+Issue #102 re-derived the pins (B15): the side panes are equally sized
+(20.5% each), the middle pane is larger (56%) and centered between them —
+0.3% fence air each side, the middle column's center at exactly 50% of the
+field. The stories sheet shares that column, so the form is now 56% wide
+(not the #92 52.5%).
 
 ### §5.2 Scroll regions
 
