@@ -97,13 +97,21 @@ IS the fence; no other background treatment exists.
 
 ## §3 Typography
 
-### §3.1 Families (system stacks only; no font files, no `<link>`)
+### §3.1 Families — Montserrat Alternates everywhere, self-hosted (B26; supersedes B24's Fira Sans stack and this section's old "system stacks only" rule)
+
+One family renders the entire page: **Montserrat Alternates**, handrolled
+Latin-subset woff2 committed in `fonts/` (400 and 700 — the weights the
+weight map uses), self-hosted `@font-face` with `font-display: swap`, no CDN,
+no API call, no dependency (issue #124; the handroll is transcribed from
+TheBoards, the owner's named reference). All three tokens lead with it:
 
 | Token | Stack |
 |---|---|
-| `--font-body` | `"Fira Sans", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif` (B24) |
-| `--font-display` | `Georgia, "Iowan Old Style", "Times New Roman", serif` |
-| `--font-stub` | `"SFMono-Regular", Consolas, "Liberation Mono", monospace` |
+| `--font-body` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26) |
+| `--font-display` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26 — the Georgia serif stack is replaced) |
+| `--font-stub` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26 — the mono stack is replaced) |
+
+The fallbacks stand only for systems where the font files fail to load.
 
 ### §3.2 Weight map — B9's law, amended by B12
 
@@ -117,21 +125,24 @@ grouped rule
 **Bold (700) appears only on:** `button[type=submit]`, and the
 computed h2 default behind `.note-title`/`.say-hi.flier`.
 
-**B24 — the body stack leads with Fira Sans.** On machines where the only
+**B24 — the body stack leads with Fira Sans.** *(Superseded by B26 —
+Montserrat Alternates everywhere, self-hosted; retained for the record.)*
+On machines where the only
 installed Roboto face is Bold, `font-weight: 400` fell back to the Bold face
 and every sans element on the page rendered bold (issue #114's render, the
 third bold complaint: the weight map was already correct — the family stack
 delivered a Bold-only family). Fira Sans exists with Regular + Bold, so the
 Send button keeps its true bold and every 400 element renders a true regular.
-The serif (`.note-title`, `h1`) and mono (`.entry-date`) species are unchanged.
+The serif (`.note-title`, `h1`) and mono (`.entry-date`) species are unchanged
+*(B26 later replaced those species' families too — see §3.1)*.
 
 ### §3.3 Sizes
 
 | Element | Size |
 |---|---|
 | Body base | `16px / 1.5` |
-| `h1` | Georgia, `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1 |
-| `.note-title` | serif, `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
+| `h1` | `--font-display` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1 |
+| `.note-title` | `--font-display` (Montserrat Alternates, B26), `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
 | `.note-face` | `clamp(0.9rem, 1.3vw, 1rem)` (phone `0.85rem`) |
 | `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em |
 | `.entry-date` | `--font-stub`, 400 (B12), `--rust`, letter-spacing 0.04em |

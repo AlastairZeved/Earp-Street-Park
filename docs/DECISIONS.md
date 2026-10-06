@@ -433,3 +433,30 @@ Hi!'s face re-wraps to 299px) — the list and the form are both non-scroll
 regions by ruling, so no fix exists inside the current law.
 `docs/UIUX.md` §4.3/§5 and `docs/PRD.md` §3/§4 are amended in the same PR; no
 hex or token changes, so `test/tokens.js` needs no assertion rewrite.
+
+### B26. Montserrat Alternates everywhere — the entire page renders in the handrolled self-hosted Montserrat Alternates; the serif and mono species' families are replaced with it; no other font is used anywhere; the bold roles keep literal 700 via a handrolled 700 face (issue #124, owner ruling; supersedes B24's Fira Sans stack and amends UIUX §3.1's "no font files" rule)
+
+**Source:** issue #124 (owner, ruling of record), transcribed verbatim: "The
+font used throughout the entire website needs to be Montserrat Alternative.
+It is currently already being used in the repo AlastairZeved/TheBoards where
+it was handrolled. Handroll it for this repo as well - do not use an API call
+or introduce dependencies; add the font file(s) here in-repo and then ensure
+it's being used throughout the entire page. no other font should be used
+anywhere." — https://github.com/AlastairZeved/Earp-Street-Park/issues/124
+
+**The record.** The owner's reference implementation is TheBoards' handroll:
+Latin-subset woff2 committed in `fonts/`, self-hosted `@font-face`, no CDN,
+no API call at runtime, no dependency (TheBoards styles.css §13.1, B50 there).
+The 400 face is byte-identical to TheBoards'
+`fonts/MontserratAlternates-400.woff2` (same md5) — the same handroll source;
+the 700 face is handrolled by the same pipeline because ESP's weight map
+(B9/B12) pins its bold roles at literal 700 (the Send button, the computed
+h2 default behind `.note-title`/`.say-hi.flier`) and TheBoards ships only
+400/600/800. Two faces ship: 400 and 700 — the weights the weight map uses;
+no unused face files are added. `font-display: swap` is transcribed from the
+TheBoards handroll the owner named. All three family tokens lead with
+`"Montserrat Alternates"` — `--font-body`, `--font-display` (the serif
+species' Georgia stack is replaced; sizes, uppercase, letter-spacing, the 2px
+ink underline are unchanged), and `--font-stub` (`.entry-date` keeps weight
+400 per B12, `--rust` and letter-spacing 0.04em unchanged). B24's Fira Sans
+stack is superseded. `docs/UIUX.md` §3 is amended in the same PR.
