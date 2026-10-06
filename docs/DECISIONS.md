@@ -213,3 +213,12 @@ width: 20.5%`) is superseded for the plan sheet only; B15's side panes and
 the centered 56% middle column stand. `docs/UIUX.md` §5/§5.1 and
 `docs/PRD.md` §3/§4 are amended by this ruling in the same PR; no token or
 hex changes, so `test/tokens.js` needs no assertion rewrite.
+
+**Measured outcome.** Desktop viewports sampled with the shipped pins:
+`#panel-plan`'s scroll region stays live in the narrower column — scrollHeight
+2728px against a 300px client at 761vw, 1024/330 at 1247vw, 784/278 at
+1440vw — and the plan sheet clears the stories sheet below it at every
+sampled width (6.5px at 761vw, 0.5px at 1247vw, both bounding-box readings
+of the tilted sheets; the tape-printing-over convention holds). The lot
+print inside the narrower window pane takes the pane's width cap and centers
+vertically (the §4.2 mechanic, unchanged); the phone grid is untouched.
