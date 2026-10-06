@@ -69,7 +69,7 @@ column).
 
 | Value | Light role | Dark value |
 |---|---|---|
-| `#fffdf6` | the photo mat (`.cmp`), checkbox fills (`.punch li::before`), form inputs, the phone snapshot print | `#2b2720` ("the white checkbox fills/inputs go dusk-dark") |
+| `#fffdf6` | the photo mat (`.cmp`), form inputs, the phone snapshot print | `#2b2720` ("form inputs go dusk-dark") |
 | `#ece1c8` | phone-only scrap stock (`.note--plan .need`) | `#332c20` |
 
 ### §2.4 Shadows and tape
@@ -112,7 +112,7 @@ Send button (B12 — supersedes B9's entry-date exception). Shipped as one
 grouped rule
 (`.entry p, .note-face, .punch li, .need li, .need .materials li,
 .archive-head, .fine { font-weight: 400 }`) plus `label`,
-`.hero-line`, `.smallprint`, and `.punch .what`/`.need .what` all at 400.
+`.hero-line`, `.smallprint`, and `.need .what` all at 400.
 
 **Bold (700) appears only on:** `button[type=submit]`, and the
 computed h2 default behind `.note-title`/`.say-hi.flier`.
@@ -151,8 +151,9 @@ Say Hi −0.5°.
 
 Face anatomy: `.note-title` (§3.3) + optional `.note-face` intro + content
 panel. Week holds `.entry` items (dashed `--rule` bottom border, rust mono
-dates); plan holds the `.punch` checkbox list (1.05rem square, 2px ink
-border, `#fffdf6` fill). Header items (h1, hero, rule) are NOT paper — cream
+dates); plan holds the `.punch` bullet list (disc bullets joining the
+`.need .materials` species — 1.1rem indent; #113 replaced the checkbox
+squares). Header items (h1, hero, rule) are NOT paper — cream
 serif and ink directly on the fence with text-shadow.
 
 ### §4.2 The photo print in a mat

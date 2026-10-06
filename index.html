@@ -233,8 +233,8 @@
   }
   /* The plan sheet fills the row exactly (top 0 to bottom 0 of the stories
      sheet's height) — equal width and height with the stories sheet, and its
-     own #panel-plan column keeps the sheet's vertical scrollbar. Its tall
-     checkbox list never inflates the row: the stories sheet is the height
+     own #panel-plan column keeps the sheet's vertical scrollbar. Its bullet
+     list (B22) never inflates the row: the stories sheet is the height
      anchor, per #56 (content-driven, no scroll). */
   .middle-row .note--plan {
     position: absolute;
@@ -367,22 +367,13 @@
     letter-spacing: 0.07em;
     margin: var(--space-3) 0 var(--space-2);
   }
-  .punch, .need { list-style: none; margin: 0; padding: 0; }
-  .punch li { position: relative; padding-left: 2.1rem; margin: 0 0 var(--space-2); }
-  .punch li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0.2rem;
-    width: 1.05rem; height: 1.05rem;
-    border: 2px solid var(--ink);
-    background: #fffdf6;
-  }
-  .punch .what, .need .what { font-weight: 400; }  /* #22: only headers bold */
-  /* plan titles stand on their own line and end with a generated colon */
-  .punch .what {
-    display: block;
-  }
-  .punch .what::after { content: ":"; }
+  .punch, .need { margin: 0; padding: 0; }
+  /* #113: the plan list is a bullet list, not a checkbox list — it joins the
+     site's existing disc-bullet species (.need .materials): list-style: disc,
+     ink marker, 1.1rem indent. */
+  .punch { list-style: disc; padding-left: 1.1rem; }
+  .punch li { margin: 0 0 var(--space-2); }
+  .need .what { font-weight: 400; }  /* #22: only headers bold */
   .need li { margin: 0 0 var(--space-2); padding-left: var(--space-3); border-left: 3px solid var(--rust); }
   /* the owner's materials list, nested under the "Materials" ask */
   .need .materials { margin: 0.25rem 0 0; padding-left: 1.1rem; list-style: disc; }
@@ -681,7 +672,7 @@
   /* Remaps the existing :root tokens (same hues, lower luminance) so the fliers
      still read as paper, the fence still reads as weathered boards, and the rust
      marker keeps its identity. Also re-tones the few hard-coded surfaces
-     (#fffdf6 photo mats / checkbox fill / form inputs / comparison frame and
+     (#fffdf6 photo mats / form inputs / comparison frame and
      the ruled-line gradient) so dark mode isn't glare-white in the corners. */
   @media (prefers-color-scheme: dark) {
     :root {
@@ -700,10 +691,9 @@
     .say-hi,
     .hero-line { color: var(--ink); }
     .board-head .head-rule { border-top-color: var(--rule); }
-    .punch li::before,
     input[type="text"],
     input[type="email"],
-    textarea { background: #2b2720; }   /* the white checkbox fills/inputs go dusk-dark */
+    textarea { background: #2b2720; }   /* form inputs go dusk-dark */
     @media (max-width: 760px) {
       .note--plan .need { background: #332c20; }  /* the scrap stock goes dusk-dark */
     }
@@ -719,7 +709,7 @@
     <!-- STUB:hero-line — one sentence only: one neighbor is fixing this lot so the block's kids have somewhere to be -->
       <hr class="head-rule">
     <article class="note--lead">
-    <p class="hero-line">Hey, we're Rob and Brian. We've been on the block a few years and we try to keep this old park on our block clean, whether it's picking up trash, weeding, or trying to get 311 to pick up the darn mattresses. We love this park and we love that our little block has a place like this for kids to play, so we'd like to pitch in a little more. This page is what we're working on, what we're hoping to do, and what materials we're on the hunt for to get it done. If you have suggestions, ideas, or wanna help us out, feel free to give us a shout if you see us or drop us a message with the form on this page (we're still itching to learn the history of those cement planters!).</p>
+    <p class="hero-line">Hey, we're Rob and Brian. We've been on the block a few years and we try to keep this old park on our block clean, whether it's picking up trash, weeding, or trying to get 311 to pick up the darn mattresses. We love this park and we love that our little block has a place like this for kids to play, so we'd like to pitch in a little more. This page is what we're working on, what we're hoping to do, and what materials we're on the hunt for to get it done. If you have suggestions, ideas, or wanna help us out, feel free to give us a shout if you see us or drop us a message with the form on this page.</p>
     </article>
   </header>
 
@@ -735,7 +725,6 @@
     <!-- ============ LEFT PIN: WHAT WE'VE DONE — what happened ============ -->
     <article class="note note--week" id="note-week">
       <h2 class="note-title">What We've Done</h2>
-      <p class="note-face">Lots of weeding! I didn’t realize how quickly it can get overgrown across the fencing and in the planters.</p>
       <div class="note-panel" id="panel-week" tabindex="0" role="group" aria-label="What We've Done, full entries">
 
         <article class="entry">
@@ -778,31 +767,16 @@
         <h2 class="note-title">What We'd Like To Do</h2>
         <div class="note-panel" id="panel-plan" tabindex="0" role="group" aria-label="What We'd Like To Do, full lists">
           <ul class="punch">
-            <li>
-              <span class="what">A fence along the street edge</span>
-              <!-- STUB:nextup-fence — one line on the fence plan -->
-              Finding some sort of fencing we can rig onto the metal fence posts. I’m thinking wood pallets could do the job nicely (and free!)
-            </li>
-            <li>
-              <span class="what">A &ldquo;No Dumping&rdquo; sign</span>
-              <!-- STUB:nextup-sign — one line on the sign -->
-              Our block captain can request one for free, but if we don’t have a captain then I’ll keep an eye on Facebook marketplace for one.
-            </li>
-            <li>
-              <span class="what">Fresh slats on the picnic table and benches</span>
-              <!-- STUB:nextup-table-bench — one line on the wood work -->
-              We need some new wood for the benches and picnic table. They’re easy to replace and the current wood is too damaged to repair easily. Then we can paint them and get them looking nice! That’s 18 pieces of 2”x6” pressure treated lumber I’m looking for.
-            </li>
-            <li>
-              <span class="what">Trees in the existing planters</span>
-              <!-- STUB:nextup-trees — one line on the planting -->
-              Until I can get the Redevelopment Authority’s “permission” to do work restoring this lot as a park, we can’t request a tree from PHS. I’m working on getting “permission”, but until then if anyone knows of some free Fig trees or shade trees, let me know!
-            </li>
+            <li>Put up a fence but not a tall fence, maybe hip height wood fence to help stop the dumping there</li>
+            <li>Put up a &ldquo;No Dumping&rdquo; sign (our Block Captain can request a free one)</li>
+            <li>Replace the wood slats for the picnic table and two benches, then paint/seal the wood so they last</li>
+            <li>Plant some container trees in the planters. Something that can provide some shade in the summer, but not large trees that can&rsquo;t fit in a planter</li>
+            <li>Repair the cracked pavement across the lot (working on getting some grant money to pay for it)</li>
           </ul>
         </div>
       </article>
       <article class="note note--stories" id="note-stories">
-        <h2 class="note-title">Give me a shout!</h2>
+        <h2 class="note-title">Give us a shout!</h2>
         <form method="POST" action="https://formspree.io/f/mbglkalb">
             <!-- #43: honeypot — Formspree's documented pattern. type="text" kept
                  (scrapers skip type="hidden"); hidden with CSS instead. -->
