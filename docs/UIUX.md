@@ -188,21 +188,28 @@ same photograph, cover-cropped to 140px, one tape strip, rotate −0.8°.
 ### §4.3 The flier
 
 The Come Say Hi block is a `.note` sheet in all respects — B5 is its ruling.
-Its values duplicate §4.1 verbatim; it carries no extra treatment. The right
-pane holds a second flier above it since B23 (issue #110): **What We Need** —
-the same `.head-lines` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
-shadow, −0.5° tilt, `.say-hi.flier` title), pinned `top: 2%` instead of
-Come Say Hi's `bottom: 2%`. Its face is a checkbox list — the plan sheet's
+Its values duplicate §4.1 verbatim; it carries no extra treatment. Since B25
+(issue #122) it holds the right pane's top pin (`top: 2%`, the pin WHAT WE
+NEED held under B23), and the pane's bottom sheet is the **GIVE US A SHOUT!**
+form — the `.note` stories sheet in its own species (§4.1, −0.3° tilt,
+full-length form, not a scroll region), pinned `right: 1.2%; bottom: 2%;
+width: 20.5%` in the fliers' column. The **What We Need** flier (B23, issue
+#110) swaps into the middle pane's lower right under B25: the same
+`.head-lines` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
+shadow, −0.5° tilt, `.say-hi.flier` title), now the right half of
+`.middle-row` (`margin-left: 50.5%; width: 49.5%`) and the bottom row's
+height-setter.
+Its face is a checkbox list — the plan sheet's
 retired checkbox squares (2.1rem indent, 1.05rem square, 2px `--ink` border,
 `#fffdf6` fill; `#2b2720` dusk fill in dark), reinstated verbatim for this
 flier's list only by the owner's in-chat ruling; the plan sheet stays the B22
 disc-bullet list. The face prints at the `.smallprint` size (§3.3 — the
 flier species' own body size, the size Come Say Hi's face prints; the
-owner's in-chat size ruling). The list is not a scroll region. Come Say Hi's
-top tape prints over the needs flier's bottom edge where the pair sits close
-(the B18 tape-printing-over convention); the pair's measured fit envelope is
-recorded in B23 — minimum air +3.1px at the 761px floor at 956px height,
-height-dependent below that.
+owner's in-chat size ruling). The list is not a scroll region. The right
+pane's stack is Come Say Hi! above GIVE US A SHOUT!, with measured air
+between them (44.9px at 761vw, 225.9px at 1250vw at 956px height);
+the pair's measured fit envelope is recorded in B25 — the pane fits down to
+~723px of viewport height at 1247vw, and the sheets overlap below that.
 
 ---
 
@@ -213,10 +220,9 @@ document scroll in any direction. `.board` is `100vh/100dvh`; the `.field`
 children are absolutely pinned by percentage. Position encodes meaning
 (the file's own architecture comment, verbatim): "**left = what happened**
 (What We've Done), **center = the lot as it stands** (one pinned photo, #64)
-above your turn and the ask (What We'd Like To Do beside Stories &
-Suggestions, #109 as amended in chat 2026-10-06 — the middle pane's bottom
-row), **right = the WHAT WE NEED flier above the Come Say Hi! flier, stacked
-in the pane (#110, B23)**."
+above your turn and the ask (What We'd Like To Do beside WHAT WE NEED,
+#122/B25 — the middle pane's bottom row), **right = the Come Say Hi! flier
+with the GIVE US A SHOUT! sheet below it, stacked in the pane (#122, B25)**."
 
 ### §5.1 Desktop pins
 
@@ -224,24 +230,22 @@ in the pane (#110, B23)**."
 |---|---|
 | `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B17: the plan sheet leaves the right pane at 27.5%, so the two sheets' widths no longer match — the week sheet's 20.5% stands) |
 | `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
-| `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row, holding `.note--plan` and `.note--stories` as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
-| `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the stories sheet's height exactly; `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
-| `.note--stories` | inside `.middle-row`: in flow, `margin-left: 50.5%; width: 49.5%` — B18: the row's right half and its height-setter (#56: never a scroll region, height content-driven) |
-| `.head-lines` | `right: 1.2%; bottom: 2%; width: 20.5%` (#63 pin, B5: "leave exactly where they are"; B17: the plan sheet no longer sits above it and the empty space is not filled; B23: the pane's bottom flier — the WHAT WE NEED flier stacks above it) |
-| `.head-lines--needs` | `top: 2%; bottom: auto` (B23: the right pane's top flier — its top line matches `.note--week` and `.window`, below the header; `right: 1.2%` and the 20.5% column are the base `.head-lines` values, inherited; same species as Come Say Hi; content-height, no scroll region) |
+| `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row; B25: holding `.note--plan` and the WHAT WE NEED flier as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
+| `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the height-setter's height exactly (B25: the WHAT WE NEED flier's natural height); `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
+| `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
+| `.note--stories` | `right: 1.2%; bottom: 2%; width: 20.5%` (B25: the right pane's bottom sheet, in the fliers' column, below the Come Say Hi! flier — issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
+| `.head-lines` | `right: 1.2%; top: 2%; width: 20.5%` (#63 column pin, B5: "leave exactly where they are"; B25: the right pane's top flier — the GIVE US A SHOUT! sheet stacks below it). B23's `bottom: 2%` pin is superseded by B25 |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:
-clamp(308px, 524px - 19.8vw, 373px)` (B18, re-measured for the half-width
-stories sheet: 372.6px at 761vw where the Name/Email labels re-wrap, ~325px
-at 900–1000vw, flat 306–307px above 1100vw; the window yields the row's
-measured height at every sampled width — measured air of 0.9px at 761vw,
-1.8px at 1000vw, 2.8px at 1247vw, widening to 17–22px across the 800–1100vw
-band where the linear preferred term over-predicts the non-linear re-wrap,
-so the tape there prints over fence, not over the photo). Retires
-`--stories-block` (19.25rem) and the
-plan sheet's flier headroom clamp (`clamp(194px, 488px - 19.2vw, 342px)`,
-#76/#92/#102) — B18 no longer shares the flier's column. These are calc
-tokens, not guesses. #92's measured split at the issue's 1247×956
+clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new
+height-setter — the WHAT WE NEED flier's natural re-wrap: 359.6px at 761vw,
+~304px at 850–950vw, a flat ~288–291px band to 1350vw, ~235px at 1400vw and
+above; the window yields the row's measured height at every sampled width —
+measured air of 6.3px at 761vw, 10.7px at 1350vw, 6.2px at 1920vw,
+over-reserving 35–61px where the flat re-wrap steps under the linear
+preferred term, so the tape there prints over fence, not over the photo).
+These are calc tokens, not guesses. #92's measured split at the issue's
+1247×956
 viewport: photo pane 55.3% of the middle pane's vertical space, stories
 sheet 40.6% — B13 records why the 70-80/20-30 ask cannot go lower without
 touching a ruled floor. Issue #101 changed the render B13 shipped: the mat
@@ -254,8 +258,9 @@ field. Issue #109 moved the plan sheet into the middle pane (B17: the pane
 split, photo beside plan); the owner's chat amendment of 2026-10-06 stacked
 it instead (B18): the photo takes the pane's top at full 56% width, and the
 plan and stories sheets share the pane's bottom row as equal halves — plan
-left, stories right — the right pane remaining the Come Say Hi flier's
-alone, the empty space above it left standing.
+left, stories right. Issue #122 (B25) swaps the fliers: WHAT WE NEED takes
+the stories sheet's old right half of the bottom row, and the GIVE US A
+SHOUT! sheet moves to the right pane below the Come Say Hi! flier.
 
 ### §5.2 Scroll regions
 

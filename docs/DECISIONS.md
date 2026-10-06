@@ -391,3 +391,40 @@ serif species (`.note-title`, `h1`, Georgia stack) and the mono species
 Fira Sans carries Regular and Bold on the owner's machine, so the Send
 button's 700 keeps a true bold. `docs/UIUX.md` §3.1 is amended in the same
 PR; no token or hex changes, so `test/tokens.js` needs no assertion rewrite.
+
+### B25. The fliers swap places — WHAT WE NEED takes the middle pane's lower right (the stories slot), and GIVE US A SHOUT! joins the right pane BELOW the Come Say Hi! flier (issue #122, owner instruction; supersedes B23's right-pane arrangement and B18's stories-right render)
+
+**Source:** issue #122 (owner), transcribed verbatim: "Swap the placement of
+the flier "GIVE US A SHOUT!" with the flier "WHAT WE NEED" so that "WHAT WE
+NEED" is in the middle pane, lower right, and the "GIVE US A SHOUT!" flier is
+in the right pane - but put the "GIVE US A SHOUT!" flier BELOW the "COME SAY
+HI!" flier instead of above it." —
+https://github.com/AlastairZeved/Earp-Street-Park/issues/122
+
+**The record.** Opened as PR pending owner review. WHAT WE NEED keeps the
+`.head-lines` flier species wholesale (B23: no new styles, fonts, colors, or
+components) and takes the stories sheet's old slot: the right half of
+`.middle-row` (`margin-left: 50.5%; width: 49.5%`), in flow, and the row's
+height-setter — the stories sheet's old #56 job; the plan sheet stretches to
+meet it as before. GIVE US A SHOUT! keeps its own `.note` paper-sheet species
+untouched (−0.3° tilt, full-length form, #56: never a scroll region) and joins
+the fliers' 20.5% column: `right: 1.2%; bottom: 2%`, the pin WHAT WE NEED held
+under B23. The Come Say Hi! flier takes the top pin (`top: 2%`) — B23's "keeps
+its `bottom: 2%` pin untouched" is superseded by this ruling; the two
+right-pane sheets stack Come Say Hi! above GIVE US A SHOUT!, exactly as the
+ruling directs. `--stories-row` is re-derived for the new height-setter (the
+needs flier's natural re-wrap: 359.6px at 761vw, ~304 at 850–950, a flat
+~288–291 band to 1350, ~235 at 1400 and above): `clamp(240px, 462px - 12vw,
+365px)`, measured air positive at every sampled width (6.3px at 761vw,
+10.7px at 1350, 6.2px at 1920) — the calc token is agent-derived, not an
+owner ruling. The phone render is untouched (grid-areas unchanged; the phone
+flier run still reads WHAT WE NEED above Come Say Hi!, the sheets keep their
+phone rows). Measured fit envelope, recorded so the owner can rule with the
+render measured (the B13/B23 pattern): the right pane's two sheets fit down
+to ~723px of viewport height at 1247vw (air 8.5px) and 720px at 1280vw
+(5.6px); below that the GIVE US A SHOUT! sheet rides over the Come Say Hi!
+flier with no scroll fallback (176px of overlap at 761×720, where Come Say
+Hi!'s face re-wraps to 299px) — the list and the form are both non-scroll
+regions by ruling, so no fix exists inside the current law.
+`docs/UIUX.md` §4.3/§5 and `docs/PRD.md` §3/§4 are amended in the same PR; no
+hex or token changes, so `test/tokens.js` needs no assertion rewrite.
