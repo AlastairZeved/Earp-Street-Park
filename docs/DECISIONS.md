@@ -180,3 +180,84 @@ default-src 'none'; img-src data:; style-src 'unsafe-inline'; form-action https:
 ```
 
 plus `Referrer-Policy: strict-origin-when-cross-origin` — the exact value B1's standing caution names as the strictest setting that is safe for Formspree. `style-src 'unsafe-inline'` is unavoidable while the design system lives in one inline `<style>`; `img-src data:` covers the inlined photo prints and favicon. B1's "no security headers" acceptance is superseded **for headers only** — its other three accepted findings (no branch lock, the deleted dev script, unsigned authorship) stand untouched, as does the Referrer-Policy landmine. The issue's remaining items are ruled out by the owner: the page ships zero `<script>` tags (the "prefer external .js" ask is already the page's steady state, and repo law bans JavaScript regardless), and the page renders no user-supplied content — the form POSTs straight to Formspree, which renders submissions in its own dashboard.
+
+### B17. The plan sheet moves into the middle pane, beside the lot photo at equal size; the form prints below both; the right pane keeps only the Come Say Hi flier, and the empty space left behind is not filled (issue #109, the owner's ruling of record; supersedes B15's right-pane pin of the plan sheet and retires the #76/#92/#102 flier-headroom clamp)
+
+**Source:** issue #109 (owner, ruling of record), transcribed verbatim: "The middle pane is too large for just one image stacked on top of one form.
+
+Move the \"What We'd Like to Do\" component to the middle pane, on the right side of the image and at the same height and width so they're equally sized (scaled where the image scales, maintaining the vertical scroll bar in the \"WHAT WE'D LIKE TO DO\" component).
+
+Once complete, the middle pane should read:
+
+\"IMAGE\" | \"WHAT WE'D LIKE TO DO\"
+       CONTACT FORM
+
+
+Once complete, the right pane should only contain the \"COME SAY HI!\" component. Do not move it, do not resize it, do not fill in the empty space left behind." — https://github.com/AlastairZeved/Earp-Street-Park/issues/109
+
+**The record.** Shipped as PR pending owner review. The middle pane splits
+into two equal halves: the lot window takes `left: 22% / width: 27.5%` and
+`.note--plan` moves to `left: 50.5% / width: 27.5%` — equal widths, 1% of
+fence air between them, both at `height: calc(96% - var(--stories-block))`
+so they scale together as the window scales; the plan sheet's own
+`#panel-plan` vertical scrollbar stands (`overflow-y: auto` unchanged), and
+the sheet species is untouched (same `.note` paper, tape, shadow, +0.5°
+tilt). The stories sheet (`left: 22% / width: 56%`, bottom 2%) prints below
+both, untouched. `.head-lines` (Come Say Hi!) is unmoved (`right: 1.2%,
+bottom: 2%, width: 20.5%`) and is now the right pane's only resident; the
+empty space above it is left as the ruling directs. With the plan sheet out
+of the right pane, the flier-headroom clamp
+(`clamp(194px, 488px - 19.2vw, 342px)`, #76/#92/#102) is retired — nothing
+shares the flier's column anymore. B15's plan-sheet pin (`left: 78.3% /
+width: 20.5%`) is superseded for the plan sheet only; B15's side panes and
+the centered 56% middle column stand. `docs/UIUX.md` §5/§5.1 and
+`docs/PRD.md` §3/§4 are amended by this ruling in the same PR; no token or
+hex changes, so `test/tokens.js` needs no assertion rewrite.
+
+**Measured outcome.** Desktop viewports sampled with the shipped pins:
+`#panel-plan`'s scroll region stays live in the narrower column — scrollHeight
+2728px against a 300px client at 761vw, 1024/330 at 1247vw, 784/278 at
+1440vw — and the plan sheet clears the stories sheet below it at every
+sampled width (6.5px at 761vw, 0.5px at 1247vw, both bounding-box readings
+of the tilted sheets; the tape-printing-over convention holds). The lot
+print inside the narrower window pane takes the pane's width cap and centers
+vertically (the §4.2 mechanic, unchanged); the phone grid is untouched.
+
+### B18. The middle pane stacks instead: the lot photo takes the top of the pane at full width, and What We'd Like To Do and Give Me A Shout! share the row beneath it — plan on the left, stories on the right (the owner's chat amendment to issue #109, 2026-10-06; supersedes B17's photo-beside-plan render and retires `--stories-block`)
+
+**Source:** the owner's amendment to issue #109, stated in chat with the
+site's agent, 2026-10-06, transcribed verbatim: "Actually, we're going to
+make a different layout swap as an amendment to the issue now that I've seen
+the middle pane visually with three components in it. The image will stay at
+the top of the stack, but underneath it will be both \"WHAT WE'D LIKE TO
+DO\" AND \"GIVE ME A SHOUT!\" side by side. \"WHAT WE'D LIKE TO DO\" section
+belongs on the left and \"GIVE ME A SHOUT!\" belongs on the right. Does that
+make sense?" The agent confirmed and read the ruling back (photo on top at
+the pane's full 56% width; plan left / stories right beneath it; the right
+pane still only the Come Say Hi! flier, empty space standing) before
+implementing; the owner's review of this PR is the confirmation of record.
+The amendment is of record on issue #109, the issue it amends —
+https://github.com/AlastairZeved/Earp-Street-Park/issues/109
+
+**The record.** Same PR as B17. The middle pane is a stack: `.window`
+returns to the pane's full `width: 56%` and takes `height: calc(96% -
+var(--stories-row))`; a `.middle-row` wrapper (absolute, `left: 22% / bottom:
+2% / width: 56%`) holds the two sheets as equal halves — `.note--plan`
+(`left` half, absolute, `top: 0 / bottom: 0`, width 49.5%) and
+`.note--stories` (in flow, the row's height-setter per #56, `margin-left:
+50.5% / width: 49.5%`). 1% fence air sits between the halves. The plan
+sheet's `#panel-plan` scrollbar stands. `--stories-row: clamp(308px, 524px -
+19.8vw, 373px)` replaces `--stories-block` (19.25rem): the half-width form
+re-wraps taller in the narrow column — measured 372.6px at 761vw (the
+Name/Email labels re-wrap), 348.7 at 800, 324.8 at 900, 325 at 1000, 303.5
+at 1100, then flat 306–307px above 1100; the clamp clears the measurement at
+every sampled width (bounds agent-derived, not an owner ruling; measured
+air runs 0.9px at 761vw and 1.8px at 1000vw, widening to 17–22px across the
+800–1100vw band where the linear preferred term over-predicts the non-linear
+re-wrap — the tape prints over fence there, not over the photo). On phone
+the wrapper dissolves (`display: contents`) and the sheets return to their
+grid areas, their phone values re-pinned at `.field`-prefixed specificity so
+the desktop row rules cannot out-rank them. B17's equal-size law carries over unchanged —
+it now binds the plan and stories halves rather than the photo and the plan
+sheet. `docs/UIUX.md` §5/§5.1 and `docs/PRD.md` §3/§4 are amended in the
+same PR.
