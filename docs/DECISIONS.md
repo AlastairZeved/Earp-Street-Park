@@ -261,3 +261,38 @@ the desktop row rules cannot out-rank them. B17's equal-size law carries over un
 it now binds the plan and stories halves rather than the photo and the plan
 sheet. `docs/UIUX.md` §5/§5.1 and `docs/PRD.md` §3/§4 are amended in the
 same PR.
+
+### B19. The hero paragraph loses its final parenthetical; the preceding sentence ends with the period (issue #108, owner ruling; amends B11's transcribed copy)
+
+**Source:** issue #108 (owner ruling), transcribed verbatim: "Remove just this text line: (we're still itching to learn the history of those cement planters!)
+
+Make sure the previous line still ends with the period." — https://github.com/AlastairZeved/Earp-Street-Park/issues/108
+
+**The record.** The hero paragraph's closing sentence now reads "...drop us a message with the form on this page." — the parenthetical "(we're still itching to learn the history of those cement planters!)" is deleted and the sentence carries the period. Everything else in the paragraph stands exactly as transcribed in B11 (with B11's chat amendment, "this old park"). `docs/UIUX.md` needs no edit; `docs/PRD.md` §3 quotes no hero copy.
+
+### B20. The form sheet's title reads "GIVE US A SHOUT!", not "GIVE ME A SHOUT!" (issue #111, owner ruling)
+
+**Source:** issue #111 (owner ruling), transcribed verbatim: "The section "GIVE ME A SHOUT!" needs an edit to: "GIVE US A SHOUT!"" — https://github.com/AlastairZeved/Earp-Street-Park/issues/111
+
+**The record.** The stories sheet's `.note-title` markup becomes "Give us a shout!" — the CSS uppercase render produces "GIVE US A SHOUT!". `docs/PRD.md` §3 item 6 is amended in the same PR.
+
+### B21. The standalone "Lots of weeding!" line is removed from the What We've Done sheet (issue #112, owner ruling)
+
+**Source:** issue #112 (owner ruling), transcribed verbatim: "Remove this entire line from the "WHAT WE'VE DONE" section:
+
+"Lots of weeding! I didn’t realize how quickly it can get overgrown across the fencing and in the planters."" — https://github.com/AlastairZeved/Earp-Street-Park/issues/112
+
+**The record.** The `.note-face` line directly under the sheet's title is deleted. The identical sentence opening the 9/2/2026 entry — a different, dated line that continues into tree-planting copy — stays, per the owner's confirmed scope (standalone line only; entry untouched).
+
+### B22. The plan sheet is replaced with a five-item bullet list — bullet style instead of checkbox style, the owner's new copy verbatim (issue #113, owner ruling; supersedes B7's "checkbox list alone" render)
+
+**Source:** issue #113 (owner ruling), transcribed verbatim: "The "WHAT WE'D LIKE TO DO" section needs several copy edits. Right now it reads: " A fence along the street edge Finding some sort of fencing we can rig onto the metal fence posts. I’m thinking wood pallets could do the job nicely (and free!)
+A “No Dumping” sign Our block captain can request one for free, but if we don’t have a captain then I’ll keep an eye on Facebook marketplace for one.
+Fresh slats on the picnic table and benches We need some new wood for the benches and picnic table. They’re easy to replace and the current wood is too damaged to repair easily. Then we can paint them and get them looking nice! That’s 18 pieces of 2”x6” pressure treated lumber I’m looking for.
+Trees in the existing planters Until I can get the Redevelopment Authority’s “permission” to do work restoring this lot as a park, we can’t request a tree from PHS. I’m working on getting “permission”, but until then if anyone knows of some free Fig trees or shade trees, let me know! " We are replacing this with a bullet point style instead of checkbox style and updating the copy to read: "- Put up a fence but not a tall fence, maybe hip height wood fence to help stop the dumping there
+- Put up a "No Dumping" sign (our Block Captain can request a free one)
+- Replace the wood slats for the picnic table and two benches, then paint/seal the wood so they last
+- Plant some container trees in the planters. Something that can provide some shade in the summer, but not large trees that can't fit in a planter
+- Repair the cracked pavement across the lot (working on getting some grant money to pay for it)"" — https://github.com/AlastairZeved/Earp-Street-Park/issues/113
+
+**The record.** The `.punch` list prints the five lines above, verbatim, with no title spans, no generated colon, and no `STUB:nextup-*` fill points (the ruling replaces the section's copy entirely, so the fill points go with the copy they were waiting to fill). The checkbox squares (`.punch li::before`, 1.05rem bordered box) are retired and the list joins the site's existing disc-bullet species (`.need .materials`: `list-style: disc`, 1.1rem indent) per the owner's confirmed choice — no invented marker. B7's record stands as history ("only the checkbox style list should be remaining"); B22 supersedes its rendered form: the sheet is the list alone, now in bullet style. The dark-mode checkbox-fill rule is amended to cover form inputs only. `docs/UIUX.md` §2.3/§3 and `docs/PRD.md` §3 are amended in the same PR.

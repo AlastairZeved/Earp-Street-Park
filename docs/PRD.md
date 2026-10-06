@@ -66,10 +66,10 @@ dug-up planters), not a marketing page.
    stands, whole, letterboxed on its white mat (#64: no comparison, no second
    angle; #75: contain, never crop; B8: no border lines).
 5. **What We'd Like To Do** (middle pane's bottom row, LEFT half — #109 as
-   amended in chat, B18) — the wish list as a checkbox
+   amended in chat, B18) — the wish list as a bullet
    list, alone (B7: no intro statement, no materials list); it is the second
    scroll region.
-6. **Give me a shout!** (middle pane's bottom row, RIGHT half, beside What
+6. **Give us a shout!** (middle pane's bottom row, RIGHT half, beside What
    We'd Like To Do — B18) — the contact form: name and email
    optional, story required, "Send" (B4), three visible lines with a
    scrollbar beyond (B6), posting to Formspree with a `_gotcha` honeypot.
