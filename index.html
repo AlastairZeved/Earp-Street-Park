@@ -184,17 +184,24 @@
 
   /* The lot window — one pinned photo, center of the board (#64). #61: it
      keeps its top pin (in line with What We've Done), and yields its height
-     to the Give Me A Shout! sheet below. #92: the print is 52.5% wide — the
-     widest the center column can go without crowding the week sheet (right
-     edge 21.7%) on the left or the plan sheet's 20.6% column at left 78.2%
-     on the right — and its height yields to the stories sheet's measured
+     to the Give Me A Shout! sheet below. #101: the mat hugs the print — the
+     print scales with the window instead of letterboxing inside a full-width
+     mat, so no white mat margin is introduced at any window shape. The pane
+     widens past the #92 52.5% column into the corridor between the week
+     sheet (right edge 21.7%) and the plan sheet (left 78.2%), and the mat
+     centers in it; its height still yields to the stories sheet's measured
      floor. */
   .window {
     position: absolute;
     left: 22.2%; top: 2%;
-    width: 52.5%; height: calc(96% - var(--stories-block));
+    width: 56%; height: calc(96% - var(--stories-block));
     margin: 0;
     z-index: 1;
+    /* size container so .cmp can size from the pane's height (issue #101) */
+    container-type: size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* ---------- Notes: paper sheets pinned to the fence ---------- */
@@ -423,23 +430,30 @@
      (0,1,1 vs 0,1,0), so the hide is restated at matching strength. */
   form input[type="text"].hp { display: none; }
 
-  /* ---------- The lot window: one static print in its mat (#64) ---------- */
+  /* ---------- The lot window: one static print in its mat (#64) ----------
+     #101: the mat hugs the print. .cmp is as wide as the largest uncropped
+     print the pane can show — the print's own 1600/995 aspect against the
+     pane's height (100cqh), capped by the pane's width — and the print fills
+     it edge to edge, so no white mat margin ever appears. When the pane is
+     narrower than that (very tall windows) the width cap takes over and the
+     mat centers vertically in the pane instead. The caption reserve the old
+     height carried is gone: there is no caption in the frame. */
   .cmp {
     position: relative;
-    width: 100%;
-    height: calc(100% - 2.1rem);    /* leave room for the caption inside the frame */
+    width: min(100%, calc((100cqh - 2 * var(--space-2)) * 1600 / 995 + 2 * var(--space-2)));
+    height: auto;
     background: #fffdf6;
     padding: var(--space-2);
     box-shadow: 0 6px 18px rgba(0,0,0,.35);
     overflow: hidden;
     transform: rotate(0.35deg);
   }
-  .cmp-stage { position: relative; width: 100%; height: 100%; overflow: hidden; }
+  .cmp-stage { position: relative; width: 100%; height: auto; aspect-ratio: 1600 / 995; overflow: hidden; }
   .cmp-stage img {
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
-    object-fit: contain;  /* #75: the whole 1.61-aspect lot photo, letterboxed on the stage's #fffdf6 mat instead of cropped */
+    object-fit: contain;  /* #75: the whole lot photo, never cropped — the stage carries the print's own 1600/995 aspect (issue #101), so the print fills the stage edge to edge */
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
