@@ -67,7 +67,7 @@
     --space-1: 0.35rem;
     --space-2: 0.75rem;
     --space-3: 1.25rem;
-    --needs-row: clamp(240px, 517px - 13.9vw, 365px);  /* #126 (B27): the middle pane's right column reserves the WHAT WE NEED flier's natural height beneath the window, re-measured under the B26 Montserrat Alternates face in the 27.5% column: 359.6px at 761vw, ~360 at 850, 322.4 at 900, ~304–307 across 1000–1100, a flat ~289–291 band across 1150–1500, then ~235–236 from 1600 to 2000 (the list re-wraps in discrete steps). The clamp clears the measurement at every sampled width (761/850/900/1000/1050/1100/1150/1200/1247/1300/1350/1440/1500/1600/1700/1800/1920/2000); bounds are agent-derived from the measured re-wrap — they are not an owner ruling. */
+    --needs-row: clamp(240px, 517px - 13.9vw, 365px);  /* #126 (B27): the middle pane's right half reserves the WHAT WE NEED flier's natural height beneath the window, re-measured under the B26 Montserrat Alternates face in the 27.5% half: 359.6px at 761vw, ~360 at 850, 322.4 at 900, ~304–307 across 1000–1100, a flat ~289–291 band across 1150–1500, then ~235–236 from 1600 to 2000 (the list re-wraps in discrete steps). The clamp clears the measurement at every sampled width (761/850/900/1000/1050/1100/1150/1200/1247/1300/1350/1440/1500/1600/1700/1800/1920/2000); bounds are agent-derived from the measured re-wrap — they are not an owner ruling. */
   }
 
   * { box-sizing: border-box; }
@@ -261,7 +261,7 @@
      height — top 2% to the field's 98% line, expanded vertically per the
      ruling so the list prints without its vertical scroll bar (the
      #panel-plan region keeps overflow-y: auto as the fallback for viewports
-     where the list still re-wraps past the pane; measured below). */
+     where the list still re-wraps past the pane; measured in B27's record. */
   .note--plan {
     left: 22%; top: 2%; height: 96%;
     width: 27.5%;

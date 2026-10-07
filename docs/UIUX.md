@@ -285,7 +285,8 @@ Exactly two on desktop: `#panel-week` and `#panel-plan` —
 keyboard users can scroll them. Since B27 the plan sheet stands at the
 middle pane's full height — expanded vertically per issue #126 — and its
 scroll region is the narrow-desktop fallback: the list fits without the bar
-from ~1240vw up, and the bar returns below that (B27's measured envelope). On phone (≤760px, the only breakpoint) the
+from ~1240vw up, and the bar returns below that (B27's measured envelope).
+On phone (≤760px, the only breakpoint) the
 page scrolls instead — sheets print full-length in flow, `overflow: visible`
 (Tinkerbell ruling t_599fbaee).
 
