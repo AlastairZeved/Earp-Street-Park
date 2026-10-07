@@ -460,3 +460,21 @@ species' Georgia stack is replaced; sizes, uppercase, letter-spacing, the 2px
 ink underline are unchanged), and `--font-stub` (`.entry-date` keeps weight
 400 per B12, `--rust` and letter-spacing 0.04em unchanged). B24's Fira Sans
 stack is superseded. `docs/UIUX.md` §3 is amended in the same PR.
+
+### B27. The CSP gains `font-src 'self'` — the B26 handrolled woff2 faces load wherever `_headers` ships; without the directive `default-src 'none'` refuses them and production silently renders system fallbacks (issue #128, owner ruling; amends B16's pinned policy)
+
+**Source:** issue #128 (owner, ruling of record), transcribed verbatim: "Measured
+fix: append `font-src 'self';` to the CSP in `_headers`." — the owner's session
+chat confirms the delivery as one PR: "Yes — transcribe the ruling, append it to
+DECISIONS.md, edit _headers, all in one PR" and keeps the scope to "only the CSP
+directive and the DECISIONS.md record amendment" — https://github.com/AlastairZeved/Earp-Street-Park/issues/128
+
+**The record.** B16's policy was pinned verbatim without `font-src`, so under
+`default-src 'none'` the two self-hosted `fonts/` woff2 files from B26 are
+refused wherever the header ships (Netlify reads `_headers` from `deploy` per
+B10) — production rendered system fallbacks while every local test and render
+passed. The policy becomes `default-src 'none'; img-src data:; font-src 'self';
+style-src 'unsafe-inline'; form-action https://formspree.io; frame-ancestors
+'none'; base-uri 'none'`. B16's other directives are unchanged — in particular
+the Referrer-Policy landmine (B1) is untouched. No hex, token, or UIUX value
+changes, so `test/tokens.js` needs no assertion rewrite.
