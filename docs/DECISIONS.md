@@ -478,3 +478,24 @@ style-src 'unsafe-inline'; form-action https://formspree.io; frame-ancestors
 'none'; base-uri 'none'`. B16's other directives are unchanged — in particular
 the Referrer-Policy landmine (B1) is untouched. No hex, token, or UIUX value
 changes, so `test/tokens.js` needs no assertion rewrite.
+
+### B28. The `_headers` policy gains `Strict-Transport-Security: max-age=31536000; includeSubDomains` and `X-Content-Type-Options: nosniff` — the hardened static-site pair; both are belt-and-suspenders under `default-src 'none'` (issue #118, owner ruling in chat with the site's agent, 2026-10-07; amends B16's pinned policy)
+
+**Source:** issue #118 (owner, ruling of record), transcribed from the owner's
+session chat 2026-10-07 in answer to the measured conflicts presented there:
+on which additions to rule in, the owner chose "Both — HSTS +
+X-Content-Type-Options"; on the HSTS value, the owner chose
+"max-age=31536000; includeSubDomains" (the issue's proposal, no `preload`).
+
+- https://github.com/AlastairZeved/Earp-Street-Park/issues/118
+
+**The record.** B16's policy ships two new lines in `_headers`: the HSTS line
+rules in the issue's exact value `Strict-Transport-Security:
+max-age=31536000; includeSubDomains` — HTTPS forced for every future visit
+after the first, so a downgrade/sslstrip attempt against a return visitor
+fails — and `X-Content-Type-Options: nosniff` stops the browser MIME-sniffing
+a response into something executable the CSP did not allow. Neither closes a
+live hole under `default-src 'none'`; the owner ruled them in as the standard
+hardened pair a static site carries. B16's other directives are unchanged — in
+particular the Referrer-Policy landmine (B1) is untouched. No hex, token, or
+UIUX value changes, so `test/tokens.js` needs no assertion rewrite.
