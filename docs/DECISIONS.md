@@ -499,3 +499,57 @@ live hole under `default-src 'none'`; the owner ruled them in as the standard
 hardened pair a static site carries. B16's other directives are unchanged — in
 particular the Referrer-Policy landmine (B1) is untouched. No hex, token, or
 UIUX value changes, so `test/tokens.js` needs no assertion rewrite.
+
+
+### B29. The Park Party Palooza flier run — the owner's attached ten-flier set joins the right pane's top slot, scaled to fit from the header pane's divider bar down to just above the Come Say Hi! flier; Come Say Hi! moves down to just above GIVE US A SHOUT!; the run renders in Montserrat Alternates per B26 (issue #132, the owner's ruling of record, with four in-chat rulings; amends B25's right-pane render)
+
+**Source:** issue #132 (owner, ruling of record), transcribed verbatim: "Move
+the flier for "Come Say Hi!" down so it sits just above "Give us a shout"
+without overlapping. 
+
+In the empty space created, add the attached flier. The flier should fit from
+the header pane, overlap the header divider bar, and stop just above the "Come
+Say Hi!" flier without overlapping it (Once the "Come Say Hi!" flier is moved
+down to above the other flier). Scale it to fit. It should not overlap any of
+the title text or paragraph, and it should not overlap the image."
+
+And the owner's four rulings in chat with the site's agent, 2026-10-07, on the
+questions the issue's text left open, transcribed verbatim: on scope, whether
+the attachment's single big flier or its whole set ships — "The whole mockup
+set (all ten fliers + decorations)"; on the measured conflict that the
+mockup's display face is a Georgia serif against B26's "no other font is used
+anywhere" — "Render the new flier in Montserrat Alternates per B26"; on the
+big flier's details and the mockup's fence emoji — "Keep the pumpkins JPEG,
+rust "Palooza" span, and fine-print rain date; skip the emoji decorations";
+and, asked to confirm that exclusion against the scope ruling, the owner
+reversed it — "No — include the emoji decorations after all". The owner's
+review of this PR is the confirmation of record (the B18 pattern).
+
+- https://github.com/AlastairZeved/Earp-Street-Park/issues/132
+
+**The record.** The right pane is one flex column, `.party-pane` — from the
+header pane's divider bar (the pane's top rises `calc(-0.4rem - 12px)` out of
+the field, overlapping the 3px double rule and clearing the hero paragraph by
+its remaining gap) down to the field's 2% line — holding, in order: the
+Palooza scene, Come Say Hi!, and GIVE US A SHOUT!, separated by the family
+paper margin. The scene transcribes the owner's attached mockup wholesale:
+its 850×1100 `.stage` and every pixel value inside it are the attachment
+unmodified — ten fliers (the title flier with its pumpkins JPEG art, rust
+"Palooza" span, and italic rain-date fine print; the story flier; Baked
+Goods; Bobbing for Apples; Hot Chocolate; Good Tunes; Mulch the Planters;
+Candy; the QR flier linking to earp-street-park.netlify.app) plus the
+fifteen emoji decorations the owner's final ruling keeps. The stage scales
+by one transform factor, `min(pane width / 850, pane height / 1100)` via
+container-query units — an agent-derived scaling mechanic; no owner value is
+re-derived. The mockup's Georgia fallback stack never ships: its
+`var(--font-display)`/`var(--font-body)` resolve to B26's Montserrat
+Alternates. The scene's paper, tape, and shadow values are the `.note`
+species' own. Below a measured fit floor (per width band, fonts loaded) no
+non-overlapping home for the scene exists, so the scene steps aside —
+a container-query sliver guard hides the stage under ~140px of leftover
+height, and a media band restores B25's arrangement exactly (the scene
+`display: none`, the stories sheet re-pinned `bottom: 0` in the pane); main's
+accepted narrow-band overlap (#78's defect) stands unchanged there. On phone
+(≤760px) the pane dissolves to `display: contents` and the scene joins the
+flier run's top as its own grid row, printing at the stage's own proportions.
+`docs/UIUX.md` §4.3, §5, §5.1 and §5.3 are amended in the same PR.
