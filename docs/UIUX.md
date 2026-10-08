@@ -237,20 +237,27 @@ the title or paragraph at any sampled viewport. The
 pane's gap is the family `--space-3`, so the issue's
 "just above, without overlapping" clearances hold in flow with nothing
 measured. The Palooza board is the owner's attached mockup transcribed
-wholesale: an 850×876 `.stage` holding eight fliers (the title flier with
+wholesale: an 850×876 `.stage` holding nine fliers (the title flier with
 its pumpkins JPEG art, rust "Palooza" span, where/when lines, and italic
 rain-date fine print; the story flier; Baked Goods; Bobbing for Apples; Hot
-Chocolate; Good Tunes; Mulch the Planters; Candy) plus fifteen emoji
-decorations, every px value the attachment unmodified, scaled by one
-`min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))` transform factor
-(container-query units — agent-derived mechanic), origin `50% 100%`,
-`overflow: clip` (the mockup's own crop — its bottom emoji row sits past
-y=876 and was never visible in the attachment). The stage ships the mockup's
-own fence background, verbatim (B29 superseding note, issue #135 — the board
-is a self-contained component placed on top of the page, background included,
-not merged into the site's fence): `background-color: var(--fence);
-background-image: var(--fence-tile); background-repeat: repeat`, the
-attachment's values, which are byte-identical to the site's own tokens.
+Chocolate; Good Tunes; Face Painting; Mulch the Planters; Candy for the
+Kids), every px value the updated attachment (#146, B34) unmodified except the
+small fliers, which the owner re-spaced in chat 2026-10-08 (the site's
+Montserrat Alternates sets wider than the mockup's Georgia and three pairs
+collided at the attachment's own positions; B34's record holds the final
+measured positions/sizes, seven distinct faces 19–32px, zero overlaps at
+every sampled desktop viewport), scaled
+by one `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))` transform
+factor (container-query units — agent-derived mechanic), origin `50% 0`
+(B30: anchored to the page top), `overflow: clip` (the mockup's own crop —
+its bottom emoji row sits past y=876 and was never visible in the
+attachment). The emojis ride ON the fliers (`.tag-emoji`) and two perch on
+the title's tape (`.tape-emoji`) — the fifteen scattered fence emojis are
+gone with the fence (B34, issue #146). The stage is TRANSPARENT (B34, issue
+#146 — the owner's updated attachment removes the fence; supersedes B29's
+issue #135 superseding note, "background included"): no `background-color`,
+no `background-image` — the board sits on the site and the site's own fence
+shows through.
 Its fonts resolve through
 §3.1's single family (B26: the mockup's Georgia/system stacks never ship);
 its paper, tape, and shadow are the §4.1 species' own values. The scaling is gated in the

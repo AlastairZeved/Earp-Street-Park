@@ -817,3 +817,22 @@ pinned `0.85rem`/weight-400 treatment (UIUX §3) are untouched; both issues
 ask for copy removal only, so no layout, token, or font values change and
 `test/tokens.js` needs no assertion rewrite. `docs/UIUX.md` and
 `docs/PRD.md` quote no hero copy, so they need no edit.
+
+
+### B34. The Park Party Palooza board is replaced wholesale by the owner's updated attachment — its interior composition (repositioned and resized small fliers, a new "Face Painting" flier, "Candy" renamed "Candy for the Kids", the emojis riding ON the fliers and two perched on the title's tape, the scattered fence emojis gone with the fence) ports verbatim, and the stage is TRANSPARENT — the site's own fence shows through (issue #146, owner instruction; supersedes B29's superseding note of issue #135, "background included")
+
+**Source:** issue #146 (owner, ruling of record), transcribed verbatim: "Attached is a new HTML file to be used to replace the "Park Party Palooza & Fundraiser" flier. No sizing changes or anything, just updates to the flier in general and a new transparent background." — https://github.com/AlastairZeved/Earp-Street-Park/issues/146
+
+And the owner's ruling in chat with the site's agent, 2026-10-08, on the
+overlap the transcription renders (the attachment's small fliers clear under
+its own Georgia stack, but under the site's Montserrat Alternates — the B23/
+B26 standing font adaptation — three pairs collide: cocoa × candy, music ×
+candy, faces × planters, the last covering 13 rendered px of "Face
+Painting"), transcribed verbatim: "No overlapping fliers, spread them out to
+space them appropriately within the component section, resize any to a
+smaller flier if needed - but make sure the little fliers are all various
+sizes, not uniform sizes."
+
+The updated attachment (https://github.com/user-attachments/files/33211118/party-for-the-park-flier-website.html) removes the mockup's `--fence` ground color and `--fence-tile` WebP data URI entirely — the "new transparent background" the owner names. The later ruling wins: the stage ships with no `background-color` and no `background-image`, and the site's own fence shows through the board, as the superseded PR #134 reading had it.
+
+**The record.** The board's interior is re-transcribed from the updated attachment, byte-for-byte except three things: the two standing adaptations (the mockup's `--font-display`/`--font-body` names resolve through the site's tokens per B23/B26, and the smallprint's `text-shadow: none`) and the chat ruling's re-space of the small fliers. First transcription verbatim, the small fliers carried the attachment's positions and sizes — but under the site's Montserrat Alternates three pairs collided (cocoa × candy, music × candy, faces × planters, the last covering 13 rendered px of "Face Painting"); the attachment's own Georgia stack clears every pair. The owner ruled the collision out in chat (Source above): the fliers are re-spaced within the 850×876 board, at measured non-overlap at 1440/1200/1000/2560 vw — Baked Goods 25px/14px 22px at 562/left 66; Bobbing for Apples 32px/17px 27px at 556/right 40; Hot Chocolate 20px/11px 17px at 776/left 56; Good Tunes 26px/14px 22px at 768/right 40; Face Painting 28px/15px 24px at 668/left 420 — new, and joining the single-tape group; Mulch the Planters 23px/12px 19px at 682/left 60; Candy for the Kids 19px/10px 16px at 772/left 290. The seven small fliers' faces are all distinct sizes (19–32px), per the ruling — no uniform sizes. Measured clearances in board space: baked→bobbing 41px, planters→faces 42px, cocoa→candy 13px, candy→music 17px; zero bounding-box overlaps at every sampled desktop viewport. The emojis ride on the fliers (`.tag-emoji`) and two perch on the title's tape (`.tape-emoji`), replacing the fifteen scattered fence emojis, which go with the fence; the title flier's pumpkins JPEG art is unchanged (the attachment's data URI is byte-identical to the shipped one); the attachment's vestigial `.fall-art svg` rule (no matching markup) ships as-is, verbatim. The site's fit mechanics are untouched — B30's fit region, scale-to-fit, top anchoring and horizontal centering all stand ("no sizing changes or anything" reads on the board's fit on the site, not on the attachment's own interior values). `docs/UIUX.md` §4.3 is amended in the same PR. No token or hex changes — `test/tokens.js` needs no assertion rewrite; no record-space changes — `test/records.js` needs none.
