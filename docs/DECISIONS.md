@@ -740,7 +740,13 @@ same PR.
 **Source:** owner, session chat 2026-10-08, transcribed verbatim (expletive
 redacted at the owner's standing direction): "what deploy side [expletive
 removed] merge commits? I have never once instructed merging to deploy,
-ever, period. All work is on main. Always. Period."
+ever, period. All work is on main. Always. Period." — the ruling arose in
+the promotion of PR #139 (https://github.com/AlastairZeved/Earp-Street-Park/pull/139),
+which landed the fix for issue #138
+(https://github.com/AlastairZeved/Earp-Street-Park/issues/138) and exposed
+deploy's un-sanctioned merge history; the correction
+(https://github.com/AlastairZeved/Earp-Street-Park/pull/139's deployment)
+is that PR's delivery.
 
 **The record.** The `deploy` branch had carried merge commits ("Merge pull
 request #131/#137 from AlastairZeved/main") authored under the owner's
