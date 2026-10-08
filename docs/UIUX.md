@@ -119,10 +119,14 @@ right side planes, vertical edge highlight/shadow lines at each plane
 boundary, subtle vertical brushed/rolling streak variation so it never
 reads as a flat CSS gradient, and NO bolts, hardware, or top/bottom caps
 (the post runs the full viewport height, B35's extent ruling standing). The
-palette is galvanized cool grey in the fence's value family (day front face
-~`rgb(148 143 134)` against cedar `#6b6055`; dusk ~`rgb(58 54 46)` against
-`#2e2921`) — the hexes live inside the bitmap's pixels and are not tokens
-(the same convention as `--fence-tile`).
+palette is cool NEUTRAL grey — clearly LIGHTER than the cedar and
+temperature-separated from it, so the post reads unmistakably as galvanized
+steel, not wood (day front face ~`rgb(154 160 165)` against cedar
+`#6b6055`, specular edge highlights ~`rgb(196 201 205)`, dark edge lines
+~`rgb(109 115 120)`; dusk face ~`rgb(86 91 96)` against `#2e2921`,
+highlights ~`rgb(123 129 134)`, edges ~`rgb(58 63 68)`) — no warm or brown
+cast anywhere in the face; the hexes live inside the bitmap's pixels and
+are not tokens (the same convention as `--fence-tile`).
 
 Layering: `.party-pane::before` paints the face — `position: fixed;
 top: 0; bottom: 0; right: 0`, width `calc(21.7vw + 0.566 *
