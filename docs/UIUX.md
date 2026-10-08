@@ -37,7 +37,7 @@ forbidden fixes and B8's rejected red lines).
 
 ## §2 Color
 
-Every hex in the shipped file — 24 distinct values. The palette's roles come
+Every hex in the shipped file — 18 distinct values. The palette's roles come
 from the tokens' own comments in `index.html` (`:root`, quoted in the right
 column).
 
@@ -52,9 +52,7 @@ column).
 | `--rule` | `#b9b3a4` | dashed entry rules |
 | `--rust` | `#a34a1a` | "marker ink: dates, lead words, the pin" |
 | `--fence` | `#6b6055` | "day cedar, sun-silvered — #31" |
-| `--post-edge` | `#3b3631` | "metal fence post, dark edge — #141 (B35)" |
-| `--post-mid` | `#4e4842` | "metal fence post, mid tone — #141 (B35)" |
-| `--post-sheen` | `#655e56` | "metal fence post, cylindrical sheen — #141 (B35)" |
+| `--post-tile` | inlined WebP data URI (§2.6) | "authored square galvanized steel post tile (600x512, vertically seamless; left 100px a transparent contact-shadow ramp, right 500px the post face) — day — #141 (B36)" |
 
 ### §2.2 Dark-mode tokens (`prefers-color-scheme: dark` remap)
 
@@ -67,9 +65,7 @@ column).
 | `--rule` | `#6b6355` | — |
 | `--rust` | `#dd8a4a` | "marker ink, lifted to hold AA on dark paper" |
 | `--fence` | `#2e2921` | "the same boards at dusk — darker, NOT black" |
-| `--post-edge` | `#1a1712` | "the same post at dusk — #141 (B35)" |
-| `--post-mid` | `#241f19` | the post's mid tone at dusk |
-| `--post-sheen` | `#322c23` | the post's sheen at dusk |
+| `--post-tile` | inlined WebP data URI (§2.6) | "the same post at dusk — #141 (B36)" |
 
 ### §2.3 Hard-coded surfaces (re-toned in dark)
 
@@ -99,20 +95,51 @@ data URIs (light / dark), repeated both axes. `background-color:
 var(--fence)` shows through gap pixels and while the tile decodes. The board
 The board IS the fence; no other background treatment exists.
 
-### §2.6 The metal fence post (B35)
+### §2.6 The square galvanized steel post — one built fence (B36; supersedes B35's render)
 
-The right pane's background is a straight vertical metal fence post (B35,
-issue #141): three tokens, `--post-edge` / `--post-mid` / `--post-sheen`
-(§2.1/§2.2), drawn as one horizontal gradient — dark edge 0% / mid 20% /
-subtle cylindrical sheen 50% / mid 80% / dark edge 100% — so the pole reads
-as a cylinder with no visible top or bottom and no hardware of any kind. The
-finish is the owner's ruling verbatim: "dark weathered steel grey — sits
-quietly behind the fliers, matches the site's muted palette" (the sheen day
-value `#655e56` sits one step from `--fence #6b6055`, the dusk sheen
-`#322c23` one step from `--fence #2e2921`, so the post blends into the cedar
-around it). Desktop only — on phone the pane dissolves to
-`display: contents` and the post is suppressed with it. No texture, no tape
-variant, no new element: one gradient on the pane's own `::before`.
+The right pane's background is not a stripe on the fence — it is ONE built
+fence (B36, issue #141; the owner rejected B35's gradient as "you just took
+the same background and slapped a new component on it and called it
+'pole'"). The body's plank tile (§2.5, retained) stays the field, and an
+authored square galvanized steel tube post rises over it at the pane's left
+edge: the planks visibly butt into the post — they run right up to its left
+edge, the post overlaps them with a contact shadow, so the fence reads as
+built onto the post. The post's form is the owner's ruling verbatim: a
+"square galvanized steel tube post (the 4x4-style steel post real wood
+fences rig onto) — flat faces with edge highlights, reads unmistakably as
+metal." The rendering is also the owner's choice: an authored bitmap WebP
+tile ("more photoreal, but a new invented texture" — sanctioned by the
+choice).
+
+`--post-tile` (§2.1/§2.2) is one 600×512 vertically-seamless WebP data URI
+per theme (day / dusk). Left to right: a 100px transparent zone carrying a
+baked rightward-increasing contact-shadow gradient (it darkens the planks
+beneath it), then the post face — a flat front face with distinct left and
+right side planes, vertical edge highlight/shadow lines at each plane
+boundary, subtle vertical brushed/rolling streak variation so it never
+reads as a flat CSS gradient, and NO bolts, hardware, or top/bottom caps
+(the post runs the full viewport height, B35's extent ruling standing). The
+palette is galvanized cool grey in the fence's value family (day front face
+~`rgb(148 143 134)` against cedar `#6b6055`; dusk ~`rgb(58 54 46)` against
+`#2e2921`) — the hexes live inside the bitmap's pixels and are not tokens
+(the same convention as `--fence-tile`).
+
+Layering: `.party-pane::before` paints the face — `position: fixed;
+top: 0; bottom: 0; right: 0`, width `calc(21.7vw + 0.566 *
+clamp(0.75rem, 2vw, 1.75rem))` (the pane's own width PLUS its right margin
+— the same anchor arithmetic the pane uses, since the pane is fixed and
+the pseudo's geometry is viewport-relative), with the tile's 500px face
+columns scaled onto that width exactly (×1.2, anchored right), so the
+post's left edge lands on the pane's left edge and its right edge is the
+viewport's — a terminal post at the fence's far right, no planks right of
+it. `.party-pane::after` paints the contact-shadow strip: its right edge at
+the post's left edge (`right:` the same calc), `clamp(36px, 3.4vw, 56px)`
+wide, the tile's 100px shadow columns scaled onto it (×6). Both layers
+`repeat-y` at 512px — the tile's vertical seamlessness means no horizontal
+seam shows across the full height. Both paint at `z-index: -1` inside the
+pane's stacking context: above the fence, below every pane child. Desktop
+only — on phone the pane dissolves to `display: contents` and both
+pseudo-elements are suppressed with it.
 
 ---
 
@@ -279,10 +306,13 @@ gone with the fence (B34, issue #146). The stage is TRANSPARENT (B34, issue
 issue #135 superseding note, "background included"): no `background-color`,
 no `background-image` — the board sits on the site and the site's own fence
 shows through. Behind the whole run, the pane's own background is the
-**metal fence post** (B35, issue #141, §2.6): a straight vertical
-steel-grey pole, identical right/width anchors to the pane's, full viewport
-height, painted below the fliers — the sheets' existing tape strips read as
-taping the Palooza board and GIVE US A SHOUT! to the post.
+**square galvanized steel post** (B36, issue #141, §2.6; supersedes B35's
+gradient): an authored steel-post tile whose face covers the pane's width
+plus its right margin — full viewport height, left edge on the pane's left
+edge, right edge at the viewport's — painted below the fliers, with the
+planks butting into it under a baked contact shadow — the sheets' existing
+tape strips read as taping the Palooza board and GIVE US A SHOUT! to the
+post.
 Its fonts resolve through
 §3.1's single family (B26: the mockup's Georgia/system stacks never ship);
 its paper, tape, and shadow are the §4.1 species' own values. The scaling is gated in the
@@ -326,7 +356,7 @@ and the run is board above GIVE US A SHOUT!."
 | `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
 | `.note--stories` | inside `.party-pane` (B29): in flow, the column's bottom sheet — the pane carries the `right: 1.2%; bottom: 2%; width: 20.5%` pins B25 set here (issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
 | `.head-lines` | the Come Say Hi flier's species — removed from the board by B32 (issue #142); the rules now serve the WHAT WE NEED flier (B23) only, which lives in `.middle-row` (row above). B29's party-pane re-pin is removed with it |
-| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above the pane's last flier, GIVE US A SHOUT! since B32 (issue #142; the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board and GIVE US A SHOUT! in flow (Come Say Hi! removed by B32), gap `var(--space-3)`. Dissolves to `display: contents` on phone — and its own `::before` background, the metal fence post (B35, §2.6), is suppressed with it |
+| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above the pane's last flier, GIVE US A SHOUT! since B32 (issue #142; the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board and GIVE US A SHOUT! in flow (Come Say Hi! removed by B32), gap `var(--space-3)`. Dissolves to `display: contents` on phone — and its own `::before`/`::after` post layers, the square steel post (B36, §2.6), are suppressed with it |
 | `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29, fit region re-anchored by B30 (issue #138): the Palooza board takes the column from the page top down to whatever the pane's last flier leaves (GIVE US A SHOUT! since B32, issue #142 — the removed Come Say Hi! flier's space goes to the board); its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 0` — centered horizontally in the column (never wider than it), anchored to the TOP of the page (the owner's ruling: "the park party flier should anchor to the top of the page"), hanging from the page top and growing downward, stopping above GIVE US A SHOUT! without overlapping it. On phone, its own grid row (`party`, above the stories sheet) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:
