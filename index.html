@@ -188,9 +188,20 @@
     margin-left: 50.5%;               /* the stories sheet's old slot: 49.5% + 1% fence air */
     width: 49.5%;
   }
+  /* #138 (the owner's annotated pane map, 2026-10-08): the header text
+     block's right boundary is the rightmost pane's left edge — the same
+     vertical line that bounds the flier column (the owner's ruling: "The
+     text in the header should be scaling to fit within its block. Its block
+     stops at the border of the rightmost pane."). The flier column occupies
+     the field's right 1.2% + 20.5% (B25), so the header text wraps within
+     the field's left 78.3% and can never run under the Palooza board. The
+     .head-rule is not touched — it stays the page-wide divider the board
+     straddles. */
+  .board-head h1 { margin-right: 21.7%; }
   .hero-line {
     grid-area: hero;
     margin: 0;
+    margin-right: 21.7%;  /* #138 (the owner's annotated pane map): the header text block stops at the rightmost pane's left edge — see the note above */
     max-width: 72em;  /* #59: was 58em — the hero wraps to 2 lines at wide viewports */
     color: var(--paper);
     font-size: 0.85rem;  /* #73: flat 0.85rem at every viewport — derived from the family small-text size (already used five times in the shipped sheet: .archive-head, .need .what, label .optional) and the hero clamp's own floor; the phone 0.9rem override is deleted because this base value covers it */
@@ -571,23 +582,43 @@
      component placed on top of the page, background included — not merged
      into the site's fence. ---------- */
   .party-pane {
-    position: absolute;
-    right: 1.2%;                    /* the flier column's shared right edge (B25) */
-    width: 20.5%;                   /* right 1.2% + 20.5% = 98.8% (unchanged) */
-    /* agent-derived: the pane reaches up from the field to the .head-rule's
-       top edge — the header is .field's previous flex sibling with a 0.4rem
-       board gap, and the rule element is its own 3px double border, so the
-       rule's top line sits 0.4rem + 3px above .field's top. Measured at
-       1000x956 / 1440x1000: the stage's top edge lands inside the rule's
-       band wherever the stage renders at all (below the ~930px fit envelope
-       at 761vw the stage is 0px tall — the board has no home; B29's measured
-       outcome records that band), and clears the hero paragraph and h1
-       (they sit above the rule) at every one. */
-    top: calc(-0.4rem - 3px);
-    bottom: 2%;
+    /* #138 (the owner's annotated screenshot, third request): the fit region
+       is the right flier column itself — the Come Say Hi column's width —
+       from the VERY TOP OF THE PAGE down to just above the Come Say Hi
+       flier. The board scale-to-fits that region, centered horizontally in
+       the column, never wider than the column, never clipped, never
+       overlapping the photo or the header text.
+       Mechanism: the pane re-anchors to the viewport (position: fixed — the
+       board section `.field` starts below the header, so a `.field`-relative
+       top can never reach the page top). The anchors re-derive the B29
+       column exactly at viewport scale — `.field` spans 100vw minus body's
+       own side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side (call it P):
+         right:  P + 1.2% of (100vw - 2P)  = calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem))
+         width:  20.5% of (100vw - 2P)     = calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem))
+       bottom: the sheets' line keeps the field's 2% pin: the field's bottom
+       margin is body's own bottom padding, `clamp(0.5rem, 1.4vh, 1rem)`, and
+       the field's height is 100vh minus its top edge minus that padding.
+       The field's top edge sits 183.5–238.4px down across the desktop band
+       (measured 761–2560vw; the hero paragraph's re-wrap — taller since the
+       header text block gained its column-edge boundary), so its 2% is a
+       3.9–5.1px band, folded to 4px (measured residual ≤0.4px against main
+       at every sampled viewport):
+         bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)
+       Measured against the B29 render: the column's right edge and width
+       reproduce to ≤0.1px at 2560/1440/1200/1000/761 vw (the first draft's
+       fixed-1.75rem assumption came out up to 5.3px narrow at 761vw and
+       re-wrapped Come Say Hi! one line taller — the clamp is the fix); the
+       sheets' bottom line lands within ~0.3px of the B29 line. Desktop-only:
+       on phone the pane dissolves to display: contents (the media block
+       below), which ignores positioning. */
+    position: fixed;
+    top: 0;                         /* #138: the fit region starts at the very top of the page */
+    right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem));  /* the flier column's shared right edge (B25), re-derived at viewport scale */
+    width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem));  /* right edge + width = the B25 column, unchanged */
+    bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px); /* the field's 2% line, re-derived at viewport scale */
     display: flex;
     flex-direction: column;
-    z-index: 2;                     /* the note sheets' band — paints over the rule */
+    z-index: 2;                     /* the note sheets' band — paints over the rule and the header's empty right band */
   }
   .party-pane .head-lines {         /* B25's top/right pins move onto the pane — Come Say Hi! comes down into flow, directly above GIVE US A SHOUT! (#132) */
     position: relative;
@@ -638,10 +669,10 @@
   }
   .stage {
     position: absolute;
-    bottom: 0;                      /* grows from the pane's bottom edge — stops just above Come Say Hi! */
-    left: 50%; margin-left: -425px; /* the 850px board's center line */
+    top: 0;                         /* #138: anchors to the TOP of the page — the scaled board hangs from the page top and grows downward into the space above Come Say Hi! (owner ruling in chat, 2026-10-08: "the park party flier should anchor to the top of the page") */
+    left: 50%; margin-left: -425px; /* the 850px board's center line — centered in the column */
     width: 850px; height: 876px;
-    transform-origin: 50% 100%;     /* bottom-center: the scaled board rises off Come Say Hi! and, when height-limited, touches the pane's top — the rule */
+    transform-origin: 50% 0;        /* top-center: the scaled board hangs off the page top */
     /* the board is a self-contained component placed on top of the page, not
        merged into the site's fence (issue #135, the owner's ruling of record
        2026-10-08; supersedes the transparent-stage reading) — the mockup's

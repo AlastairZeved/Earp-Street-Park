@@ -621,3 +621,116 @@ values are byte-identical to the site's own `--fence`/`--fence-tile` tokens,
 so they resolve through the tokens; no new hex or data URI ships.
 `docs/UIUX.md` §4.3 is amended in the same PR; no other token or hex changes,
 so `test/tokens.js` needs no assertion rewrite.
+
+### B30. The Palooza board's fit region is the right flier column itself, from the very top of the page down to just above the Come Say Hi! flier — the board scale-to-fits that region, centered horizontally in the column, never wider than the column, never clipped, never overlapping the photo or the header text (issue #138, the owner's ruling of record with in-chat rulings and an annotated screenshot; amends B29's pane-top anchoring)
+
+**Source:** issue #138 (owner, ruling of record), transcribed verbatim:
+"Third request: the flier for the Park Party Palooza should scale to fit to
+the top of the page. Not the top of the body section underneath the header.
+Not the tiny scaled version it is in the below screenshot.
+
+Scale the Park Party Palooza Party's size UP to fit from THE TOP OF THE
+WEBSITE PAGE, ON TOP OF THE HEADER PANE, AND BELOW THE HEADER PANE INTO THE
+DEAD SPACE ABOVE "COME SAY HI!" FLIER." —
+https://github.com/AlastairZeved/Earp-Street-Park/issues/138
+
+And the owner's rulings in chat with the site's agent, 2026-10-08,
+transcribed verbatim (expletives redacted at the owner's standing
+direction): on scale and fit — "No overlap, no clipping. There is more than
+enough room here. If it's too large, reduce the size vertically and SCALE IT
+TO FIT AS INSTRUCTED"; on centering — "CENTER IT."; on the phone run — "Yes
+— phone keeps the natural-aspect row, top of the flier run"; on placement —
+"the flier should be centered in the top right corner, lying both above and
+below the header's divider line, centered to that space. It can grow both
+vertically and horizontally BECAUSE PER MY SCREENSHOT WHICH IS THE CORRECT
+WEBSITE ([expletive removed]) IT IS NOT CURRENTLY SCALING TO FIT ALL
+VIEWPORTS AND IT IS NOT PROPERLY SIZED AND IT IS NOT PROPERLY PLACED TO
+WHERE IT SITS BOTH ABOVE AND BELOW THE HEADER'S DIVIDER LINE."; on width —
+"HOW IS IT REACHING THE PHOTO? IT SHOULDN'T EVEN BE GROWING WIDER THAN THE
+"COME SAY HI!" FLIER! IT SHOULD BE CENTERED HORIZONTALLY TO THAT WHOLE PANE.
+WHAT IN THE WORLD IS GOING ON? THIS IS BASIC INSTRUCTION"; on the header
+text block — "The text in the header should be scaling to fit within its
+block. Its block stops at the border of the rightmost pane. What is so
+complicating about this? attached is yet another screenshot with markup.
+This time the markup shows the layout of page and how the each pane is
+configured and mapped. And according to this, you shouldn't have a single
+issue that you're coming at me with."; and ruling the
+region by an annotated screenshot — "a picture with markup showing the exact
+placement this [expletive removed] flier needs to be centered within" — the
+annotation drawing the region as the Come Say Hi column's own width, from
+the top of the page down to the top of the Come Say Hi! panel, the flier
+centered within it; and the pane map — a second annotated screenshot whose
+red outlines bound each pane (header text block, left column, middle photo
+pane, the two bottom-middle panes) and draw one full-height vertical line
+as both the header text block's right boundary and the flier column's left
+edge — the header text abuts the column flush.
+
+**The record.** The fit region is the right flier column — the Come Say Hi
+column's own width — from the very top of the page (y=0) down to just above
+the Come Say Hi! flier. The board scale-to-fits that region by the B29
+`min(width-fit, height-fit)` transform factor, unchanged: it grows as large
+as the region allows, never wider than the column, never clipped, never
+overlapping the lot photo or the header text; horizontally centered in the
+column (the stage's existing `left: 50%` center line); anchored to the TOP
+of the page (the owner's in-chat ruling: "the park party flier should
+anchor to the top of the page; leave come say hi and give us a shout fliers
+alone") — the `.stage` moves from B29's bottom-center origin to top-center
+(`top: 0; transform-origin: 50% 0`): the scaled board hangs from the page
+top and grows downward into the space above Come Say Hi!, stopping above it
+without overlapping (the `--space-3` flow gap), and the two sheets below
+are untouched — their sizes are the sheets' own content re-wrap, measured
+byte-identical to B29's render at every sampled viewport. The header text
+block gains its ruled boundary: `.board-head h1` and `.hero-line` take
+`margin-right: 21.7%` (the flier column's 1.2% + 20.5%, B25) so the header
+text wraps within the field's left 78.3% and can never run under the board
+— before the boundary the board's opaque fence background covered
+197×98px of the hero paragraph at 1000×956, 150×98px at 761×960 and 21px of
+its line tails at 1200×800; after it, the paragraph's glyphs clear the
+column's left edge at every sampled viewport (1200×800 by 1px, 1000×956 by
+2.7px, 761×960 by 1.3px; at 1440vw and wider the text already wrapped left
+of the column). The `.head-rule` is not touched — it stays the page-wide
+divider the board straddles.
+Mechanically the pane re-anchors to the viewport (`position: fixed`;
+`.field` starts below the header, so a field-relative top can never reach
+the page top) with the B29 column re-derived at viewport scale —
+`.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw,
+1.75rem)` a side (the first draft's flat-1.75rem-margin assumption came out
+up to 5.3px narrow at 761vw and re-wrapped Come Say Hi! one line taller), so
+`right` =
+calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)) and `width` =
+calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)) — and the
+sheets' bottom line keeping the field's 2% pin as
+`bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` (the field's bottom
+margin is body's own bottom padding, and 2% of the field's height; the
+field's top edge sits 183.5–238.4px down across the desktop band, making
+its 2% a ~4px constant, measured residual ≤0.4px against main). The
+derivation and the measured residuals are commented at the rule. The board
+anchors to the TOP of the page (the owner's in-chat ruling:
+"the park party flier should anchor to the top of the page; leave come say
+hi and give us a shout fliers alone") — the `.stage` moves from B29's
+bottom-center origin to top-center (`top: 0; transform-origin: 50% 0`): the
+scaled board hangs from the page top and grows downward into the space
+above Come Say Hi!, and the two sheets below are untouched — their sizes
+are the sheets' own content re-wrap, measured byte-identical to B29's
+render at every sampled viewport. Measured outcome (agent-derived,
+headless-Chromium bounding boxes, branch against main side by side): the
+column's left/right/width reproduce B29's to ≤0.1px at
+2560/1920/1440/1200/1000/761 vw (the first draft's fixed-1.75rem margin
+assumption came out up to 5.3px narrow at 761vw and re-wrapped Come Say Hi!
+one line taller — the clamp re-derivation is the fix); the sheets' bottom
+line reproduces B29's within 0.2px; the board anchors to the page top at
+every sampled viewport and straddles the header divider line wherever its
+scaled height reaches it — 2560×1440 (513.3×529.0, top y=0 over the
+rule at 178.9), 1920×1200 (382.1×393.8), 1440×900 (283.7×292.4), 1200×800
+(142.3×146.6), 1000×956 (196.8×202.8), 761×960 (149.8×154.3) — at 1200×800
+and 761×960 the board now renders at all where B29 recorded 0.0px and
+9.7px (the fit envelope's zero-render band is gone; the board scales down
+continuously with the space); its width never exceeds the column (the
+owner's "it shouldn't even be growing wider than the 'COME SAY HI!' flier")
+and nothing clips or overlaps — the photo and header text are untouched.
+Desktop scroll stays zero at every sampled viewport; the phone run is
+untouched (the pane dissolves to `display: contents`, which ignores
+positioning, and the phone `.stage` rule re-pins its own top/origin). No
+hex, token, or font changes, so `test/tokens.js` needs no assertion
+rewrite. `docs/UIUX.md` §4.3 and its §5 element rows are amended in the
+same PR.
