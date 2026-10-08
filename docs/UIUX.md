@@ -37,7 +37,7 @@ forbidden fixes and B8's rejected red lines).
 
 ## §2 Color
 
-Every hex in the shipped file — 18 distinct values. The palette's roles come
+Every hex in the shipped file — 20 distinct values. The palette's roles come
 from the tokens' own comments in `index.html` (`:root`, quoted in the right
 column).
 
@@ -51,8 +51,9 @@ column).
 | `--ink-faded` | `#66625a` | "archive entries — older = faded" |
 | `--rule` | `#b9b3a4` | dashed entry rules |
 | `--rust` | `#a34a1a` | "marker ink: dates, lead words, the pin" |
-| `--fence` | `#6b6055` | "day cedar, sun-silvered — #31" |
-| `--post-tile` | inlined WebP data URI (§2.6) | "authored square black powder-coated steel post tile (600x512, vertically seamless; left 100px a transparent contact-shadow ramp, right 500px the post face) — day — #141 (B36)" |
+| `--fence` | `#141414` | "the slat gaps' near-black backing — shows through the tile's gap pixels and while the tile decodes (#141 v5)" |
+| `--rail` | `#232326` | "the anthracite cap rail + post hardware set — #141 (B36 as amended, v5)" |
+| `--post-tile` | inlined WebP data URI (§2.6) | "authored anthracite square post tile (600x512, vertically seamless; left 100px a transparent contact-shadow ramp, right 500px the post face — satin powder-coat, central groove, plane-boundary edge lines; matches --rail) — day — #141 (B36 as amended, v5)" |
 
 ### §2.2 Dark-mode tokens (`prefers-color-scheme: dark` remap)
 
@@ -64,8 +65,9 @@ column).
 | `--ink-faded` | `#b5ac9b` | "archive entries — older = faded" |
 | `--rule` | `#6b6355` | — |
 | `--rust` | `#dd8a4a` | "marker ink, lifted to hold AA on dark paper" |
-| `--fence` | `#2e2921` | "the same boards at dusk — darker, NOT black" |
-| `--post-tile` | inlined WebP data URI (§2.6) | "the same post at dusk — #141 (B36)" |
+| `--fence` | `#0d0d0d` | "the slat gaps' near-black backing at dusk (#141 v5)" |
+| `--rail` | `#1a1a1d` | "the same anthracite hardware at dusk" |
+| `--post-tile` | inlined WebP data URI (§2.6) | "the same post at dusk — #141 (B36 as amended, v5)" |
 
 ### §2.3 Hard-coded surfaces (re-toned in dark)
 
@@ -83,58 +85,62 @@ column).
 | `rgba(0,0,0,.45)` | snapshot print shadow (`0 7px 18px`), window mat shadow (`0 6px 18px`) |
 | `rgba(0,0,0,.2)` | tape and print small shadows (`0 1px 3px`), scrap |
 | `rgba(0,0,0,.12)` | phone scrap shadow |
+| `rgba(0,0,0,.35)` | the rail band's crisp bottom edge and the cap's bottom edge (B36 v5) |
+| `rgba(255,255,255,.08)` / `rgba(255,255,255,.06)` | the cap's and the rail's satin top sheen (B36 v5) |
 | `rgba(236,227,199,.78)` | **tape — the only non-black rgba; tape is warm cream at 78%** |
 
 **No danger color exists.** The accent role is `--rust`: submit hover, entry
 dates, focus outlines.
 
-### §2.5 The fence tile
+### §2.5 The fence tile — the modern slat fence (B36 as amended, v5)
 
-`--fence-tile` holds one of two inline 512×512 seamless weathered-cedar WebP
-data URIs (light / dark), repeated both axes. `background-color:
-var(--fence)` shows through gap pixels and while the tile decodes. The board
-The board IS the fence; no other background treatment exists.
+`--fence-tile` holds one of two inline 480×512 vertically-seamless WebP data
+URIs (light / dark), repeated both axes, authored from the owner's reference
+image (issue #141, 2026-10-08): a modern vertical-slat privacy fence — warm
+medium-brown wood-grain slats, even widths, deliberate open gaps showing a
+near-black backing. The tile carries ten exact periods of one slat + one gap
+(40px slat + 8px gap at the tile's native scale — a 5:1 slat:gap rhythm, the
+reference's), so the pattern is continuous across horizontal repeats with no
+visible seam; all tone variation is per-column vertical grain, so the tile
+wraps vertically with a zero seam. Day slats sit in the warm medium-brown
+`rgb(138 106 72)` family with per-slat tone variation of about ±10 and
+subtle vertical grain streaks over the near-black `rgb(20 20 20)` backing;
+dusk slats sit in the `rgb(58 48 38)` family over the `rgb(13 13 13)`
+backing. `background-color: var(--fence)` is the backing colour itself — it
+shows through the gap pixels and while the tile decodes. The board IS the
+fence; no other background treatment exists. The old cedar plank tile is
+gone everywhere (B36 as amended: "#141's 'retain as is' is overtaken" — the
+whole background re-renders as the modern slat fence).
 
-### §2.6 The square black powder-coated steel post — one built fence (B36 as amended; supersedes B35's render)
+### §2.6 The anthracite post and the cap rail — one built fence (B36 as amended, v5; supersedes B35's render and the v1–v4 plank/cedar composition)
 
-The right pane's background is not a stripe on the fence — it is ONE built
-fence (B36, issue #141; the owner rejected B35's gradient as "you just took
-the same background and slapped a new component on it and called it
-'pole'"). The body's plank tile (§2.5, retained) stays the field, and an
-authored square galvanized steel tube post rises over it at the pane's left
-edge: the planks visibly butt into the post — they run right up to its left
-edge, the post overlaps them with a contact shadow, so the fence reads as
-built onto the post. The post's form is the owner's ruling verbatim: a
-"square galvanized steel tube post (the 4x4-style steel post real wood
-fences rig onto) — flat faces with edge highlights, reads unmistakably as
-metal." The FINISH is the owner's later correction (B36 as amended): the
-post is painted black — "Black metal. not brushed gray. Like a modern
-wooden fence with black hardware and posts." — chosen in chat as **black
-powder-coated steel**: the same near-black with a faint cool sheen on the
-edge highlights. The rendering is also the owner's choice: an authored
-bitmap WebP
-tile ("more photoreal, but a new invented texture" — sanctioned by the
-choice).
+The page background is ONE built fence — the owner's reference image (issue
+#141, attached 2026-10-08) is the alignment reference: a modern
+vertical-slat privacy fence with an anthracite top rail and a square
+anthracite post sitting proud of the fence plane, slats and rail
+terminating behind it (B36 as amended: the whole background re-renders as
+the modern slat fence — §2.5 — and #141's "retain as is" is overtaken).
+The slat field runs the full page and full viewport height, behind the
+header too, and terminates BEHIND the post: the post rises over it at the
+pane's left edge with the baked contact-shadow ramp darkening the slats
+approaching the junction, so the fence reads as built onto the post.
+
+The post's FINISH is anthracite — `rgb(35 35 38)` day / `rgb(26 26 29)`
+dusk — matching the cap rail token `--rail` (`#232326` / `#1a1a1d`) EXACTLY,
+so post and rail read as one hardware set. The face is a smooth satin
+powder-coat: a soft light gradient across the face (NO striations, NO
+grain), a central vertical groove/channel (~5px recessed darker line at the
+face center), crisp plane-boundary edge lines at the left and right side
+planes, and a subtle vertical sheen falloff.
 
 `--post-tile` (§2.1/§2.2) is one 600×512 vertically-seamless WebP data URI
 per theme (day / dusk). Left to right: a 100px transparent zone carrying a
-baked rightward-increasing contact-shadow gradient (it darkens the planks
-beneath it), then the post face — a flat front face with distinct left and
-right side planes, vertical edge highlight/shadow lines at each plane
-boundary, a smooth powder-coat surface (NO brushed striations — the v3
-streak texture is removed; only a subtle vertical sheen falloff), and NO
-bolts, hardware, or top/bottom caps
-(the post runs the full viewport height, B35's extent ruling standing). The
-palette is near-black powder-coated steel — the owner's correction: "Black
-metal. not brushed gray." (day front face ~`rgb(28 28 30)`
-against cedar `#6b6055`, specular edge highlights a faint cool ~`rgb(58 58
-64)`, dark edge lines ~`rgb(12 12 15)`; dusk face
-~`rgb(16 16 18)` against the dusk planks `#2e2921` — the dusk
-face sits BELOW the dusk plank value with a cool cast so the post stays
-distinct from the planks at dusk, highlights ~`rgb(46 46 52)`,
-edges ~`rgb(6 6 9)`) — the face is flat near-black with only the faint
-sheen, no grey mid-tones; the hexes live inside the bitmap's pixels and
-are not tokens (the same convention as `--fence-tile`).
+baked rightward-increasing contact-shadow gradient (it darkens the slats
+beneath it), then the post face as above — and NO bolts, hardware, or
+top/bottom caps IN the tile (the post runs the full viewport height, B35's
+extent ruling standing). The face hexes live inside the bitmap's pixels and
+are not tokens (the same convention as `--fence-tile`); `--rail` IS a token,
+because the rail band is CSS hardware, not bitmap.
 
 Layering: `.party-pane::before` paints the face — `position: fixed;
 top: 0; bottom: 0; right: 0`, width `calc(21.7vw + 0.566 *
@@ -143,15 +149,41 @@ clamp(0.75rem, 2vw, 1.75rem))` (the pane's own width PLUS its right margin
 the pseudo's geometry is viewport-relative), with the tile's 500px face
 columns scaled onto that width exactly (×1.2, anchored right), so the
 post's left edge lands on the pane's left edge and its right edge is the
-viewport's — a terminal post at the fence's far right, no planks right of
+viewport's — a terminal post at the fence's far right, no slats right of
 it. `.party-pane::after` paints the contact-shadow strip: its right edge at
 the post's left edge (`right:` the same calc), `clamp(36px, 3.4vw, 56px)`
 wide, the tile's 100px shadow columns scaled onto it (×6). Both layers
 `repeat-y` at 512px — the tile's vertical seamlessness means no horizontal
 seam shows across the full height. Both paint at `z-index: -1` inside the
-pane's stacking context: above the fence, below every pane child. Desktop
-only — on phone the pane dissolves to `display: contents` and both
+pane's stacking context: above the fence, below every pane child — so the
+slats and the rail both visibly terminate BEHIND the post. Desktop only —
+on phone the pane dissolves to `display: contents` and both
 pseudo-elements are suppressed with it.
+
+The TOP RAIL: an anthracite horizontal cap rail runs the FULL page width at
+the header divider line — the slats run above it too (behind the header)
+and below it. It is painted as `.board-head::before`, a grid item in the
+`.head-rule`'s own grid row (`grid-area: rule`), so its top edge IS the
+`.head-rule`'s top edge at every viewport by construction — no measured y,
+no calc. The `.head-rule` element itself is untouched (B30's law stands);
+the rail is the fence's own hardware coincident with that line. The band's
+outer size is held to the row's own 3px via negative block margins
+(`height: 15px; margin-block: 0 -12px; align-self: start` — the band's TOP
+edge is the row's top edge), so the header's geometry is unchanged, and it
+paints in the header's in-flow phase (the first box in the row): above the
+slat field, below the divider, below every positioned sheet and the pane's
+layers. Negative inline margins bleed it to the viewport edges. The band
+carries two background layers: the RAIL — an 11px `--rail` satin band
+(soft top sheen, crisp darker bottom edge, §2.4's rgba values) — and, over
+the post's x-range, the POST'S FLAT OVERHANGING CAP: a 15px `--rail` layer
+`calc(21.7vw + 0.566 * clamp(0.75rem, 2vw, 1.75rem) + 20px)` wide anchored
+to the viewport's right edge — 20px wider than the post face, the stepped
+profile the reference shows. The post face paints over the cap's middle
+(the pane's layers are above the band); the cap's left overhang wing reads
+over the slats, and the cap's top edge is the band's top edge — the rail
+line — by construction. Desktop only: `.board-head::before` is suppressed
+with the pane's layers in the phone media block (the phone background
+scrolls; a fixed rail there would be wrong).
 
 ---
 
@@ -318,13 +350,15 @@ gone with the fence (B34, issue #146). The stage is TRANSPARENT (B34, issue
 issue #135 superseding note, "background included"): no `background-color`,
 no `background-image` — the board sits on the site and the site's own fence
 shows through. Behind the whole run, the pane's own background is the
-**square black powder-coated steel post** (B36 as amended, issue #141, §2.6; supersedes B35's
-gradient): an authored steel-post tile whose face covers the pane's width
-plus its right margin — full viewport height, left edge on the pane's left
-edge, right edge at the viewport's — painted below the fliers, with the
-planks butting into it under a baked contact shadow — the sheets' existing
-tape strips read as taping the Palooza board and GIVE US A SHOUT! to the
-post.
+**anthracite square post** (B36 as amended, issue #141, §2.6; supersedes B35's
+gradient and the v1–v4 cedar/plank composition): an authored anthracite
+post tile whose face covers the pane's width plus its right margin — full
+viewport height, left edge on the pane's left edge, right edge at the
+viewport's — painted below the fliers, with the slat field (§2.5, the
+whole background) butting into it under a baked contact shadow — the
+sheets' existing tape strips read as taping the Palooza board and GIVE US A
+SHOUT! to the post. The stage is transparent (B34), so it shows the slat
+fence and the post wherever its fliers leave them exposed.
 Its fonts resolve through
 §3.1's single family (B26: the mockup's Georgia/system stacks never ship);
 its paper, tape, and shadow are the §4.1 species' own values. The scaling is gated in the
@@ -368,7 +402,8 @@ and the run is board above GIVE US A SHOUT!."
 | `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
 | `.note--stories` | inside `.party-pane` (B29): in flow, the column's bottom sheet — the pane carries the `right: 1.2%; bottom: 2%; width: 20.5%` pins B25 set here (issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
 | `.head-lines` | the Come Say Hi flier's species — removed from the board by B32 (issue #142); the rules now serve the WHAT WE NEED flier (B23) only, which lives in `.middle-row` (row above). B29's party-pane re-pin is removed with it |
-| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above the pane's last flier, GIVE US A SHOUT! since B32 (issue #142; the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board and GIVE US A SHOUT! in flow (Come Say Hi! removed by B32), gap `var(--space-3)`. Dissolves to `display: contents` on phone — and its own `::before`/`::after` post layers, the square steel post (B36, §2.6), are suppressed with it |
+| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above the pane's last flier, GIVE US A SHOUT! since B32 (issue #142; the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board and GIVE US A SHOUT! in flow (Come Say Hi! removed by B32), gap `var(--space-3)`. Dissolves to `display: contents` on phone — and its own `::before`/`::after` post layers, the anthracite post (B36 as amended, §2.6), are suppressed with it |
+| `.board-head::before` | #141 (B36 as amended, v5): the **anthracite cap rail** — a full-width band `grid-area: rule` in the `.head-rule`'s own grid row, `height: 15px; margin-block: 0 -12px; align-self: start` (its top edge IS the `.head-rule`'s top edge by construction; the row's 3px outer size is unchanged), negative inline margins bleeding it to the viewport edges. Two background layers: the 11px `--rail` satin rail band, and over the post's x-range the post's flat overhanging cap (`--rail`, 15px, post width + 20px). `.head-rule` itself untouched (B30). Suppressed on phone with the post layers |
 | `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29, fit region re-anchored by B30 (issue #138): the Palooza board takes the column from the page top down to whatever the pane's last flier leaves (GIVE US A SHOUT! since B32, issue #142 — the removed Come Say Hi! flier's space goes to the board); its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 0` — centered horizontally in the column (never wider than it), anchored to the TOP of the page (the owner's ruling: "the park party flier should anchor to the top of the page"), hanging from the page top and growing downward, stopping above GIVE US A SHOUT! without overlapping it. On phone, its own grid row (`party`, above the stories sheet) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:

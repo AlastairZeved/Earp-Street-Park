@@ -60,7 +60,10 @@ function uiuxTokenTable(tableHeading, nextHeading) {
 const uiuxLight = uiuxTokenTable('### §2.1 Light-mode tokens', '### §2.2');
 const uiuxDark = uiuxTokenTable('### §2.2 Dark-mode tokens', '### §2.3');
 
-const COLOR_TOKENS = ['--paper', '--paper-shade', '--ink', '--ink-faded', '--rule', '--rust', '--fence'];
+const COLOR_TOKENS = ['--paper', '--paper-shade', '--ink', '--ink-faded', '--rule', '--rust', '--fence', '--rail'];
+// #141 (B36 as amended, v5): --rail joins the list — the anthracite cap rail +
+// post hardware set is CSS hardware, not bitmap pixels, so it is a hex token.
+// The --fence value rewrite (near-black slat-gap backing) is also deliberate.
 // #141 (B36): the B35 gradient tokens --post-edge/--post-mid/--post-sheen are
 // REMOVED — the post's finish now lives inside the --post-tile bitmap's
 // pixels, and bitmap pixels are not hex tokens (the same convention as
