@@ -52,7 +52,7 @@ column).
 | `--rule` | `#b9b3a4` | dashed entry rules |
 | `--rust` | `#a34a1a` | "marker ink: dates, lead words, the pin" |
 | `--fence` | `#6b6055` | "day cedar, sun-silvered — #31" |
-| `--post-tile` | inlined WebP data URI (§2.6) | "authored square galvanized steel post tile (600x512, vertically seamless; left 100px a transparent contact-shadow ramp, right 500px the post face) — day — #141 (B36)" |
+| `--post-tile` | inlined WebP data URI (§2.6) | "authored square black powder-coated steel post tile (600x512, vertically seamless; left 100px a transparent contact-shadow ramp, right 500px the post face) — day — #141 (B36)" |
 
 ### §2.2 Dark-mode tokens (`prefers-color-scheme: dark` remap)
 
@@ -95,7 +95,7 @@ data URIs (light / dark), repeated both axes. `background-color:
 var(--fence)` shows through gap pixels and while the tile decodes. The board
 The board IS the fence; no other background treatment exists.
 
-### §2.6 The square galvanized steel post — one built fence (B36; supersedes B35's render)
+### §2.6 The square black powder-coated steel post — one built fence (B36 as amended; supersedes B35's render)
 
 The right pane's background is not a stripe on the fence — it is ONE built
 fence (B36, issue #141; the owner rejected B35's gradient as "you just took
@@ -107,7 +107,12 @@ edge, the post overlaps them with a contact shadow, so the fence reads as
 built onto the post. The post's form is the owner's ruling verbatim: a
 "square galvanized steel tube post (the 4x4-style steel post real wood
 fences rig onto) — flat faces with edge highlights, reads unmistakably as
-metal." The rendering is also the owner's choice: an authored bitmap WebP
+metal." The FINISH is the owner's later correction (B36 as amended): the
+post is painted black — "Black metal. not brushed gray. Like a modern
+wooden fence with black hardware and posts." — chosen in chat as **black
+powder-coated steel**: the same near-black with a faint cool sheen on the
+edge highlights. The rendering is also the owner's choice: an authored
+bitmap WebP
 tile ("more photoreal, but a new invented texture" — sanctioned by the
 choice).
 
@@ -116,16 +121,19 @@ per theme (day / dusk). Left to right: a 100px transparent zone carrying a
 baked rightward-increasing contact-shadow gradient (it darkens the planks
 beneath it), then the post face — a flat front face with distinct left and
 right side planes, vertical edge highlight/shadow lines at each plane
-boundary, subtle vertical brushed/rolling streak variation so it never
-reads as a flat CSS gradient, and NO bolts, hardware, or top/bottom caps
+boundary, a smooth powder-coat surface (NO brushed striations — the v3
+streak texture is removed; only a subtle vertical sheen falloff), and NO
+bolts, hardware, or top/bottom caps
 (the post runs the full viewport height, B35's extent ruling standing). The
-palette is cool NEUTRAL grey — clearly LIGHTER than the cedar and
-temperature-separated from it, so the post reads unmistakably as galvanized
-steel, not wood (day front face ~`rgb(154 160 165)` against cedar
-`#6b6055`, specular edge highlights ~`rgb(196 201 205)`, dark edge lines
-~`rgb(109 115 120)`; dusk face ~`rgb(86 91 96)` against `#2e2921`,
-highlights ~`rgb(123 129 134)`, edges ~`rgb(58 63 68)`) — no warm or brown
-cast anywhere in the face; the hexes live inside the bitmap's pixels and
+palette is near-black powder-coated steel — the owner's correction: "Black
+metal. not brushed gray." (day front face ~`rgb(28 28 30)`
+against cedar `#6b6055`, specular edge highlights a faint cool ~`rgb(58 58
+64)`, dark edge lines ~`rgb(12 12 15)`; dusk face
+~`rgb(16 16 18)` against the dusk planks `#2e2921` — the dusk
+face sits BELOW the dusk plank value with a cool cast so the post stays
+distinct from the planks at dusk, highlights ~`rgb(46 46 52)`,
+edges ~`rgb(6 6 9)`) — the face is flat near-black with only the faint
+sheen, no grey mid-tones; the hexes live inside the bitmap's pixels and
 are not tokens (the same convention as `--fence-tile`).
 
 Layering: `.party-pane::before` paints the face — `position: fixed;
@@ -310,7 +318,7 @@ gone with the fence (B34, issue #146). The stage is TRANSPARENT (B34, issue
 issue #135 superseding note, "background included"): no `background-color`,
 no `background-image` — the board sits on the site and the site's own fence
 shows through. Behind the whole run, the pane's own background is the
-**square galvanized steel post** (B36, issue #141, §2.6; supersedes B35's
+**square black powder-coated steel post** (B36 as amended, issue #141, §2.6; supersedes B35's
 gradient): an authored steel-post tile whose face covers the pane's width
 plus its right margin — full viewport height, left edge on the pane's left
 edge, right edge at the viewport's — painted below the fliers, with the
