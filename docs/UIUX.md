@@ -103,10 +103,12 @@ near-black backing. The tile carries ten exact periods of one slat + one gap
 reference's), so the pattern is continuous across horizontal repeats with no
 visible seam; all tone variation is per-column vertical grain, so the tile
 wraps vertically with a zero seam. Day slats sit in the warm medium-brown
-`rgb(138 106 72)` family with per-slat tone variation of about ±10 and
-subtle vertical grain streaks over the near-black `rgb(20 20 20)` backing;
-dusk slats sit in the `rgb(58 48 38)` family over the `rgb(13 13 13)`
-backing. `background-color: var(--fence)` is the backing colour itself — it
+`rgb(140 105 70)` family; dusk slats sit in the `rgb(58 48 38)` family. All
+slats are ONE hue — per-slat and grain variation is lightness-only
+(multipliers 0.93–1.07 and ±5% grain, applied to every channel equally, so no
+slat drifts yellow, rose, or olive; the owner rejected hue-varying slats,
+"why is the fence a whole bunch of different colors and not brown") — over
+the near-black `rgb(20 20 20)` day / `rgb(13 13 13)` dusk backing. `background-color: var(--fence)` is the backing colour itself — it
 shows through the gap pixels and while the tile decodes. The board IS the
 fence; no other background treatment exists. The old cedar plank tile is
 gone everywhere (B36 as amended: "#141's 'retain as is' is overtaken" — the
