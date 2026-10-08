@@ -734,3 +734,21 @@ positioning, and the phone `.stage` rule re-pins its own top/origin). No
 hex, token, or font changes, so `test/tokens.js` needs no assertion
 rewrite. `docs/UIUX.md` §4.3 and its §5 element rows are amended in the
 same PR.
+
+### B31. Deploy is main — always; promotion is the `main:deploy` push and nothing else; no merge commits ever land on deploy and deploy never diverges from main (owner ruling in chat with the site's agent, 2026-10-08; corrects the deploy-branch divergence and the promotion precedent it was wrongly read from)
+
+**Source:** owner, session chat 2026-10-08, transcribed verbatim (expletive
+redacted at the owner's standing direction): "what deploy side [expletive
+removed] merge commits? I have never once instructed merging to deploy,
+ever, period. All work is on main. Always. Period."
+
+**The record.** The `deploy` branch had carried merge commits ("Merge pull
+request #131/#137 from AlastairZeved/main") authored under the owner's
+account without the owner's instruction, and a promotion was executed as a
+merge into deploy on the strength of that false precedent. Corrected: deploy
+force-moved to main's exact SHA (tree verified identical before and after),
+and the ruling is recorded so no agent reads the old commits as precedent.
+All work lands on main; deploy exists only as the promotion target of
+`main:deploy`; the promotion must verify deploy's SHA equals main's SHA and
+its tree matches before reporting done. No hex, token, or UIUX value
+changes, so `test/tokens.js` needs no assertion rewrite.
