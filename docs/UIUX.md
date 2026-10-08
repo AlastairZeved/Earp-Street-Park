@@ -157,7 +157,7 @@ Everything on the board is one of three physical objects. When adding an
 element, it joins an existing species — same values verbatim, no invented
 texture (B5).
 
-### §4.1 The `.note` paper sheet (week, plan, stories, and the Come Say Hi flier)
+### §4.1 The `.note` paper sheet (week, plan, stories)
 
 `background: var(--paper)`, `box-shadow: 0 8px 20px rgba(0,0,0,.4)`,
 `padding: var(--space-3)`, `z-index: 2`, **two tape strips** via
@@ -165,8 +165,9 @@ texture (B5).
 `0 1px 3px rgba(0,0,0,.2)`, `top: -0.8rem`, left 9% rotate(−4°) / right 9%
 rotate(+3°), `pointer-events: none`, z-index 3. The tape recipe is duplicated
 verbatim on `.head-lines` (B5); phone values: 4.6rem × 1.5rem, `top: -0.65rem`,
-left/right 8%. Tilts (desktop): week −0.5°, plan +0.5°, stories −0.3°, Come
-Say Hi −0.5°.
+left/right 8%. Tilts (desktop): week −0.5°, plan +0.5°, stories −0.3°.
+(The Come Say Hi flier, a −0.5° member of the species through B30, was
+removed by B32 — issue #142.)
 
 Face anatomy: `.note-title` (§3.3) + optional `.note-face` intro + content
 panel. Week holds `.entry` items (dashed `--rule` bottom border, rust mono
@@ -198,16 +199,11 @@ same photograph, cover-cropped to 140px, one tape strip, rotate −0.8°.
 
 ### §4.3 The flier
 
-The Come Say Hi block is a `.note` sheet in all respects — B5 is its ruling.
-Its values duplicate §4.1 verbatim; it carries no extra treatment. Through
-B25 (issue #122) it held the right pane's top pin; since B29 (issue #132) it
-prints inside `.party-pane` between the **Park Party Palooza flier board**
-(the owner's attached mockup, transcribed wholesale — see below) and the
-pane's bottom sheet, the **GIVE US A SHOUT!**
-form — the `.note` stories sheet in its own species (§4.1, −0.3° tilt,
-full-length form, not a scroll region), pinned `right: 1.2%; bottom: 2%;
-width: 20.5%` in the fliers' column. The **What We Need** flier (B23, issue
-#110) swaps into the middle pane's lower right under B25: the same
+The Come Say Hi block was a `.note` sheet in all respects — B5 was its
+ruling; it was **removed by B32 (issue #142)**, its copy with it, and the
+board's freed space goes to the Palooza board. Its species survives in the
+**What We Need** flier (B23, issue
+#110), which swaps into the middle pane's lower right under B25: the same
 `.head-lines` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
 shadow, −0.5° tilt, `.say-hi.flier` title), now the right half of
 `.middle-row` (`margin-left: 50.5%; width: 49.5%`) and the bottom row's
@@ -217,18 +213,19 @@ retired checkbox squares (2.1rem indent, 1.05rem square, 2px `--ink` border,
 `#fffdf6` fill; `#2b2720` dusk fill in dark), reinstated verbatim for this
 flier's list only by the owner's in-chat ruling; the plan sheet stays the B22
 disc-bullet list. The face prints at the `.smallprint` size (§3.3 — the
-flier species' own body size, the size Come Say Hi's face prints; the
+flier species' own body size, the size Come Say Hi's face printed; the
 owner's in-chat size ruling). The list is not a scroll region. The right
-pane's stack since B29 is the **Park Party Palooza flier board** (issue
-#132) above Come Say Hi! above GIVE US A SHOUT! — one flex column,
-`.party-pane`, whose fit region since B30 (issue #138) is the column
-itself from the very top of the page down to just above the Come Say Hi
-flier: the board scale-to-fits that region (never wider than the column,
+pane's stack since B32 is the **Park Party Palooza flier board** (issue
+#132) above GIVE US A SHOUT! (B32, issue #142, removing the Come Say Hi!
+flier that B29 placed between them) — one flex column,
+`.party-pane`, whose fit region is the column
+itself from the very top of the page down to just above the GIVE US A
+SHOUT! sheet: the board scale-to-fits that region (never wider than the column,
 never clipped, never overlapping the photo or the header text), centered
 horizontally in it, anchored to the TOP of the page (the owner's ruling:
 "the park party flier should anchor to the top of the page") — the scaled
-board hangs from the page top and grows downward, stopping above Come Say
-Hi! without overlapping it — so the board
+board hangs from the page top and grows downward, stopping above GIVE US A
+SHOUT! without overlapping it — so the board
 lies both above and below the `.head-rule` divider line wherever its
 scaled height reaches it (B29's overlap ruling, extended to the page top
 by B30; the owner's annotated screenshot rules the region — the Come Say
@@ -281,9 +278,10 @@ above your turn and the ask (What We'd Like To Do beside WHAT WE NEED,
 #122/B25 — the middle pane's bottom row), right = the Come Say Hi! flier
 with the GIVE US A SHOUT! sheet below it, stacked in the pane (#122, B25).
 #132: the right pane's run gains the Park Party Palooza flier board (the
-owner's attachment, transcribed) above Come Say Hi!, which moves down into
-flow above the stories sheet; the run reaches up into the header pane to
-the .head-rule and scale-to-fits the space."
+owner's attachment, transcribed) above the stories sheet; the run reaches
+up into the header pane to the .head-rule and scale-to-fits the space.
+#142 (B32): the Come Say Hi! flier is removed — the board takes its space,
+and the run is board above GIVE US A SHOUT!."
 
 ### §5.1 Desktop pins
 
@@ -295,9 +293,9 @@ the .head-rule and scale-to-fits the space."
 | `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the height-setter's height exactly (B25: the WHAT WE NEED flier's natural height); `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
 | `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
 | `.note--stories` | inside `.party-pane` (B29): in flow, the column's bottom sheet — the pane carries the `right: 1.2%; bottom: 2%; width: 20.5%` pins B25 set here (issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
-| `.head-lines` | inside `.party-pane` (B29): in flow, between the Palooza board and GIVE US A SHOUT! — the pane carries the `right: 1.2%` edge and the 20.5% column the old pins set (#63, B5: "leave exactly where they are"). B23's `bottom: 2%` pin and B25's `top: 2%` pin are both superseded by B29 |
-| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above Come Say Hi! (the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board, Come Say Hi!, and GIVE US A SHOUT! in flow, gap `var(--space-3)`. Dissolves to `display: contents` on phone |
-| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29, fit region re-anchored by B30 (issue #138): the Palooza board takes the column from the page top down to whatever the pane's two fliers leave; its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 0` — centered horizontally in the column (never wider than it), anchored to the TOP of the page (the owner's ruling: "the park party flier should anchor to the top of the page"), hanging from the page top and growing downward, stopping above Come Say Hi! without overlapping it. On phone, its own grid row (`party`, above Come Say Hi) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
+| `.head-lines` | the Come Say Hi flier's species — removed from the board by B32 (issue #142); the rules now serve the WHAT WE NEED flier (B23) only, which lives in `.middle-row` (row above). B29's party-pane re-pin is removed with it |
+| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above the pane's last flier, GIVE US A SHOUT! since B32 (issue #142; the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board and GIVE US A SHOUT! in flow (Come Say Hi! removed by B32), gap `var(--space-3)`. Dissolves to `display: contents` on phone |
+| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29, fit region re-anchored by B30 (issue #138): the Palooza board takes the column from the page top down to whatever the pane's last flier leaves (GIVE US A SHOUT! since B32, issue #142 — the removed Come Say Hi! flier's space goes to the board); its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 0` — centered horizontally in the column (never wider than it), anchored to the TOP of the page (the owner's ruling: "the park party flier should anchor to the top of the page"), hanging from the page top and growing downward, stopping above GIVE US A SHOUT! without overlapping it. On phone, its own grid row (`party`, above the stories sheet) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:
 clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new
@@ -336,12 +334,12 @@ page scrolls instead — sheets print full-length in flow, `overflow: visible`
 
 ### §5.3 Phone (≤760px)
 
-Single-column grid, areas `party / needs / lines / snap / week / plan /
-stories`
+Single-column grid, areas `party / needs / snap / week / plan / stories`
 (B29 adds the Palooza board at the top of the flier run, above Come Say Hi —
 the desktop stacking order, its own grid row at the stage's own 850/876
-aspect ratio; B23 adds the needs flier next in the run, above Come Say Hi —
-the #46 top-of-flow pin is not moved);
+aspect ratio; B23 adds the needs flier next in the run — the #46
+top-of-flow pin is not moved; B32 (issue #142) removes the Come Say Hi!
+flier and its `lines` grid row, the run reading needs / party / stories);
 `.window`
 hidden, `.snapshot` shown; the lead becomes a real paper sheet with its own
 tape; page-level scrolling with `overflow-x: clip` (horizontal scroll

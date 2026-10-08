@@ -758,3 +758,37 @@ All work lands on main; deploy exists only as the promotion target of
 `main:deploy`; the promotion must verify deploy's SHA equals main's SHA and
 its tree matches before reporting done. No hex, token, or UIUX value
 changes, so `test/tokens.js` needs no assertion rewrite.
+
+### B32. The "Come Say Hi!" flier is removed from the board entirely, the Palooza board takes its freed space, and the "GIVE US A SHOUT!" sheet gains a line above the form reading "If you see two guys out there working on stuff, come say hi! If not, drop us a message below." (issue #142, owner instruction)
+
+**Source:** issue #142 (owner instruction), transcribed verbatim: "Remove the "COME SAY HI!" flier and it's copy entirely.
+
+Park Party Palooza flier gains the extra vertical space.
+
+For the "GIVE US A SHOUT!" flier, add a line above the form that reads:
+"If you see two guys out there working on stuff, come say hi! If not, drop us a message below."" — https://github.com/AlastairZeved/Earp-Street-Park/issues/142
+
+**The record.** The `.head-lines` Come Say Hi! flier markup is removed from
+`.party-pane` — the flier, its `.say-hi` face, and its smallprint copy are
+gone entirely. The pane's run is the **Park Party Palooza flier board** above
+the **GIVE US A SHOUT!** sheet; the stage is the pane's flex-grow element, so
+the board takes the flier's freed vertical space and B30's fit region now
+runs from the page top down to just above GIVE US A SHOUT! (B25's arrangement
+is amended accordingly). The added line joins the stories sheet's existing
+species — the `.smallprint` class, weight 400 (B9), no new values. The base
+`.head-lines` rules stay: the WHAT WE NEED flier (B23) is the same species.
+The phone flier run drops the Come Say Hi! row. No hex, token, or font
+changes, so `test/tokens.js` needs no assertion rewrite. `docs/UIUX.md`
+§4.1/§4.3/§5 and `docs/PRD.md` §3 are amended in the same PR.
+
+Measured outcome (agent-derived, headless-Chromium bounding boxes): the
+board's stage box grows from B30's recorded 283.7×292.4 at 1440×900 to
+283.7×468.9 — the flier's freed vertical space, exactly as the issue directs
+— and 382.1×705.5 at 1920×1080 (was 382.1×393.8), 201.5×278.3 at
+1024×768; the board keeps its page-top anchor and column width at every
+sampled viewport, stops 19–20px (the family `--space-3`, the pane's own
+`gap` — the removed flier carried the clearance as its own margins, so the
+pane re-declares it) above the GIVE US A SHOUT! sheet's box, and neither
+clips nor overlaps it; desktop scroll stays zero at every sampled viewport.
+The phone flier run reads `needs / party / snap / week / plan / stories` —
+the Come Say Hi! row is gone from the grid template.
