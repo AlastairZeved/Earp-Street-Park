@@ -60,7 +60,10 @@ function uiuxTokenTable(tableHeading, nextHeading) {
 const uiuxLight = uiuxTokenTable('### §2.1 Light-mode tokens', '### §2.2');
 const uiuxDark = uiuxTokenTable('### §2.2 Dark-mode tokens', '### §2.3');
 
-const COLOR_TOKENS = ['--paper', '--paper-shade', '--ink', '--ink-faded', '--rule', '--rust', '--fence'];
+const COLOR_TOKENS = ['--paper', '--paper-shade', '--ink', '--ink-faded', '--rule', '--rust', '--fence',
+  // #141 (B35): the metal fence post's three tokens join the checked space —
+  // both themes' §2.1/§2.2 rows and the shipped :root values must match.
+  '--post-edge', '--post-mid', '--post-sheen'];
 
 console.log('[1] UIUX §2.1/§2.2 token tables vs shipped :root values');
 if (!light) fail('could not extract the :root block from index.html');
