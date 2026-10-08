@@ -26,9 +26,10 @@
      WHAT WE NEED, #122/B25 — the middle pane's bottom row), right = the Come
      Say Hi! flier with the GIVE US A SHOUT! sheet below it, stacked in the pane
      (#122, B25). #132: the right pane's run gains the Park Party Palooza
-     flier board (the owner's attachment, transcribed) above Come Say Hi!,
-     which moves down into flow above the stories sheet; the run reaches up
-     into the header pane to the .head-rule and scale-to-fits the space.
+     flier board (the owner's attachment, transcribed) above the stories
+     sheet; the run reaches up into the header pane to the .head-rule and
+     scale-to-fits the space. #142 (B32): the Come Say Hi! flier is removed —
+     the board takes its space, and the run is board above GIVE US A SHOUT!.
      Every sheet prints its
      content at rest; the week and plan sheets are the board's only scroll
      regions (vertical only).
@@ -584,8 +585,9 @@
   .party-pane {
     /* #138 (the owner's annotated screenshot, third request): the fit region
        is the right flier column itself — the Come Say Hi column's width —
-       from the VERY TOP OF THE PAGE down to just above the Come Say Hi
-       flier. The board scale-to-fits that region, centered horizontally in
+       from the VERY TOP OF THE PAGE down to just above the pane's last
+      flier (B32: GIVE US A SHOUT!, since the Come Say Hi! flier is removed
+      by #142). The board scale-to-fits that region, centered horizontally in
        the column, never wider than the column, never clipped, never
        overlapping the photo or the header text.
        Mechanism: the pane re-anchors to the viewport (position: fixed — the
@@ -618,25 +620,16 @@
     bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px); /* the field's 2% line, re-derived at viewport scale */
     display: flex;
     flex-direction: column;
+    gap: var(--space-3);            /* #142/B32: the family gap between the board and the last flier — was the removed .head-lines' own margins (B30's "without overlapping" clearance, structural not accidental) */
     z-index: 2;                     /* the note sheets' band — paints over the rule and the header's empty right band */
-  }
-  .party-pane .head-lines {         /* B25's top/right pins move onto the pane — Come Say Hi! comes down into flow, directly above GIVE US A SHOUT! (#132) */
-    position: relative;
-    top: auto; right: auto;
-    width: auto;
-    /* the family gap below AND above: the owner's ruling is that the board
-       "stop[s] just above the Come Say Hi! flier without overlapping" — the
-       stage box and the sheet's box touching (a ~1px box overlap that only
-       the mockup's bottom-of-board air was hiding) is not that. The gap is
-       structural now, not an accident of the attachment's composition. */
-    margin: var(--space-3) 0 var(--space-3);
   }
   .party-pane .note--stories {      /* B25's bottom/right pins move onto the pane */
     position: relative;
     right: auto; bottom: auto;
     width: auto;
   }
-  /* the stage's container: whatever the pane's two fliers leave above it.
+  /* the stage's container: whatever the pane's last flier leaves above it
+     (#142, B32: the Come Say Hi! flier is gone — the stage takes its space).
      The scaling mechanics are gated in the same @supports the file's own
      .window/.cmp block uses (lines above): without container queries the
      cqw/cqh units resolve against the VIEWPORT, so the 850px board would
@@ -669,7 +662,7 @@
   }
   .stage {
     position: absolute;
-    top: 0;                         /* #138: anchors to the TOP of the page — the scaled board hangs from the page top and grows downward into the space above Come Say Hi! (owner ruling in chat, 2026-10-08: "the park party flier should anchor to the top of the page") */
+    top: 0;                         /* #138: anchors to the TOP of the page — the scaled board hangs from the page top and grows downward into the space above the pane's last flier (B32: GIVE US A SHOUT!) (owner ruling in chat, 2026-10-08: "the park party flier should anchor to the top of the page") */
     left: 50%; margin-left: -425px; /* the 850px board's center line — centered in the column */
     width: 850px; height: 876px;
     transform-origin: 50% 0;        /* top-center: the scaled board hangs off the page top */
@@ -900,8 +893,7 @@
       grid-template-columns: 1fr;
       grid-template-areas:
         "needs needs"  /* #110 (B23): the WHAT WE NEED flier joins the top of the flier run, above the Come Say Hi! flier — the desktop stacking order */
-        "party party"  /* #132: the Park Party Palooza stage joins the run above the Come Say Hi! flier — the desktop reading order (stage, then Come Say Hi!, then GIVE US A SHOUT!) */
-        "lines lines"  /* #63: the Come Say Hi flier keeps its #46 top-of-flow phone pin */
+        "party party"  /* #132: the Park Party Palooza stage joins the run, above GIVE US A SHOUT! (#142, B32 removed the Come Say Hi! flier and its phone row) */
         "snap snap"
         "week week"
         "plan plan"
@@ -1095,16 +1087,10 @@
         </div>
       </section>
 
-      <!-- ============ RIGHT PANE: COME SAY HI! — moves down into flow, directly above GIVE US A SHOUT! (#132) ============ -->
-      <div class="head-lines">
-      <!-- STUB:footer-note — small print: where the lot is, who to look for -->
-      <h2 class="say-hi flier">Come say hi!</h2>
-      <p class="smallprint">If you see a blonde guy with a tape measure and a sketchbook (or neck deep in weeds), come say hi! <span class="head-tail">I have so many questions about this old lot, and I'd love to hear more about the history of the lot and the planters!</span></p>
-    </div>
-
-    <!-- ============ RIGHT PANE, BOTTOM: GIVE US A SHOUT! — the stories sheet joins the fliers' column (#122, B25; swaps places with WHAT WE NEED) ============ -->
+      <!-- ============ RIGHT PANE, BOTTOM: GIVE US A SHOUT! — the stories sheet joins the fliers' column (#122, B25; swaps places with WHAT WE NEED). The Come Say Hi! flier is removed (#142, B32) — the Palooza board above takes the flier's freed space, and its "come say hi" copy prints on this sheet instead. ============ -->
     <article class="note note--stories" id="note-stories">
       <h2 class="note-title">Give us a shout!</h2>
+      <p class="smallprint">If you see two guys out there working on stuff, come say hi! If not, drop us a message below.</p>
       <form method="POST" action="https://formspree.io/f/mbglkalb">
           <!-- #43: honeypot — Formspree's documented pattern. type="text" kept
                (scrapers skip type="hidden"); hidden with CSS instead. -->

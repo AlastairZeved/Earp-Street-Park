@@ -43,7 +43,12 @@ left = what happened (What We've Done), center = the lot as it stands (one
 pinned photo, #64) above your turn and the ask (What We'd Like To Do beside
 WHAT WE NEED, #122/B25 — the middle pane's bottom row), right = the Come Say
 Hi! flier with the GIVE US A SHOUT! sheet below it, stacked in the pane
-(#122, B25). Every sheet prints its
+(#122, B25). #132: the right pane's run gains the Park Party Palooza
+flier board (the owner's attachment, transcribed) above the stories
+sheet; the run reaches up into the header pane to the .head-rule and
+scale-to-fits the space. #142 (B32): the Come Say Hi! flier is removed —
+the board takes its space, and the run is board above GIVE US A SHOUT!.
+Every sheet prints its
 content at rest; the week and plan sheets are the board's only scroll
 regions (vertical only)."
 
@@ -57,12 +62,14 @@ dug-up planters), not a marketing page.
 1. **Header** — "Earp Street Park" in cream serif on the fence, a double
    rule, and the hero passage ("Hey, we're Rob and Brian. …") printed
    directly on the fence. On phone the hero becomes a paper sheet of its own.
-2. **The Come Say Hi! flier** (right pane, top — B25) — a real paper flier
-   (B5): tape,
-   sheet shadow, left-anchored, inviting conversation in person ("come say
-   hi!"). The right pane's bottom sheet below it, since B25: **Give us a
-   shout!** (#122) — the contact form on its `.note` paper sheet, in the
-   fliers' 20.5% column; not a scroll region (#56).
+2. **The Palooza flier board** (right pane, top of the run — B29) — the
+   owner's attached Park Party Palooza flier board, transcribed; it scale-to-fits
+   the column from the page top down to the stories sheet below it. The right
+   pane's bottom sheet: **Give us a shout!** (#122) — the contact form on its
+   `.note` paper sheet, in the fliers' 20.5% column; not a scroll region
+   (#56). (The Come Say Hi! flier that shared the pane through B25–B30 was
+   removed by B32, issue #142; its "come say hi" invitation now prints on the
+   stories sheet, §4 item 7.)
 3. **What We've Done** (left sheet) — the dated work log; one of the two
    scroll regions.
 4. **The lot photo** (center window, the middle pane's top of stack — B18) —
@@ -77,10 +84,13 @@ dug-up planters), not a marketing page.
    We'd Like To Do — B25, swapping in from the right pane) — the checkbox
    flier (B23): materials wanted (slats, paint, a No Dumping sign, hip-height
    fencing, container trees); not a scroll region.
-7. **Give us a shout!** (right pane, below the Come Say Hi! flier — B25) —
-   the contact form: name and email
-   optional, story required, "Send" (B4), three visible lines with a
-   scrollbar beyond (B6), posting to Formspree with a `_gotcha` honeypot.
+7. **Give us a shout!** (right pane, below the Palooza flier board — B25,
+   its pane-mate changed by B32) — a line above the form reading "If you see
+   two guys out there working on stuff, come say hi! If not, drop us a
+   message below." (B32, issue #142 — the removed Come Say Hi! flier's
+   invitation, transplanted here by the owner), then the contact form: name
+   and email optional, story required, "Send" (B4), three visible lines with
+   a scrollbar beyond (B6), posting to Formspree with a `_gotcha` honeypot.
    This is the site's one interactive act and its one external request.
 
 ## §5 What the site is not (observed reality)
