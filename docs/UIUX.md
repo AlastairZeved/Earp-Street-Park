@@ -144,7 +144,7 @@ The serif (`.note-title`, `h1`) and mono (`.entry-date`) species are unchanged
 | `h1` | `--font-display` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1 |
 | `.note-title` | `--font-display` (Montserrat Alternates, B26), `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
 | `.note-face` | `clamp(0.9rem, 1.3vw, 1rem)` (phone `0.85rem`) |
-| `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em |
+| `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em, `margin-right: 21.7%` (B30, issue #138 — the header text block's right boundary is the flier column's left edge, the owner's pane map; `.board-head h1` carries the same margin) |
 | `.entry-date` | `--font-stub`, 400 (B12), `--rust`, letter-spacing 0.04em |
 | `.smallprint` | `0.78rem` (phone `0.72rem`) |
 | `.say-hi.flier` | same treatment as `.note-title` verbatim (B5: "there was no reason it should have been different") |
@@ -221,10 +221,23 @@ flier species' own body size, the size Come Say Hi's face prints; the
 owner's in-chat size ruling). The list is not a scroll region. The right
 pane's stack since B29 is the **Park Party Palooza flier board** (issue
 #132) above Come Say Hi! above GIVE US A SHOUT! — one flex column,
-`.party-pane`, whose top edge lands on `.head-rule`'s top line (the board
-overlaps the header divider bar; B29, with the owner's in-chat ruling that
-the flier "is allowed in the header pane, overlapping the header bar and
-filled to fit") and whose gap is the family `--space-3`, so the issue's
+`.party-pane`, whose fit region since B30 (issue #138) is the column
+itself from the very top of the page down to just above the Come Say Hi
+flier: the board scale-to-fits that region (never wider than the column,
+never clipped, never overlapping the photo or the header text), centered
+horizontally in it, anchored to the TOP of the page (the owner's ruling:
+"the park party flier should anchor to the top of the page") — the scaled
+board hangs from the page top and grows downward, stopping above Come Say
+Hi! without overlapping it — so the board
+lies both above and below the `.head-rule` divider line wherever its
+scaled height reaches it (B29's overlap ruling, extended to the page top
+by B30; the owner's annotated screenshot rules the region — the Come Say
+Hi column, page top to its top edge, the flier centered within). The
+header text block wraps within the field's left 78.3% (`margin-right:
+21.7%` on `.board-head h1` and `.hero-line` — the owner's pane map rules
+its right boundary at the column's left edge), so the board never covers
+the title or paragraph at any sampled viewport. The
+pane's gap is the family `--space-3`, so the issue's
 "just above, without overlapping" clearances hold in flow with nothing
 measured. The Palooza board is the owner's attached mockup transcribed
 wholesale: an 850×876 `.stage` holding eight fliers (the title flier with
@@ -248,12 +261,12 @@ file's own `@supports (container-type: size)` pattern (the .window/.cmp
 block's), with a hidden-stage fallback for browsers without container
 queries — otherwise the cqw/cqh units would resolve against the viewport
 and the board would paint several times too large. B25's measured pair
-envelope (~723px of viewport height at 1247vw) is superseded by the pane's
-new fit envelope, recorded in B29 (≈930px at 761vw, re-measured after the
-review fixes; the below-envelope band fails differently than B25's — the
-stage's scale bottoms at zero, the board renders as nothing, and the
-run's overflow clips at the root with the form's lower edge cut off; B29's
-measured outcome states the mechanism).
+envelope (~723px of viewport height at 1247vw) and B29's fit envelope
+(≈930px at 761vw) are both superseded by B30: the fit region starts at
+the page top, so the former zero-render band is gone — the board scales
+down continuously with the space and renders at every sampled desktop
+viewport (measured: 144×149px at 761×960 where B29 recorded 9.7px; 119×123
+at 1200×800 where B29 recorded 0.0px).
 
 ---
 
@@ -283,8 +296,8 @@ the .head-rule and scale-to-fits the space."
 | `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
 | `.note--stories` | inside `.party-pane` (B29): in flow, the column's bottom sheet — the pane carries the `right: 1.2%; bottom: 2%; width: 20.5%` pins B25 set here (issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
 | `.head-lines` | inside `.party-pane` (B29): in flow, between the Palooza board and GIVE US A SHOUT! — the pane carries the `right: 1.2%` edge and the 20.5% column the old pins set (#63, B5: "leave exactly where they are"). B23's `bottom: 2%` pin and B25's `top: 2%` pin are both superseded by B29 |
-| `.party-pane` | `right: 1.2%; top: calc(-0.4rem - 3px); bottom: 2%; width: 20.5%` — B29 (issue #132): the right pane as one flex column from `.head-rule`'s top line (the board overlaps the divider bar) down to the field's 2% line, holding the Palooza board, Come Say Hi!, and GIVE US A SHOUT! in flow, gap `var(--space-3)`. Dissolves to `display: contents` on phone |
-| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29: the Palooza board takes whatever the pane's two fliers leave; its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 100%` — bottom-anchored just above Come Say Hi! (the `--space-3` margin above `.head-lines` is the gap's home), growing upward to the pane top. On phone, its own grid row (`party`, above Come Say Hi) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
+| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above Come Say Hi! (the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board, Come Say Hi!, and GIVE US A SHOUT! in flow, gap `var(--space-3)`. Dissolves to `display: contents` on phone |
+| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29, fit region re-anchored by B30 (issue #138): the Palooza board takes the column from the page top down to whatever the pane's two fliers leave; its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 0` — centered horizontally in the column (never wider than it), anchored to the TOP of the page (the owner's ruling: "the park party flier should anchor to the top of the page"), hanging from the page top and growing downward, stopping above Come Say Hi! without overlapping it. On phone, its own grid row (`party`, above Come Say Hi) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:
 clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new
