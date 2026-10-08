@@ -235,11 +235,15 @@ decorations, every px value the attachment unmodified, scaled by one
 `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))` transform factor
 (container-query units — agent-derived mechanic), origin `50% 100%`,
 `overflow: clip` (the mockup's own crop — its bottom emoji row sits past
-y=876 and was never visible in the attachment). Its fonts resolve through
+y=876 and was never visible in the attachment). The stage ships the mockup's
+own fence background, verbatim (B29 superseding note, issue #135 — the board
+is a self-contained component placed on top of the page, background included,
+not merged into the site's fence): `background-color: var(--fence);
+background-image: var(--fence-tile); background-repeat: repeat`, the
+attachment's values, which are byte-identical to the site's own tokens.
+Its fonts resolve through
 §3.1's single family (B26: the mockup's Georgia/system stacks never ship);
-its paper, tape, and shadow are the §4.1 species' own values; the mockup's
-own fence background is not shipped — the site's fence is behind the pane
-and a second texture would be an invented one. The scaling is gated in the
+its paper, tape, and shadow are the §4.1 species' own values. The scaling is gated in the
 file's own `@supports (container-type: size)` pattern (the .window/.cmp
 block's), with a hidden-stage fallback for browsers without container
 queries — otherwise the cqw/cqh units would resolve against the viewport

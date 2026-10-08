@@ -592,3 +592,32 @@ scroll region) gives them no scroll. The owner's ruling fits the run to the
 space ("Scale it to fit"); the band below ≈930px at 761vw is where that fit
 has no home. The attachment is the owner's composition and is not re-laid-out
 at any width.
+
+**Superseding note** (the owner's ruling of record, 2026-10-08, issue #135;
+supersedes the paragraph above recording the stage's fence background as NOT
+shipped — the removal of the stage's background in PR #134 was an agent
+adaptation, not an owner ruling; appended, never edited away).
+
+**Source:** issue #135 (owner, ruling of record), transcribed verbatim: "PR
+#134 (issue #132) ships the Park Party Palooza board without its own
+background: the attached mockup's fence background (`--fence` + the
+`--fence-tile` data URI) was stripped and the stage left transparent so the
+site's own fence shows through. That reading treats the board as merged into
+the page. It isn't.
+
+The board is a **self-contained component of its own** — the whole
+composition (background included) is placed on top of the page, the way the
+mockup itself renders. Its overlap with the page — the header pane and the
+header divider bar per B29 — is the component overlapping, not the component
+dissolving into the site's background." —
+https://github.com/AlastairZeved/Earp-Street-Park/issues/135
+
+**The record.** The stage ships the mockup's own fence background, verbatim
+from the attachment: the `--fence` ground color and the `--fence-tile` WebP
+data URI inside the 850×876 stage, exactly as the attachment renders it. The
+mockup's `.stage` rule is transcribed — `background-color: var(--fence);
+background-image: var(--fence-tile); background-repeat: repeat;` — and its
+values are byte-identical to the site's own `--fence`/`--fence-tile` tokens,
+so they resolve through the tokens; no new hex or data URI ships.
+`docs/UIUX.md` §4.3 is amended in the same PR; no other token or hex changes,
+so `test/tokens.js` needs no assertion rewrite.

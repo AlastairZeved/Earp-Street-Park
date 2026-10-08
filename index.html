@@ -566,9 +566,10 @@
      mockup's own flier positions, paddings, font-sizes and rotations
      verbatim; its surfaces and inks resolve through the site's tokens (B23/
      B26 — the mockup's --font-display/--font-body are the site's own token
-     names, so they land on Montserrat Alternates); its fence background is
-     NOT shipped — the pane stays transparent so the site's fence shows
-     through behind the fliers (an adaptation, not a byte). ---------- */
+     names, so they land on Montserrat Alternates); its fence background SHIPS
+     per issue #135 (owner ruling 2026-10-08): the board is a self-contained
+     component placed on top of the page, background included — not merged
+     into the site's fence. ---------- */
   .party-pane {
     position: absolute;
     right: 1.2%;                    /* the flier column's shared right edge (B25) */
@@ -641,9 +642,16 @@
     left: 50%; margin-left: -425px; /* the 850px board's center line */
     width: 850px; height: 876px;
     transform-origin: 50% 100%;     /* bottom-center: the scaled board rises off Come Say Hi! and, when height-limited, touches the pane's top — the rule */
+    /* the board is a self-contained component placed on top of the page, not
+       merged into the site's fence (issue #135, the owner's ruling of record
+       2026-10-08; supersedes the transparent-stage reading) — the mockup's
+       own .stage background, verbatim; its values are byte-identical to the
+       site's tokens, so they resolve through them: */
+    background-color: var(--fence);
+    background-image: var(--fence-tile);
+    background-repeat: repeat;
   }
-  /* the mockup's flier species, verbatim except: no fence background (see
-     above) and no font token of its own (B26) */
+  /* the mockup's flier species, verbatim except: no font token of its own (B26) */
   .stage .flier {
     position: absolute;
     z-index: 1;
@@ -1010,7 +1018,7 @@
 
   <section class="field" id="field" aria-label="The board: what happened, what's planned, your turn">
 
-    <!-- ============ RIGHT PANE, TOP: THE PARK PARTY PALOOZA STAGE — the owner's attached flier board (issue #132), transcribed verbatim; its positions/sizes/rotations are the owner's composition, its surfaces take the site's tokens, and its fence background is NOT shipped (the site's own fence shows through) ============ -->
+    <!-- ============ RIGHT PANE, TOP: THE PARK PARTY PALOOZA STAGE — the owner's attached flier board (issue #132), transcribed verbatim; its positions/sizes/rotations are the owner's composition, its surfaces take the site's tokens, and its fence background ships verbatim (issue #135 — the board is a self-contained component placed on top of the page, background included) ============ -->
     <div class="party-pane">
       <section class="party-stage" aria-label="Park Party Palooza fliers">
         <div class="stage">
