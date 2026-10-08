@@ -562,15 +562,31 @@ grid row (area `party`), printing at the stage's own 850/876 aspect ratio.
 changes, so `test/tokens.js` needs no assertion rewrite.
 
 **Measured outcome** (agent-derived, headless Chromium bounding boxes; the
-numbers recorded so a future ruling measures against the render, not prose):
-the stage's top edge equals `.head-rule`'s top at 761×800, 1000×956, and
-1440×1000; the hero paragraph's and h1's bottoms clear it (174.0/39.6px at
-761×800); Come Say Hi! clears GIVE US A SHOUT! by 18–19px at every sampled
-viewport; the lot photo's right edge clears the pane's left (585.0 at 761×800,
-768.8 < 812.8 at 1000×956, 1107.5 < 1130.1 at 1440×1000); desktop scroll stays
-zero (forced `scrollTo(0, 400)` at all three). Fit envelope: below ≈910px of
-viewport height at 761vw the pane's two fliers over-subscribe the space and
-the stories sheet runs past the field's bottom edge (B25's recorded
-below-envelope defect, unchanged by this PR — the board and Come Say Hi! sit
-above it, and nothing scrolls). The attachment is the owner's composition and
-is not re-laid-out at any width.
+numbers recorded so a future ruling measures against the render, not prose.
+Re-measured on this branch after the review fixes — the review's code-quality
+pass measured this record's first numbers and they did not reproduce: at
+761×800 the stage rendered 0.0px tall and the true fit envelope was ~930–940px,
+not the recorded ≈910px; the numbers below replace them and are the ones the
+render actually gives): the stage's top edge equals `.head-rule`'s top wherever
+the stage renders at all (176.3 == 176.3 at 1000×956, 176.9 == 176.9 at
+1440×1000); the board's box and Come Say Hi!'s box are separated by a
+structural margin, not by luck of the attachment's composition — the pane gives
+Come Say Hi! the family `--space-3` gap above it too, measured 18.3–19.2px of
+air at every sampled viewport; Come Say Hi! clears GIVE US A SHOUT! by 17–19px
+at every sampled viewport (761×800, 900×1100, 1000×956, 1280×900, 1440×1000,
+1920×1200); the lot photo's right edge clears the pane's left at every sampled
+viewport (61.0px at 761×800, 13.9 at 1000×956, 24.9 at 1440×1000, 13.7 at
+900×1100); desktop scroll stays zero at all six (measured
+`scrollHeight == innerHeight`). Fit envelope: below ≈950px of viewport height
+at 761vw the pane's three items over-subscribe the space and the stage's
+transform factor bottoms at zero — the Palooza board renders as nothing at all
+(0.0px of stage height measured at 761×800 and 761×940; first sliver, 0.5px, at
+761×950). This is the B25 recorded below-envelope band, and the record must say
+its mechanism of failure CHANGED: B25's failure was overlapping sheets; this
+render's failure is a vanished board plus the stories sheet running past the
+viewport — at 761×800 the stories sheet's box bottom is 919.7px against the
+800px viewport, so GIVE US A SHOUT!'s message field and Send are cut off and
+the root `overflow: hidden` (#56: never a scroll region) gives them no scroll.
+The owner's ruling fits the run to the space ("Scale it to fit"); the band
+below ≈950px at 761vw is where that fit has no home. The attachment is the
+owner's composition and is not re-laid-out at any width.

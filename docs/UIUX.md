@@ -239,10 +239,17 @@ y=876 and was never visible in the attachment). Its fonts resolve through
 §3.1's single family (B26: the mockup's Georgia/system stacks never ship);
 its paper, tape, and shadow are the §4.1 species' own values; the mockup's
 own fence background is not shipped — the site's fence is behind the pane
-and a second texture would be an invented one. B25's measured pair envelope
-(~723px of viewport height at 1247vw) is superseded by the pane's new fit
-envelope, recorded in B29 (≈910px at 761vw; the below-envelope band renders
-as before, nothing scrolls).
+and a second texture would be an invented one. The scaling is gated in the
+file's own `@supports (container-type: size)` pattern (the .window/.cmp
+block's), with a hidden-stage fallback for browsers without container
+queries — otherwise the cqw/cqh units would resolve against the viewport
+and the board would paint several times too large. B25's measured pair
+envelope (~723px of viewport height at 1247vw) is superseded by the pane's
+new fit envelope, recorded in B29 (≈950px at 761vw, re-measured after the
+review fixes; the below-envelope band fails differently than B25's — the
+stage's scale bottoms at zero, the board renders as nothing, and the
+run's overflow clips at the root with the form's lower edge cut off; B29's
+measured outcome states the mechanism).
 
 ---
 
@@ -273,7 +280,7 @@ the .head-rule and scale-to-fits the space."
 | `.note--stories` | inside `.party-pane` (B29): in flow, the column's bottom sheet — the pane carries the `right: 1.2%; bottom: 2%; width: 20.5%` pins B25 set here (issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
 | `.head-lines` | inside `.party-pane` (B29): in flow, between the Palooza board and GIVE US A SHOUT! — the pane carries the `right: 1.2%` edge and the 20.5% column the old pins set (#63, B5: "leave exactly where they are"). B23's `bottom: 2%` pin and B25's `top: 2%` pin are both superseded by B29 |
 | `.party-pane` | `right: 1.2%; top: calc(-0.4rem - 3px); bottom: 2%; width: 20.5%` — B29 (issue #132): the right pane as one flex column from `.head-rule`'s top line (the board overlaps the divider bar) down to the field's 2% line, holding the Palooza board, Come Say Hi!, and GIVE US A SHOUT! in flow, gap `var(--space-3)`. Dissolves to `display: contents` on phone |
-| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` — B29: the Palooza board takes whatever the pane's two fliers leave; its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 100%` — bottom-anchored just above Come Say Hi!, growing upward to the pane top. On phone, its own grid row (`party`, above Come Say Hi) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
+| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29: the Palooza board takes whatever the pane's two fliers leave; its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 100%` — bottom-anchored just above Come Say Hi! (the `--space-3` margin above `.head-lines` is the gap's home), growing upward to the pane top. On phone, its own grid row (`party`, above Come Say Hi) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:
 clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new

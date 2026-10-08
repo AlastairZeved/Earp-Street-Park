@@ -577,9 +577,11 @@
        top edge — the header is .field's previous flex sibling with a 0.4rem
        board gap, and the rule element is its own 3px double border, so the
        rule's top line sits 0.4rem + 3px above .field's top. Measured at
-       761x800 / 1000x956 / 1440x1000: the stage's top edge lands inside the
-       rule's band at every sampled viewport, and clears the hero paragraph
-       and h1 (they sit above the rule) at every one. */
+       1000x956 / 1440x1000: the stage's top edge lands inside the rule's
+       band wherever the stage renders at all (below the ~950px fit envelope
+       at 761vw the stage is 0px tall — the board has no home; B29's measured
+       outcome records that band), and clears the hero paragraph and h1
+       (they sit above the rule) at every one. */
     top: calc(-0.4rem - 3px);
     bottom: 2%;
     display: flex;
@@ -590,31 +592,54 @@
     position: relative;
     top: auto; right: auto;
     width: auto;
-    margin: 0 0 var(--space-3);     /* the family gap between the two fliers */
+    /* the family gap below AND above: the owner's ruling is that the board
+       "stop[s] just above the Come Say Hi! flier without overlapping" — the
+       stage box and the sheet's box touching (a ~1px box overlap that only
+       the mockup's bottom-of-board air was hiding) is not that. The gap is
+       structural now, not an accident of the attachment's composition. */
+    margin: var(--space-3) 0 var(--space-3);
   }
   .party-pane .note--stories {      /* B25's bottom/right pins move onto the pane */
     position: relative;
     right: auto; bottom: auto;
     width: auto;
   }
-  /* the stage's container: whatever the pane's two fliers leave above it */
+  /* the stage's container: whatever the pane's two fliers leave above it.
+     The scaling mechanics are gated in the same @supports the file's own
+     .window/.cmp block uses (lines above): without container queries the
+     cqw/cqh units resolve against the VIEWPORT, so the 850px board would
+     paint at ~min(1440/850, 1000/876) on a 1440×1000 window — nearly 4×
+     too large — and without tan()/atan2() the transform is dropped and a
+     raw 850×876 box overflows the pane. In a browser without container
+     queries the board degrades to hidden: Come Say Hi! and GIVE US A
+     SHOUT! still render, and nothing invents a fallback scale. */
   .party-stage {
     flex: 1 1 0;
     min-height: 0;
     position: relative;
-    container-type: size;
-    /* the mockup's own crop: its body clipped the 850x876 board cover-fit
-       ("bottom chopped just under the little fliers") — the board's bottom
-       emoji row sits past y=876 and was never visible. The stage box crops
-       the same way; the fliers and their tape strips all live inside it. */
-    overflow: clip;
+    overflow: hidden;               /* the fallback crop for the @supports band */
+  }
+  @supports not (container-type: size) {
+    .party-stage { display: none; }
+  }
+  @supports (container-type: size) {
+    .party-stage {
+      container-type: size;
+      /* the mockup's own crop: its body clipped the 850x876 board cover-fit
+         ("bottom chopped just under the little fliers") — the board's bottom
+         emoji row sits past y=876 and was never visible. The stage box crops
+         the same way; the fliers and their tape strips all live inside it. */
+      overflow: clip;
+    }
+    .stage {
+      transform: scale(min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px))));
+    }
   }
   .stage {
     position: absolute;
     bottom: 0;                      /* grows from the pane's bottom edge — stops just above Come Say Hi! */
     left: 50%; margin-left: -425px; /* the 850px board's center line */
     width: 850px; height: 876px;
-    transform: scale(min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px))));
     transform-origin: 50% 100%;     /* bottom-center: the scaled board rises off Come Say Hi! and, when height-limited, touches the pane's top — the rule */
   }
   /* the mockup's flier species, verbatim except: no fence background (see
