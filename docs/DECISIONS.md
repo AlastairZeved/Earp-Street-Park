@@ -792,3 +792,28 @@ pane re-declares it) above the GIVE US A SHOUT! sheet's box, and neither
 clips nor overlaps it; desktop scroll stays zero at every sampled viewport.
 The phone flier run reads `needs / party / snap / week / plan / stories` —
 the Come Say Hi! row is gone from the grid template.
+
+### B33. The hero paragraph loses the "whether it's picking up trash…" clause and the closing "If you have suggestions…" sentence (issues #143 and #145, owner instructions; amends B11's transcribed copy)
+
+**Source:** issue #145 (owner instruction), transcribed verbatim: "Remove these lines from the header paragraph copy:
+
+", whether it's picking up trash, weeding, or trying to get 311 to pick up the darn mattresses"
+
+and 
+
+"If you have suggestions, ideas, or wanna help us out, feel free to give us a shout if you see us or drop us a message with the form on this page."" — https://github.com/AlastairZeved/Earp-Street-Park/issues/145 (issue #143, https://github.com/AlastairZeved/Earp-Street-Park/issues/143, asks for the same final sentence's removal alone; #145's request supersedes it)
+
+**The record.** The `.hero-line` copy now reads: "Hey, we're Rob and Brian.
+We've been on the block a few years and we try to keep this old park on our
+block clean. We love this park and we love that our little block has a place
+like this for kids to play, so we'd like to pitch in a little more. This page
+is what we're working on, what we're hoping to do, and what materials we're
+on the hunt for to get it done." — the first sentence ends at "clean." with
+the period (the removed clause's comma is taken with it, as B19's precedent
+for copy deletions), the paragraph keeps B11's remaining sentences (with
+B11's chat amendment, "this old park") and ends after "get it done." with
+the period. The `STUB:hero-line` comment, the `.hero-line` class, and the
+pinned `0.85rem`/weight-400 treatment (UIUX §3) are untouched; both issues
+ask for copy removal only, so no layout, token, or font values change and
+`test/tokens.js` needs no assertion rewrite. `docs/UIUX.md` and
+`docs/PRD.md` quote no hero copy, so they need no edit.
