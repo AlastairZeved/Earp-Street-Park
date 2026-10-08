@@ -499,3 +499,78 @@ live hole under `default-src 'none'`; the owner ruled them in as the standard
 hardened pair a static site carries. B16's other directives are unchanged — in
 particular the Referrer-Policy landmine (B1) is untouched. No hex, token, or
 UIUX value changes, so `test/tokens.js` needs no assertion rewrite.
+
+### B29. The Park Party Palooza flier board joins the right pane — the owner's attached mockup transcribed wholesale above the Come Say Hi! flier, which moves down to just above GIVE US A SHOUT!; the board reaches up into the header pane, overlapping the header divider bar, and scale-to-fits the space (issue #132, the owner's ruling of record, with in-chat rulings; amends B25's right-pane render)
+
+**Source:** issue #132 (owner, ruling of record), transcribed verbatim:
+"Move the flier for \"Come Say Hi!\" down so it sits just above \"Give us a
+shout\" without overlapping.
+
+In the empty space created, add the attached flier. The flier should fit from
+the header pane, overlap the header divider bar, and stop just above the \"Come
+Say Hi!\" flier without overlapping it (Once the \"Come Say Hi!\" flier is
+moved down to above the other flier). Scale it to fit. It should not overlap
+any of the title text or paragraph, and it should not overlap the image." —
+https://github.com/AlastairZeved/Earp-Street-Park/issues/132
+
+And the owner's rulings in chat with the site's agent, 2026-10-07/08,
+transcribed verbatim: on scope — "The whole mockup set (all ten fliers +
+decorations)" and, asked to confirm an emoji exclusion, "No — include the emoji
+decorations after all"; on the measured conflict that the mockup's display
+face is a Georgia serif against B26's "no other font is used anywhere" —
+"Render the new flier in Montserrat Alternates per B26"; on the withdrawn
+first attempt (PR #133, closed unmerged with the owner's comment "the wrong
+file was attached and used. needs to be cancelled and started over") — "Start
+over entirely — ignore the closed PR's diff, re-derive from the new file";
+confirming the attachment — "It is the right file … party-for-the-park-flier-
+website.html is the attached file to the issue" and "Those rulings still
+stand; apply them to the correct file"; and correcting the first attempt's
+placement reading — "that other branch also got wrong that the flier is
+allowed in the header pane, overlapping the header bar and filled to fit."
+
+**The record.** The right pane is one flex column, `.party-pane` — pinned
+`right: 1.2%; width: 20.5%; top: calc(-0.4rem - 3px); bottom: 2%` (the top
+derivation, agent-derived and commented: the header is `.field`'s previous
+flex sibling behind the 0.4rem board gap and the rule is its 3px double
+border, so the pane's top edge lands exactly on `.head-rule`'s top line —
+the board overlaps the divider bar) — holding, bottom-up in flow: the
+Palooza board, Come Say Hi!, and GIVE US A SHOUT!, separated by the family
+gap (`--space-3`). The board transcribes the owner's attached mockup
+wholesale inside an 850×876 `.stage`: the title flier (the pumpkins JPEG
+data URI verbatim, the rust "Palooza" span, the where/when lines, the italic
+rain-date fine print, the .fall-art cut-paper shapes), the story flier,
+Baked Goods, Bobbing for Apples, Hot Chocolate, Good Tunes, Mulch the
+Planters, Candy, and the fifteen emoji decorations — every px position,
+padding, font-size, and rotation the attachment unmodified. Its fonts
+resolve through the site's tokens (B26: the mockup's Georgia/system stacks
+never ship); its paper, tape, and shadow values are the site's species
+values. The stage scales to fit the space by one transform factor,
+`scale(min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px))))` via
+container-query units, origin `50% 100%` — it grows upward off the Come Say
+Hi! flier, and being height-limited at the sampled viewports its top edge
+meets the pane top (the rule); `overflow: clip` replicates the mockup's own
+crop (its bottom emoji row sits past y=876 and was never visible in the
+attachment). The stage's own fence background (`--fence` + `--fence-tile`)
+is NOT shipped — the site's fence is already behind the pane and a second
+texture inside the pane would be an invented one (the B5 species rule); the
+stage is transparent over it. B25's `top: 2%`/`bottom: 2%` pins for the pane's
+two sheets move onto `.party-pane` (`top` retired — the pane's top is the
+rule now); both sheets come into flow. On phone (≤760px) the pane dissolves
+to `display: contents` and the board joins the flier run's top as its own
+grid row (area `party`), printing at the stage's own 850/876 aspect ratio.
+`docs/UIUX.md` §4.3/§5/§5.1/§5.3 are amended in the same PR; no token or hex
+changes, so `test/tokens.js` needs no assertion rewrite.
+
+**Measured outcome** (agent-derived, headless Chromium bounding boxes; the
+numbers recorded so a future ruling measures against the render, not prose):
+the stage's top edge equals `.head-rule`'s top at 761×800, 1000×956, and
+1440×1000; the hero paragraph's and h1's bottoms clear it (174.0/39.6px at
+761×800); Come Say Hi! clears GIVE US A SHOUT! by 18–19px at every sampled
+viewport; the lot photo's right edge clears the pane's left (585.0 at 761×800,
+768.8 < 812.8 at 1000×956, 1107.5 < 1130.1 at 1440×1000); desktop scroll stays
+zero (forced `scrollTo(0, 400)` at all three). Fit envelope: below ≈910px of
+viewport height at 761vw the pane's two fliers over-subscribe the space and
+the stories sheet runs past the field's bottom edge (B25's recorded
+below-envelope defect, unchanged by this PR — the board and Come Say Hi! sit
+above it, and nothing scrolls). The attachment is the owner's composition and
+is not re-laid-out at any width.

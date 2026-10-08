@@ -199,9 +199,11 @@ same photograph, cover-cropped to 140px, one tape strip, rotate −0.8°.
 ### §4.3 The flier
 
 The Come Say Hi block is a `.note` sheet in all respects — B5 is its ruling.
-Its values duplicate §4.1 verbatim; it carries no extra treatment. Since B25
-(issue #122) it holds the right pane's top pin (`top: 2%`, the pin WHAT WE
-NEED held under B23), and the pane's bottom sheet is the **GIVE US A SHOUT!**
+Its values duplicate §4.1 verbatim; it carries no extra treatment. Through
+B25 (issue #122) it held the right pane's top pin; since B29 (issue #132) it
+prints inside `.party-pane` between the **Park Party Palooza flier board**
+(the owner's attached mockup, transcribed wholesale — see below) and the
+pane's bottom sheet, the **GIVE US A SHOUT!**
 form — the `.note` stories sheet in its own species (§4.1, −0.3° tilt,
 full-length form, not a scroll region), pinned `right: 1.2%; bottom: 2%;
 width: 20.5%` in the fliers' column. The **What We Need** flier (B23, issue
@@ -217,10 +219,30 @@ flier's list only by the owner's in-chat ruling; the plan sheet stays the B22
 disc-bullet list. The face prints at the `.smallprint` size (§3.3 — the
 flier species' own body size, the size Come Say Hi's face prints; the
 owner's in-chat size ruling). The list is not a scroll region. The right
-pane's stack is Come Say Hi! above GIVE US A SHOUT!, with measured air
-between them (44.9px at 761vw, 225.9px at 1250vw at 956px height);
-the pair's measured fit envelope is recorded in B25 — the pane fits down to
-~723px of viewport height at 1247vw, and the sheets overlap below that.
+pane's stack since B29 is the **Park Party Palooza flier board** (issue
+#132) above Come Say Hi! above GIVE US A SHOUT! — one flex column,
+`.party-pane`, whose top edge lands on `.head-rule`'s top line (the board
+overlaps the header divider bar; B29, with the owner's in-chat ruling that
+the flier "is allowed in the header pane, overlapping the header bar and
+filled to fit") and whose gap is the family `--space-3`, so the issue's
+"just above, without overlapping" clearances hold in flow with nothing
+measured. The Palooza board is the owner's attached mockup transcribed
+wholesale: an 850×876 `.stage` holding eight fliers (the title flier with
+its pumpkins JPEG art, rust "Palooza" span, where/when lines, and italic
+rain-date fine print; the story flier; Baked Goods; Bobbing for Apples; Hot
+Chocolate; Good Tunes; Mulch the Planters; Candy) plus fifteen emoji
+decorations, every px value the attachment unmodified, scaled by one
+`min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))` transform factor
+(container-query units — agent-derived mechanic), origin `50% 100%`,
+`overflow: clip` (the mockup's own crop — its bottom emoji row sits past
+y=876 and was never visible in the attachment). Its fonts resolve through
+§3.1's single family (B26: the mockup's Georgia/system stacks never ship);
+its paper, tape, and shadow are the §4.1 species' own values; the mockup's
+own fence background is not shipped — the site's fence is behind the pane
+and a second texture would be an invented one. B25's measured pair envelope
+(~723px of viewport height at 1247vw) is superseded by the pane's new fit
+envelope, recorded in B29 (≈910px at 761vw; the below-envelope band renders
+as before, nothing scrolls).
 
 ---
 
@@ -232,8 +254,12 @@ children are absolutely pinned by percentage. Position encodes meaning
 (the file's own architecture comment, verbatim): "**left = what happened**
 (What We've Done), **center = the lot as it stands** (one pinned photo, #64)
 above your turn and the ask (What We'd Like To Do beside WHAT WE NEED,
-#122/B25 — the middle pane's bottom row), **right = the Come Say Hi! flier
-with the GIVE US A SHOUT! sheet below it, stacked in the pane (#122, B25)**."
+#122/B25 — the middle pane's bottom row), right = the Come Say Hi! flier
+with the GIVE US A SHOUT! sheet below it, stacked in the pane (#122, B25).
+#132: the right pane's run gains the Park Party Palooza flier board (the
+owner's attachment, transcribed) above Come Say Hi!, which moves down into
+flow above the stories sheet; the run reaches up into the header pane to
+the .head-rule and scale-to-fits the space."
 
 ### §5.1 Desktop pins
 
@@ -244,8 +270,10 @@ with the GIVE US A SHOUT! sheet below it, stacked in the pane (#122, B25)**."
 | `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row; B25: holding `.note--plan` and the WHAT WE NEED flier as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
 | `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the height-setter's height exactly (B25: the WHAT WE NEED flier's natural height); `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
 | `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
-| `.note--stories` | `right: 1.2%; bottom: 2%; width: 20.5%` (B25: the right pane's bottom sheet, in the fliers' column, below the Come Say Hi! flier — issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
-| `.head-lines` | `right: 1.2%; top: 2%; width: 20.5%` (#63 column pin, B5: "leave exactly where they are"; B25: the right pane's top flier — the GIVE US A SHOUT! sheet stacks below it). B23's `bottom: 2%` pin is superseded by B25 |
+| `.note--stories` | inside `.party-pane` (B29): in flow, the column's bottom sheet — the pane carries the `right: 1.2%; bottom: 2%; width: 20.5%` pins B25 set here (issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded |
+| `.head-lines` | inside `.party-pane` (B29): in flow, between the Palooza board and GIVE US A SHOUT! — the pane carries the `right: 1.2%` edge and the 20.5% column the old pins set (#63, B5: "leave exactly where they are"). B23's `bottom: 2%` pin and B25's `top: 2%` pin are both superseded by B29 |
+| `.party-pane` | `right: 1.2%; top: calc(-0.4rem - 3px); bottom: 2%; width: 20.5%` — B29 (issue #132): the right pane as one flex column from `.head-rule`'s top line (the board overlaps the divider bar) down to the field's 2% line, holding the Palooza board, Come Say Hi!, and GIVE US A SHOUT! in flow, gap `var(--space-3)`. Dissolves to `display: contents` on phone |
+| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` — B29: the Palooza board takes whatever the pane's two fliers leave; its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 100%` — bottom-anchored just above Come Say Hi!, growing upward to the pane top. On phone, its own grid row (`party`, above Come Say Hi) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
 
 Sheet clearances are computed, never eyeballed: `--stories-row:
 clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new
@@ -284,9 +312,12 @@ page scrolls instead — sheets print full-length in flow, `overflow: visible`
 
 ### §5.3 Phone (≤760px)
 
-Single-column grid, areas `needs / lines / snap / week / plan / stories`
-(B23 adds the needs flier at the top of the flier run, above Come Say Hi —
-the desktop stacking order; the #46 top-of-flow pin is not moved);
+Single-column grid, areas `party / needs / lines / snap / week / plan /
+stories`
+(B29 adds the Palooza board at the top of the flier run, above Come Say Hi —
+the desktop stacking order, its own grid row at the stage's own 850/876
+aspect ratio; B23 adds the needs flier next in the run, above Come Say Hi —
+the #46 top-of-flow pin is not moved);
 `.window`
 hidden, `.snapshot` shown; the lead becomes a real paper sheet with its own
 tape; page-level scrolling with `overflow-x: clip` (horizontal scroll
