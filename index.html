@@ -570,18 +570,19 @@
     pointer-events: none;
   }
 
-  /* ---------- #132: the Park Party Palooza flier run — the owner's attached
-     board (850x876) transcribed into the right pane above Come Say Hi!
-     (issue #132 + the owner's in-chat ruling of 2026-10-08: the run is
-     allowed up into the header pane, overlapping the .head-rule, and FILLS
-     the available space — scale-to-fit, not a fixed box). The stage keeps the
-     mockup's own flier positions, paddings, font-sizes and rotations
-     verbatim; its surfaces and inks resolve through the site's tokens (B23/
-     B26 — the mockup's --font-display/--font-body are the site's own token
-     names, so they land on Montserrat Alternates); its fence background SHIPS
-     per issue #135 (owner ruling 2026-10-08): the board is a self-contained
-     component placed on top of the page, background included — not merged
-     into the site's fence. ---------- */
+  /* ---------- #146: the Park Party Palooza flier run — the owner's attached
+     board (850x876) re-transcribed from the UPDATED attachment (issue #146,
+     B34): the interior composition ports verbatim from the new file (fliers
+     repositioned/resized, Face Painting added, "Candy for the Kids", the
+     emojis ride ON the fliers and on the title's tape, the scattered fence
+     emojis go with the fence). The stage is TRANSPARENT per B34 — the board
+     sits on the site and the site's own fence shows through; this supersedes
+     issue #135's background-included clause (the later ruling wins). The fit
+     mechanics are B30's, untouched: scale-to-fit the column from the page
+     top, centered horizontally, never clipped. Its surfaces and inks resolve
+     through the site's tokens (B23/B26 — the mockup's --font-display/
+     --font-body are the site's own token names, so they land on Montserrat
+     Alternates). ---------- */
   .party-pane {
     /* #138 (the owner's annotated screenshot, third request): the fit region
        is the right flier column itself — the Come Say Hi column's width —
@@ -666,14 +667,10 @@
     left: 50%; margin-left: -425px; /* the 850px board's center line — centered in the column */
     width: 850px; height: 876px;
     transform-origin: 50% 0;        /* top-center: the scaled board hangs off the page top */
-    /* the board is a self-contained component placed on top of the page, not
-       merged into the site's fence (issue #135, the owner's ruling of record
-       2026-10-08; supersedes the transparent-stage reading) — the mockup's
-       own .stage background, verbatim; its values are byte-identical to the
-       site's tokens, so they resolve through them: */
-    background-color: var(--fence);
-    background-image: var(--fence-tile);
-    background-repeat: repeat;
+    /* TRANSPARENT per B34 (issue #146, the owner's updated attachment removes
+       the fence; supersedes issue #135's background-included clause) — the
+       board sits on the site and the site's own fence shows through. No
+       background-color, no background-image. */
   }
   /* the mockup's flier species, verbatim except: no font token of its own (B26) */
   .stage .flier {
@@ -752,17 +749,18 @@
     letter-spacing: 0.03em;
     color: var(--rust);
   }
-  .stage .flier--baked::after, .stage .flier--cocoa::after, .stage .flier--music::after { content: none; }
-  .stage .flier--baked::before, .stage .flier--cocoa::before, .stage .flier--music::before {
+  .stage .flier--baked::after, .stage .flier--cocoa::after, .stage .flier--music::after, .stage .flier--faces::after { content: none; }
+  .stage .flier--baked::before, .stage .flier--cocoa::before, .stage .flier--music::before, .stage .flier--faces::before {
     left: 50%;
     transform: translateX(-50%) rotate(-2deg);
   }
-  .stage .flier--baked   { top: 568px; left: 100px;  transform: rotate(-3deg); }
-  .stage .flier--bobbing { top: 566px; right: 74px; transform: rotate(2deg); }
-  .stage .flier--cocoa   { top: 748px; left: 262px; transform: rotate(1.5deg); }
-  .stage .flier--music   { top: 776px; right: 120px; transform: rotate(-2.5deg); }
-  .stage .flier--planters { top: 656px; left: 50%; transform: translateX(-50%) rotate(3deg); }
-  .stage .flier--candy { top: 671px; left: 112px; transform: rotate(-2deg); }
+  .stage .flier--baked   { top: 562px; left: 66px;  transform: rotate(-3deg); font-size: 25px; padding: 14px 22px; }
+  .stage .flier--bobbing { top: 556px; right: 40px; transform: rotate(2deg); font-size: 32px; padding: 17px 27px; }
+  .stage .flier--cocoa   { top: 776px; left: 56px; transform: rotate(1.5deg); font-size: 20px; padding: 11px 17px; }
+  .stage .flier--music   { top: 768px; right: 40px; transform: rotate(-1.5deg); font-size: 26px; padding: 14px 22px; }
+  .stage .flier--faces   { top: 668px; left: 420px; transform: rotate(2.5deg); font-size: 28px; padding: 15px 24px; }
+  .stage .flier--planters { top: 682px; left: 60px; transform: rotate(3deg); font-size: 23px; padding: 12px 19px; }
+  .stage .flier--candy { top: 772px; left: 290px; transform: rotate(-2deg); font-size: 19px; padding: 10px 16px; }
   .stage .fall-art {
     position: absolute;
     display: flex;
@@ -777,14 +775,16 @@
     align-self: flex-end;
   }
   .stage .fall-art svg { width: 168px; height: 88px; margin-left: auto; }
-  .stage .pumpkin, .stage .ghost {
+  /* emojis ride ON the fliers, next to the words — and two perch on the title's tape (#146) */
+  .stage .tag-emoji { font-size: .82em; margin-left: .4em; filter: saturate(.85); }
+  .stage .tape-emoji {
     position: absolute;
+    top: -0.55rem;
+    font-size: 13px;
     line-height: 1;
-    z-index: 0;
-    user-select: none;
+    z-index: 4;
+    filter: saturate(.85);
     pointer-events: none;
-    opacity: .55;
-    filter: saturate(.8) brightness(.95);
   }
 
   /* ---------- Phone: the full fence, top to bottom (impl-13) ---------- */
@@ -1046,6 +1046,8 @@
       <section class="party-stage" aria-label="Park Party Palooza fliers">
         <div class="stage">
           <section class="flier flier--title">
+            <span class="tape-emoji" style="left: 10.5%;">🎃</span>
+            <span class="tape-emoji" style="right: 10.5%;">👻</span>
             <p class="smallprint">Earp Street Park &middot; a neighborhood notice</p>
             <h1>Park Party <span class="rust">Palooza</span> <span style="white-space: nowrap;">&amp; Fundraiser</span></h1>
             <p class="where">Where? The old playground at 2624 Earp St!</p>
@@ -1056,34 +1058,21 @@
           </section>
 
           <section class="flier flier--story">
-            <p>Our old playground needs a little love and TLC, but we need a little help getting some money for new wood for the tables and benches, some paint, a couple of trees for the planters. So come party with us, teach us all about this playground&rsquo;s history, and buy some cookies.</p>
-            <p>All the money is going straight to repairs so we can breathe some life back into this lot.</p>
+            <p>Our old playground needs a little love and TLC, but we need a little help getting some money for new wood for the tables and benches, some paint, a couple of trees for the planters. So come party with us, teach us all about this playground&rsquo;s history, and buy some cookies <span class="tag-emoji">🎃</span></p>
+            <p>All the money is going straight to repairs so we can breathe some life back into this lot <span class="tag-emoji">🍂</span></p>
           </section>
 
-          <section class="flier flier--small flier--baked">Baked Goods</section>
-          <section class="flier flier--small flier--bobbing">Bobbing for Apples</section>
-          <section class="flier flier--small flier--cocoa">Hot Chocolate</section>
-          <section class="flier flier--small flier--music">Good Tunes</section>
+          <section class="flier flier--small flier--baked">Baked Goods <span class="tag-emoji">🎃</span></section>
+          <section class="flier flier--small flier--bobbing">Bobbing for Apples <span class="tag-emoji">👻</span></section>
+          <section class="flier flier--small flier--cocoa">Hot Chocolate <span class="tag-emoji">👻</span></section>
+          <section class="flier flier--small flier--music">Good Tunes <span class="tag-emoji">🍂</span></section>
 
-          <section class="flier flier--small flier--planters">Mulch the Planters</section>
+          <section class="flier flier--small flier--faces">Face Painting <span class="tag-emoji">🎃</span></section>
 
-          <section class="flier flier--small flier--candy">Candy</section>
+          <section class="flier flier--small flier--planters">Mulch the Planters <span class="tag-emoji">🍂</span></section>
 
-          <span class="pumpkin" style="top: 8px; left: 60px; font-size: 24px; transform: rotate(-6deg);">🎃</span>
-          <span class="pumpkin" style="top: 940px; left: 44px; font-size: 26px; transform: rotate(8deg);">🎃</span>
-          <span class="pumpkin" style="top: 517px; left: 384px; font-size: 30px; transform: rotate(-9deg);">🎃</span>
-          <span class="pumpkin" style="top: 518px; left: 782px; font-size: 26px; transform: rotate(7deg);">🎃</span>
-          <span class="pumpkin" style="top: 662px; left: 736px; font-size: 28px; transform: rotate(6deg);">🎃</span>
-          <span class="pumpkin" style="top: 800px; left: 44px; font-size: 26px; transform: rotate(-8deg);">🎃</span>
-          <span class="pumpkin" style="top: 1056px; left: 620px; font-size: 30px; transform: rotate(-7deg);">🎃</span>
-          <span class="ghost" style="top: 8px; left: 400px; font-size: 24px; transform: rotate(7deg);">👻</span>
-          <span class="ghost" style="top: 520px; left: 56px; font-size: 26px; transform: rotate(-8deg);">👻</span>
-          <span class="ghost" style="top: 790px; right: 78px; font-size: 24px; transform: rotate(-6deg);">👻</span>
-          <span class="ghost" style="top: 896px; left: 112px; font-size: 28px; transform: rotate(-8deg);">👻</span>
-          <span class="pumpkin" style="top: 520px; left: 724px; font-size: 26px; transform: rotate(5deg);">🍂</span>
-          <span class="pumpkin" style="top: 736px; left: 480px; font-size: 24px; transform: rotate(-10deg);">🍂</span>
-          <span class="pumpkin" style="top: 1058px; left: 56px; font-size: 26px; transform: rotate(8deg);">🍂</span>
-          <span class="pumpkin" style="top: 1052px; left: 300px; font-size: 24px; transform: rotate(-7deg);">🍂</span>
+          <section class="flier flier--small flier--candy">Candy for the Kids <span class="tag-emoji">🍂</span></section>
+
         </div>
       </section>
 
