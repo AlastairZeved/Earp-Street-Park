@@ -577,16 +577,18 @@ at every sampled viewport (761×800, 900×1100, 1000×956, 1280×900, 1440×1000
 1920×1200); the lot photo's right edge clears the pane's left at every sampled
 viewport (61.0px at 761×800, 13.9 at 1000×956, 24.9 at 1440×1000, 13.7 at
 900×1100); desktop scroll stays zero at all six (measured
-`scrollHeight == innerHeight`). Fit envelope: below ≈950px of viewport height
+`scrollHeight == innerHeight`). Fit envelope: below ≈930px of viewport height
 at 761vw the pane's three items over-subscribe the space and the stage's
 transform factor bottoms at zero — the Palooza board renders as nothing at all
-(0.0px of stage height measured at 761×800 and 761×940; first sliver, 0.5px, at
-761×950). This is the B25 recorded below-envelope band, and the record must say
-its mechanism of failure CHANGED: B25's failure was overlapping sheets; this
-render's failure is a vanished board plus the stories sheet running past the
-viewport — at 761×800 the stories sheet's box bottom is 919.7px against the
-800px viewport, so GIVE US A SHOUT!'s message field and Send are cut off and
-the root `overflow: hidden` (#56: never a scroll region) gives them no scroll.
-The owner's ruling fits the run to the space ("Scale it to fit"); the band
-below ≈950px at 761vw is where that fit has no home. The attachment is the
-owner's composition and is not re-laid-out at any width.
+(0.0px of stage height measured at 761×700, 761×800, 761×900, 761×920 and
+761×925; first sliver, 0.1px, at 761×930; 4.9px at 935; 19.2px at 950). This
+is the B25 recorded below-envelope band, and the record must say its mechanism
+of failure CHANGED: B25's failure was overlapping sheets; this render's
+failure is a vanished board plus the stories sheet running past the viewport —
+at 761×800 the stories sheet's box bottom is 901.0px against the 800px
+viewport (the Send button's bottom at 855.7px), so GIVE US A SHOUT!'s message
+field and Send are cut off and the root `overflow: hidden` (#56: never a
+scroll region) gives them no scroll. The owner's ruling fits the run to the
+space ("Scale it to fit"); the band below ≈930px at 761vw is where that fit
+has no home. The attachment is the owner's composition and is not re-laid-out
+at any width.

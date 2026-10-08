@@ -245,7 +245,7 @@ block's), with a hidden-stage fallback for browsers without container
 queries — otherwise the cqw/cqh units would resolve against the viewport
 and the board would paint several times too large. B25's measured pair
 envelope (~723px of viewport height at 1247vw) is superseded by the pane's
-new fit envelope, recorded in B29 (≈950px at 761vw, re-measured after the
+new fit envelope, recorded in B29 (≈930px at 761vw, re-measured after the
 review fixes; the below-envelope band fails differently than B25's — the
 stage's scale bottoms at zero, the board renders as nothing, and the
 run's overflow clips at the root with the form's lower edge cut off; B29's
