@@ -82,6 +82,8 @@ column).
 | `rgba(0,0,0,.2)` | tape and print small shadows (`0 1px 3px`), scrap |
 | `rgba(0,0,0,.12)` | phone scrap shadow |
 | `rgba(236,227,199,.78)` | **tape — the only non-black rgba; tape is warm cream at 78%** |
+| `rgba(20,17,12,.62)` | the B36 pop-up backdrop — dims the board while the flier takes over |
+| `rgba(0,0,0,.55)` | the B36 pop-up card shadow (`0 24px 60px`) |
 
 **No danger color exists.** The accent role is `--rust`: submit hover, entry
 dates, focus outlines.
@@ -254,6 +256,31 @@ own 700/294 aspect, width-scaled by one `tan(atan2(100cqw, 700px))` factor
 (origin 0 0) — "the flier should be stacked underneath the header and
 header paragraph."
 
+### §4.4 The on-load pop-up (B36)
+
+A fixed overlay shows the Park Party Palooza flier on page load and is
+dismissed by one CSS-only control (B16: zero JS). `.popup-overlay` —
+`position: fixed; inset: 0; z-index: 1000`, backdrop `rgba(20,17,12,.62)` —
+centres the `.popup` card: 480×535, `background: var(--paper)`,
+`border: 6px solid var(--ink)`, `outline: 2px solid var(--rust)` at
+`outline-offset: -11px`, `box-shadow: 0 24px 60px rgba(0,0,0,.55)`,
+`overflow: hidden`. The close control `.popup-close` (40×40, `--rust` fill,
+`--paper` ✕, `border-radius: 0 0 0 6px`) and the full-bleed `.popup-backdrop`
+label are both `<label for="popup-toggle">` for a visually-hidden checkbox;
+`.popup-toggle:checked ~ .popup-overlay { display: none }`. `.popup-stage`
+(850×876, the mockup's own board composition) is centred and cover-fit by
+`transform: translate(-50%,-50%) scale(0.611)`. Inside it the flier species
+(`.popup-flier`: `.note` paper, `0 8px 20px rgba(0,0,0,.4)` shadow, the two
+tape strips `rgba(236,227,199,.78)` and their tilts) carries the title flier
+(700px, −1°), the story flier, and seven small fliers whose sizes —
+16/20/23/26/28/30/32px, all distinct — are, under §3.1's single font,
+re-spaced to zero bounding-box overlap (B34's standing no-overlap ruling).
+Emoji ride on the fliers (`.popup-tag-emoji`) and two perch on the title's
+tape (`.popup-tape-emoji`); the palette is 🎃 👻 🍂 only. Fonts resolve through
+§3.1 (B26); the chrome introduces no new hex (the attachment's darker-rust
+hover shade is dropped, B36). **Desktop only**: `.popup-overlay` is
+`display: none` at ≤760px (the owner's ruling).
+
 ---
 
 ## §5 Layout — the board
@@ -278,6 +305,7 @@ border line, scaled to the header's height."
 |---|---|
 | `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B17: the plan sheet leaves the right pane at 27.5%, so the two sheets' widths no longer match — the week sheet's 20.5% stands) |
 | `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
+| `.popup-overlay` | (B36, §4.4) `position: fixed; inset: 0; z-index: 1000` — the on-load pop-up; not a `.field` child, desktop only |
 | `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row; B25: holding `.note--plan` and the WHAT WE NEED flier as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
 | `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the height-setter's height exactly (B25: the WHAT WE NEED flier's natural height); `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
 | `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
@@ -351,6 +379,11 @@ forbidden everywhere).
 - **Focus:** scroll panels and inputs/button get `outline: 3px solid
   var(--rust)` (`outline-offset: 2px` panels / `1px` inputs) on
   `:focus-visible`.
+- **The on-load pop-up (B36).** Dismissed by CSS only: one visually-hidden
+  `#popup-toggle` checkbox whose checked state sets `.popup-overlay` to
+  `display: none`; the ✕ (`.popup-close`) and the backdrop (`.popup-backdrop`)
+  are its `<label>`s. No JS, so Escape-to-close does not exist; the checkbox
+  is the keyboard control and shows the rust focus ring on the ✕.
 
 ---
 
@@ -363,8 +396,9 @@ animate sheet reflow between viewports:
 keyframes. `prefers-reduced-motion: reduce` kills them (`transition: none`).
 ## §8 Radii and spacing
 
-One radius in the entire file: `border-radius: 0` on form inputs —
-everything is square. Spacing tokens: `--space-1: 0.35rem`,
+Radii: `border-radius: 0` on form inputs, plus the B36 pop-up close
+control's `0 0 0 6px` corner — the file's only two radii; everything else is
+square. Spacing tokens: `--space-1: 0.35rem`,
 `--space-2: 0.75rem`, `--space-3: 1.25rem`; deviations are declared raw
 values with ruling comments in `index.html` (e.g. the flier's
 `var(--space-3) 0.85rem 0.6rem` paper margin from B5's spec).

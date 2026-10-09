@@ -92,6 +92,10 @@ dug-up planters), not a marketing page.
    and email optional, story required, "Send" (B4), three visible lines with
    a scrollbar beyond (B6), posting to Formspree with a `_gotcha` honeypot.
    This is the site's one interactive act and its one external request.
+8. **The Park Party Palooza pop-up** (B36, §UIUX 4.4) — a fixed on-load
+   overlay carrying the Palooza flier board as its own component; shown on
+   every visit and **desktop only**, dismissed by the ✕ or a backdrop click
+   through one CSS-only checkbox (zero JS).
 
 ## §5 What the site is not (observed reality)
 
