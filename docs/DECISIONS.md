@@ -836,3 +836,118 @@ sizes, not uniform sizes."
 The updated attachment (https://github.com/user-attachments/files/33211118/party-for-the-park-flier-website.html) removes the mockup's `--fence` ground color and `--fence-tile` WebP data URI entirely — the "new transparent background" the owner names. The later ruling wins: the stage ships with no `background-color` and no `background-image`, and the site's own fence shows through the board, as the superseded PR #134 reading had it.
 
 **The record.** The board's interior is re-transcribed from the updated attachment, byte-for-byte except three things: the two standing adaptations (the mockup's `--font-display`/`--font-body` names resolve through the site's tokens per B23/B26, and the smallprint's `text-shadow: none`) and the chat ruling's re-space of the small fliers. First transcription verbatim, the small fliers carried the attachment's positions and sizes — but under the site's Montserrat Alternates three pairs collided (cocoa × candy, music × candy, faces × planters, the last covering 13 rendered px of "Face Painting"); the attachment's own Georgia stack clears every pair. The owner ruled the collision out in chat (Source above): the fliers are re-spaced within the 850×876 board, at measured non-overlap at 1440/1200/1000/2560 vw — Baked Goods 25px/14px 22px at 562/left 66; Bobbing for Apples 32px/17px 27px at 556/right 40; Hot Chocolate 20px/11px 17px at 776/left 56; Good Tunes 26px/14px 22px at 768/right 40; Face Painting 28px/15px 24px at 668/left 420 — new, and joining the single-tape group; Mulch the Planters 23px/12px 19px at 682/left 60; Candy for the Kids 19px/10px 16px at 772/left 290. The seven small fliers' faces are all distinct sizes (19–32px), per the ruling — no uniform sizes. Measured clearances in board space: baked→bobbing 41px, planters→faces 42px, cocoa→candy 13px, candy→music 17px; zero bounding-box overlaps at every sampled desktop viewport. The emojis ride on the fliers (`.tag-emoji`) and two perch on the title's tape (`.tape-emoji`), replacing the fifteen scattered fence emojis, which go with the fence; the title flier's pumpkins JPEG art is unchanged (the attachment's data URI is byte-identical to the shipped one); the attachment's vestigial `.fall-art svg` rule (no matching markup) ships as-is, verbatim. The site's fit mechanics are untouched — B30's fit region, scale-to-fit, top anchoring and horizontal centering all stand ("no sizing changes or anything" reads on the board's fit on the site, not on the attachment's own interior values). `docs/UIUX.md` §4.3 is amended in the same PR. No token or hex changes — `test/tokens.js` needs no assertion rewrite; no record-space changes — `test/records.js` needs none.
+
+### B35. The Park Party Palooza flier board is removed entirely — all of its little fliers and all of its emojis go with it — and the owner's attached title-only flier takes its place in the header pane, anchored to the right of the page at the top right, above the header border line, scaled to fit the height of the header to the border line; on phone the flier stacks underneath the header and the header paragraph (issue #151, the owner's ruling of record, with in-chat rulings; supersedes B29/B30/B32/B34's board render)
+
+**Source:** issue #151 (owner, ruling of record), transcribed verbatim:
+"The "Park Party Palooza" flier and all of its little fliers and emojis all
+need to be removed and replaced with the attached title-only flier. This
+flier is to be positioned in the header pane, anchored to the right of the
+page at the top right, above the header border line and scaled to fit the
+height of the header to header border line." (the attachment:
+party-for-the-park-flier-banner.html,
+https://github.com/user-attachments/files/33231293/party-for-the-park-flier-banner.html) —
+https://github.com/AlastairZeved/Earp-Street-Park/issues/151
+
+And the owner's rulings in chat with the site's agent, 2026-10-08,
+transcribed verbatim: on scale — "Uniform scale off header height only" (one
+factor, no separate width cap); on the anchor — "B25 flier column's right
+edge (1.2vw + body padding)"; on phone — "on phones, the flier should be
+stacked underneath the header and header paragraph; "Earp Street Park" and
+the accompanying paragraph."; and on the two measured collisions the
+transcription's render raised — the flier's opaque paper covering the ends
+of the hero paragraph's lines at viewports below ~1440vw (2 lines at
+1200×800, 3 at 1000×956, 4 at 761×960; zero at 1440×1000 and 2560×1200),
+which collides with B30's "never overlapping the header text" — "keep height
+fit and accept the coverage at narrower viewports."; and the attachment's
+−1° tilt dipping the flier's bottom-left corner ~4.6px below the header
+border line at 1440×1000 — "I accept the rotation of the tilted paper if it
+overlaps the header border line a scoche."
+
+**The record.** The board is gone: the seven small fliers, the story flier,
+every `.tag-emoji` and `.tape-emoji`, the whole `.party-pane`/`.party-stage`/
+`.stage` CSS — removed. GIVE US A SHOUT! returns to its own B25 pins
+(`right: 1.2%; bottom: 2%; width: 20.5%` on the field), measured back at its
+pre-board position. The title-only flier is transcribed from the owner's
+attached banner cut into the header pane: `.flier-banner`, absolutely
+positioned in `.board-head` (the header gains `position: relative`), `top: 0`
+to `bottom: 0` — the header's own height, page-top line to the `.head-rule`
+line (the rule is the header grid's last row) — `right: calc(1.2vw + 0.976 *
+clamp(0.75rem, 2vw, 1.75rem))` (the B25 column's shared right edge, B30's
+viewport-scale re-derivation), `width: 0` as an anchor line the flier hangs
+to the left of. The flier keeps the attachment's width (700px) and −1° tilt,
+`transform-origin: 100% 0`, anchored top right; its top offset is the tape
+strips' own 0.8rem overhang, so the tape's top edge sits on the header's top
+line. One uniform scale factor off the header's height,
+`scale(tan(atan2(calc(100cqh - 0.8rem), 294px)))` (container-query units,
+agent-derived mechanic — 294px is the flier's measured natural height at its
+700px width in the shipped render, with Montserrat Alternates), gated in the
+file's own `@supports (container-type: size)` pattern with the file's
+hidden-fallback for browsers without container queries. Interior values —
+paddings, type sizes, colors, the pumpkins JPEG data URI (byte-identical to
+the one B29 shipped), the two tape strips, the `.fall-art` rules including
+the attachment's vestigial `.fall-art svg` (no matching markup) — transcribe
+verbatim except the standing adaptations: the fonts resolve through the
+site's tokens (B23/B26), the smallprint's `text-shadow: none` (B34's), the
+h1 sheds the header h1's cream ink/text-shadow/nowrap for the attachment's
+own ink, and the attachment's two `.flier--title` placement blocks (its
+centered-page and absolute page variants) are superseded by the ruled
+placement — top right, tape on the header's top line, box bottom on the
+border line. The owner accepts the tilted paper's corner overlapping the
+border line (Source above) — the scale fits the un-rotated box, and the
+rotation's dip is the accepted scoche. The owner accepts the coverage of the
+hero paragraph's line ends at narrower viewports (Source above) — B30's
+"never overlapping the header text" is superseded for the banner by the
+height-fit ruling; the header text keeps its 21.7% right boundary (B30's
+`margin-right` stands, unchanged). On phone (≤760px) the banner joins the
+header grid as its own row under the lead ("banner banner" under
+"lead lead"), position static, full-width at the flier's own 700/294 aspect,
+width-scaled by one `tan(atan2(100cqw, 700px))` factor, origin 0 0 — the
+owner's stacking ruling. `docs/UIUX.md` §4.3/§5 are amended in the same PR.
+No token or hex changes — `test/tokens.js` needs no assertion rewrite; the
+record space gains this entry — `test/records.js` reads B1..B35.
+
+**Measured outcome** (agent-derived, headless Chromium bounding boxes, the
+numbers recorded so a future ruling measures against the render, not prose):
+the banner's bottom edge equals `.head-rule`'s bottom at every sampled
+viewport (139.1 == 139.1 at 1440×1000; 158.9 == 158.9 at 1000×956; 136.3 ==
+136.3 at 1200×800; 170.8 == 170.8 at 761×960; 141.1 == 141.1 at 2560×1200);
+the flier's tape top edge sits on the banner's top (the header's top line);
+the flier's right edge rides the B25 column's right edge within the
+rotation's ~2px bounding swing. Scale factors measured 0.382 at 1440×1000
+and 1200×800, 0.451 at 1000×956, 0.492 at 761×960, 0.382 at 2560×1200 —
+header height is the fit region's whole driver. Hero-paragraph coverage
+(the accepted ruling): zero covered lines at 1440×1000, 1440×700 and
+2560×1200; 2 at 1200×800; 3 at 1000×956 and 900×700; 4 at 761×960. The
+tilted bottom-left corner dips ~4.6px below the rule bottom at 1440×1000
+(the accepted scoche). Desktop scroll stays zero at every sampled viewport
+(`scrollHeight == innerHeight`). On phone at 390×844 the banner prints under
+the hero paragraph (hero bottom 224.3, banner top 271.0), full-width at
+natural aspect (366.0px wide, scale 0.523), WHAT WE'VE DONE below at 895.2.
+
+**Superseding note** (the owner's ruling in chat with the site's agent,
+2026-10-08; supersedes the "keep height fit and accept the coverage at
+narrower viewports" chat ruling above — appended, never edited away).
+
+**Source:** the owner in chat with the site's agent, 2026-10-08, transcribed
+verbatim: "close but nope. Wrap the header paragraph's text earlier so it
+doesn't go underneath the flier." (no link — session chat).
+
+**The record.** The hero paragraph wraps at the header's halfway line:
+`.hero-line` takes `margin-right: 50%` (was B30's 21.7%). The value is
+measured: the clearing margin bands — the margins at which every hero glyph
+line clears the flier's bounding box, layout settled, three stable reads —
+are 49–52% of the header at 900vw, 43–65% at 1000vw, 31–75% from 1200vw up,
+and 50% clears at 1600/2000/2560vw; one value threads every band. Below
+~880vw no wrap boundary clears: each extra wrap line grows the flier (its
+scale rides the header's height) ~48px while the text retreats ~24px per
+step — measured exhaustively at 761/800/880 out to 80% margins, the gap
+never closes; there the closest boundary ships and some line ends still run
+under. `docs/UIUX.md` §4.3 is amended in the same PR.
+
+**Measured outcome** (agent-derived, headless Chromium, settled layout):
+glyph clearance (flier bounding left − rightmost hero glyph) at margin 50%:
++26px at 900×960, +87px at 1000×960, +248px at 1200×960, +340px at 1440×960,
++429px at 1600×960, +677px at 2000×960, +1205px at 2560×960; residual
+coverage at 761×960 (9 lines), 800×960 (8), 880×960 (4) — the unavoidable
+band. Desktop scroll stays zero at every sampled viewport.
