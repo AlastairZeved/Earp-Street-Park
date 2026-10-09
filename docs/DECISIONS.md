@@ -924,3 +924,30 @@ tilted bottom-left corner dips ~4.6px below the rule bottom at 1440×1000
 (`scrollHeight == innerHeight`). On phone at 390×844 the banner prints under
 the hero paragraph (hero bottom 224.3, banner top 271.0), full-width at
 natural aspect (366.0px wide, scale 0.523), WHAT WE'VE DONE below at 895.2.
+
+**Superseding note** (the owner's ruling in chat with the site's agent,
+2026-10-08; supersedes the "keep height fit and accept the coverage at
+narrower viewports" chat ruling above — appended, never edited away).
+
+**Source:** the owner in chat with the site's agent, 2026-10-08, transcribed
+verbatim: "close but nope. Wrap the header paragraph's text earlier so it
+doesn't go underneath the flier." (no link — session chat).
+
+**The record.** The hero paragraph wraps at the header's halfway line:
+`.hero-line` takes `margin-right: 50%` (was B30's 21.7%). The value is
+measured: the clearing margin bands — the margins at which every hero glyph
+line clears the flier's bounding box, layout settled, three stable reads —
+are 49–52% of the header at 900vw, 43–65% at 1000vw, 31–75% from 1200vw up,
+and 50% clears at 1600/2000/2560vw; one value threads every band. Below
+~880vw no wrap boundary clears: each extra wrap line grows the flier (its
+scale rides the header's height) ~48px while the text retreats ~24px per
+step — measured exhaustively at 761/800/880 out to 80% margins, the gap
+never closes; there the closest boundary ships and some line ends still run
+under. `docs/UIUX.md` §4.3 is amended in the same PR.
+
+**Measured outcome** (agent-derived, headless Chromium, settled layout):
+glyph clearance (flier bounding left − rightmost hero glyph) at margin 50%:
++26px at 900×960, +87px at 1000×960, +248px at 1200×960, +340px at 1440×960,
++429px at 1600×960, +677px at 2000×960, +1205px at 2560×960; residual
+coverage at 761×960 (9 lines), 800×960 (8), 880×960 (4) — the unavoidable
+band. Desktop scroll stays zero at every sampled viewport.

@@ -233,12 +233,14 @@ the header's height by ONE uniform factor —
 measured natural height at its 700px width in the shipped render — gated in
 the file's `@supports (container-type: size)` pattern with the file's
 hidden-fallback for browsers without container queries. The owner's rulings
-of record: uniform scale off header height only, no width cap; the header
-text keeps its 21.7% right boundary (B30's `margin-right` stands) but B30's
-"never overlapping the header text" is superseded for the banner — the
-flier's opaque paper covers the ends of the hero paragraph's lines at
-narrower viewports (measured: 2 lines at 1200×800, 3 at 1000×956, 4 at
-761×960, zero at 1440×1000+), and the owner accepts the coverage; likewise
+of record: uniform scale off header height only, no width cap; the hero
+paragraph wraps at the header's halfway line — `.hero-line` takes
+`margin-right: 50%` (B35's superseding note; was B30's 21.7%), measured so
+no hero glyph line runs under the flier at any sampled width ≥900vw (the
+clearing bands are 49–52% at 900, 43–65% at 1000, 31–75% from 1200 up); at
+761–880vw no wrap boundary clears (each extra wrap line grows the flier
+~48px while the text retreats ~24px — measured exhaustively) and some line
+ends still run under there; likewise
 the tilted paper's bottom-left corner dips ~4.6px below the border line at
 1440×1000 — "I accept the rotation of the tilted paper if it overlaps the
 header border line a scoche." Interior values transcribe from the

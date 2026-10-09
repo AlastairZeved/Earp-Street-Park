@@ -202,7 +202,19 @@
   .hero-line {
     grid-area: hero;
     margin: 0;
-    margin-right: 21.7%;  /* #138 (the owner's annotated pane map): the header text block stops at the rightmost pane's left edge — see the note above */
+    /* #151 (B35, superseding note): the paragraph wraps at the header's
+       halfway line, early enough that no line runs under the flier. The
+       value is measured, not eyeballed: at every sampled width ≥900vw the
+       clearing margin bands are 49–52% at 900, 43–65% at 1000, and 31–75%
+       from 1200 up — 50% threads every band (measured glyph-line clearance
+       at 900/1000/1200/1440/1600/2000/2560, layout settled, three stable
+       reads each). Below ~880vw no wrap boundary clears: each extra wrap
+       line grows the flier (its scale rides the header's height) ~48px
+       while the text retreats ~24px per step — measured exhaustively at
+       761/800/880 out to 80% margins, the gap never closes. There the
+       closest boundary ships and some line ends still run under (B35's
+       record holds the numbers). */
+    margin-right: 50%;
     max-width: 72em;  /* #59: was 58em — the hero wraps to 2 lines at wide viewports */
     color: var(--paper);
     font-size: 0.85rem;  /* #73: flat 0.85rem at every viewport — derived from the family small-text size (already used five times in the shipped sheet: .archive-head, .need .what, label .optional) and the hero clamp's own floor; the phone 0.9rem override is deleted because this base value covers it */
