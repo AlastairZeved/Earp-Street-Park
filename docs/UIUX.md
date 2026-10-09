@@ -215,62 +215,42 @@ flier's list only by the owner's in-chat ruling; the plan sheet stays the B22
 disc-bullet list. The face prints at the `.smallprint` size (§3.3 — the
 flier species' own body size, the size Come Say Hi's face printed; the
 owner's in-chat size ruling). The list is not a scroll region. The right
-pane's stack since B32 is the **Park Party Palooza flier board** (issue
-#132) above GIVE US A SHOUT! (B32, issue #142, removing the Come Say Hi!
-flier that B29 placed between them) — one flex column,
-`.party-pane`, whose fit region is the column
-itself from the very top of the page down to just above the GIVE US A
-SHOUT! sheet: the board scale-to-fits that region (never wider than the column,
-never clipped, never overlapping the photo or the header text), centered
-horizontally in it, anchored to the TOP of the page (the owner's ruling:
-"the park party flier should anchor to the top of the page") — the scaled
-board hangs from the page top and grows downward, stopping above GIVE US A
-SHOUT! without overlapping it — so the board
-lies both above and below the `.head-rule` divider line wherever its
-scaled height reaches it (B29's overlap ruling, extended to the page top
-by B30; the owner's annotated screenshot rules the region — the Come Say
-Hi column, page top to its top edge, the flier centered within). The
-header text block wraps within the field's left 78.3% (`margin-right:
-21.7%` on `.board-head h1` and `.hero-line` — the owner's pane map rules
-its right boundary at the column's left edge), so the board never covers
-the title or paragraph at any sampled viewport. The
-pane's gap is the family `--space-3`, so the issue's
-"just above, without overlapping" clearances hold in flow with nothing
-measured. The Palooza board is the owner's attached mockup transcribed
-wholesale: an 850×876 `.stage` holding nine fliers (the title flier with
-its pumpkins JPEG art, rust "Palooza" span, where/when lines, and italic
-rain-date fine print; the story flier; Baked Goods; Bobbing for Apples; Hot
-Chocolate; Good Tunes; Face Painting; Mulch the Planters; Candy for the
-Kids), every px value the updated attachment (#146, B34) unmodified except the
-small fliers, which the owner re-spaced in chat 2026-10-08 (the site's
-Montserrat Alternates sets wider than the mockup's Georgia and three pairs
-collided at the attachment's own positions; B34's record holds the final
-measured positions/sizes, seven distinct faces 19–32px, zero overlaps at
-every sampled desktop viewport), scaled
-by one `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))` transform
-factor (container-query units — agent-derived mechanic), origin `50% 0`
-(B30: anchored to the page top), `overflow: clip` (the mockup's own crop —
-its bottom emoji row sits past y=876 and was never visible in the
-attachment). The emojis ride ON the fliers (`.tag-emoji`) and two perch on
-the title's tape (`.tape-emoji`) — the fifteen scattered fence emojis are
-gone with the fence (B34, issue #146). The stage is TRANSPARENT (B34, issue
-#146 — the owner's updated attachment removes the fence; supersedes B29's
-issue #135 superseding note, "background included"): no `background-color`,
-no `background-image` — the board sits on the site and the site's own fence
-shows through.
-Its fonts resolve through
-§3.1's single family (B26: the mockup's Georgia/system stacks never ship);
-its paper, tape, and shadow are the §4.1 species' own values. The scaling is gated in the
-file's own `@supports (container-type: size)` pattern (the .window/.cmp
-block's), with a hidden-stage fallback for browsers without container
-queries — otherwise the cqw/cqh units would resolve against the viewport
-and the board would paint several times too large. B25's measured pair
-envelope (~723px of viewport height at 1247vw) and B29's fit envelope
-(≈930px at 761vw) are both superseded by B30: the fit region starts at
-the page top, so the former zero-render band is gone — the board scales
-down continuously with the space and renders at every sampled desktop
-viewport (measured: 144×149px at 761×960 where B29 recorded 9.7px; 119×123
-at 1200×800 where B29 recorded 0.0px).
+pane's stack since B35 (issue #151) is GIVE US A SHOUT! alone: the **Park
+Party Palooza flier board** — the Come Say Hi! flier before it, the story
+flier, the seven small fliers, and every emoji — is removed entirely, and
+the stories sheet returns to its own B25 pins (`right: 1.2%; bottom: 2%;
+width: 20.5%`). The title-only flier moves up into the **header pane**
+(B35, issue #151, the owner's attached banner cut transcribed):
+`.flier-banner`, absolutely positioned in `.board-head`, `top: 0; bottom: 0`
+— the header's own height, page-top line to the `.head-rule` border line —
+`right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem))` (the B25
+column's shared right edge), `width: 0` as an anchor line, `z-index: 2`.
+The flier keeps the attachment's 700px width and −1° tilt
+(`transform-origin: 100% 0`), its tape top edge on the header's top line
+(the 0.8rem tape overhang is the flier's own top offset), and scales to fit
+the header's height by ONE uniform factor —
+`scale(tan(atan2(calc(100cqh - 0.8rem), 294px)))`, 294px the flier's
+measured natural height at its 700px width in the shipped render — gated in
+the file's `@supports (container-type: size)` pattern with the file's
+hidden-fallback for browsers without container queries. The owner's rulings
+of record: uniform scale off header height only, no width cap; the header
+text keeps its 21.7% right boundary (B30's `margin-right` stands) but B30's
+"never overlapping the header text" is superseded for the banner — the
+flier's opaque paper covers the ends of the hero paragraph's lines at
+narrower viewports (measured: 2 lines at 1200×800, 3 at 1000×956, 4 at
+761×960, zero at 1440×1000+), and the owner accepts the coverage; likewise
+the tilted paper's bottom-left corner dips ~4.6px below the border line at
+1440×1000 — "I accept the rotation of the tilted paper if it overlaps the
+header border line a scoche." Interior values transcribe from the
+attachment verbatim (paddings, type sizes, the pumpkins JPEG, the tape
+strips, the vestigial `.fall-art svg` rule) except the standing
+adaptations: fonts through §3.1's single family (B26), the smallprint's
+`text-shadow: none`, the h1's own ink (the header h1's cream
+ink/shadow/nowrap must not ride along). On phone (≤760px) the banner joins
+the header grid as its own row under the lead, full-width at the flier's
+own 700/294 aspect, width-scaled by one `tan(atan2(100cqw, 700px))` factor
+(origin 0 0) — "the flier should be stacked underneath the header and
+header paragraph."
 
 ---
 
@@ -282,13 +262,13 @@ children are absolutely pinned by percentage. Position encodes meaning
 (the file's own architecture comment, verbatim): "**left = what happened**
 (What We've Done), **center = the lot as it stands** (one pinned photo, #64)
 above your turn and the ask (What We'd Like To Do beside WHAT WE NEED,
-#122/B25 — the middle pane's bottom row), right = the Come Say Hi! flier
-with the GIVE US A SHOUT! sheet below it, stacked in the pane (#122, B25).
-#132: the right pane's run gains the Park Party Palooza flier board (the
-owner's attachment, transcribed) above the stories sheet; the run reaches
-up into the header pane to the .head-rule and scale-to-fits the space.
-#142 (B32): the Come Say Hi! flier is removed — the board takes its space,
-and the run is board above GIVE US A SHOUT!."
+#122/B25 — the middle pane's bottom row), right = the
+GIVE US A SHOUT! sheet alone in the fliers' pane (#122, B25; the Palooza
+board is gone — #151/B35). #132/#142 history: the Palooza flier board
+joined, then replaced, the right pane's run; #151 (B35) removes the entire
+board — all of its little fliers and emojis — and moves the one title
+flier up into the header pane, anchored top right above the .head-rule
+border line, scaled to the header's height."
 
 ### §5.1 Desktop pins
 
