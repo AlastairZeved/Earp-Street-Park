@@ -966,3 +966,46 @@ And the owner's rulings in chat with the site's agent, 2026-10-09, on the questi
 **The record.** The pop-up is a fixed overlay, not a board object: `.popup-overlay` (`position: fixed; inset: 0; z-index: 1000`, backdrop `rgba(20,17,12,.62)`) centres a `.popup` card — 480×535, `--paper`, `border: 6px solid var(--ink)`, `outline: 2px solid var(--rust)` at `-11px` offset, `box-shadow: 0 24px 60px rgba(0,0,0,.55)`, `overflow: hidden`. Zero JS (B16): the close control `.popup-close` (40×40, `--rust` fill, `--paper` ✕) and a full-bleed `.popup-backdrop` label are both `<label for="popup-toggle">` for one visually-hidden checkbox; `.popup-toggle:checked ~ .popup-overlay` sets `display: none`, so the ✕ and a backdrop click both dismiss it (Escape is not achievable without JS and is dropped). `.popup-stage` (850×876, the mockup's own board composition) is centred and cover-fit by `scale(0.611)`. Inside it the flier species (`.popup-flier`: `.note` paper, `0 8px 20px rgba(0,0,0,.4)` shadow, the two tape strips `rgba(236,227,199,.78)`, B5) carries the title flier (700px, −1°), the story flier, and the seven small fliers ("Baked Goods", "Bobbing for Apples", "Hot Chocolate", "Good Tunes", "Face Painting", "Mulch the Planters", "Candy for the Kids"); under the site's font three pairs collided, so the small fliers are re-spaced to zero bounding-box overlap and "Candy for the Kids" resized smaller — the sizes 16/20/23/26/28/30/32px all distinct — per B34's standing ruling ("No overlapping fliers ... resize any to a smaller flier if needed ... make sure the little fliers are all various sizes, not uniform sizes"). Emoji ride on the fliers (`.popup-tag-emoji`) and two perch on the title's tape (`.popup-tape-emoji`); the palette is 🎃 👻 🍂 only. Fonts resolve through §3.1's single family (B26); the chrome introduces no new hex — the attachment's darker-rust hover shade is dropped (the owner's ruling). The pop-up is **desktop only**: `.popup-overlay` is `display: none` at ≤760px (the owner's ruling). `docs/UIUX.md` §2.4/§4/§5/§6/§8 and `docs/PRD.md` §4 are amended in the same PR; no new hex ships, so `test/tokens.js` needs no assertion rewrite; the record space gains this entry — `test/records.js` reads B1..B36.
 
 **Measured outcome** (agent-derived, Chromium bounding boxes, this branch's render): the card is 480×535 and centred at every sampled desktop viewport (1440×900, 1920×1200, 1280×800, 1000×700, 1366×768); the seven small fliers show zero bounding-box overlaps and no flier clips the card interior at every sampled viewport; the ✕ and the backdrop both set the overlay to `display: none`; with the pop-up dismissed the board is unchanged (`scrollHeight == innerHeight`; the B35 banner and the stories sheet both present); at 390×844 the overlay is `display: none` (desktop-only).
+
+### B37. The Send button prints underneath the "What's on your mind?" field, the story field reclaims the button's horizontal space, and the GIVE US A SHOUT! flier grows vertically to fit (issue #155, owner instruction; supersedes #74's Send-row arrangement)
+
+**Source:** issue #155 (owner instruction), transcribed verbatim: "In the
+formspree form, we need to move the submit button to underneath the \"What's
+on your mind\" entry. Then \"What's on your mind\" section can reclaim that
+horizontal space. Give the flier more vertical space to fit the button where
+needed." — https://github.com/AlastairZeved/Earp-Street-Park/issues/155
+
+**The record.** The Send button leaves the story field's row — #74's
+beside-arrangement ("this is what buys #75 its room") is superseded — and
+prints underneath the textarea, and the story field takes the form's full
+inner width. The button keeps its own box values untouched (B4's "Send"
+label, B12's 700 weight, `padding: var(--space-2) var(--space-3)`): natural
+width, left aligned, `margin-top: var(--space-2)` — the phone render's own
+recipe (`.field-row--send { display: block }`), now the single construction
+at both breakpoints, with the phone block re-pinning it as usual (the
+B18/B25 pattern). The GIVE US A SHOUT! sheet grows vertically to fit the
+button: its height is content-driven (bottom 2% pin; #56: never a scroll
+region) and the moved row adds one button height plus one space-step. The
+Name/Email pair, the B6 `min-height: 4rem` textarea floor, and the sheet
+species are untouched. No hex, token, or font changes, so `test/tokens.js`
+needs no assertion rewrite.
+
+**Measured outcome** (agent-derived, headless Chromium bounding boxes,
+branch against main): the button prints below the textarea with 11.5px of
+air (the `--space-2` gap in the −0.3° frame) at every sampled viewport, its
+left edge on the textarea's; the field reclaims the row's full width —
+84.1px at 761vw (was 26.3px beside the button), 179.7 at 1247 (was 85.7),
+218.1 at 1440 (was 124.1), 316.4 at 1920 (was 222.4). The flier grows
+exactly 60.0px taller at every sampled width (48.4px button + the rendered
+11.5px gap — the `--space-2` margin in the −0.3° frame):
+568.7px at 761vw, 498.6 at 1247, 446 at 1440, 403.8 at 1920. The growth
+takes the fence air above the sheet (the right pane holds no other sheet
+since B35): air above it runs 152.1px at 761×960, 221–270px at 1000–1440,
+503.5px at 1920×1080, and at 761×800 the sheet's box top meets the
+`.head-rule`'s bottom (−0.3px contact — the same clearance standard B17
+accepted); below ~800px of viewport height at 761vw the sheet rides up over
+the header rule with no scroll fallback (the fit floor moves from main's
+~740px to ~800px — the extra vertical space the ruling grants, recorded so
+a future edit measures against the render). The button prints 45.1px inside
+the sheet's bottom edge at every sampled viewport. Desktop scroll stays
+zero at all seven sampled viewports (`scrollHeight == innerHeight`).

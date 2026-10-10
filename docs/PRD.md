@@ -89,7 +89,8 @@ dug-up planters), not a marketing page.
    two guys out there working on stuff, come say hi! If not, drop us a
    message below." (B32, issue #142 — the removed Come Say Hi! flier's
    invitation, transplanted here by the owner), then the contact form: name
-   and email optional, story required, "Send" (B4), three visible lines with
+   and email optional, story required, "Send" (B4) underneath the story
+   field (B37, issue #155), three visible lines with
    a scrollbar beyond (B6), posting to Formspree with a `_gotcha` honeypot.
    This is the site's one interactive act and its one external request.
 8. **The Park Party Palooza pop-up** (B36, §UIUX 4.4) — a fixed on-load

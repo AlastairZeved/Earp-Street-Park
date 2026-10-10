@@ -486,7 +486,8 @@
      padding and row gaps drop one space-step each — so the form takes the
      bottom 20-30% of the field and the freed height goes to the lot photo
      above (the B6 mechanic). Inputs, the 4rem textarea floor (B6), the Send
-     row (B4/#74), and the sheet species are untouched. */
+     row (B4/#74's beside-row — superseded by #155), and the sheet species are
+     untouched. */
   form {
     background: var(--paper-shade);
     border: 1px solid var(--rule);
@@ -496,13 +497,15 @@
   .field-row { margin: 0 0 var(--space-2); }
   /* #61: Name + Email share one row so the whole form fits its sheet */
   .field-row--pair { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-2); margin: 0 0 var(--space-2); }
-  /* #74: the Send button sits BESIDE the story field on one row while the label
-     stays above on its own line. .field-row cannot itself be the flex row (the
-     label is its first child and must remain full-width), so the control +
-     button share one inner flex wrapper. */
-  .field-row--send { display: flex; align-items: stretch; gap: var(--space-2); }
-  .field-row--send textarea { flex: 1 1 auto; }
-  .field-row--send button { flex: 0 0 auto; }
+  /* #155 (B37): the Send button prints UNDERNEATH the story field and the
+     textarea reclaims the button's horizontal space — the #74 beside-
+     arrangement is superseded. The button keeps its own natural box (left
+     aligned, margin-top --space-2) — the phone render's own recipe below,
+     now the single construction at both breakpoints — and the flier grows
+     vertically to fit it (content-driven height, #56: never a scroll
+     region). */
+  .field-row--send { display: block; }
+  .field-row--send button { margin-top: var(--space-2); }
   label { display: block; font-weight: 400; margin-bottom: var(--space-1); }  /* #22: only headers bold */
   label .optional { font-weight: 400; color: var(--ink-faded); font-size: 0.85rem; }
   input[type="text"],
@@ -1105,7 +1108,9 @@
     /* #61: the Name/Email pair stacks back to one column on phone */
     .field-row--pair { display: block; }
     .pair-cell + .pair-cell { margin-top: var(--space-3); }
-    /* #74: the story control + Send also stack back to one column on phone */
+    /* #155 (B37): the story control + Send stack at both breakpoints now —
+       re-pinned here (the B18/B25 re-pin pattern) so no desktop rule can
+       out-rank the phone values */
     .field-row--send { display: block; }
     .field-row--send button { margin-top: var(--space-2); }
 
@@ -1246,9 +1251,9 @@
               <input id="email" name="email" type="email" autocomplete="email">
             </div>
           </div>
-          <!-- #74: the story field sits UNDER the Name/Email pair, and the Send
-               button shares the story field's row (beside the textarea) instead
-               of owning a full-width row below — this is what buys #75 its room. -->
+          <!-- #155 (B37): the Send button prints UNDERNEATH the story field,
+               and the story field reclaims the button's horizontal space —
+               the #74 beside-arrangement is superseded. -->
           <div class="field-row">
             <label for="story">What's on your mind?</label>
             <div class="field-row--send">
