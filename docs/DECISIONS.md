@@ -1009,3 +1009,29 @@ the header rule with no scroll fallback (the fit floor moves from main's
 a future edit measures against the render). The button prints 45.1px inside
 the sheet's bottom edge at every sampled viewport. Desktop scroll stays
 zero at all seven sampled viewports (`scrollHeight == innerHeight`).
+
+### B38. A minimal `sitemap.xml` and a `robots.txt` join the repository — the one canonical page is indexed and the robots block points crawlers to the sitemap (issue #158, owner decision)
+
+**Source:** issue #158 (owner decision), transcribed verbatim: "earp-street-park.netlify.app currently ships no `sitemap.xml` and no `robots.txt`. Adding both would give crawlers a canonical index URL rather than forcing link discovery." and the owner's proposal of record, transcribed verbatim: "1. Add a minimal `sitemap.xml` listing the single canonical page (`https://earp-street-park.netlify.app/`). 2. Add `robots.txt`:
+
+User-agent: *
+Allow: /
+
+Sitemap: https://earp-street-park.netlify.app/sitemap.xml
+
+3. Confirm both serve with `text/xml` / `text/plain` and don't trip the shipped `_headers`/CSP." — https://github.com/AlastairZeved/Earp-Street-Park/issues/158
+
+**The record.** Two new files at the repository root, added by this ruling (B2: the repo gains no file type beyond what a ruling adds — `.xml` and `.txt` are new here):
+
+- `sitemap.xml` — a minimal single-page sitemap: the `<?xml version="1.0" encoding="UTF-8"?>` declaration over an `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` with one `<url>` whose `<loc>` is the canonical `https://earp-street-park.netlify.app/` (trailing slash, exactly as the issue writes it). No `lastmod` or other metadata — the issue says "minimal", and the site is one static page.
+- `robots.txt` — the owner's block verbatim:
+  ```
+  User-agent: *
+  Allow: /
+
+  Sitemap: https://earp-street-park.netlify.app/sitemap.xml
+  ```
+
+No `index.html`, token, or hex change, so `test/tokens.js` needs no assertion rewrite; the record space gains this entry, and `test/records.js` reads B1..B38. The ruling names no `UIUX.md`/`PRD.md` section, so neither is amended — these are crawler files, not product surfaces or rendering values.
+
+Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. The shipped `_headers` applies `/*` to every response, but its CSP is a browser-rendering control that crawlers ignore when fetching `robots.txt`/`sitemap.xml`, and B28's `X-Content-Type-Options: nosniff` acts only on script/style MIME types, not on `text/plain` or XML. Netlify serves `.txt` as `text/plain` and `.xml` as `application/xml` (Google accepts `application/xml` for sitemaps). The served MIME types are verified on promotion (B10: manual `git push origin main:deploy`); the agent runs no Netlify command. The issue's own framing — "harmless, but the lowest priority of the three sites", "Skipping Netlify deploy-preview URLs" — is recorded verbatim in the Source above.

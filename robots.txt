@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://earp-street-park.netlify.app/sitemap.xml
