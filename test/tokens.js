@@ -104,6 +104,14 @@ const sendBold = /button\[type=["']?submit["']?\]\s*\{[^}]*font-weight:\s*700/.t
 if (!sendBold) fail('button[type=submit] lost its 700 weight (the owner ruled the Send button stays bold)');
 if (failures === 0) pass('B12 weight-map spot checks: body rule and note-face/date plain; Send bold');
 
+// --- [4] B42 removes the dormant phone scrap-stock colors ---------------
+console.log('[4] B42 dormant scrap-stock colors are absent');
+for (const hex of ['#ece1c8', '#332c20']) {
+  if (htmlNoData.toLowerCase().includes(hex)) fail('B42 removed dormant scrap-stock color ' + hex + ', but it reappears in index.html');
+  if (UIUX.toLowerCase().includes(hex)) fail('B42 removed dormant scrap-stock color ' + hex + ', but UIUX.md still documents it');
+}
+if (failures === 0) pass('the retired scrap-stock colors are absent from the site and UIUX');
+
 console.log('');
 if (failures) {
   console.error('tokens.js: ' + failures + ' failure(s) — UIUX §2 checks or B12 weight-map spot checks disagree with the shipped file. Fix index.html or amend UIUX.md with an owner ruling.');
