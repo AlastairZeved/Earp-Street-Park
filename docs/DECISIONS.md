@@ -1035,3 +1035,9 @@ Sitemap: https://earp-street-park.netlify.app/sitemap.xml
 No `index.html`, token, or hex change, so `test/tokens.js` needs no assertion rewrite; the record space gains this entry, and `test/records.js` reads B1..B38. The ruling names no `UIUX.md`/`PRD.md` section, so neither is amended — these are crawler files, not product surfaces or rendering values.
 
 Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. The shipped `_headers` applies `/*` to every response, but its CSP is a browser-rendering control that crawlers ignore when fetching `robots.txt`/`sitemap.xml`, and B28's `X-Content-Type-Options: nosniff` acts only on script/style MIME types, not on `text/plain` or XML. Netlify serves `.txt` as `text/plain` and `.xml` as `application/xml` (Google accepts `application/xml` for sitemaps). The served MIME types are verified on promotion (B10: manual `git push origin main:deploy`); the agent runs no Netlify command. The issue's own framing — "harmless, but the lowest priority of the three sites", "Skipping Netlify deploy-preview URLs" — is recorded verbatim in the Source above.
+
+### B39. Netlify publishes only the site files from `site/` (issue #170, owner ruling)
+
+**Source:** issue #170 (owner ruling), transcribed verbatim: "Publish only the site files." — https://github.com/AlastairZeved/Earp-Street-Park/issues/170
+
+**The record.** The public site files (`index.html`, `fonts/`, `_headers`, `robots.txt`, and `sitemap.xml`) live under `site/`. The root `netlify.toml` sets `site` as the publish directory. Repository documentation, tests, agent instructions, and GitHub workflow files remain outside it. `test/tokens.js` reads `site/index.html`; `AGENTS.md`, `docs/PRD.md`, and `docs/UIUX.md` describe the published site location. The site remains promoted by the owner from `main` to `deploy` under B31.

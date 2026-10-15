@@ -1,6 +1,6 @@
 # UIUX.md — Earp Street Park
 
-**Status:** DRAFT v1, reconstructed from the shipped `index.html` (one
+**Status:** DRAFT v1, reconstructed from the shipped `site/index.html` (one
 self-contained file, no build step) and the owner's rulings of record. The
 governing law in §1 is the owner's, carried over verbatim. Everything else is
 a rendering inventory for the owner to amend — until the owner corrects it in
@@ -38,7 +38,7 @@ forbidden fixes and B8's rejected red lines).
 ## §2 Color
 
 Every hex in the shipped file — 18 distinct values. The palette's roles come
-from the tokens' own comments in `index.html` (`:root`, quoted in the right
+from the tokens' own comments in `site/index.html` (`:root`, quoted in the right
 column).
 
 ### §2.1 Light-mode tokens
@@ -102,7 +102,7 @@ IS the fence; no other background treatment exists.
 ### §3.1 Families — Montserrat Alternates everywhere, self-hosted (B26; supersedes B24's Fira Sans stack and this section's old "system stacks only" rule)
 
 One family renders the entire page: **Montserrat Alternates**, handrolled
-Latin-subset woff2 committed in `fonts/` (400 and 700 — the weights the
+Latin-subset woff2 committed in `site/fonts/` (400 and 700 — the weights the
 weight map uses), self-hosted `@font-face` with `font-display: swap`, no CDN,
 no API call, no dependency (issue #124; the handroll is transcribed from
 TheBoards, the owner's named reference). All three tokens lead with it:
@@ -404,12 +404,12 @@ Radii: `border-radius: 0` on form inputs, plus the B36 pop-up close
 control's `0 0 0 6px` corner — the file's only two radii; everything else is
 square. Spacing tokens: `--space-1: 0.35rem`,
 `--space-2: 0.75rem`, `--space-3: 1.25rem`; deviations are declared raw
-values with ruling comments in `index.html` (e.g. the flier's
+values with ruling comments in `site/index.html` (e.g. the flier's
 `var(--space-3) 0.85rem 0.6rem` paper margin from B5's spec).
 
 ## §9 The favicon (B14)
 
-One inline SVG data URI on `<link rel="icon">`, embedded in `index.html` —
+One inline SVG data URI on `<link rel="icon">`, embedded in `site/index.html` —
 the repo ships no icon files. The drawing is a picnic bench side profile on a
 rounded-square field (rx 6 of 32): the field is the `--paper` tone, the
 tabletop and bench-seat planks `--fence`, the legs `--rust` — the owner's
@@ -425,7 +425,7 @@ census.
 
 ---
 
-*The rendered reference is the shipped `index.html` itself — there is no
+*The rendered reference is the shipped `site/index.html` itself — there is no
 separate specimen. Where this document and the render disagree, the render is
 the earlier authority and the disagreement is a defect here.* (DRAFT: the
 owner's amendment stands above this rule.)

@@ -1,9 +1,10 @@
-# Run the record and design contracts before merge.
+# Run the record, design, and public-file boundary contracts before merge.
 #
 # docs/DECISIONS.md is the owner's law, transcribed; docs/UIUX.md is the
 # rendering authority. test/records.js guards the B<n> citation space and
 # the Source-line requirement; test/tokens.js recomputes UIUX §2/§3 from the
-# shipped index.html so the documents and the render cannot drift apart.
+# shipped site/index.html so the documents and the render cannot drift apart;
+# test/publish.js keeps private repository files outside Netlify's publish dir.
 # Until now nothing ran these automatically — this runs them on every PR and
 # on push to main, before a bad change can reach the deploy branch (B10).
 #
@@ -60,5 +61,8 @@ jobs:
       - name: records.js — the DECISIONS.md citation space
         run: node test/records.js
 
-      - name: tokens.js — UIUX §2/§3 recomputed from index.html
+      - name: tokens.js — UIUX §2/§3 recomputed from site/index.html
         run: node test/tokens.js
+
+      - name: publish.js — Netlify public-file boundary
+        run: node test/publish.js
