@@ -3,7 +3,7 @@
 //
 // UIUX.md is the rendering authority: every hex, token, and weight rule the
 // site draws with lives there and nowhere else. This suite recomputes UIUX
-// §2/§3's tables from the shipped index.html and fails when the two drift:
+// §2/§3's tables from the shipped site/index.html and fails when the two drift:
 // a new color, a changed token value, or a broken weight map (B9) stops the
 // PR before it merges.
 //
@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const HTML = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+const HTML = fs.readFileSync(path.join(ROOT, 'site', 'index.html'), 'utf8');
 const UIUX = fs.readFileSync(path.join(ROOT, 'docs', 'UIUX.md'), 'utf8');
 
 let failures = 0;

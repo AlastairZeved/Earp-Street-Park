@@ -2,7 +2,7 @@
 
 **Status:** DRAFT v1 of the specification, written after the fact — the site
 was built first, and this document reconstructs its product reality from the
-shipped `index.html` and the owner's rulings in `DECISIONS.md`. It describes
+shipped `site/index.html` and the owner's rulings in `DECISIONS.md`. It describes
 what the site **is**; it states no forward-looking design position. The owner
 amends this document in review; until then it is descriptive.
 
@@ -21,7 +21,7 @@ whole product, verbatim: "One neighbor is fixing up the Earp Street lot — no
 group, no committee — so the kids who already play here have somewhere worth
 being. Follow the work, see what's next, and share your stories of the lot."
 
-It is a **single self-contained `index.html`** (~950KB): no framework, no
+It is a **single self-contained `site/index.html`** (~950KB): no framework, no
 build step, no package manager, no backend of its own, zero JavaScript, zero
 external requests except one form endpoint. Keep it that way — do not
 introduce a bundler, a framework, a script, a server, or a `.py`/test-harness
@@ -112,8 +112,10 @@ submissions as spam.
 
 ## §6 Delivery and truth-in-artifact
 
-The repository root IS the site. The site deploys from the `deploy` branch on
-Netlify (B10): `main` is the working branch, and the owner promotes it to
+The published site lives in `site/`; `netlify.toml` sets that directory as
+Netlify's publish directory (B39). Repository documentation, tests, and agent
+instructions are outside the published site. The site deploys from the
+`deploy` branch on Netlify (B10): `main` is the working branch, and the owner promotes it to
 `deploy` manually, once deploy-ready, with the fast-forward
 `git push origin main:deploy`. The file is self-documenting by comment
 convention: CSS blocks cite their ruling numbers (#16, #22, #31, #64, #70,

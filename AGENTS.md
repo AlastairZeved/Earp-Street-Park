@@ -6,7 +6,8 @@ Code, Codex, Cursor, …). Humans should read the governing records instead.
 ## What this is
 
 Earp Street Park — the community-engagement website for one neighbor's work
-restoring an abandoned lot. A single self-contained `index.html` (~950KB): a
+restoring an abandoned lot. The published site is a single self-contained
+`site/index.html` (~950KB): a
 fixed spatial board styled as a wooden fence, everything on it a physical
 object (paper sheets, tape, photo prints, marker ink). **No frameworks, no
 build step, no package manager, no dependencies, no backend, no JavaScript.**
@@ -35,14 +36,14 @@ was made will be asked to add one.
 
 `UIUX.md` is the rendering authority: every hex, contrast-relevant pairing,
 size, radius, and duration lives there and nowhere else. The design system's
-rendered reference is the shipped `index.html` itself — measure the render,
+rendered reference is the shipped `site/index.html` itself — measure the render,
 don't re-derive the design from prose.
 
 ## Commands
 
-Serve and open:
+Serve and open the published site:
 ```
-python3 -m http.server 8000   # then visit http://localhost:8000
+python3 -m http.server 8000 --directory site   # then visit http://localhost:8000
 ```
 
 Run the regression suite (browserless; no test runner/framework — whole
@@ -50,12 +51,13 @@ files only, each is one linear scenario):
 ```
 node test/tokens.js           # design contract: UIUX §2 recomputed from shipped hexes
 node test/records.js          # record contract: DECISIONS.md B<n> space + Source lines
+node test/publish.js          # public-file boundary: Netlify publishes site/ only
 ```
 
 There is no lint/build/typecheck command — the project has none. The
 repository keeps no `package.json`; the suites use Node stdlib only.
 
-## Architecture: facts that explain most of `index.html`
+## Architecture: facts that explain most of `site/index.html`
 
 1. **One logical page, one viewport (desktop).** `body { overflow: hidden }`
    at >760px; the six pinned elements sit absolutely by percentage in
@@ -90,9 +92,10 @@ repository keeps no `package.json`; the suites use Node stdlib only.
    content). Do not wire dormant blocks up to "use" them, and do not cite
    their presence as a feature.
 
-## Shipping discipline (every `index.html` change)
+## Shipping discipline (every `site/index.html` change)
 
-The site deploys from the `deploy` branch on Netlify (B10, issue #89) — a
+The site publishes only `site/` on Netlify (`netlify.toml`, B39, issue #170)
+from the `deploy` branch (B10, issue #89) — a
 merge to `main` is no longer a publish. `main` remains the working branch;
 `.github/workflows/ci.yml` runs both suites on every PR. When `main` is
 deploy-ready, the owner promotes it manually — a fast-forward push:
@@ -101,7 +104,9 @@ deploy-ready, the owner promotes it manually — a fast-forward push:
 git push origin main:deploy
 ```
 
-Netlify listens for `deploy` branch updates and publishes them. Docs-only
+Netlify listens for `deploy` branch updates and publishes `site/` only;
+repository docs, tests, and agent instructions stay outside the publish
+directory. Docs-only
 changes skip nothing here — promotion is manual either way. If your change
 moves a value `test/tokens.js` pins, you rewrite that assertion deliberately
 — say so in the commit message.
@@ -110,7 +115,7 @@ moves a value `test/tokens.js` pins, you rewrite that assertion deliberately
 
 - Subject: short, imperative, the outcome, with driving issue refs —
   `fix: remove red line borders from lot photo mat (issue #84)`.
-- Both suites pass. A change that pins what a suite asserts rewrites that
+- All three suites pass. A change that pins what a suite asserts rewrites that
   assertion deliberately.
 - A behavior change ships with its ruling: a new `B<n>` entry in
   `DECISIONS.md` (append-only — supersede, never edit away), plus the
