@@ -6,8 +6,8 @@ Code, Codex, Cursor, …). Humans should read the governing records instead.
 ## What this is
 
 Earp Street Park — the community-engagement website for one neighbor's work
-restoring an abandoned lot. The published site is a single self-contained
-`site/index.html` (~950KB): a
+restoring an abandoned lot. The published site has one `site/index.html`
+(1,188,407 bytes) and two self-hosted font files under `site/fonts/` (B26): a
 fixed spatial board styled as a wooden fence, everything on it a physical
 object (paper sheets, tape, photo prints, marker ink). **No frameworks, no
 build step, no package manager, no dependencies, no backend, no JavaScript.**
@@ -60,26 +60,27 @@ repository keeps no `package.json`; the suites use Node stdlib only.
 ## Architecture: facts that explain most of `site/index.html`
 
 1. **One logical page, one viewport (desktop).** `body { overflow: hidden }`
-   at >760px; the six pinned elements sit absolutely by percentage in
-   `.field`. The only scrolling surfaces on desktop are `#panel-week` and
-   `#panel-plan` (`overflow-y: auto; overflow-x: hidden; tabindex="0"`).
+   at >760px; four elements are pinned by percentage as direct children of
+   `.field`: `.note--stories`, `.note--week`, `.window`, and `.middle-row`.
+   `.note--plan` is pinned inside `.middle-row`. The only scrolling surfaces
+   on desktop are `#panel-week` and `#panel-plan` (`overflow-y: auto;
+   overflow-x: hidden; tabindex="0"`).
    On phone (≤760px, the single breakpoint) the page scrolls and sheets
    print full-length.
 2. **Sheet clearances are computed, never eyeballed.**
-   `--stories-block: 18rem` accounts for the form's height against the lot
-   window; the plan sheet's `clamp(194px, 360px - 12vw, 268px)` reserves
-   headroom for the flier's measured re-wrap (the file notes those bounds
-   are agent-derived, not an owner ruling — re-measure before changing
-   them).
+   `--stories-row: clamp(240px, 462px - 12vw, 365px)` (B25) sizes the middle
+   row against the lot window. Its bounds are agent-derived, not an owner
+   ruling — re-measure before changing them.
 3. **The sheet species is one recipe.** A paper sheet = `.note` background +
    sheet shadow + two tape strips (values duplicated verbatim on
    `.head-lines` per B5 — "no invented texture") + a small tilt. A new
    element joins an existing species with its exact values; it does not get
    its own treatment. B8 is the standing example: an invented border on the
    photo mat was ruled out — "let the white space live."
-4. **Weight map is law (B9).** Body text is 400; bold only on entry dates,
-   the Send button, and headings. If new body text renders bold, the change
-   is wrong.
+4. **Weight map is law (B9, amended by B12).** Body text is 400, including
+   entry dates. Bold remains on the Send button and headings, plus the title-
+   flier and pop-up h1s and `.popup-close`. If new body text renders bold, the
+   change is wrong.
 5. **Zero JavaScript.** Every behavior is CSS/HTML. A change that needs JS
    needs an owner ruling first.
 6. **The form is load-bearing and fragile in one specific way (B1's
@@ -87,16 +88,21 @@ repository keeps no `package.json`; the suites use Node stdlib only.
    Formspree marks those submissions as spam, i.e. every real neighbour's
    note.
 7. **Dormant CSS exists by design-remnant, not invitation.** `.need`,
-   `.materials`, `.entry--archive`, `.archive-head`, `.plan-sub`, `.fine`
-   are declared with no markup using them (B7 deleted the materials list's
-   content). Do not wire dormant blocks up to "use" them, and do not cite
-   their presence as a feature.
+   `.materials`, `.entry--archive`, `.archive-head`, `.plan-sub` are declared
+   with no markup using them (B7 deleted the materials list's content).
+   `.fine` is live in the B35 banner (`<span class="fine">` in
+   `site/index.html`). Do not wire dormant blocks up to "use" them, and do
+   not cite their presence as a feature. The full dormant-CSS inventory is
+   tracked in Cleanup 8/11 (issue #167).
 
 ## Shipping discipline (every `site/index.html` change)
 
 The site publishes only `site/` on Netlify (`netlify.toml`, B39, issue #170)
 from the `deploy` branch (B10, issue #89) — a
 merge to `main` is no longer a publish. `main` remains the working branch;
+B31's title states: “Deploy is main — always; promotion is the `main:deploy`
+push and nothing else; no merge commits ever land on deploy and deploy never
+diverges from main.”
 `.github/workflows/ci.yml` runs both suites on every PR. When `main` is
 deploy-ready, the owner promotes it manually — a fast-forward push:
 
