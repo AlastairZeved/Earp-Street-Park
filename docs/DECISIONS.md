@@ -19,7 +19,7 @@ verbatim from its issue of record, never authored or paraphrased by an agent.
 > supersede rulings except to transcribe an owner statement.
 >
 > **Append only.** An entry is superseded by a later ruling, never edited
-> away. New rulings continue here as `B10`+, in ascending order. `test/records.js`
+> New rulings continue here as `B40`+, in ascending order.
 > guards this file's citation space in CI: unique ascending `### B<n>`
 > headings, and a `Source:` line on every entry.
 >
@@ -32,11 +32,12 @@ verbatim from its issue of record, never authored or paraphrased by an agent.
 
 ## B. Seeded rulings of record
 
-The entries below are the owner rulings from this repository's issue history
-that carry an explicit marker of owner authority — the `AI Slop` label (the
+The entries below are the owner rulings from this repository's issue history.
+Some carry an explicit marker of owner authority — the `AI Slop` label (the
 owner's own tag for corrections to agent work) or an explicit owner-ruling
-title — transcribed verbatim. Earlier design corrections without that marker
-are not recorded here; they remain visible in the issue tracker.
+title — transcribed verbatim. Rulings recorded after B10 come from owner chat
+and carry neither marker; they are recorded by owner direction. Earlier design
+corrections without that marker are not recorded here; they remain visible in the issue tracker.
 
 ### B1. Four security findings are accepted risks, not defects — no branch lock, no security headers, the dev script stays deletable history, authorship stays unsigned; PR previews are KEPT and an owned domain is NOT NOW (issue #45, the owner's rulings of record; supersedes the standing "disclosed defects are repaired to zero" standard for exactly these four items; waives nothing else)
 
@@ -127,6 +128,8 @@ The issue's own words on what carries authority: "Both sentences are the law; ev
 
 **The record.** Opened as PR pending owner review. The center column widens 49% -> 52.5% (bounded by the week sheet's right edge at 21.7% and the plan sheet's column at 78.2%; the side sheets narrow to 20.5% / 20.6% to yield it, the flier shares the plan column and its headroom clamp is re-derived for the 20.6% wrap). The form's chrome compacts one space-step (form padding/margins --space-3 -> --space-2, .field-row--send gap --space-2); inputs, the B6 4rem textarea floor, the #74 Send row, and the sheet species are untouched. --stories-block re-measured to 19.25rem (the sheet prints 308px flat across desktop widths). Measured outcome at the issue's 1247x956 viewport: photo pane 55.3% of the middle pane's vertical space, stories sheet 40.6% — the 70-80/20-30 target is NOT fully met, because the form's no-scroll, first-paint floor (B6/#56) plus its family title/padding put its minimum at ~300px, which cannot shrink below ~40% of the pane at common desktop heights; the numbers are recorded here so the owner can rule on which law gives (textarea floor, title, or pinned arrangement) if the split must go lower.
 
+**Correction addendum (chat, 2026-10-15):** The record says "Opened as PR pending owner review" without a number. Merged via PR #98.
+
 ### B14. Favicons: a picnic bench drawn in the site's browns, implemented in the codebase (issue #99)
 
 **Source:** issue #99 (owner), transcribed verbatim: "Make favicons of a picnic bench, using the same browns from the site as the color scheme, and implement them in the codebase." — https://github.com/AlastairZeved/Earp-Street-Park/issues/99
@@ -140,7 +143,9 @@ and seat plank in `--fence` with the seat overhanging the legs, the legs in
 query applying the §2.2 remaps (`--paper #3a3329`, `--rust #dd8a4a`), with
 the planks taking the dark `--ink-faded` tan `#b5ac9b` — the dark `--fence`
 value measured too close to the dark paper to survive 16px. The SVG ships
-only hexes the tokens already declare.
+The SVG ships only hexes the tokens already declare.
+
+**Correction addendum (chat, 2026-10-15):** The record says "Shipped as PR pending owner review" without a number. Merged via PR #100.
 
 ### B15. The panes re-derive: the left and right panes are equally sized, the middle pane is the larger pane and centered between them (issue #102, the owner's ruling of record)
 
@@ -214,6 +219,8 @@ the centered 56% middle column stand. `docs/UIUX.md` §5/§5.1 and
 `docs/PRD.md` §3/§4 are amended by this ruling in the same PR; no token or
 hex changes, so `test/tokens.js` needs no assertion rewrite.
 
+**Correction addendum (chat, 2026-10-15):** The record says "Shipped as PR pending owner review" without a number. Merged via PR #117.
+
 **Measured outcome.** Desktop viewports sampled with the shipped pins:
 `#panel-plan`'s scroll region stays live in the narrower column — scrollHeight
 2728px against a 300px client at 761vw, 1024/330 at 1247vw, 784/278 at
@@ -280,6 +287,8 @@ Make sure the previous line still ends with the period." — https://github.com/
 
 **The record.** The stories sheet's `.note-title` markup becomes "Give us a shout!" — the CSS uppercase render produces "GIVE US A SHOUT!". `docs/PRD.md` §3 item 6 is amended in the same PR.
 
+**Correction addendum (chat, 2026-10-15):** PRD §3 has no numbered items; the stories sheet is PRD §4 item 7, not §3 item 6.
+
 ### B21. The standalone "Lots of weeding!" line is removed from the What We've Done sheet (issue #112, owner ruling)
 
 **Source:** issue #112 (owner ruling), transcribed verbatim: "Remove this entire line from the "WHAT WE'VE DONE" section:
@@ -302,6 +311,8 @@ Trees in the existing planters Until I can get the Redevelopment Authority’s �
 - Repair the cracked pavement across the lot (working on getting some grant money to pay for it)"" — https://github.com/AlastairZeved/Earp-Street-Park/issues/113
 
 **The record.** The `.punch` list prints the five lines above, verbatim, with no title spans, no generated colon, and no `STUB:nextup-*` fill points (the ruling replaces the section's copy entirely, so the fill points go with the copy they were waiting to fill). The checkbox squares (`.punch li::before`, 1.05rem bordered box) are retired and the list joins the site's existing disc-bullet species (`.need .materials`: `list-style: disc`, 1.1rem indent) per the owner's confirmed choice — no invented marker. B7's record stands as history ("only the checkbox style list should be remaining"); B22 supersedes its rendered form: the sheet is the list alone, now in bullet style. The dark-mode checkbox-fill rule is amended to cover form inputs only. `docs/UIUX.md` §2.3/§3 and `docs/PRD.md` §3 are amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** The plan list lives in PRD §4 item 5, not §3.
 
 ### B23. A new flier, "WHAT WE NEED", joins the right pane above the Come Say Hi! flier — a checkbox list; the checkbox squares return for this flier's list only; the third item's parenthesis closes (issue #110, the owner's ruling of record, with three in-chat rulings; amends B17's "right pane keeps only the Come Say Hi flier" render)
 
@@ -357,6 +368,8 @@ reading order), re-pinned at `.field` specificity so the desktop top pin
 cannot leak (the B18 pattern). No token or hex change: `#fffdf6` and
 `#2b2720` are already shipped and documented (UIUX §2.3). `docs/UIUX.md`
 §2.3/§3/§4.3/§5 and `docs/PRD.md` §3/§4 are amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** The record quotes B5 as saying "leave exactly where they are". That phrase is not in B5's Source line. The owner cannot confirm its origin; it may come from issue #70's body.
 
 **Measured outcome.** Agent-derived measurements at 956px viewport height
 (the issue family's reference height): the needs flier's top line matches
@@ -442,6 +455,8 @@ regions by ruling, so no fix exists inside the current law.
 `docs/UIUX.md` §4.3/§5 and `docs/PRD.md` §3/§4 are amended in the same PR; no
 hex or token changes, so `test/tokens.js` needs no assertion rewrite.
 
+**Correction addendum (chat, 2026-10-15):** The record says "Opened as PR pending owner review" without a number. Merged via PR #123.
+
 ### B26. Montserrat Alternates everywhere — the entire page renders in the handrolled self-hosted Montserrat Alternates; the serif and mono species' families are replaced with it; no other font is used anywhere; the bold roles keep literal 700 via a handrolled 700 face (issue #124, owner ruling; supersedes B24's Fira Sans stack and amends UIUX §3.1's "no font files" rule)
 
 **Source:** issue #124 (owner, ruling of record), transcribed verbatim: "The
@@ -467,7 +482,9 @@ TheBoards handroll the owner named. All three family tokens lead with
 species' Georgia stack is replaced; sizes, uppercase, letter-spacing, the 2px
 ink underline are unchanged), and `--font-stub` (`.entry-date` keeps weight
 400 per B12, `--rust` and letter-spacing 0.04em unchanged). B24's Fira Sans
-stack is superseded. `docs/UIUX.md` §3 is amended in the same PR.
+B24's Fira Sans stack is superseded. `docs/UIUX.md` §3 is amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** The record cites `(TheBoards styles.css §13.1, B50 there)`. B50 is a ruling in TheBoards repo's own ledger, not this one. A bare `B<n>` always means this file's ruling. Reworded to `TheBoards' B50` so the citation is unambiguous.
 
 ### B27. The CSP gains `font-src 'self'` — the B26 handrolled woff2 faces load wherever `_headers` ships; without the directive `default-src 'none'` refuses them and production silently renders system fallbacks (issue #128, owner ruling; amends B16's pinned policy)
 
@@ -744,8 +761,9 @@ Desktop scroll stays zero at every sampled viewport; the phone run is
 untouched (the pane dissolves to `display: contents`, which ignores
 positioning, and the phone `.stage` rule re-pins its own top/origin). No
 hex, token, or font changes, so `test/tokens.js` needs no assertion
-rewrite. `docs/UIUX.md` §4.3 and its §5 element rows are amended in the
-same PR.
+rewrite. `docs/UIUX.md` §4.3 and its §5 element rows are amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** B30 contains near-duplicate paragraphs: compare lines 674–681 with 707–715 and 697–698 with 718–720. Annotate only; no text is deleted from the record.
 
 **Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/138; chat, 2026-10-08
 
@@ -1057,6 +1075,8 @@ No `index.html`, token, or hex change, so `test/tokens.js` needs no assertion re
 Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. The shipped `_headers` applies `/*` to every response, but its CSP is a browser-rendering control that crawlers ignore when fetching `robots.txt`/`sitemap.xml`, and B28's `X-Content-Type-Options: nosniff` acts only on script/style MIME types, not on `text/plain` or XML. Netlify serves `.txt` as `text/plain` and `.xml` as `application/xml` (Google accepts `application/xml` for sitemaps). The served MIME types are verified on promotion (B10: manual `git push origin main:deploy`); the agent runs no Netlify command. The issue's own framing — "harmless, but the lowest priority of the three sites", "Skipping Netlify deploy-preview URLs" — is recorded verbatim in the Source above.
 
 **Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/158
+
+**Correction addendum (chat, 2026-10-15):** The record says "(B2: the repo gains no file type beyond what a ruling adds …)". That is AGENTS.md's draft paraphrase, not B2's text. B2 says only "the repo gets no .py file".
 
 ### B39. Netlify publishes only the site files from `site/` (issue #170, owner ruling)
 
