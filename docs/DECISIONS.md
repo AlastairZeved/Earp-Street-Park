@@ -1089,3 +1089,10 @@ Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. 
 **Source:** issue #164, owner ruling in a comment, transcribed verbatim: “Tighten the test and add links—or a dated-chat attribution convention—as append-only addenda to the 11 entries.” “Use `chat, YYYY-MM-DD` for chat-sourced entries that have no linkable source; keep any existing issue/PR links.” “Allow dated chat citations as a narrow exception; update `AGENTS.md` and the test to accept a dated chat source or a link.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/164
 
 **The record.** `AGENTS.md` permits `chat, YYYY-MM-DD` for chat-sourced rulings with no linkable source and keeps existing issue/PR links. `test/records.js` requires a link or dated-chat attribution in the first Source paragraph or an append-only Source addendum. Append-only Source addenda are recorded on B17, B19, B21, B23, B28, B29, B30, B32, B33, B36, and B38.
+
+
+### B41. Retire the three stale STUB fill-point markers, keeping only STUB:stories-submit (issue #166)
+
+**Source:** issue #166 (owner instruction in chat, 2026-10-15), transcribed verbatim: "Retire them — delete the three outdated STUB notes (hero, week-entry date, week-entry body), keep only the accurate one about the "Send" button." — https://github.com/AlastairZeved/Earp-Street-Park/issues/166
+
+**The record.** Deleted `<!-- STUB:hero-line — … -->` above the `.hero-line` paragraph and `<!-- STUB:week-entry-1-date — … -->` / `<!-- STUB:week-entry-1-body — … -->` flanking the 9/2/2026 week entry in `site/index.html`. Kept `<!-- STUB:stories-submit — the button label -->` beside the `Send` button (still accurate per B4). No other comment, copy, or markup touched. `grep -c 'STUB:' site/index.html` returns 1. No token, hex, or UIUX change, so `test/tokens.js` needs no assertion rewrite; the record space gains this entry — `test/records.js` reads B1..B41.
