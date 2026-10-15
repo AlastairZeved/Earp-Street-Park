@@ -18,23 +18,21 @@
      print via that exact ratio — a stale ratio reintroduces letterboxing).
 -->
 <meta name="description" content="One neighbor is fixing up the Earp Street lot — no group, no committee — so the kids who already play here have somewhere worth being. Follow the work, see what's next, and share your stories of the lot.">
-<!-- BOARD BUILD t_c6a093b1 — re-architecture of the linear notice sheet into one
-     spatial board: one viewport, no document scroll in any direction, desktop or
-     phone. The board IS the wooden fence. Position encodes meaning:
+<!-- The site is a spatial board: one desktop viewport; on phone, the document
+     scrolls (AGENTS.md fact 1). The stories form posts to Formspree; the two
+     self-hosted font files load from this site. There is no JavaScript and no
+     third-party asset request. Position encodes meaning:
      left = what happened (What We've Done), center = the lot as it stands (one
      pinned photo, #64) above your turn and the ask (What We'd Like To Do beside
      WHAT WE NEED, #122/B25 — the middle pane's bottom row), right = the
-     GIVE US A SHOUT! sheet alone in the fliers' pane (#122, B25; the Palooza
-     board is gone — #151/B36). #132/#142 history: the Palooza flier board
-     joined, then replaced, the right pane's run; #151 (B36) removes the
-     entire board — all of its little fliers and emojis — and moves the one
-     title flier up into the header pane, anchored top right above the
+     GIVE US A SHOUT! sheet alone in the right pane (#122, B25). The Palooza
+     board is gone: B35 removes its small fliers and emojis and moves the
+     title flier into the header pane, anchored top right above the
      .head-rule border line, scaled to the header's height. The stories
      sheet keeps the pane (B25's pins restored). Every sheet prints its
      content at rest; the week and plan sheets are the board's only scroll
      regions (vertical only).
-     Inline vanilla JS only, zero external requests, no framework, no build
-     step. -->
+     No JavaScript, no framework, no build step. -->
 <title>Earp Street Park</title>
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHN0eWxlPi5we2ZpbGw6I2Y0ZWZlM30uYntmaWxsOiM2YjYwNTV9LmF7ZmlsbDojYTM0YTFhfUBtZWRpYSAocHJlZmVycy1jb2xvci1zY2hlbWU6ZGFyayl7LnB7ZmlsbDojM2EzMzI5fS5ie2ZpbGw6I2I1YWM5Yn0uYXtmaWxsOiNkZDhhNGF9fTwvc3R5bGU+PHJlY3QgY2xhc3M9InAiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgcng9IjYiLz48cmVjdCBjbGFzcz0iYiIgeD0iMy41IiB5PSI5IiB3aWR0aD0iMjUiIGhlaWdodD0iMy40IiByeD0iMC44Ii8+PHBhdGggY2xhc3M9ImEiIGQ9Ik02LjggMTIuNCBMNC42IDI0LjUgTDcgMjQuNSBMOS4yIDEyLjQgWiBNMjUuMiAxMi40IEwyNy40IDI0LjUgTDI1IDI0LjUgTDIyLjggMTIuNCBaIi8+PHJlY3QgY2xhc3M9ImIiIHg9IjMiIHk9IjE4LjUiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyLjYiIHJ4PSIwLjgiLz48L3N2Zz4=">
 <style>
@@ -77,13 +75,8 @@
   * { box-sizing: border-box; }
 
   html, body { height: 100%; }
-  /* #132: the viewport lock, restated at the root — body's overflow:hidden
-     alone does not stop the viewport from scrolling when the right pane's
-     flier run over-subscribes below the B25 fit envelope (Come Say Hi! now
-     sits between the stage and GIVE US A SHOUT! in flow, so a short window
-     overflows the run past the field). The board never scrolls, desktop:
-     overflow hidden at the root, where the browser cannot scroll past it.
-     Phone re-opens it in the media block below (the phone fence scrolls). */
+  /* Desktop is locked to one viewport; phone re-opens document scrolling
+     in the media block below (AGENTS.md fact 1). */
   html { overflow: hidden; }
   body {
     margin: 0;
@@ -112,9 +105,8 @@
   .board-head {
     display: grid;
     grid-template-columns: 1fr;
-    /* #59 cut the pane to title / hero / rule rows. #63: the Come Say Hi
-       flier block left the header for the field's bottom-right (amends
-       #46 and #59's desktop pins) — the pane is one column now. */
+    /* The header contains the title, hero and rule; the B35 title flier
+       occupies the header's right side. */
     grid-template-areas:
       "h1"
       "hero"
@@ -160,11 +152,9 @@
      level with the week sheet and the lot window. grid-area is its phone home
      (field grid). Per the #70 ruling the block IS the sheet: paper surface,
      note shadow, note tilt, passage ink — the same material cues as every
-     other flier. #122 (B25): the pane's top flier again — Come Say Hi! takes
-     the top pin; GIVE US A SHOUT! prints below it as the pane's bottom sheet,
-     and WHAT WE NEED has swapped into the middle pane's lower right.
-     #151 (B36): the Palooza board is removed entirely — the pane's fliers
-     are gone and GIVE US A SHOUT! returns to its own B25 pins. */
+     #122 (B25): .head-lines is now only the WHAT WE NEED flier, in the
+     middle pane's lower-right half. GIVE US A SHOUT! occupies the right
+     pane. #151 (B35) places the title flier in the header. */
   .head-lines {
     grid-area: lines; text-align: left; align-self: start;
     position: absolute; right: 1.2%; top: 2%;
@@ -195,9 +185,8 @@
      text in the header should be scaling to fit within its block. Its block
      stops at the border of the rightmost pane."). The flier column occupies
      the field's right 1.2% + 20.5% (B25), so the header text wraps within
-     the field's left 78.3% and can never run under the Palooza board. The
-     .head-rule is not touched — it stays the page-wide divider the board
-     straddles. */
+     the field's left 78.3% and clears the title flier. The .head-rule remains
+     the page-wide divider. */
   .board-head h1 { margin-right: 21.7%; }
   .hero-line {
     grid-area: hero;
@@ -259,7 +248,8 @@
 
   /* The lot window — one pinned photo, center of the board (#64). #61: it
      keeps its top pin (in line with What We've Done), and yields its height
-     to the Give Me A Shout! sheet below. #101: the mat hugs the print — the
+     to the plan sheet and WHAT WE NEED flier in the row below (B18, B25).
+     #101: the mat hugs the print — the
      print scales with the window instead of letterboxing inside a full-width
      mat, so no white mat margin is introduced at any window shape. #102:
      the panes re-derive — side panes equal (20.5% each), the middle pane
@@ -290,9 +280,9 @@
   .note--week    { left: 1.2%;  top: 2%;  width: 20.5%; height: 96%; transform: rotate(-0.5deg); }  /* #92: 20.5% — yields width to the center column's #92 widening */
   /* #109 as amended in chat 2026-10-06 (B18): the middle pane stacks — the
      lot photo on top at the pane's full width, and beneath it one row:
-     What We'd Like To Do on the LEFT, Give Me A Shout! on the RIGHT, equal
+     What We'd Like To Do on the LEFT, WHAT WE NEED on the RIGHT, equal
      halves of the pane with 1% fence air between them. The wrapper pins the
-     row to the field's 98% line; the stories sheet's natural height sets the
+     row to the field's 98% line; WHAT WE NEED's natural height sets the
      row's height (no scroll — #56), and the plan sheet stretches to meet it,
      its own #panel-plan column keeping the sheet's vertical scrollbar. */
   .middle-row {
@@ -300,19 +290,19 @@
     left: 22%; bottom: 2%;
     width: 56%;
   }
-  /* The plan sheet fills the row exactly (top 0 to bottom 0 of the stories
+  /* The plan sheet fills the row exactly (top 0 to bottom 0 of WHAT WE NEED's
      sheet's height) — equal width and height with the stories sheet, and its
      own #panel-plan column keeps the sheet's vertical scrollbar. Its bullet
-     list (B22) never inflates the row: the stories sheet is the height
-     anchor, per #56 (content-driven, no scroll). */
+     list (B22) never inflates the row: WHAT WE NEED sets the height (B25;
+     content-driven, no scroll). */
   .middle-row .note--plan {
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 49.5%;
     transform: rotate(0.5deg);   /* the species tilt, unchanged */
   }
-  /* The stories sheet swaps into the right pane (#122, B25) — the fliers'
-     20.5% column, below the Come Say Hi! flier: right 1.2% + width 20.5% =
+  /* The stories sheet occupies the right pane (#122, B25) — the fliers'
+     20.5% column: right 1.2% + width 20.5% =
      98.8%, the pane's shared right edge; bottom on the field's 98% line, the
      pin WHAT WE NEED held under B23. Its species is untouched — the .note
      paper sheet (§4.1), −0.3° tilt, #56: never a scroll region, the form
@@ -337,8 +327,8 @@
   .note::before { left: 9%;  transform: rotate(-4deg); }
   .note::after  { right: 9%; transform: rotate(3deg); }
 
-  /* #70: the Come Say Hi flier carries the same two tape strips as every other
-     sheet — .note's own values, verbatim (no invented texture). */
+  /* #70: .head-lines (the WHAT WE NEED flier) carries the same two tape
+     strips as every other sheet — .note's values, verbatim. */
   .head-lines::before,
   .head-lines::after {
     content: "";
@@ -377,10 +367,8 @@
     background: #fffdf6;
   }
 
-  /* Phone-composition elements (impl-13). No-ops on desktop: the lead-sheet
-     wrapper dissolves (display: contents) so .say-hi/.hero-line keep their
-     board-head grid areas unchanged; the snapshot print and footer smallprint
-     exist only on the phone fence. */
+  /* Phone-composition elements. On desktop the lead-sheet wrapper dissolves
+     (display: contents); the snapshot print exists only on the phone fence. */
   .note--lead { display: contents; }
   .snapshot { display: none; }
 
@@ -410,11 +398,9 @@
   #panel-plan {
     flex: 1 1 auto;
     min-height: 0;
-    overflow-y: auto;               /* the only scrolling on the page is inside these sheets */
+    overflow-y: auto;               /* desktop sheet scrolling; the textarea also scrolls */
     overflow-x: hidden;             /* only vertical scrolling allowed */
-    /* gate-2 fix (QA verdict 2026-09-29): restore the dissolved .note-panel's
-       padding — main carried padding: var(--space-3) on the panel (base and
-       phone alike); the replaced rule's --space-2 top padding was invented. */
+    /* Keep the sheet's inner padding at the existing space-3 value. */
     padding: var(--space-3);
   }
   /* #57: the scroll regions take keyboard focus (tabindex=0 in the markup) so
@@ -481,13 +467,9 @@
     color: var(--rust);
   }
 
-  /* ---------- Give me a shout!: the reply form ---------- */
-  /* #92: the sheet's internal chrome is compacted to its measured minimum —
-     padding and row gaps drop one space-step each — so the form takes the
-     bottom 20-30% of the field and the freed height goes to the lot photo
-     above (the B6 mechanic). Inputs, the 4rem textarea floor (B6), the Send
-     row (B4/#74's beside-row — superseded by #155), and the sheet species are
-     untouched. */
+  /* ---------- Give us a shout!: the reply form ---------- */
+  /* The stories sheet is pinned to the bottom 2%; its height follows its
+     content. The Send row now prints below the textarea (#155, B37). */
   form {
     background: var(--paper-shade);
     border: 1px solid var(--rule);
@@ -585,7 +567,7 @@
     pointer-events: none;
   }
 
-  /* ---------- #151 (B36): the Park Party Palooza title flier — the owner's
+  /* ---------- #151 (B35): the Park Party Palooza title flier — the owner's
      attached banner cut (issue #151's party-for-the-park-flier-banner.html),
      transcribed: the ONE title flier only; the board, all of its little
      fliers and all of its emojis are removed with it. The flier sits in the
@@ -913,10 +895,10 @@
     pointer-events: none;
   }
 
-  /* ---------- Phone: the full fence, top to bottom (impl-13) ---------- */
+  /* ---------- Phone: the full fence, top to bottom ---------- */
   @media (max-width: 760px) {
-    /* Owner amendment to the board law: with the lead sheet, the Week pile and
-       Plan & Stories printed full-length, the phone fence runs longer than one
+    /* With needs, snap, week, plan and stories printed in this order, the phone
+       fence runs longer than one
        viewport — the page scrolls on phone. Desktop stays one-viewport. */
     body { overflow: visible; overflow-x: clip; }
     html { overflow: visible; }  /* #132: the root lock is desktop-only — the phone fence scrolls */
@@ -934,7 +916,7 @@
       grid-template-areas:
         "h1 rule"
         "lead lead"
-        "banner banner";  /* #151 (B36): the title flier stacks under the header paragraph */
+        "banner banner";  /* #151 (B35): the title flier stacks under the header paragraph */
       align-items: baseline;
       gap: 0 12px;
     }
@@ -975,8 +957,7 @@
       text-shadow: none;
     }
 
-    /* #46 phone: the Come Say Hi flier prints at the top of the flow — same
-       chip/smallprint sizes the footer carried, new scope, nothing invented */
+    /* The WHAT WE NEED title uses the same phone flier treatment. */
     /* #76 phone: the flier title takes the .note-title treatment at the
        phone sizes too — the family's phone block, verbatim */
     .head-lines .say-hi.flier {
@@ -995,7 +976,7 @@
     .head-lines .smallprint { font-size: 0.72rem; line-height: 1.45; margin: 0; }
     .head-lines { text-align: left; position: relative; top: auto; right: auto; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.5% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin); #122 (B25): top/right auto re-pin the desktop pin family in the later cascade (the phone block's re-pin pattern) — the flier run is in flow at its true position */
     .field .head-lines--needs { grid-area: needs; top: auto; margin-left: 0; width: auto; position: relative; }  /* #110 (B23): its own phone row — the two fliers cannot share the #46 "lines" area; #122 (B25): margin-left/width re-pinned in the later cascade (the phone block's re-pin pattern) so the desktop .middle-row slot's 50.5%/49.5% cannot leak onto the phone grid; top: auto re-pins the desktop pin family (the base phone rule clears the rest) */
-    /* #151 (B36): the banner joins the header grid as its own row — the
+    /* #151 (B35): the banner joins the header grid as its own row — the
        flier stacks underneath the header and the header paragraph (the
        owner's chat ruling), at the flier's own 700/294 aspect,
        width-scaled (inline-size container: cqw only, no cqh on a flow row). */
@@ -1013,12 +994,12 @@
       transform-origin: 0 0;
       transform: scale(tan(atan2(100cqw, 700px))) rotate(-1deg);
     }
-    /* 3–5. the field as a stacked flier run: band, plan sheet, stories sheet */
+    /* 3–5. the field's phone run: needs, snap, week, plan, stories */
     .field {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-areas:
-        "needs needs"  /* #110 (B23): the WHAT WE NEED flier joins the top of the flier run, above the Come Say Hi! flier — the desktop stacking order */
+        "needs needs"  /* #110 (B23): WHAT WE NEED is first in the phone run. */
         "snap snap"
         "week week"
         "plan plan"
@@ -1048,7 +1029,7 @@
     .head-lines::before { left: 8%; }
     .head-lines::after  { right: 8%; }
 
-    /* the snapshot print: white border, tape, mono caption — no fake before/after */
+    /* the snapshot print: white mat and tape; no caption or mono font (B26) */
     .snapshot {
       background: #fffdf6;
       padding: 6px 6px 14px;  /* #41: the print's chin — even white margin below the photo, matching the 6px sides */
@@ -1097,11 +1078,9 @@
     }
     .note--plan .need li { border-left: none; padding-left: 0; }
 
-    /* Tinkerbell ruling (t_599fbaee comments 295/297): on phone the week and
-       plan sheets print full-length IN FLOW — the page scrolls, not the
-       sheets. Mirrors main's old .note-panel phone override
-       (position:static / overflow:visible). Desktop keeps its two internal
-       scroll regions (week, plan — #56 retired the stories form's). */
+    /* On phone the week and plan sheets print full-length in flow; the page
+       scrolls, not the sheets. Desktop keeps the week and plan scroll regions;
+       the textarea scrolls independently. */
     #panel-week,
     #panel-plan { overflow: visible; }
 
@@ -1123,9 +1102,8 @@
   /* ---------- Dark: the same board at night — same materials, dimmer light ---------- */
   /* Remaps the existing :root tokens (same hues, lower luminance) so the fliers
      still read as paper, the fence still reads as weathered boards, and the rust
-     marker keeps its identity. Also re-tones the few hard-coded surfaces
-     (#fffdf6 photo mats / form inputs / comparison frame and
-     the ruled-line gradient) so dark mode isn't glare-white in the corners. */
+     marker keeps its identity. Also re-tones the form inputs, textarea and
+     checkbox squares. */
   @media (prefers-color-scheme: dark) {
     :root {
       --paper:       #3a3329;  /* dim paper — the fliers are still paper */
@@ -1211,7 +1189,7 @@
     </article>
 
     <!-- ============ HEADER PANE, TOP RIGHT: the Park Party Palooza title
-         flier — the owner's attached banner cut (issue #151, B36), the one
+         flier — the owner's attached banner cut (issue #151, B35), the one
          flier only; the board's small fliers and emojis are all removed. It
          anchors top right at the B25 column's right edge, above the
          .head-rule border line, scaled to the header's height. On phone it
@@ -1233,7 +1211,7 @@
 
   <section class="field" id="field" aria-label="The board: what happened, what's planned, your turn">
 
-      <!-- ============ RIGHT PANE, BOTTOM: GIVE US A SHOUT! — the stories sheet joins the fliers' column (#122, B25; swaps places with WHAT WE NEED). The Come Say Hi! flier is removed (#142, B32) — the Palooza board above takes the flier's freed space, and its "come say hi" copy prints on this sheet instead. ============ -->
+      <!-- ============ RIGHT PANE, BOTTOM: GIVE US A SHOUT! — the stories sheet occupies the right pane (B25). The Come Say Hi! flier is removed (B32); its invitation prints here instead. ============ -->
     <article class="note note--stories" id="note-stories">
       <h2 class="note-title">Give us a shout!</h2>
       <p class="smallprint">If you see two guys out there working on stuff, come say hi! If not, drop us a message below.</p>
@@ -1318,7 +1296,7 @@
           </ul>
         </div>
       </article>
-      <!-- ============ RIGHT PANE, TOP: WHAT WE NEED — the ask, checkbox list (#110, B23); the row's right half and height-setter (#122, B25) ============ -->
+      <!-- ============ MIDDLE PANE, BOTTOM ROW, RIGHT HALF: WHAT WE NEED — the ask, checkbox list (#110, B23); the row's height-setter (#122, B25) ============ -->
       <div class="head-lines head-lines--needs">
         <h2 class="say-hi flier">What We Need</h2>
         <ul class="smallprint">
