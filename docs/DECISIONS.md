@@ -223,6 +223,8 @@ of the tilted sheets; the tape-printing-over convention holds). The lot
 print inside the narrower window pane takes the pane's width cap and centers
 vertically (the §4.2 mechanic, unchanged); the phone grid is untouched.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/109
+
 ### B18. The middle pane stacks instead: the lot photo takes the top of the pane at full width, and What We'd Like To Do and Give Me A Shout! share the row beneath it — plan on the left, stories on the right (the owner's chat amendment to issue #109, 2026-10-06; supersedes B17's photo-beside-plan render and retires `--stories-block`)
 
 **Source:** the owner's amendment to issue #109, stated in chat with the
@@ -270,6 +272,8 @@ Make sure the previous line still ends with the period." — https://github.com/
 
 **The record.** The hero paragraph's closing sentence now reads "...drop us a message with the form on this page." — the parenthetical "(we're still itching to learn the history of those cement planters!)" is deleted and the sentence carries the period. Everything else in the paragraph stands exactly as transcribed in B11 (with B11's chat amendment, "this old park"). `docs/UIUX.md` needs no edit; `docs/PRD.md` §3 quotes no hero copy.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/108
+
 ### B20. The form sheet's title reads "GIVE US A SHOUT!", not "GIVE ME A SHOUT!" (issue #111, owner ruling)
 
 **Source:** issue #111 (owner ruling), transcribed verbatim: "The section "GIVE ME A SHOUT!" needs an edit to: "GIVE US A SHOUT!"" — https://github.com/AlastairZeved/Earp-Street-Park/issues/111
@@ -283,6 +287,8 @@ Make sure the previous line still ends with the period." — https://github.com/
 "Lots of weeding! I didn’t realize how quickly it can get overgrown across the fencing and in the planters."" — https://github.com/AlastairZeved/Earp-Street-Park/issues/112
 
 **The record.** The `.note-face` line directly under the sheet's title is deleted. The identical sentence opening the 9/2/2026 entry — a different, dated line that continues into tree-planting copy — stays, per the owner's confirmed scope (standalone line only; entry untouched).
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/112
 
 ### B22. The plan sheet is replaced with a five-item bullet list — bullet style instead of checkbox style, the owner's new copy verbatim (issue #113, owner ruling; supersedes B7's "checkbox list alone" render)
 
@@ -365,6 +371,8 @@ ruling). The numbers are recorded here so a future copy edit or a shorter
 fit envelope can be ruled on with the render measured, not eyeballed. Come
 Say Hi's own bounding box is unchanged by this ruling (bottom 2% pin,
 field-relative, verified at every sampled width).
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/110; chat, 2026-10-06
 
 ### B24. The body font stack leads with Fira Sans — every sans element on the page renders in Fira Sans, not just the body paragraphs; the Bold-only Roboto install that made all 400 text render bold is routed around (issue #114, owner ruling in chat with the site's agent, 2026-10-06)
 
@@ -500,6 +508,8 @@ hardened pair a static site carries. B16's other directives are unchanged — in
 particular the Referrer-Policy landmine (B1) is untouched. No hex, token, or
 UIUX value changes, so `test/tokens.js` needs no assertion rewrite.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/118; chat, 2026-10-07
+
 ### B29. The Park Party Palooza flier board joins the right pane — the owner's attached mockup transcribed wholesale above the Come Say Hi! flier, which moves down to just above GIVE US A SHOUT!; the board reaches up into the header pane, overlapping the header divider bar, and scale-to-fits the space (issue #132, the owner's ruling of record, with in-chat rulings; amends B25's right-pane render)
 
 **Source:** issue #132 (owner, ruling of record), transcribed verbatim:
@@ -622,6 +632,8 @@ so they resolve through the tokens; no new hex or data URI ships.
 `docs/UIUX.md` §4.3 is amended in the same PR; no other token or hex changes,
 so `test/tokens.js` needs no assertion rewrite.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/132; https://github.com/AlastairZeved/Earp-Street-Park/issues/135; chat, 2026-10-07; chat, 2026-10-08
+
 ### B30. The Palooza board's fit region is the right flier column itself, from the very top of the page down to just above the Come Say Hi! flier — the board scale-to-fits that region, centered horizontally in the column, never wider than the column, never clipped, never overlapping the photo or the header text (issue #138, the owner's ruling of record with in-chat rulings and an annotated screenshot; amends B29's pane-top anchoring)
 
 **Source:** issue #138 (owner, ruling of record), transcribed verbatim:
@@ -735,6 +747,8 @@ hex, token, or font changes, so `test/tokens.js` needs no assertion
 rewrite. `docs/UIUX.md` §4.3 and its §5 element rows are amended in the
 same PR.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/138; chat, 2026-10-08
+
 ### B31. Deploy is main — always; promotion is the `main:deploy` push and nothing else; no merge commits ever land on deploy and deploy never diverges from main (owner ruling in chat with the site's agent, 2026-10-08; corrects the deploy-branch divergence and the promotion precedent it was wrongly read from)
 
 **Source:** owner, session chat 2026-10-08, transcribed verbatim (expletive
@@ -793,6 +807,8 @@ clips nor overlaps it; desktop scroll stays zero at every sampled viewport.
 The phone flier run reads `needs / party / snap / week / plan / stories` —
 the Come Say Hi! row is gone from the grid template.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/142
+
 ### B33. The hero paragraph loses the "whether it's picking up trash…" clause and the closing "If you have suggestions…" sentence (issues #143 and #145, owner instructions; amends B11's transcribed copy)
 
 **Source:** issue #145 (owner instruction), transcribed verbatim: "Remove these lines from the header paragraph copy:
@@ -817,6 +833,8 @@ pinned `0.85rem`/weight-400 treatment (UIUX §3) are untouched; both issues
 ask for copy removal only, so no layout, token, or font values change and
 `test/tokens.js` needs no assertion rewrite. `docs/UIUX.md` and
 `docs/PRD.md` quote no hero copy, so they need no edit.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/145; https://github.com/AlastairZeved/Earp-Street-Park/issues/143
 
 
 ### B34. The Park Party Palooza board is replaced wholesale by the owner's updated attachment — its interior composition (repositioned and resized small fliers, a new "Face Painting" flier, "Candy" renamed "Candy for the Kids", the emojis riding ON the fliers and two perched on the title's tape, the scattered fence emojis gone with the fence) ports verbatim, and the stage is TRANSPARENT — the site's own fence shows through (issue #146, owner instruction; supersedes B29's superseding note of issue #135, "background included")
@@ -967,6 +985,8 @@ And the owner's rulings in chat with the site's agent, 2026-10-09, on the questi
 
 **Measured outcome** (agent-derived, Chromium bounding boxes, this branch's render): the card is 480×535 and centred at every sampled desktop viewport (1440×900, 1920×1200, 1280×800, 1000×700, 1366×768); the seven small fliers show zero bounding-box overlaps and no flier clips the card interior at every sampled viewport; the ✕ and the backdrop both set the overlay to `display: none`; with the pop-up dismissed the board is unchanged (`scrollHeight == innerHeight`; the B35 banner and the stories sheet both present); at 390×844 the overlay is `display: none` (desktop-only).
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/150; chat, 2026-10-09
+
 ### B37. The Send button prints underneath the "What's on your mind?" field, the story field reclaims the button's horizontal space, and the GIVE US A SHOUT! flier grows vertically to fit (issue #155, owner instruction; supersedes #74's Send-row arrangement)
 
 **Source:** issue #155 (owner instruction), transcribed verbatim: "In the
@@ -1036,8 +1056,16 @@ No `index.html`, token, or hex change, so `test/tokens.js` needs no assertion re
 
 Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. The shipped `_headers` applies `/*` to every response, but its CSP is a browser-rendering control that crawlers ignore when fetching `robots.txt`/`sitemap.xml`, and B28's `X-Content-Type-Options: nosniff` acts only on script/style MIME types, not on `text/plain` or XML. Netlify serves `.txt` as `text/plain` and `.xml` as `application/xml` (Google accepts `application/xml` for sitemaps). The served MIME types are verified on promotion (B10: manual `git push origin main:deploy`); the agent runs no Netlify command. The issue's own framing — "harmless, but the lowest priority of the three sites", "Skipping Netlify deploy-preview URLs" — is recorded verbatim in the Source above.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/158
+
 ### B39. Netlify publishes only the site files from `site/` (issue #170, owner ruling)
 
 **Source:** issue #170 (owner ruling), transcribed verbatim: "Publish only the site files." — https://github.com/AlastairZeved/Earp-Street-Park/issues/170
 
 **The record.** The public site files (`index.html`, `fonts/`, `_headers`, `robots.txt`, and `sitemap.xml`) live under `site/`. The root `netlify.toml` sets `site` as the publish directory. Repository documentation, tests, agent instructions, and GitHub workflow files remain outside it. `test/tokens.js` reads `site/index.html`; `AGENTS.md`, `docs/PRD.md`, and `docs/UIUX.md` describe the published site location. The site remains promoted by the owner from `main` to `deploy` under B31.
+
+### B40. “Allow dated chat citations as a narrow exception; update `AGENTS.md` and the test to accept a dated chat source or a link.” (issue #164, owner ruling)
+
+**Source:** issue #164, owner ruling in a comment, transcribed verbatim: “Tighten the test and add links—or a dated-chat attribution convention—as append-only addenda to the 11 entries.” “Use `chat, YYYY-MM-DD` for chat-sourced entries that have no linkable source; keep any existing issue/PR links.” “Allow dated chat citations as a narrow exception; update `AGENTS.md` and the test to accept a dated chat source or a link.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/164
+
+**The record.** `AGENTS.md` permits `chat, YYYY-MM-DD` for chat-sourced rulings with no linkable source and keeps existing issue/PR links. `test/records.js` requires a link or dated-chat attribution in the first Source paragraph or an append-only Source addendum. Append-only Source addenda are recorded on B17, B19, B21, B23, B28, B29, B30, B32, B33, B36, and B38.
