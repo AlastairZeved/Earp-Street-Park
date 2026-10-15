@@ -3,11 +3,10 @@
 //
 // UIUX.md is the rendering authority: every hex, token, and weight rule the
 // site draws with lives there and nowhere else. This suite recomputes UIUX
-// §2/§3's tables from the shipped site/index.html and fails when the two drift:
-// a new color, a changed token value, or a broken weight map (B9) stops the
-// PR before it merges.
+// §2 from the shipped site/index.html and spot-checks four B12 weight-map
+// assertions. It does not parse UIUX §3.
 //
-// Browserless, stdlib only, no package.json (B2's spirit: no stray files).
+// Browserless, stdlib only, no package.json (B2: no .py files).
 
 'use strict';
 const fs = require('fs');
@@ -91,10 +90,10 @@ for (const hex of shipped) {
 for (const hex of documented) {
   if (!shipped.has(hex)) fail('UIUX.md documents ' + hex + ' but index.html does not ship it');
 }
-pass('census: ' + shipped.size + ' shipped hexes, all documented and all present');
+if (failures === 0) pass('census: ' + shipped.size + ' shipped hexes, all documented and all present');
 
 // --- [3] weight map (B9 + B12) --------------------------------------------
-console.log('[3] weight map — B12: body text 400, bold only on titles/headers and the Send button');
+console.log('[3] weight-map spot checks (B9/B12): body rule, note-face/date plain, Send bold');
 const grouped = /\.entry p,\s*\.note-face,\s*\.punch li[^{]*\{\s*font-weight:\s*400;/.test(HTML);
 if (!grouped) fail('the B9 grouped body-weight-400 rule is missing from index.html');
 const bodyBold = /\.note-face[^{}]*\{[^}]*font-weight:\s*(?!400)[1-9]/.test(HTML);
@@ -103,18 +102,11 @@ const datesPlain = /\.entry-date\s*\{[^}]*font-weight:\s*400(?:\s|;|$)/.test(HTM
 if (!datesPlain) fail('.entry-date must be plain weight 400 (B12: dates go plain)');
 const sendBold = /button\[type=["']?submit["']?\]\s*\{[^}]*font-weight:\s*700/.test(HTML);
 if (!sendBold) fail('button[type=submit] lost its 700 weight (the owner ruled the Send button stays bold)');
-if (failures === 0) pass('B12 weight map intact: 400 body rule present, dates plain, Send bold');
-
-// --- [4] hard-coded surfaces documented (§2.3) ----------------------------
-console.log('[4] hard-coded surfaces — §2.3 documents the values beyond the tokens');
-for (const hex of ['#fffdf6', '#ece1c8', '#2b2720', '#332c20']) {
-  if (!shipped.has(hex) && !documented.has(hex)) continue; // gone from both sides: fine
-  if (shipped.has(hex) && !documented.has(hex)) fail('surface ' + hex + ' shipped but not in UIUX §2.3');
-}
+if (failures === 0) pass('B12 weight-map spot checks: body rule and note-face/date plain; Send bold');
 
 console.log('');
 if (failures) {
-  console.error('tokens.js: ' + failures + ' failure(s) — the design contract (UIUX §2/§3) and the shipped file have drifted. Fix index.html or amend UIUX.md with an owner ruling.');
+  console.error('tokens.js: ' + failures + ' failure(s) — UIUX §2 checks or B12 weight-map spot checks disagree with the shipped file. Fix index.html or amend UIUX.md with an owner ruling.');
   process.exit(1);
 }
-console.log('tokens.js: design contract holds — UIUX §2/§3 recomputed from the shipped file.');
+console.log('tokens.js: design contract holds — UIUX §2 recomputed and B12 weight-map spot checks pass.');

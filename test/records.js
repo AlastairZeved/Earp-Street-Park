@@ -27,8 +27,8 @@ try {
   process.exit(1);
 }
 
-// --- [1] the citation space ----------------------------------------------
-console.log('[1] DECISIONS.md `### B<n>` space');
+// --- [1] append-only citation space --------------------------------------
+console.log('[1] DECISIONS.md append-only `### B<n>` space');
 const entries = [...src.matchAll(/^### (B(\d+))\./gm)].map((m) => ({ id: m[1], n: Number(m[2]), index: m.index }));
 
 if (entries.length === 0) fail('no `### B<n>.` entries found — seeded rulings are missing');
@@ -43,7 +43,7 @@ for (let i = 1; i < ns.length; i++) {
   if (ns[i] !== ns[i - 1] + 1) fail('citation space is not contiguous ascending: ' + 'B' + ns[i - 1] + ' is followed by B' + ns[i] + ' (append-only: new rulings take the next number)');
 }
 if (ns.length && ns[0] !== 1) fail('the record starts at B' + ns[0] + ', not B1');
-if (failures === 0) pass(entries.length + ' entries, B1..B' + ns[ns.length - 1] + ', unique and ascending');
+if (failures === 0) pass(entries.length + ' entries, B1..B' + ns[ns.length - 1] + ', unique, contiguous, and ascending (append-only)');
 
 // --- [2] every entry carries a Source line with a link --------------------
 console.log('[2] every entry carries a verbatim Source line');
@@ -56,17 +56,9 @@ for (let i = 0; i < entries.length; i++) {
 }
 if (failures === 0) pass('every entry cites its owner source with a link');
 
-// --- [3] append-only ordering: entries appear in ascending file order ------
-console.log('[3] append-only — entries appear in ascending order in the file');
-let ordered = true;
-for (let i = 1; i < entries.length; i++) {
-  if (entries[i].index < entries[i - 1].index) { ordered = false; fail(entries[i].id + ' appears before ' + entries[i - 1].id + ' in the file'); }
-}
-if (ordered && entries.length) pass('file order is the ruling order');
-
 console.log('');
 if (failures) {
   console.error('records.js: ' + failures + ' failure(s) — fix DECISIONS.md before merging. Law is transcribed from an owner statement, never authored.');
   process.exit(1);
 }
-console.log('records.js: record contract holds — B1..B' + ns[ns.length - 1] + ' unique, ascending, all sourced.');
+console.log('records.js: record contract holds — B1..B' + ns[ns.length - 1] + ' unique, contiguous, all sourced.');
