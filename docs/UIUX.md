@@ -141,10 +141,10 @@ The serif (`.note-title`, `h1`) and mono (`.entry-date`) species are unchanged
 | Element | Size |
 |---|---|
 | Body base | `16px / 1.5` |
-| `h1` | `--font-heading` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1 |
+| `h1` | `--font-heading` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1, no added right margin (B42 R4: glyph-to-flier clearance 159.6/453.3/727.1px at 900/1200/1440×900) |
 | `.note-title` | `--font-heading` (Montserrat Alternates, B26), `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
 | `.note-face` | `clamp(0.9rem, 1.3vw, 1rem)` (phone `0.85rem`) |
-| `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em, `margin-right: 50%` (B35, issue #151 — the hero wraps at the header's halfway line; `.board-head h1` retains `21.7%` from B30) |
+| `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em, `margin-right: 50%` (B35, issue #151 — the hero wraps at the header's halfway line) |
 | `.entry-date` | `--font-entry-date`, 400 (B12), `--rust`, letter-spacing 0.04em |
 | `.smallprint` | `0.78rem`; only `.needs-flier .smallprint` is `0.72rem` on phone, while the stories-sheet smallprint stays `0.78rem` |
 | `.needs-heading` | same treatment as `.note-title` verbatim (B5: "there was no reason it should have been different") |
