@@ -153,8 +153,11 @@ moves a value `test/tokens.js` pins, you rewrite that assertion deliberately
 `docs/DECISIONS.md` is law, and law is stated by the owner, never authored by
 an agent. Agents transcribe owner decisions; they do not make them. Every
 entry in DECISIONS.md must carry a `Source:` line quoting the owner's
-statement verbatim (issue, PR comment, or chat quote the owner confirmed)
-with a link to it. An entry without a source line is not law — it is an agent
+statement verbatim (issue, PR comment, or chat quote the owner confirmed),
+with a link when the source is linkable. For chat-sourced entries with no
+linkable source, use the owner's dated attribution convention:
+`chat, YYYY-MM-DD`; keep any existing issue/PR links. An entry without a
+source line is not law — it is an agent
 invention and any QA pass may delete it on sight. Agents never author, amend,
 or supersede rulings except to transcribe an owner statement. `test/records.js`
 enforces the citation space in CI.
