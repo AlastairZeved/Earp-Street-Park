@@ -87,13 +87,15 @@ repository keeps no `package.json`; the suites use Node stdlib only.
    landmine):** never add `Referrer-Policy: no-referrer`/`same-origin` —
    Formspree marks those submissions as spam, i.e. every real neighbour's
    note.
-7. **Dormant CSS exists by design-remnant, not invitation.** `.need`,
-   `.materials`, `.entry--archive`, `.archive-head`, `.plan-sub` are declared
-   with no markup using them (B7 deleted the materials list's content).
-   `.fine` is live in the B35 banner (`<span class="fine">` in
-   `site/index.html`). Do not wire dormant blocks up to "use" them, and do
-   not cite their presence as a feature. The full dormant-CSS inventory is
-   tracked in Cleanup 8/11 (issue #167).
+7. **Dormant CSS exists by design-remnant, not invitation.** B42 (issue #167)
+   authorizes removal of the listed dead rules and unused hooks, and renaming
+   the misleading What We Need, lot-photo, row, and font identifiers. `.fine`
+   remains live in the B35 banner (`<span class="fine">` in `site/index.html`).
+   B42 retains `.note` transitions as intentional sheet movement. The
+   `.board-head h1` margin is handled separately under R4: measure its
+   clearance before changing it. Do not wire other dormant blocks up to "use"
+   them or cite their presence as a feature; unlisted dormant CSS still needs
+   an owner instruction.
 
 ## Shipping discipline (every `site/index.html` change)
 

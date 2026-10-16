@@ -69,8 +69,7 @@ column).
 
 | Value | Light role | Dark value |
 |---|---|---|
-| `#fffdf6` | the photo mat (`.cmp`) and phone snapshot print stay this color in dark mode; form inputs and the What We Need flier's checkbox squares (B23) re-tone | `#2b2720` for the inputs and checkbox squares only (B23); the photo mats stay `#fffdf6` |
-| `#ece1c8` | dormant `.note--plan .need` scrap stock; no markup uses this selector | `#332c20` (dormant CSS; it does not render) |
+| `#fffdf6` | the photo mat (`.photo-mat`) and phone snapshot print stay this color in dark mode; form inputs and the What We Need flier's checkbox squares (B23) re-tone | `#2b2720` for the inputs and checkbox squares only (B23); the photo mats stay `#fffdf6` |
 
 ### §2.4 Shadows and tape
 
@@ -78,9 +77,8 @@ column).
 |---|---|
 | `rgba(0,0,0,.4)` | `.note` sheet shadow (`0 8px 20px`), hero text-shadow (`0 1px 3px`) |
 | `rgba(0,0,0,.45)` | snapshot print shadow (`0 7px 18px`) |
-| `rgba(0,0,0,.35)` | h1 text-shadow (`0 2px 4px`), `.cmp` window mat shadow (`0 6px 18px`); `.say-hi` is overridden by `.flier { text-shadow: none }` |
+| `rgba(0,0,0,.35)` | h1 text-shadow (`0 2px 4px`), `.photo-mat` window mat shadow (`0 6px 18px`) |
 | `rgba(0,0,0,.2)` | tape and print small shadows (`0 1px 3px`) |
-| `rgba(0,0,0,.12)` | phone scrap shadow (`0 1px 3px`); the only shadow on the dormant scrap selector |
 | `rgba(236,227,199,.78)` | tape — warm cream at 78% |
 | `rgba(20,17,12,.62)` | the B36 pop-up backdrop — dims the board while the flier takes over |
 | `rgba(0,0,0,.55)` | the B36 pop-up card shadow (`0 24px 60px`) |
@@ -110,8 +108,8 @@ TheBoards, the owner's named reference). All three tokens lead with it:
 | Token | Stack |
 |---|---|
 | `--font-body` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26) |
-| `--font-display` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26 — the Georgia serif stack is replaced) |
-| `--font-stub` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26 — the mono stack is replaced) |
+| `--font-heading` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B42 — heading role; same family as body) |
+| `--font-entry-date` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B42 — entry-date role; same family as body) |
 
 The fallbacks stand only for systems where the font files fail to load.
 
@@ -120,13 +118,12 @@ The fallbacks stand only for systems where the font files fail to load.
 Body text is **plain weight (400)**; bold belongs to headers, titles, and the
 Send button (B12 — supersedes B9's entry-date exception). Shipped as one
 grouped rule
-(`.entry p, .note-face, .punch li, .head-lines--needs li, .need li, .need
-.materials li, .archive-head, .fine { font-weight: 400 }`) plus `label`,
-`.hero-line`, `.smallprint`, and `.need .what` all at 400.
+(`.entry p, .note-face, .punch li, .needs-list li, .fine { font-weight: 400 }`)
+plus `label`, `.hero-line`, and `.smallprint` all at 400.
 
 **Bold (700) appears on:** `button[type=submit]`, `.flier-banner .flier--title h1`,
 `.popup-flier--title h1`, and `.popup-close`; the computed h2 default behind
-`.note-title`/`.say-hi.flier` and the header `<h1>` browser default are bold too.
+`.note-title`/`.needs-heading` and the header `<h1>` browser default are bold too.
 
 **B24 — the body stack leads with Fira Sans.** *(Superseded by B26 —
 Montserrat Alternates everywhere, self-hosted; retained for the record.)*
@@ -144,13 +141,13 @@ The serif (`.note-title`, `h1`) and mono (`.entry-date`) species are unchanged
 | Element | Size |
 |---|---|
 | Body base | `16px / 1.5` |
-| `h1` | `--font-display` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1 |
-| `.note-title` | `--font-display` (Montserrat Alternates, B26), `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
+| `h1` | `--font-heading` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1 |
+| `.note-title` | `--font-heading` (Montserrat Alternates, B26), `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
 | `.note-face` | `clamp(0.9rem, 1.3vw, 1rem)` (phone `0.85rem`) |
 | `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em, `margin-right: 50%` (B35, issue #151 — the hero wraps at the header's halfway line; `.board-head h1` retains `21.7%` from B30) |
-| `.entry-date` | `--font-stub`, 400 (B12), `--rust`, letter-spacing 0.04em |
-| `.smallprint` | `0.78rem`; only `.head-lines .smallprint` is `0.72rem` on phone, while the stories-sheet smallprint stays `0.78rem` |
-| `.say-hi.flier` | same treatment as `.note-title` verbatim (B5: "there was no reason it should have been different") |
+| `.entry-date` | `--font-entry-date`, 400 (B12), `--rust`, letter-spacing 0.04em |
+| `.smallprint` | `0.78rem`; only `.needs-flier .smallprint` is `0.72rem` on phone, while the stories-sheet smallprint stays `0.78rem` |
+| `.needs-heading` | same treatment as `.note-title` verbatim (B5: "there was no reason it should have been different") |
 
 ---
 
@@ -167,28 +164,27 @@ texture (B5).
 `::before`/`::after`: 5.5rem × 1.7rem, `rgba(236,227,199,.78)`,
 `0 1px 3px rgba(0,0,0,.2)`, `top: -0.8rem`, left 9% rotate(−4°) / right 9%
 rotate(+3°), `pointer-events: none`, z-index 3. The tape recipe is duplicated
-verbatim on `.head-lines` (B5); phone values: 4.6rem × 1.5rem, `top: -0.65rem`,
+verbatim on `.needs-flier` (B5); phone values: 4.6rem × 1.5rem, `top: -0.65rem`,
 left/right 8%. Tilts (desktop): week −0.5°, plan +0.5°, stories −0.3°.
 (The Come Say Hi flier, a −0.5° member of the species through B30, was
 removed by B32 — issue #142.)
 
 Face anatomy: `.note-title` (UIUX §3.3) + optional `.note-face` intro + content
 panel. Week holds `.entry` items (dashed `--rule` bottom border, rust dates
-at weight 400 per B12); plan holds the `.punch` bullet list (disc bullets
-joining the `.need .materials` species — 1.1rem indent; #113 replaced the
-checkbox squares). Header items (h1, hero, rule) are NOT paper — cream ink
+at weight 400 per B12); plan holds the `.punch` bullet list (disc bullets, 1.1rem indent; #113
+replaced the checkbox squares). Header items (h1, hero, rule) are NOT paper — cream ink
 directly on the fence with text-shadow. Montserrat Alternates is the only
 font family throughout (B26).
 
 ### §4.2 The photo print in a mat
 
-`.cmp`: `#fffdf6` mat, `padding: var(--space-2)`,
+`.photo-mat`: `#fffdf6` mat, `padding: var(--space-2)`,
 `0 6px 18px rgba(0,0,0,.35)`, rotate 0.35°. The mat hugs the print (#101): it
 is as wide as the largest uncropped print the window pane can show — the
 print's own 1600/995 aspect (the shipped photograph's natural size) measured
 against the pane's height via its `container-type: size` (100cqh), capped by
 the pane's width — and the print fills it edge to edge
-(`.cmp-stage` carries `aspect-ratio: 1600 / 995`; `object-fit: contain`
+(`.photo-mat-stage` carries `aspect-ratio: 1600 / 995`; `object-fit: contain`
 coincides with full-bleed at that ratio), so no white mat margin is
 introduced at any window shape. When the pane is narrower than the
 height-derived mat (very tall windows) the width cap takes over and the mat
@@ -208,8 +204,8 @@ ruling; it was **removed by B32 (issue #142)**, its copy with it, and the
 board's freed space goes to the Palooza board. Its species survives in the
 **What We Need** flier (B23, issue
 #110), which swaps into the middle pane's lower right under B25: the same
-`.head-lines` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
-shadow, −0.5° tilt, `.say-hi.flier` title), now the right half of
+`.needs-flier` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
+shadow, −0.5° tilt, `.needs-heading` title), now the right half of
 `.middle-row` (`margin-left: 50.5%; width: 49.5%`) and the bottom row's
 height-setter.
 Its face is a checkbox list — the plan sheet's
@@ -249,7 +245,7 @@ the tilted paper's bottom-left corner dips ~4.6px below the border line at
 1440×1000 — "I accept the rotation of the tilted paper if it overlaps the
 header border line a scoche." Interior values transcribe from the
 attachment verbatim (paddings, type sizes, the pumpkins JPEG, the tape
-strips, the vestigial `.fall-art svg` rule) except the standing
+strips) except the standing
 adaptations: fonts through UIUX §3.1's single family (B26), the smallprint's
 `text-shadow: none`, the h1's own ink (the header h1's cream
 ink/shadow/nowrap must not ride along). On phone (≤760px) the banner joins
@@ -305,15 +301,15 @@ sheet keeps the pane (B25's pins restored)."
 | Element | Pin |
 |---|---|
 | `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B18 supersedes B17's pane split: the plan is now 49.5% of `.middle-row`) |
-| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, UIUX §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
+| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--needs-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, UIUX §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
 | `.popup-overlay` | (B36, UIUX §4.4) `position: fixed; inset: 0; z-index: 1000` — the on-load pop-up; not a `.field` child, desktop only |
 | `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row; B25: holding `.note--plan` and the WHAT WE NEED flier as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
 | `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the height-setter's height exactly (B25: the WHAT WE NEED flier's natural height); `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
-| `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (UIUX §4.3) |
+| `.needs-list` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (UIUX §4.3) |
 | `.note--stories` | a direct `.field` child, pinned `right: 1.2%; bottom: 2%; width: 20.5%` (B25; B35 removed `.party-pane`). It keeps the `.note` species, −0.3° tilt, and #56's no-scroll rule; the form prints full-length inside the paper. B37 (issue #155): the Send button prints underneath the story field, which takes the form's full inner width; the sheet grows vertically to fit (content-driven height — +60px measured: button 48.4 + the rendered 11.5px gap) |
 
 
-Sheet clearances are computed, never eyeballed: `--stories-row:
+Sheet clearances are computed, never eyeballed: `--needs-row:
 clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new
 height-setter — the WHAT WE NEED flier's natural re-wrap: 359.6px at 761vw,
 ~304px at 850–950vw, a flat ~288–291px band to 1350vw, ~235px at 1400vw and
