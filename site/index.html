@@ -112,7 +112,7 @@
       "hero"
       "rule";
     align-items: baseline;
-    gap: var(--space-2);  /* #59: was --space-3 */
+    gap: var(--space-2);  /* #59 (B45): the --space-2 gap keeps the three-row title pane compact. */
   }
   .board-head h1 {
     grid-area: h1;
@@ -123,7 +123,7 @@
     letter-spacing: 0.01em;
     text-shadow: 0 2px 4px rgba(0,0,0,.35);
     white-space: nowrap;
-    line-height: 1.1;  /* #59: the default ~1.49 box cost ~13px of pane height */
+    line-height: 1.1;  /* #59 (B45): 1.1 keeps the h1's grid row compact. */
   }
   .board-head .head-rule {
     grid-area: rule;
@@ -134,11 +134,7 @@
     margin: 0;
     min-width: 2rem;
   }
-  /* #63: the flier sheet's original field pin — right edge flush with the
-     plan sheet's old right edge (98.8%), top on the field's 2% line. B25
-     moves the WHAT WE NEED flier into the middle pane's lower-right half; its
-     `.needs-list` modifier supplies that row pin and the phone `needs` area.
-     Per #70 the block IS the sheet: paper surface, note shadow, tilt, and ink. */
+  /* #63 (B46): the base flier pin puts its right edge flush with the plan sheet at 98.8% and its top on the field's 2% line. #122 (B25) places WHAT WE NEED in the middle pane; .needs-list supplies its row pin and phone area. Per #70 (B5), the block uses the flier species' paper, note shadow, tilt, and ink. */
   .needs-flier {
     text-align: left; align-self: start;
     position: absolute; right: 1.2%; top: 2%;
@@ -180,9 +176,9 @@
        closest boundary ships and some line ends still run under (B35's
        record holds the numbers). */
     margin-right: 50%;
-    max-width: 72em;  /* #59: was 58em — the hero wraps to 2 lines at wide viewports */
+    max-width: 72em;  /* #59 (B45): 72em keeps the hero on one line at wide viewports. */
     color: var(--paper);
-    font-size: 0.85rem;  /* #73: flat 0.85rem at every viewport; the phone 0.9rem override is deleted because this base value covers it */
+    font-size: 0.85rem;  /* #73 (B47): 0.85rem matches the existing small-text size at every viewport. */
     text-shadow: 0 1px 3px rgba(0,0,0,.4);
     font-weight: 400;  /* #16: subtitle not bold */
   }
@@ -834,7 +830,7 @@
       margin: 0;
       max-width: none;
       font-family: var(--font-heading);
-      /* #73: the old 0.9rem override is deleted — the flat 0.85rem base covers phone too */
+      /* #73 (B47): the base 0.85rem keeps the hero at the same size on phone. */
       color: var(--ink);
       text-shadow: none;
     }
@@ -856,7 +852,7 @@
       transform: none;
     }
     .needs-flier .smallprint { font-size: 0.72rem; line-height: 1.45; margin: 0; }
-    .needs-flier { text-align: left; position: relative; top: auto; right: auto; margin-top: 22px; width: auto; }  /* #70: the flier sheet (position relative so the tape anchors), left-anchored, 22px phone seam so the tape clears the lead sheet; width auto so the desktop 20.5% column cannot leak onto the phone grid; #63: back in flow (top-of-flow #46 pin); #122 (B25): top/right auto re-pin the desktop pin family in the later cascade (the phone block's re-pin pattern) — the flier run is in flow at its true position */
+    .needs-flier { text-align: left; position: relative; top: auto; right: auto; margin-top: 22px; width: auto; }  /* #70 (B5): the flier is relative so its tape anchors; it is left-anchored with a 22px phone seam that clears the lead sheet. Width auto prevents the desktop 20.5% column from leaking onto the phone grid. #63 (B46) and #46: the flier follows natural flow at its top-of-flow position. #122 (B25): top/right auto keep the desktop pin family from leaking into the phone run. */
     .field .needs-list { grid-area: needs; top: auto; margin-left: 0; width: auto; position: relative; }  /* #110 (B23): its own phone row; #122 (B25): margin-left/width re-pinned here so the desktop .middle-row slot cannot leak onto the phone grid */
     /* #151 (B35): the banner joins the header grid as its own row — the
        flier stacks underneath the header and the header paragraph (the
@@ -888,19 +884,19 @@
         "stories";
       align-items: start;
       flex: none;
-      margin-top: 0;  /* #63: was 10px — the week/snapshot margins absorb the seam */
+      margin-top: 0;  /* #63 (B46): no extra top margin; the week and snapshot margins absorb the seam. */
     }
     .note { position: static; padding: 13px 16px 26px; }
     .middle-row { display: contents; }  /* #109 (B18): on phone, .middle-row uses display: contents and the sheets follow their own grid areas */
     .window { display: none; }
-    .note--week    { grid-area: week;    width: auto; height: auto; margin: 20px 0 0; transform: rotate(0.5deg);  z-index: 2; }  /* #63: 10 -> 20px */
+    .note--week    { grid-area: week;    width: auto; height: auto; margin: 20px 0 0; transform: rotate(0.5deg);  z-index: 2; }  /* #63 (B46): 20px keeps the week sheet clear of the snapshot above. */
     .snapshot      { display: block; grid-area: snap; }
     /* .field- prefixes re-win the desktop .middle-row rules' 0,2,0 specificity
        (#109, B18) — position, width, margins, and tilt are each re-pinned
        here (.note--plan's desktop rule is .middle-row-prefixed; .note--stories'
        desktop rule is unprefixed since B25, but the prefix keeps the phone
        block self-sufficient). */
-    .field .note--plan    { position: static; grid-area: plan;    width: 97%;  height: 96%; margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above; #63/#109: height 96% redeclared — the desktop height mechanics (.middle-row insets) must not leak */
+    .field .note--plan    { position: static; grid-area: plan;    width: 97%;  height: 96%; margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above; #63 (B46)/#109 (B18): the phone rule sets the plan sheet to 96% height without inheriting desktop .middle-row insets. */
     .field .note--stories { position: static; grid-area: stories; width: 94%;  height: auto; margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }  /* #56: height auto — the form prints inside the paper */
 
     .note::before, .note::after,
@@ -915,7 +911,7 @@
       box-shadow: 0 7px 18px rgba(0,0,0,.45);
       transform: rotate(-0.8deg);
       position: relative;
-      margin: 10px 0 0;  /* #63: was 0 — holds the print 10px above the week sheet's top */
+      margin: 10px 0 0;  /* #63 (B46): 10px holds the print above the week sheet. */
     }
     .snapshot::before {
       content: "";

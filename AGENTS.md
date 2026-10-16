@@ -133,8 +133,7 @@ moves a value `test/tokens.js` pins, you rewrite that assertion deliberately
 - In `site/index.html`, change-history comments use present tense, explain why
   the current value is what it is, and cite the ruling as `#issue (B<n>)`; the
   history itself belongs in Git and `DECISIONS.md`, not inline. Keep every
-  live-warning comment verbatim. Leave comments for issues #59, #63, and #73
-  unchanged until their rulings are recorded (B44).
+  live-warning comment verbatim.
 - Security findings → a security issue to the owner for a ruling (see B1's
   precedent), never a silent fix.
 
