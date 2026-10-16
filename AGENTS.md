@@ -92,8 +92,8 @@ repository keeps no `package.json`; the suites use Node stdlib only.
    the misleading What We Need, lot-photo, row, and font identifiers. `.fine`
    remains live in the B35 banner (`<span class="fine">` in `site/index.html`).
    B42 retains `.note` transitions as intentional sheet movement. The
-   `.board-head h1` margin is handled separately under R4: measure its
-   clearance before changing it. Do not wire other dormant blocks up to "use"
+   `.board-head h1` margin was removed under B42 R4 after measured clearance
+   confirmed the heading remains clear. Do not wire other dormant blocks up to "use"
    them or cite their presence as a feature; unlisted dormant CSS still needs
    an owner instruction.
 
