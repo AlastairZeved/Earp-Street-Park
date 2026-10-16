@@ -1110,3 +1110,33 @@ Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. 
 **Source:** the owner, in session chat, 2026-10-16, transcribed verbatim: “Consolidate shared tape rules.” “Keep the copies (Recommended) — preserve separate attachment transcriptions.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/168
 
 **The record.** The desktop tape pseudo-elements on `.note`, `.needs-flier`, `.flier-banner .flier`, and `.popup-flier` share one grouped base recipe and shared left/right placement rules. The phone override groups `.note` and `.needs-flier` at their existing phone values; the lead sheet and snapshot variants remain separate. The header title flier's CSS/markup and the pop-up title flier's CSS/markup remain separately defined. `docs/UIUX.md` §4.1, §4.3, and §4.4 record these shared tape declarations and separate title-flier transcriptions. No rendered values or markup change; the issue's required before/after screenshots verify pixel identity at the specified viewports and states.
+
+### B44. `site/index.html` change-history comments use present-tense reasons with ruling citations; comments for unrecorded rulings #59, #63, and #73 remain unchanged until those rulings are recorded (issue #169, owner ruling)
+
+**Source:** issue #169, owner ruling in session chat, 2026-10-16, transcribed verbatim: “Option 2: Present tense + ruling ID; no “was X” text; history stays in DECISIONS.md” and “Leave those comments unchanged until their rulings are recorded” — https://github.com/AlastairZeved/Earp-Street-Park/issues/169
+
+**The record.** `AGENTS.md` instructs that `site/index.html` change-history comments use present tense, explain why the current value is what it is, and cite the ruling as `#issue (B<n>)`; Git and `DECISIONS.md` hold the history. Live-warning comments remain verbatim. Comments for issues #59, #63, and #73 remain unchanged until their rulings are recorded. The in-scope B-backed change-history comments are rewritten in present tense in this PR; no CSS, markup, or rendered value changes.
+
+### B45. The title pane's height is reduced: the grid gap is `--space-2`, the h1 line-height is 1.1, and the hero max-width is 72em (issue #59, owner-authored outcome)
+
+**Source:** issue #59, the owner's closure comment, transcribed verbatim: “Grid areas cut from four rows to three: `h1 h1 / hero hero / rule lines / sayhi lines` -> `h1 lines / hero lines / rule rule`; gap `--space-3` -> `--space-2`; h1 `line-height` ~1.49 -> 1.1; hero `max-width` 58em -> 72em so it stays on one line at wide viewports.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/59
+
+**The record.** The title pane uses three grid rows (`h1`, `hero`, `rule`), with a `--space-2` gap, h1 `line-height: 1.1`, and hero `max-width: 72em`. These are the current values described by the issue's owner-authored outcome.
+
+### B46. The Come Say Hi flier sits at the field's bottom-right, flush with the plan sheet; the plan sheet top aligns with What We've Done (issue #63, owner-authored outcome)
+
+**Source:** issue #63, the owner's closure comment, transcribed verbatim: “The Come Say Hi flier block moved out of the header into the field, pinned bottom-right (position: absolute; right: 1.2%; bottom: 2%), flush with the plan sheet's right edge; plan sheet top stays in line with What We've Done (height calc(96% - 96px)).” — https://github.com/AlastairZeved/Earp-Street-Park/issues/63
+
+**The record.** The flier's field pin is bottom-right at `right: 1.2%` / `bottom: 2%`, with its right edge flush to the plan sheet. The plan sheet top aligns with What We've Done. Later rulings alter which component occupies the flier slot; the comments below describe the present layout and cite the current placement rulings too.
+
+### B47. The hero passage is 0.85rem at every viewport, matching the site's existing small-text size (issue #73, owner ruling)
+
+**Source:** the owner's 2026-09-30 ruling in issue #73, transcribed verbatim with expletives redacted at the owner's standing direction: “There is no smaller hero size. It's a [expletive removed] title on a flier, just like all the other titles on the [expletive removed] fliers. it should just match what we've already [expletive removed] used everywhere else.” The owner's closing comment states: “`.hero-line` renders **13.6px (0.85rem, exact)** at every measured viewport” and “Phone `0.9rem` override deleted.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/73
+
+**The record.** `.hero-line` uses the site's existing small-text size, `0.85rem`, as a flat value at desktop and phone. The phone override is absent; the dark-theme color rule is unchanged.
+
+### B48. Record the owner outcomes from issues #59, #63, and #73 and rewrite their comments to cite those rulings (issue #169, owner ruling)
+
+**Source:** owner, session chat, 2026-10-16, transcribed verbatim: “Yes — record all three and rewrite the comments” — https://github.com/AlastairZeved/Earp-Street-Park/issues/169
+
+**The record.** B45, B46, and B47 record the owner-authored outcomes from #59, #63, and #73. The corresponding `site/index.html` comments now use present-tense reasons with `#issue (B<n>)` citations. `AGENTS.md` no longer carries B44's temporary exception for those issues. No CSS, markup, or rendered value changes.
