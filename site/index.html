@@ -295,26 +295,15 @@
     right: 1.2%; bottom: 2%; width: 20.5%;
     transform: rotate(-0.3deg);
   }
-  /* two strips of tape holding each sheet to the fence */
+  /* The desktop tape recipe is shared verbatim across sheets and fliers. */
   .note::before,
-  .note::after {
-    content: "";
-    position: absolute;
-    top: -0.8rem;
-    width: 5.5rem;
-    height: 1.7rem;
-    background: rgba(236,227,199,.78);
-    box-shadow: 0 1px 3px rgba(0,0,0,.2);
-    z-index: 3;
-    pointer-events: none;
-  }
-  .note::before { left: 9%;  transform: rotate(-4deg); }
-  .note::after  { right: 9%; transform: rotate(3deg); }
-
-  /* #70: .needs-flier (the WHAT WE NEED flier) carries the same two tape
-     strips as every other sheet — .note's values, verbatim. */
+  .note::after,
   .needs-flier::before,
-  .needs-flier::after {
+  .needs-flier::after,
+  .flier-banner .flier::before,
+  .flier-banner .flier::after,
+  .popup-flier::before,
+  .popup-flier::after {
     content: "";
     position: absolute;
     top: -0.8rem;
@@ -325,8 +314,14 @@
     z-index: 3;
     pointer-events: none;
   }
-  .needs-flier::before { left: 9%;  transform: rotate(-4deg); }
-  .needs-flier::after  { right: 9%; transform: rotate(3deg); }
+  .note::before,
+  .needs-flier::before,
+  .flier-banner .flier::before,
+  .popup-flier::before { left: 9%;  transform: rotate(-4deg); }
+  .note::after,
+  .needs-flier::after,
+  .flier-banner .flier::after,
+  .popup-flier::after  { right: 9%; transform: rotate(3deg); }
 
   /* #110 (B23): the WHAT WE NEED list uses the plan sheet's retired checkbox
      species, reinstated verbatim for this flier only; the plan sheet stays
@@ -559,18 +554,6 @@
     box-shadow: 0 8px 20px rgba(0,0,0,.4);
     padding: 24px 28px;
   }
-  .flier-banner .flier::before, .flier-banner .flier::after {
-    content: "";
-    position: absolute;
-    top: -0.8rem;
-    width: 5.5rem; height: 1.7rem;
-    background: rgba(236,227,199,.78);
-    box-shadow: 0 1px 3px rgba(0,0,0,.2);
-    z-index: 3; pointer-events: none;
-  }
-  .flier-banner .flier::before { left: 9%; transform: rotate(-4deg); }
-  .flier-banner .flier::after  { right: 9%; transform: rotate(3deg); }
-
   .flier-banner .flier--title {
     transform: rotate(-1deg);       /* the attachment's tilt; the scale joins it in the @supports block below */
     padding: 26px 34px 22px;
@@ -724,18 +707,6 @@
     box-shadow: 0 8px 20px rgba(0,0,0,.4);
     padding: 24px 28px;
   }
-  .popup-flier::before, .popup-flier::after {
-    content: "";
-    position: absolute;
-    top: -0.8rem;
-    width: 5.5rem; height: 1.7rem;
-    background: rgba(236,227,199,.78);
-    box-shadow: 0 1px 3px rgba(0,0,0,.2);
-    z-index: 3; pointer-events: none;
-  }
-  .popup-flier::before { left: 9%; transform: rotate(-4deg); }
-  .popup-flier::after  { right: 9%; transform: rotate(3deg); }
-
   .popup-flier--title {
     top: 54px; left: 50%;
     width: 700px;
@@ -964,12 +935,10 @@
     .field .note--plan    { position: static; grid-area: plan;    width: 97%;  height: 96%; margin: 27px auto 0; transform: rotate(-0.3deg); z-index: 3; }  /* #41: hangs 27px below the seam so sheet AND tape clear the print above; #63/#109: height 96% redeclared — the desktop height mechanics (.middle-row insets) must not leak */
     .field .note--stories { position: static; grid-area: stories; width: 94%;  height: auto; margin: 6px 0 0 3%;  transform: rotate(0.4deg);  z-index: 2; }  /* #56: height auto — the form prints inside the paper */
 
-    .note::before, .note::after { width: 4.6rem; height: 1.5rem; top: -0.65rem; }
-    .note::before { left: 8%; }
-    .note::after  { right: 8%; }
+    .note::before, .note::after,
     .needs-flier::before, .needs-flier::after { width: 4.6rem; height: 1.5rem; top: -0.65rem; }  /* #70: phone tape, the .note phone values verbatim */
-    .needs-flier::before { left: 8%; }
-    .needs-flier::after  { right: 8%; }
+    .note::before, .needs-flier::before { left: 8%; }
+    .note::after,  .needs-flier::after  { right: 8%; }
 
     /* the snapshot print: white mat and tape; no caption or mono font (B26) */
     .snapshot {
