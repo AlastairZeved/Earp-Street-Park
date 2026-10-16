@@ -163,9 +163,12 @@ texture (B5).
 `padding: var(--space-3)`, `z-index: 2`, **two tape strips** via
 `::before`/`::after`: 5.5rem × 1.7rem, `rgba(236,227,199,.78)`,
 `0 1px 3px rgba(0,0,0,.2)`, `top: -0.8rem`, left 9% rotate(−4°) / right 9%
-rotate(+3°), `pointer-events: none`, z-index 3. The tape recipe is duplicated
-verbatim on `.needs-flier` (B5); phone values: 4.6rem × 1.5rem, `top: -0.65rem`,
-left/right 8%. Tilts (desktop): week −0.5°, plan +0.5°, stories −0.3°.
+rotate(+3°), `pointer-events: none`, z-index 3. B43 groups this desktop tape
+recipe once across `.note`, `.needs-flier`, `.flier-banner .flier`, and
+`.popup-flier`; the rendered values remain verbatim. On phone, `.note` and
+`.needs-flier` share the 4.6rem × 1.5rem, `top: -0.65rem`, left/right 8%
+override; the lead sheet and snapshot keep their distinct tape variants.
+Tilts (desktop): week −0.5°, plan +0.5°, stories −0.3°.
 (The Come Say Hi flier, a −0.5° member of the species through B30, was
 removed by B32 — issue #142.)
 
@@ -207,7 +210,10 @@ board's freed space goes to the Palooza board. Its species survives in the
 `.needs-flier` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
 shadow, −0.5° tilt, `.needs-heading` title), now the right half of
 `.middle-row` (`margin-left: 50.5%; width: 49.5%`) and the bottom row's
-height-setter.
+height-setter. Its desktop tape declarations share the grouped B43 rule with
+the paper sheets, header banner, and pop-up fliers; its phone values share the
+`.note` override. The header title flier's attachment-specific CSS and markup
+remain separate from the pop-up title flier's independent transcription (B43).
 Its face is a checkbox list — the plan sheet's
 retired checkbox squares (2.1rem indent, 1.05rem square, 2px `--ink` border,
 `#fffdf6` fill; `#2b2720` dusk fill in dark), reinstated verbatim for this
@@ -225,6 +231,9 @@ width: 20.5%`). The title-only flier moves up into the **header pane**
 — the header's own height, page-top line to the `.head-rule` border line —
 `right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem))` (the B25
 column's shared right edge), `width: 0` as an anchor line, `z-index: 2`.
+Its title-flier definition remains separate from the pop-up title's
+independent attachment transcription; only their desktop tape declarations
+are shared (B43).
 The flier keeps the attachment's 700px width and −1° tilt
 (`transform-origin: 100% 0`), its tape top edge on the header's top line
 (the 0.8rem tape overhang is the flier's own top offset), and scales to fit
@@ -267,12 +276,15 @@ centres the `.popup` card: 480×535, `background: var(--paper)`,
 label are both `<label for="popup-toggle">` for a visually-hidden checkbox;
 `.popup-toggle:checked ~ .popup-overlay { display: none }`. `.popup-stage`
 (850×876, the mockup's own board composition) is centred and cover-fit by
-`transform: translate(-50%,-50%) scale(0.611)`. Inside it the flier species
-(`.popup-flier`: `.note` paper, `0 8px 20px rgba(0,0,0,.4)` shadow, the two
-tape strips `rgba(236,227,199,.78)` and their tilts) carries the title flier
+`transform: translate(-50%,-50%) scale(0.611)`. Inside it the `.popup-flier`
+species (`.note` paper, `0 8px 20px rgba(0,0,0,.4)` shadow, the two tape
+strips `rgba(236,227,199,.78)` and their tilts) carries the title flier
 (700px, −1°), the story flier, and seven small fliers whose sizes —
 16/20/23/26/28/30/32px, all distinct — are, under UIUX §3.1's single font,
 re-spaced to zero bounding-box overlap (B34's standing no-overlap ruling).
+The pop-up title flier's CSS and markup remain separate from the header
+banner's independent attachment transcription; only their desktop tape
+declarations are shared (B43).
 Emoji ride on the fliers (`.popup-tag-emoji`) and two perch on the title's
 tape (`.popup-tape-emoji`); the palette is 🎃 👻 🍂 only. Fonts resolve through
 UIUX §3.1 (B26); the chrome introduces no new hex (the attachment's darker-rust
