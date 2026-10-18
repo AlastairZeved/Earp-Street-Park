@@ -7,7 +7,7 @@ Code, Codex, Cursor, …). Humans should read the governing records instead.
 
 Earp Street Park — the community-engagement website for one neighbor's work
 restoring an abandoned lot. The published site has one `site/index.html`
-(1,066,454 bytes) and two self-hosted font files under `site/fonts/` (B26): a
+(1,066,797 bytes) and two self-hosted font files under `site/fonts/` (B26): a
 fixed spatial board styled as a wooden fence, everything on it a physical
 object (paper sheets, tape, photo prints, marker ink). **No frameworks, no
 build step, no package manager, no dependencies, no backend, no JavaScript.**

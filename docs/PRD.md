@@ -21,7 +21,7 @@ whole product, verbatim: "One neighbor is fixing up the Earp Street lot — no
 group, no committee — so the kids who already play here have somewhere worth
 being. Follow the work, see what's next, and share your stories of the lot."
 
-It is one `site/index.html` (1,066,454 bytes), alongside two self-hosted
+It is one `site/index.html` (1,066,797 bytes), alongside two self-hosted
 Montserrat Alternates font files under `site/fonts/` (B26): no framework, no
 build step, no package manager, no backend of its own, zero JavaScript, zero
 external requests except one form endpoint. Keep it that way — do not
