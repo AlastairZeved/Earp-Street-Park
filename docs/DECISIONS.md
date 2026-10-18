@@ -1140,13 +1140,3 @@ Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. 
 **Source:** owner, session chat, 2026-10-16, transcribed verbatim: “Yes — record all three and rewrite the comments” — https://github.com/AlastairZeved/Earp-Street-Park/issues/169
 
 **The record.** B45, B46, and B47 record the owner-authored outcomes from #59, #63, and #73. The corresponding `site/index.html` comments now use present-tense reasons with `#issue (B<n>)` citations. `AGENTS.md` no longer carries B44's temporary exception for those issues. No CSS, markup, or rendered value changes.
-
-### B49. The on-load Park Party Palooza pop-up is removed entirely — its overlay, card, fliers, emoji, close control, and every line of its CSS and markup — and the header pane's title flier stays (issue #184, owner ruling; supersedes B36)
-
-**Source:** issue #184 (owner, ruling of record), transcribed verbatim: "It's time to remove the event pop-up for the Park Party Palooza that loads on the landing page. Remove it entirely, no reason to keep any of its code or anything since the event has now passed.
-
-This PR does not include removing the flier from the upper right hand corner of the web page, it may remain for now." And the owner's rulings in chat with the site's agent, 2026-10-18, transcribed verbatim from the owner's selected answers: on the record — "Yes, add B49"; on the pop-up's documentation in `docs/UIUX.md` and `docs/PRD.md` — "Delete completely"; on the header flier — "Leave it untouched".
-
-**The record.** `site/index.html` no longer carries the B36 pop-up: the `#popup-toggle` checkbox, `.popup-overlay` and everything inside it, every `.popup-*` rule, the phone rule that hid it, and the `.popup-flier` members of the B43 grouped tape recipe are deleted. The B35 header-pane title flier (`.flier-banner`) is unchanged. `docs/UIUX.md` drops §4.4 and the pop-up's §2.4 shadow/backdrop rows, §3 bold-weight entries, §4.1/§4.3 B43 references, §5.1 pin row, §6 focus bullet, and §8 radius; `docs/PRD.md` §4 drops item 8. `AGENTS.md` fact 4 and the byte counts in `AGENTS.md` and `docs/PRD.md` are updated to match.
-
-**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/184; chat, 2026-10-18
