@@ -19,7 +19,7 @@ verbatim from its issue of record, never authored or paraphrased by an agent.
 > supersede rulings except to transcribe an owner statement.
 >
 > **Append only.** An entry is superseded by a later ruling, never edited
-> away. New rulings continue here as `B10`+, in ascending order. `test/records.js`
+> New rulings continue here as `B40`+, in ascending order.
 > guards this file's citation space in CI: unique ascending `### B<n>`
 > headings, and a `Source:` line on every entry.
 >
@@ -32,11 +32,12 @@ verbatim from its issue of record, never authored or paraphrased by an agent.
 
 ## B. Seeded rulings of record
 
-The entries below are the owner rulings from this repository's issue history
-that carry an explicit marker of owner authority — the `AI Slop` label (the
+The entries below are the owner rulings from this repository's issue history.
+Some carry an explicit marker of owner authority — the `AI Slop` label (the
 owner's own tag for corrections to agent work) or an explicit owner-ruling
-title — transcribed verbatim. Earlier design corrections without that marker
-are not recorded here; they remain visible in the issue tracker.
+title — transcribed verbatim. Rulings recorded after B10 come from owner chat
+and carry neither marker; they are recorded by owner direction. Earlier design
+corrections without that marker are not recorded here; they remain visible in the issue tracker.
 
 ### B1. Four security findings are accepted risks, not defects — no branch lock, no security headers, the dev script stays deletable history, authorship stays unsigned; PR previews are KEPT and an owned domain is NOT NOW (issue #45, the owner's rulings of record; supersedes the standing "disclosed defects are repaired to zero" standard for exactly these four items; waives nothing else)
 
@@ -127,6 +128,8 @@ The issue's own words on what carries authority: "Both sentences are the law; ev
 
 **The record.** Opened as PR pending owner review. The center column widens 49% -> 52.5% (bounded by the week sheet's right edge at 21.7% and the plan sheet's column at 78.2%; the side sheets narrow to 20.5% / 20.6% to yield it, the flier shares the plan column and its headroom clamp is re-derived for the 20.6% wrap). The form's chrome compacts one space-step (form padding/margins --space-3 -> --space-2, .field-row--send gap --space-2); inputs, the B6 4rem textarea floor, the #74 Send row, and the sheet species are untouched. --stories-block re-measured to 19.25rem (the sheet prints 308px flat across desktop widths). Measured outcome at the issue's 1247x956 viewport: photo pane 55.3% of the middle pane's vertical space, stories sheet 40.6% — the 70-80/20-30 target is NOT fully met, because the form's no-scroll, first-paint floor (B6/#56) plus its family title/padding put its minimum at ~300px, which cannot shrink below ~40% of the pane at common desktop heights; the numbers are recorded here so the owner can rule on which law gives (textarea floor, title, or pinned arrangement) if the split must go lower.
 
+**Correction addendum (chat, 2026-10-15):** The record says "Opened as PR pending owner review" without a number. Merged via PR #98.
+
 ### B14. Favicons: a picnic bench drawn in the site's browns, implemented in the codebase (issue #99)
 
 **Source:** issue #99 (owner), transcribed verbatim: "Make favicons of a picnic bench, using the same browns from the site as the color scheme, and implement them in the codebase." — https://github.com/AlastairZeved/Earp-Street-Park/issues/99
@@ -140,7 +143,9 @@ and seat plank in `--fence` with the seat overhanging the legs, the legs in
 query applying the §2.2 remaps (`--paper #3a3329`, `--rust #dd8a4a`), with
 the planks taking the dark `--ink-faded` tan `#b5ac9b` — the dark `--fence`
 value measured too close to the dark paper to survive 16px. The SVG ships
-only hexes the tokens already declare.
+The SVG ships only hexes the tokens already declare.
+
+**Correction addendum (chat, 2026-10-15):** The record says "Shipped as PR pending owner review" without a number. Merged via PR #100.
 
 ### B15. The panes re-derive: the left and right panes are equally sized, the middle pane is the larger pane and centered between them (issue #102, the owner's ruling of record)
 
@@ -214,6 +219,8 @@ the centered 56% middle column stand. `docs/UIUX.md` §5/§5.1 and
 `docs/PRD.md` §3/§4 are amended by this ruling in the same PR; no token or
 hex changes, so `test/tokens.js` needs no assertion rewrite.
 
+**Correction addendum (chat, 2026-10-15):** The record says "Shipped as PR pending owner review" without a number. Merged via PR #117.
+
 **Measured outcome.** Desktop viewports sampled with the shipped pins:
 `#panel-plan`'s scroll region stays live in the narrower column — scrollHeight
 2728px against a 300px client at 761vw, 1024/330 at 1247vw, 784/278 at
@@ -222,6 +229,8 @@ sampled width (6.5px at 761vw, 0.5px at 1247vw, both bounding-box readings
 of the tilted sheets; the tape-printing-over convention holds). The lot
 print inside the narrower window pane takes the pane's width cap and centers
 vertically (the §4.2 mechanic, unchanged); the phone grid is untouched.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/109
 
 ### B18. The middle pane stacks instead: the lot photo takes the top of the pane at full width, and What We'd Like To Do and Give Me A Shout! share the row beneath it — plan on the left, stories on the right (the owner's chat amendment to issue #109, 2026-10-06; supersedes B17's photo-beside-plan render and retires `--stories-block`)
 
@@ -270,11 +279,15 @@ Make sure the previous line still ends with the period." — https://github.com/
 
 **The record.** The hero paragraph's closing sentence now reads "...drop us a message with the form on this page." — the parenthetical "(we're still itching to learn the history of those cement planters!)" is deleted and the sentence carries the period. Everything else in the paragraph stands exactly as transcribed in B11 (with B11's chat amendment, "this old park"). `docs/UIUX.md` needs no edit; `docs/PRD.md` §3 quotes no hero copy.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/108
+
 ### B20. The form sheet's title reads "GIVE US A SHOUT!", not "GIVE ME A SHOUT!" (issue #111, owner ruling)
 
 **Source:** issue #111 (owner ruling), transcribed verbatim: "The section "GIVE ME A SHOUT!" needs an edit to: "GIVE US A SHOUT!"" — https://github.com/AlastairZeved/Earp-Street-Park/issues/111
 
 **The record.** The stories sheet's `.note-title` markup becomes "Give us a shout!" — the CSS uppercase render produces "GIVE US A SHOUT!". `docs/PRD.md` §3 item 6 is amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** PRD §3 has no numbered items; the stories sheet is PRD §4 item 7, not §3 item 6.
 
 ### B21. The standalone "Lots of weeding!" line is removed from the What We've Done sheet (issue #112, owner ruling)
 
@@ -283,6 +296,8 @@ Make sure the previous line still ends with the period." — https://github.com/
 "Lots of weeding! I didn’t realize how quickly it can get overgrown across the fencing and in the planters."" — https://github.com/AlastairZeved/Earp-Street-Park/issues/112
 
 **The record.** The `.note-face` line directly under the sheet's title is deleted. The identical sentence opening the 9/2/2026 entry — a different, dated line that continues into tree-planting copy — stays, per the owner's confirmed scope (standalone line only; entry untouched).
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/112
 
 ### B22. The plan sheet is replaced with a five-item bullet list — bullet style instead of checkbox style, the owner's new copy verbatim (issue #113, owner ruling; supersedes B7's "checkbox list alone" render)
 
@@ -296,6 +311,8 @@ Trees in the existing planters Until I can get the Redevelopment Authority’s �
 - Repair the cracked pavement across the lot (working on getting some grant money to pay for it)"" — https://github.com/AlastairZeved/Earp-Street-Park/issues/113
 
 **The record.** The `.punch` list prints the five lines above, verbatim, with no title spans, no generated colon, and no `STUB:nextup-*` fill points (the ruling replaces the section's copy entirely, so the fill points go with the copy they were waiting to fill). The checkbox squares (`.punch li::before`, 1.05rem bordered box) are retired and the list joins the site's existing disc-bullet species (`.need .materials`: `list-style: disc`, 1.1rem indent) per the owner's confirmed choice — no invented marker. B7's record stands as history ("only the checkbox style list should be remaining"); B22 supersedes its rendered form: the sheet is the list alone, now in bullet style. The dark-mode checkbox-fill rule is amended to cover form inputs only. `docs/UIUX.md` §2.3/§3 and `docs/PRD.md` §3 are amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** The plan list lives in PRD §4 item 5, not §3.
 
 ### B23. A new flier, "WHAT WE NEED", joins the right pane above the Come Say Hi! flier — a checkbox list; the checkbox squares return for this flier's list only; the third item's parenthesis closes (issue #110, the owner's ruling of record, with three in-chat rulings; amends B17's "right pane keeps only the Come Say Hi flier" render)
 
@@ -352,6 +369,8 @@ cannot leak (the B18 pattern). No token or hex change: `#fffdf6` and
 `#2b2720` are already shipped and documented (UIUX §2.3). `docs/UIUX.md`
 §2.3/§3/§4.3/§5 and `docs/PRD.md` §3/§4 are amended in the same PR.
 
+**Correction addendum (chat, 2026-10-15):** The record quotes B5 as saying "leave exactly where they are". That phrase is not in B5's Source line. The owner cannot confirm its origin; it may come from issue #70's body.
+
 **Measured outcome.** Agent-derived measurements at 956px viewport height
 (the issue family's reference height): the needs flier's top line matches
 `.note--week`'s bounding-box top to 0.1px at 761/1000/1247/1440vw, and the
@@ -365,6 +384,8 @@ ruling). The numbers are recorded here so a future copy edit or a shorter
 fit envelope can be ruled on with the render measured, not eyeballed. Come
 Say Hi's own bounding box is unchanged by this ruling (bottom 2% pin,
 field-relative, verified at every sampled width).
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/110; chat, 2026-10-06
 
 ### B24. The body font stack leads with Fira Sans — every sans element on the page renders in Fira Sans, not just the body paragraphs; the Bold-only Roboto install that made all 400 text render bold is routed around (issue #114, owner ruling in chat with the site's agent, 2026-10-06)
 
@@ -434,6 +455,8 @@ regions by ruling, so no fix exists inside the current law.
 `docs/UIUX.md` §4.3/§5 and `docs/PRD.md` §3/§4 are amended in the same PR; no
 hex or token changes, so `test/tokens.js` needs no assertion rewrite.
 
+**Correction addendum (chat, 2026-10-15):** The record says "Opened as PR pending owner review" without a number. Merged via PR #123.
+
 ### B26. Montserrat Alternates everywhere — the entire page renders in the handrolled self-hosted Montserrat Alternates; the serif and mono species' families are replaced with it; no other font is used anywhere; the bold roles keep literal 700 via a handrolled 700 face (issue #124, owner ruling; supersedes B24's Fira Sans stack and amends UIUX §3.1's "no font files" rule)
 
 **Source:** issue #124 (owner, ruling of record), transcribed verbatim: "The
@@ -459,7 +482,9 @@ TheBoards handroll the owner named. All three family tokens lead with
 species' Georgia stack is replaced; sizes, uppercase, letter-spacing, the 2px
 ink underline are unchanged), and `--font-stub` (`.entry-date` keeps weight
 400 per B12, `--rust` and letter-spacing 0.04em unchanged). B24's Fira Sans
-stack is superseded. `docs/UIUX.md` §3 is amended in the same PR.
+B24's Fira Sans stack is superseded. `docs/UIUX.md` §3 is amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** The record cites `(TheBoards styles.css §13.1, B50 there)`. B50 is a ruling in TheBoards repo's own ledger, not this one. A bare `B<n>` always means this file's ruling. Reworded to `TheBoards' B50` so the citation is unambiguous.
 
 ### B27. The CSP gains `font-src 'self'` — the B26 handrolled woff2 faces load wherever `_headers` ships; without the directive `default-src 'none'` refuses them and production silently renders system fallbacks (issue #128, owner ruling; amends B16's pinned policy)
 
@@ -499,6 +524,8 @@ live hole under `default-src 'none'`; the owner ruled them in as the standard
 hardened pair a static site carries. B16's other directives are unchanged — in
 particular the Referrer-Policy landmine (B1) is untouched. No hex, token, or
 UIUX value changes, so `test/tokens.js` needs no assertion rewrite.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/118; chat, 2026-10-07
 
 ### B29. The Park Party Palooza flier board joins the right pane — the owner's attached mockup transcribed wholesale above the Come Say Hi! flier, which moves down to just above GIVE US A SHOUT!; the board reaches up into the header pane, overlapping the header divider bar, and scale-to-fits the space (issue #132, the owner's ruling of record, with in-chat rulings; amends B25's right-pane render)
 
@@ -622,6 +649,8 @@ so they resolve through the tokens; no new hex or data URI ships.
 `docs/UIUX.md` §4.3 is amended in the same PR; no other token or hex changes,
 so `test/tokens.js` needs no assertion rewrite.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/132; https://github.com/AlastairZeved/Earp-Street-Park/issues/135; chat, 2026-10-07; chat, 2026-10-08
+
 ### B30. The Palooza board's fit region is the right flier column itself, from the very top of the page down to just above the Come Say Hi! flier — the board scale-to-fits that region, centered horizontally in the column, never wider than the column, never clipped, never overlapping the photo or the header text (issue #138, the owner's ruling of record with in-chat rulings and an annotated screenshot; amends B29's pane-top anchoring)
 
 **Source:** issue #138 (owner, ruling of record), transcribed verbatim:
@@ -732,8 +761,11 @@ Desktop scroll stays zero at every sampled viewport; the phone run is
 untouched (the pane dissolves to `display: contents`, which ignores
 positioning, and the phone `.stage` rule re-pins its own top/origin). No
 hex, token, or font changes, so `test/tokens.js` needs no assertion
-rewrite. `docs/UIUX.md` §4.3 and its §5 element rows are amended in the
-same PR.
+rewrite. `docs/UIUX.md` §4.3 and its §5 element rows are amended in the same PR.
+
+**Correction addendum (chat, 2026-10-15):** B30 contains near-duplicate paragraphs: compare lines 674–681 with 707–715 and 697–698 with 718–720. Annotate only; no text is deleted from the record.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/138; chat, 2026-10-08
 
 ### B31. Deploy is main — always; promotion is the `main:deploy` push and nothing else; no merge commits ever land on deploy and deploy never diverges from main (owner ruling in chat with the site's agent, 2026-10-08; corrects the deploy-branch divergence and the promotion precedent it was wrongly read from)
 
@@ -793,6 +825,8 @@ clips nor overlaps it; desktop scroll stays zero at every sampled viewport.
 The phone flier run reads `needs / party / snap / week / plan / stories` —
 the Come Say Hi! row is gone from the grid template.
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/142
+
 ### B33. The hero paragraph loses the "whether it's picking up trash…" clause and the closing "If you have suggestions…" sentence (issues #143 and #145, owner instructions; amends B11's transcribed copy)
 
 **Source:** issue #145 (owner instruction), transcribed verbatim: "Remove these lines from the header paragraph copy:
@@ -817,6 +851,8 @@ pinned `0.85rem`/weight-400 treatment (UIUX §3) are untouched; both issues
 ask for copy removal only, so no layout, token, or font values change and
 `test/tokens.js` needs no assertion rewrite. `docs/UIUX.md` and
 `docs/PRD.md` quote no hero copy, so they need no edit.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/145; https://github.com/AlastairZeved/Earp-Street-Park/issues/143
 
 
 ### B34. The Park Party Palooza board is replaced wholesale by the owner's updated attachment — its interior composition (repositioned and resized small fliers, a new "Face Painting" flier, "Candy" renamed "Candy for the Kids", the emojis riding ON the fliers and two perched on the title's tape, the scattered fence emojis gone with the fence) ports verbatim, and the stage is TRANSPARENT — the site's own fence shows through (issue #146, owner instruction; supersedes B29's superseding note of issue #135, "background included")
@@ -967,6 +1003,8 @@ And the owner's rulings in chat with the site's agent, 2026-10-09, on the questi
 
 **Measured outcome** (agent-derived, Chromium bounding boxes, this branch's render): the card is 480×535 and centred at every sampled desktop viewport (1440×900, 1920×1200, 1280×800, 1000×700, 1366×768); the seven small fliers show zero bounding-box overlaps and no flier clips the card interior at every sampled viewport; the ✕ and the backdrop both set the overlay to `display: none`; with the pop-up dismissed the board is unchanged (`scrollHeight == innerHeight`; the B35 banner and the stories sheet both present); at 390×844 the overlay is `display: none` (desktop-only).
 
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/150; chat, 2026-10-09
+
 ### B37. The Send button prints underneath the "What's on your mind?" field, the story field reclaims the button's horizontal space, and the GIVE US A SHOUT! flier grows vertically to fit (issue #155, owner instruction; supersedes #74's Send-row arrangement)
 
 **Source:** issue #155 (owner instruction), transcribed verbatim: "In the
@@ -1009,3 +1047,117 @@ the header rule with no scroll fallback (the fit floor moves from main's
 a future edit measures against the render). The button prints 45.1px inside
 the sheet's bottom edge at every sampled viewport. Desktop scroll stays
 zero at all seven sampled viewports (`scrollHeight == innerHeight`).
+
+### B38. A minimal `sitemap.xml` and a `robots.txt` join the repository — the one canonical page is indexed and the robots block points crawlers to the sitemap (issue #158, owner decision)
+
+**Source:** issue #158 (owner decision), transcribed verbatim: "earp-street-park.netlify.app currently ships no `sitemap.xml` and no `robots.txt`. Adding both would give crawlers a canonical index URL rather than forcing link discovery." and the owner's proposal of record, transcribed verbatim: "1. Add a minimal `sitemap.xml` listing the single canonical page (`https://earp-street-park.netlify.app/`). 2. Add `robots.txt`:
+
+User-agent: *
+Allow: /
+
+Sitemap: https://earp-street-park.netlify.app/sitemap.xml
+
+3. Confirm both serve with `text/xml` / `text/plain` and don't trip the shipped `_headers`/CSP." — https://github.com/AlastairZeved/Earp-Street-Park/issues/158
+
+**The record.** Two new files at the repository root, added by this ruling (B2: the repo gains no file type beyond what a ruling adds — `.xml` and `.txt` are new here):
+
+- `sitemap.xml` — a minimal single-page sitemap: the `<?xml version="1.0" encoding="UTF-8"?>` declaration over an `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` with one `<url>` whose `<loc>` is the canonical `https://earp-street-park.netlify.app/` (trailing slash, exactly as the issue writes it). No `lastmod` or other metadata — the issue says "minimal", and the site is one static page.
+- `robots.txt` — the owner's block verbatim:
+  ```
+  User-agent: *
+  Allow: /
+
+  Sitemap: https://earp-street-park.netlify.app/sitemap.xml
+  ```
+
+No `index.html`, token, or hex change, so `test/tokens.js` needs no assertion rewrite; the record space gains this entry, and `test/records.js` reads B1..B38. The ruling names no `UIUX.md`/`PRD.md` section, so neither is amended — these are crawler files, not product surfaces or rendering values.
+
+Item 3 (the serve/MIME confirmation) is a deploy-time check, not a code change. The shipped `_headers` applies `/*` to every response, but its CSP is a browser-rendering control that crawlers ignore when fetching `robots.txt`/`sitemap.xml`, and B28's `X-Content-Type-Options: nosniff` acts only on script/style MIME types, not on `text/plain` or XML. Netlify serves `.txt` as `text/plain` and `.xml` as `application/xml` (Google accepts `application/xml` for sitemaps). The served MIME types are verified on promotion (B10: manual `git push origin main:deploy`); the agent runs no Netlify command. The issue's own framing — "harmless, but the lowest priority of the three sites", "Skipping Netlify deploy-preview URLs" — is recorded verbatim in the Source above.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/158
+
+**Correction addendum (chat, 2026-10-15):** The record says "(B2: the repo gains no file type beyond what a ruling adds …)". That is AGENTS.md's draft paraphrase, not B2's text. B2 says only "the repo gets no .py file".
+
+### B39. Netlify publishes only the site files from `site/` (issue #170, owner ruling)
+
+**Source:** issue #170 (owner ruling), transcribed verbatim: "Publish only the site files." — https://github.com/AlastairZeved/Earp-Street-Park/issues/170
+
+**The record.** The public site files (`index.html`, `fonts/`, `_headers`, `robots.txt`, and `sitemap.xml`) live under `site/`. The root `netlify.toml` sets `site` as the publish directory. Repository documentation, tests, agent instructions, and GitHub workflow files remain outside it. `test/tokens.js` reads `site/index.html`; `AGENTS.md`, `docs/PRD.md`, and `docs/UIUX.md` describe the published site location. The site remains promoted by the owner from `main` to `deploy` under B31.
+
+### B40. “Allow dated chat citations as a narrow exception; update `AGENTS.md` and the test to accept a dated chat source or a link.” (issue #164, owner ruling)
+
+**Source:** issue #164, owner ruling in a comment, transcribed verbatim: “Tighten the test and add links—or a dated-chat attribution convention—as append-only addenda to the 11 entries.” “Use `chat, YYYY-MM-DD` for chat-sourced entries that have no linkable source; keep any existing issue/PR links.” “Allow dated chat citations as a narrow exception; update `AGENTS.md` and the test to accept a dated chat source or a link.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/164
+
+**The record.** `AGENTS.md` permits `chat, YYYY-MM-DD` for chat-sourced rulings with no linkable source and keeps existing issue/PR links. `test/records.js` requires a link or dated-chat attribution in the first Source paragraph or an append-only Source addendum. Append-only Source addenda are recorded on B17, B19, B21, B23, B28, B29, B30, B32, B33, B36, and B38.
+
+
+### B41. Retire the three stale STUB fill-point markers, keeping only STUB:stories-submit (issue #166)
+
+**Source:** issue #166 (owner instruction in chat, 2026-10-15), transcribed verbatim: "Retire them — delete the three outdated STUB notes (hero, week-entry date, week-entry body), keep only the accurate one about the "Send" button." — https://github.com/AlastairZeved/Earp-Street-Park/issues/166
+
+**The record.** Deleted `<!-- STUB:hero-line — … -->` above the `.hero-line` paragraph and `<!-- STUB:week-entry-1-date — … -->` / `<!-- STUB:week-entry-1-body — … -->` flanking the 9/2/2026 week entry in `site/index.html`. Kept `<!-- STUB:stories-submit — the button label -->` beside the `Send` button (still accurate per B4). No other comment, copy, or markup touched. `grep -c 'STUB:' site/index.html` returns 1. No token, hex, or UIUX change, so `test/tokens.js` needs no assertion rewrite; the record space gains this entry — `test/records.js` reads B1..B41.
+
+### B42. Cleanup 8/11: remove the listed dead CSS and hooks, rename misleading identifiers, simplify the phone grid, retain `.note` transitions, and measure before changing the heading margin (issue #167, owner ruling)
+
+**Source:** the owner, in session chat, 2026-10-15, selected “Remove the listed dead CSS”; “Remove all three hooks”; “Rename them”; “Simplify the grid rows and remove the duplicate rules”; “Keep it as intentional sheet movement”; and “Measure first; remove only if the heading stays clear, otherwise keep it”. On external links, the owner selected “Remove it anyway; no internal links exist” — chat, 2026-10-15.
+
+**The record.** Removed the dead CSS listed in R1, including the phone scrap-stock rules, unused markup hooks in R2, and renamed the misleading identifiers in R3: `.head-lines` to `.needs-flier`, `.head-lines--needs` to `.needs-list`, `.say-hi.flier` to `.needs-heading`, `.cmp` to `.photo-mat`, `.cmp-stage` to `.photo-mat-stage`, `--stories-row` to `--needs-row`, `--font-display` to `--font-heading`, and `--font-stub` to `--font-entry-date`. The phone grid uses one-token area rows without a column gap, and the duplicated phone Send-button rules are removed (R5). `.note` transitions remain as intentional sheet movement (R6). The `.board-head h1` margin is left unchanged in this PR pending the separate R4 clearance measurement. `docs/UIUX.md` §2.3/§2.4 and §3/§4/§5 are updated; `test/tokens.js` guards the removal of `#ece1c8` and `#332c20`. `AGENTS.md` fact 7 records the authorized scope.
+
+**R4 measurement addendum (issue #167):** At 900×900, 1200×900, and 1440×900, Chromium measured the h1 glyph-to-flier clearances at 159.6px, 453.3px, and 727.1px. Removing the former `margin-right: 21.7%` leaves the heading glyph and flier boxes unchanged at all three widths, preserving those clearances; the conditional instruction therefore permits removal. The `.board-head h1` margin rule is removed in the separate R4 change.
+
+### B43. The shared desktop tape rules are consolidated; the two title-flier definitions remain separate (issue #168, owner ruling)
+
+**Source:** the owner, in session chat, 2026-10-16, transcribed verbatim: “Consolidate shared tape rules.” “Keep the copies (Recommended) — preserve separate attachment transcriptions.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/168
+
+**The record.** The desktop tape pseudo-elements on `.note`, `.needs-flier`, `.flier-banner .flier`, and `.popup-flier` share one grouped base recipe and shared left/right placement rules. The phone override groups `.note` and `.needs-flier` at their existing phone values; the lead sheet and snapshot variants remain separate. The header title flier's CSS/markup and the pop-up title flier's CSS/markup remain separately defined. `docs/UIUX.md` §4.1, §4.3, and §4.4 record these shared tape declarations and separate title-flier transcriptions. No rendered values or markup change; the issue's required before/after screenshots verify pixel identity at the specified viewports and states.
+
+### B44. `site/index.html` change-history comments use present-tense reasons with ruling citations; comments for unrecorded rulings #59, #63, and #73 remain unchanged until those rulings are recorded (issue #169, owner ruling)
+
+**Source:** issue #169, owner ruling in session chat, 2026-10-16, transcribed verbatim: “Option 2: Present tense + ruling ID; no “was X” text; history stays in DECISIONS.md” and “Leave those comments unchanged until their rulings are recorded” — https://github.com/AlastairZeved/Earp-Street-Park/issues/169
+
+**The record.** `AGENTS.md` instructs that `site/index.html` change-history comments use present tense, explain why the current value is what it is, and cite the ruling as `#issue (B<n>)`; Git and `DECISIONS.md` hold the history. Live-warning comments remain verbatim. Comments for issues #59, #63, and #73 remain unchanged until their rulings are recorded. The in-scope B-backed change-history comments are rewritten in present tense in this PR; no CSS, markup, or rendered value changes.
+
+### B45. The title pane's height is reduced: the grid gap is `--space-2`, the h1 line-height is 1.1, and the hero max-width is 72em (issue #59, owner-authored outcome)
+
+**Source:** issue #59, the owner's closure comment, transcribed verbatim: “Grid areas cut from four rows to three: `h1 h1 / hero hero / rule lines / sayhi lines` -> `h1 lines / hero lines / rule rule`; gap `--space-3` -> `--space-2`; h1 `line-height` ~1.49 -> 1.1; hero `max-width` 58em -> 72em so it stays on one line at wide viewports.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/59
+
+**The record.** The title pane uses three grid rows (`h1`, `hero`, `rule`), with a `--space-2` gap, h1 `line-height: 1.1`, and hero `max-width: 72em`. These are the current values described by the issue's owner-authored outcome.
+
+### B46. The Come Say Hi flier sits at the field's bottom-right, flush with the plan sheet; the plan sheet top aligns with What We've Done (issue #63, owner-authored outcome)
+
+**Source:** issue #63, the owner's closure comment, transcribed verbatim: “The Come Say Hi flier block moved out of the header into the field, pinned bottom-right (position: absolute; right: 1.2%; bottom: 2%), flush with the plan sheet's right edge; plan sheet top stays in line with What We've Done (height calc(96% - 96px)).” — https://github.com/AlastairZeved/Earp-Street-Park/issues/63
+
+**The record.** The flier's field pin is bottom-right at `right: 1.2%` / `bottom: 2%`, with its right edge flush to the plan sheet. The plan sheet top aligns with What We've Done. Later rulings alter which component occupies the flier slot; the comments below describe the present layout and cite the current placement rulings too.
+
+### B47. The hero passage is 0.85rem at every viewport, matching the site's existing small-text size (issue #73, owner ruling)
+
+**Source:** the owner's 2026-09-30 ruling in issue #73, transcribed verbatim with expletives redacted at the owner's standing direction: “There is no smaller hero size. It's a [expletive removed] title on a flier, just like all the other titles on the [expletive removed] fliers. it should just match what we've already [expletive removed] used everywhere else.” The owner's closing comment states: “`.hero-line` renders **13.6px (0.85rem, exact)** at every measured viewport” and “Phone `0.9rem` override deleted.” — https://github.com/AlastairZeved/Earp-Street-Park/issues/73
+
+**The record.** `.hero-line` uses the site's existing small-text size, `0.85rem`, as a flat value at desktop and phone. The phone override is absent; the dark-theme color rule is unchanged.
+
+### B48. Record the owner outcomes from issues #59, #63, and #73 and rewrite their comments to cite those rulings (issue #169, owner ruling)
+
+**Source:** owner, session chat, 2026-10-16, transcribed verbatim: “Yes — record all three and rewrite the comments” — https://github.com/AlastairZeved/Earp-Street-Park/issues/169
+
+**The record.** B45, B46, and B47 record the owner-authored outcomes from #59, #63, and #73. The corresponding `site/index.html` comments now use present-tense reasons with `#issue (B<n>)` citations. `AGENTS.md` no longer carries B44's temporary exception for those issues. No CSS, markup, or rendered value changes.
+
+### B49. The on-load Park Party Palooza pop-up is removed entirely — its overlay, card, fliers, emoji, close control, and every line of its CSS and markup — and the header pane's title flier stays (issue #184, owner ruling; supersedes B36)
+
+**Source:** issue #184 (owner, ruling of record), transcribed verbatim: "It's time to remove the event pop-up for the Park Party Palooza that loads on the landing page. Remove it entirely, no reason to keep any of its code or anything since the event has now passed.
+
+This PR does not include removing the flier from the upper right hand corner of the web page, it may remain for now." And the owner's rulings in chat with the site's agent, 2026-10-18, transcribed verbatim from the owner's selected answers: on the record — "Yes, add B49"; on the pop-up's documentation in `docs/UIUX.md` and `docs/PRD.md` — "Delete completely"; on the header flier — "Leave it untouched".
+
+**The record.** `site/index.html` no longer carries the B36 pop-up: the `#popup-toggle` checkbox, `.popup-overlay` and everything inside it, every `.popup-*` rule, the phone rule that hid it, and the `.popup-flier` members of the B43 grouped tape recipe are deleted. The B35 header-pane title flier (`.flier-banner`) is unchanged. `docs/UIUX.md` drops §4.4 and the pop-up's §2.4 shadow/backdrop rows, §3 bold-weight entries, §4.1/§4.3 B43 references, §5.1 pin row, §6 focus bullet, and §8 radius; `docs/PRD.md` §4 drops item 8. `AGENTS.md` fact 4 and the byte counts in `AGENTS.md` and `docs/PRD.md` are updated to match.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/184; chat, 2026-10-18
+
+### B50. A 10/17/2026 entry is added at the top of What We've Done, the owner's copy verbatim (issue #185, owner instruction)
+
+**Source:** issue #185 (owner instruction), transcribed verbatim: "In the "What We've Done" section, we need a new entry added as written below:
+
+"10/17/2026
+We raised $43 from the Park Party Palooza and mulched all 4 planters! That's enough money to buy new wood for one of the benches (and some paint!) and we couldn't be prouder. Thanks so much to all who came out with us!!!"" And the owner's rulings in chat with the site's agent, 2026-10-18, transcribed verbatim from the owner's selected answers: on the record — "Yes, add B50"; on the apostrophe in "That's" — "Exactly as typed". — https://github.com/AlastairZeved/Earp-Street-Park/issues/185
+
+**The record.** `#panel-week` gains one `.entry` above the 9/25/2026 entry (the sheet lists newest first): an `.entry-date` reading `10/17/2026` and one `<p>` carrying the owner's sentence verbatim, straight apostrophes included. The entry joins the existing entry species — no new class, rule, token, or hex — so `test/tokens.js` needs no assertion rewrite and `docs/UIUX.md` needs no edit; `docs/PRD.md` §3 quotes no entry copy. The byte counts in `AGENTS.md` and `docs/PRD.md` are updated to match. The record space gains this entry — `test/records.js` reads B1..B50.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/185; chat, 2026-10-18

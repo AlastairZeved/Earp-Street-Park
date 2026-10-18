@@ -1,11 +1,12 @@
-# Run the record and design contracts before merge.
+# Run the record, design, and public-file boundary contracts before merge.
 #
 # docs/DECISIONS.md is the owner's law, transcribed; docs/UIUX.md is the
 # rendering authority. test/records.js guards the B<n> citation space and
-# the Source-line requirement; test/tokens.js recomputes UIUX §2/§3 from the
-# shipped index.html so the documents and the render cannot drift apart.
-# Until now nothing ran these automatically — this runs them on every PR and
-# on push to main, before a bad change can reach the deploy branch (B10).
+# the Source-line citation requirement; test/tokens.js recomputes UIUX §2 and
+# spot-checks B12's weight map against the shipped site/index.html;
+# test/publish.js keeps private repository files outside Netlify's publish dir.
+# These suites run automatically on every PR and push to main, before a bad
+# change can reach the deploy branch (B10).
 #
 # Why `run:` steps instead of actions/checkout + actions/setup-node: this
 # repository's Actions policy is allowed_actions: local_only — external
@@ -55,10 +56,13 @@ jobs:
           git checkout -q FETCH_HEAD
 
       # No setup-node: Node is preinstalled on ubuntu-latest and the suites
-      # are stdlib-only (no package.json — see B2: no stray files), so the
+      # are stdlib-only (no package.json — see B2: no .py files), so the
       # preinstalled version is sufficient by construction.
       - name: records.js — the DECISIONS.md citation space
         run: node test/records.js
 
-      - name: tokens.js — UIUX §2/§3 recomputed from index.html
+      - name: tokens.js — UIUX §2 + B12 weight-map spot checks
         run: node test/tokens.js
+
+      - name: publish.js — Netlify public-file boundary
+        run: node test/publish.js

@@ -1,8 +1,8 @@
 # UIUX.md — Earp Street Park
 
-**Status:** DRAFT v1, reconstructed from the shipped `index.html` (one
-self-contained file, no build step) and the owner's rulings of record. The
-governing law in §1 is the owner's, carried over verbatim. Everything else is
+**Status:** DRAFT v1, reconstructed from the shipped `site/index.html` (one
+HTML file with two same-origin self-hosted font requests, no build step) and the owner's rulings of record. The
+governing law in UIUX §1 is the owner's, carried over verbatim. Everything else is
 a rendering inventory for the owner to amend — until the owner corrects it in
 review, treat it as descriptive, not prescriptive.
 
@@ -38,7 +38,7 @@ forbidden fixes and B8's rejected red lines).
 ## §2 Color
 
 Every hex in the shipped file — 18 distinct values. The palette's roles come
-from the tokens' own comments in `index.html` (`:root`, quoted in the right
+from the tokens' own comments in `site/index.html` (`:root`, quoted in the right
 column).
 
 ### §2.1 Light-mode tokens
@@ -69,21 +69,17 @@ column).
 
 | Value | Light role | Dark value |
 |---|---|---|
-| `#fffdf6` | the photo mat (`.cmp`), form inputs, the phone snapshot print, the What We Need flier's checkbox squares (B23) | `#2b2720` ("form inputs go dusk-dark"; the checkbox squares go with them, B23) |
-| `#ece1c8` | phone-only scrap stock (`.note--plan .need`) | `#332c20` |
+| `#fffdf6` | the photo mat (`.photo-mat`) and phone snapshot print stay this color in dark mode; form inputs and the What We Need flier's checkbox squares (B23) re-tone | `#2b2720` for the inputs and checkbox squares only (B23); the photo mats stay `#fffdf6` |
 
 ### §2.4 Shadows and tape
 
 | Value | Where |
 |---|---|
-| `rgba(0,0,0,.35)` | h1 / `.say-hi` text-shadow |
 | `rgba(0,0,0,.4)` | `.note` sheet shadow (`0 8px 20px`), hero text-shadow (`0 1px 3px`) |
-| `rgba(0,0,0,.45)` | snapshot print shadow (`0 7px 18px`), window mat shadow (`0 6px 18px`) |
-| `rgba(0,0,0,.2)` | tape and print small shadows (`0 1px 3px`), scrap |
-| `rgba(0,0,0,.12)` | phone scrap shadow |
-| `rgba(236,227,199,.78)` | **tape — the only non-black rgba; tape is warm cream at 78%** |
-| `rgba(20,17,12,.62)` | the B36 pop-up backdrop — dims the board while the flier takes over |
-| `rgba(0,0,0,.55)` | the B36 pop-up card shadow (`0 24px 60px`) |
+| `rgba(0,0,0,.45)` | snapshot print shadow (`0 7px 18px`) |
+| `rgba(0,0,0,.35)` | h1 text-shadow (`0 2px 4px`), `.photo-mat` window mat shadow (`0 6px 18px`) |
+| `rgba(0,0,0,.2)` | tape and print small shadows (`0 1px 3px`) |
+| `rgba(236,227,199,.78)` | tape — warm cream at 78% |
 
 **No danger color exists.** The accent role is `--rust`: submit hover, entry
 dates, focus outlines.
@@ -102,7 +98,7 @@ IS the fence; no other background treatment exists.
 ### §3.1 Families — Montserrat Alternates everywhere, self-hosted (B26; supersedes B24's Fira Sans stack and this section's old "system stacks only" rule)
 
 One family renders the entire page: **Montserrat Alternates**, handrolled
-Latin-subset woff2 committed in `fonts/` (400 and 700 — the weights the
+Latin-subset woff2 committed in `site/fonts/` (400 and 700 — the weights the
 weight map uses), self-hosted `@font-face` with `font-display: swap`, no CDN,
 no API call, no dependency (issue #124; the handroll is transcribed from
 TheBoards, the owner's named reference). All three tokens lead with it:
@@ -110,8 +106,8 @@ TheBoards, the owner's named reference). All three tokens lead with it:
 | Token | Stack |
 |---|---|
 | `--font-body` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26) |
-| `--font-display` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26 — the Georgia serif stack is replaced) |
-| `--font-stub` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B26 — the mono stack is replaced) |
+| `--font-heading` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B42 — heading role; same family as body) |
+| `--font-entry-date` | `"Montserrat Alternates", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` (B42 — entry-date role; same family as body) |
 
 The fallbacks stand only for systems where the font files fail to load.
 
@@ -120,12 +116,11 @@ The fallbacks stand only for systems where the font files fail to load.
 Body text is **plain weight (400)**; bold belongs to headers, titles, and the
 Send button (B12 — supersedes B9's entry-date exception). Shipped as one
 grouped rule
-(`.entry p, .note-face, .punch li, .head-lines--needs li, .need li, .need
-.materials li, .archive-head, .fine { font-weight: 400 }`) plus `label`,
-`.hero-line`, `.smallprint`, and `.need .what` all at 400.
+(`.entry p, .note-face, .punch li, .needs-list li, .fine { font-weight: 400 }`)
+plus `label`, `.hero-line`, and `.smallprint` all at 400.
 
-**Bold (700) appears only on:** `button[type=submit]`, and the
-computed h2 default behind `.note-title`/`.say-hi.flier`.
+**Bold (700) appears on:** `button[type=submit]` and `.flier-banner .flier--title h1`; the computed h2 default behind
+`.note-title`/`.needs-heading` and the header `<h1>` browser default are bold too.
 
 **B24 — the body stack leads with Fira Sans.** *(Superseded by B26 —
 Montserrat Alternates everywhere, self-hosted; retained for the record.)*
@@ -136,20 +131,20 @@ third bold complaint: the weight map was already correct — the family stack
 delivered a Bold-only family). Fira Sans exists with Regular + Bold, so the
 Send button keeps its true bold and every 400 element renders a true regular.
 The serif (`.note-title`, `h1`) and mono (`.entry-date`) species are unchanged
-*(B26 later replaced those species' families too — see §3.1)*.
+*(B26 later replaced those species' families too — see UIUX §3.1)*.
 
 ### §3.3 Sizes
 
 | Element | Size |
 |---|---|
 | Body base | `16px / 1.5` |
-| `h1` | `--font-display` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1 |
-| `.note-title` | `--font-display` (Montserrat Alternates, B26), `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
+| `h1` | `--font-heading` (Montserrat Alternates, B26), `clamp(1.45rem, 3.4vw, 2.1rem)`, nowrap, line-height 1.1, no added right margin (B42 R4: glyph-to-flier clearance 159.6/453.3/727.1px at 900/1200/1440×900) |
+| `.note-title` | `--font-heading` (Montserrat Alternates, B26), `clamp(1rem, 1.6vw, 1.2rem)`, uppercase, letter-spacing 0.07em, 2px solid ink underline |
 | `.note-face` | `clamp(0.9rem, 1.3vw, 1rem)` (phone `0.85rem`) |
-| `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em, `margin-right: 21.7%` (B30, issue #138 — the header text block's right boundary is the flier column's left edge, the owner's pane map; `.board-head h1` carries the same margin) |
-| `.entry-date` | `--font-stub`, 400 (B12), `--rust`, letter-spacing 0.04em |
-| `.smallprint` | `0.78rem` (phone `0.72rem`) |
-| `.say-hi.flier` | same treatment as `.note-title` verbatim (B5: "there was no reason it should have been different") |
+| `.hero-line` | `0.85rem` flat at every viewport (#73), weight 400, max-width 72em, `margin-right: 50%` (B35, issue #151 — the hero wraps at the header's halfway line) |
+| `.entry-date` | `--font-entry-date`, 400 (B12), `--rust`, letter-spacing 0.04em |
+| `.smallprint` | `0.78rem`; only `.needs-flier .smallprint` is `0.72rem` on phone, while the stories-sheet smallprint stays `0.78rem` |
+| `.needs-heading` | same treatment as `.note-title` verbatim (B5: "there was no reason it should have been different") |
 
 ---
 
@@ -165,28 +160,30 @@ texture (B5).
 `padding: var(--space-3)`, `z-index: 2`, **two tape strips** via
 `::before`/`::after`: 5.5rem × 1.7rem, `rgba(236,227,199,.78)`,
 `0 1px 3px rgba(0,0,0,.2)`, `top: -0.8rem`, left 9% rotate(−4°) / right 9%
-rotate(+3°), `pointer-events: none`, z-index 3. The tape recipe is duplicated
-verbatim on `.head-lines` (B5); phone values: 4.6rem × 1.5rem, `top: -0.65rem`,
-left/right 8%. Tilts (desktop): week −0.5°, plan +0.5°, stories −0.3°.
+rotate(+3°), `pointer-events: none`, z-index 3. B43 groups this desktop tape
+recipe once across `.note`, `.needs-flier`, and `.flier-banner .flier`; the rendered values remain verbatim. On phone, `.note` and
+`.needs-flier` share the 4.6rem × 1.5rem, `top: -0.65rem`, left/right 8%
+override; the lead sheet and snapshot keep their distinct tape variants.
+Tilts (desktop): week −0.5°, plan +0.5°, stories −0.3°.
 (The Come Say Hi flier, a −0.5° member of the species through B30, was
 removed by B32 — issue #142.)
 
-Face anatomy: `.note-title` (§3.3) + optional `.note-face` intro + content
-panel. Week holds `.entry` items (dashed `--rule` bottom border, rust mono
-dates); plan holds the `.punch` bullet list (disc bullets joining the
-`.need .materials` species — 1.1rem indent; #113 replaced the checkbox
-squares). Header items (h1, hero, rule) are NOT paper — cream
-serif and ink directly on the fence with text-shadow.
+Face anatomy: `.note-title` (UIUX §3.3) + optional `.note-face` intro + content
+panel. Week holds `.entry` items (dashed `--rule` bottom border, rust dates
+at weight 400 per B12); plan holds the `.punch` bullet list (disc bullets, 1.1rem indent; #113
+replaced the checkbox squares). Header items (h1, hero, rule) are NOT paper — cream ink
+directly on the fence with text-shadow. Montserrat Alternates is the only
+font family throughout (B26).
 
 ### §4.2 The photo print in a mat
 
-`.cmp`: `#fffdf6` mat, `padding: var(--space-2)`,
+`.photo-mat`: `#fffdf6` mat, `padding: var(--space-2)`,
 `0 6px 18px rgba(0,0,0,.35)`, rotate 0.35°. The mat hugs the print (#101): it
 is as wide as the largest uncropped print the window pane can show — the
 print's own 1600/995 aspect (the shipped photograph's natural size) measured
 against the pane's height via its `container-type: size` (100cqh), capped by
 the pane's width — and the print fills it edge to edge
-(`.cmp-stage` carries `aspect-ratio: 1600 / 995`; `object-fit: contain`
+(`.photo-mat-stage` carries `aspect-ratio: 1600 / 995`; `object-fit: contain`
 coincides with full-bleed at that ratio), so no white mat margin is
 introduced at any window shape. When the pane is narrower than the
 height-derived mat (very tall windows) the width cap takes over and the mat
@@ -206,15 +203,17 @@ ruling; it was **removed by B32 (issue #142)**, its copy with it, and the
 board's freed space goes to the Palooza board. Its species survives in the
 **What We Need** flier (B23, issue
 #110), which swaps into the middle pane's lower right under B25: the same
-`.head-lines` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
-shadow, −0.5° tilt, `.say-hi.flier` title), now the right half of
+`.needs-flier` species verbatim (paper, tape, `0 8px 20px rgba(0,0,0,.4)`
+shadow, −0.5° tilt, `.needs-heading` title), now the right half of
 `.middle-row` (`margin-left: 50.5%; width: 49.5%`) and the bottom row's
-height-setter.
+height-setter. Its desktop tape declarations share the grouped B43 rule with
+the paper sheets and header banner; its phone values share the
+`.note` override.
 Its face is a checkbox list — the plan sheet's
 retired checkbox squares (2.1rem indent, 1.05rem square, 2px `--ink` border,
 `#fffdf6` fill; `#2b2720` dusk fill in dark), reinstated verbatim for this
 flier's list only by the owner's in-chat ruling; the plan sheet stays the B22
-disc-bullet list. The face prints at the `.smallprint` size (§3.3 — the
+disc-bullet list. The face prints at the `.smallprint` size (UIUX §3.3 — the
 flier species' own body size, the size Come Say Hi's face printed; the
 owner's in-chat size ruling). The list is not a scroll region. The right
 pane's stack since B35 (issue #151) is GIVE US A SHOUT! alone: the **Park
@@ -247,8 +246,8 @@ the tilted paper's bottom-left corner dips ~4.6px below the border line at
 1440×1000 — "I accept the rotation of the tilted paper if it overlaps the
 header border line a scoche." Interior values transcribe from the
 attachment verbatim (paddings, type sizes, the pumpkins JPEG, the tape
-strips, the vestigial `.fall-art svg` rule) except the standing
-adaptations: fonts through §3.1's single family (B26), the smallprint's
+strips) except the standing
+adaptations: fonts through UIUX §3.1's single family (B26), the smallprint's
 `text-shadow: none`, the h1's own ink (the header h1's cream
 ink/shadow/nowrap must not ride along). On phone (≤760px) the banner joins
 the header grid as its own row under the lead, full-width at the flier's
@@ -256,65 +255,36 @@ own 700/294 aspect, width-scaled by one `tan(atan2(100cqw, 700px))` factor
 (origin 0 0) — "the flier should be stacked underneath the header and
 header paragraph."
 
-### §4.4 The on-load pop-up (B36)
-
-A fixed overlay shows the Park Party Palooza flier on page load and is
-dismissed by one CSS-only control (B16: zero JS). `.popup-overlay` —
-`position: fixed; inset: 0; z-index: 1000`, backdrop `rgba(20,17,12,.62)` —
-centres the `.popup` card: 480×535, `background: var(--paper)`,
-`border: 6px solid var(--ink)`, `outline: 2px solid var(--rust)` at
-`outline-offset: -11px`, `box-shadow: 0 24px 60px rgba(0,0,0,.55)`,
-`overflow: hidden`. The close control `.popup-close` (40×40, `--rust` fill,
-`--paper` ✕, `border-radius: 0 0 0 6px`) and the full-bleed `.popup-backdrop`
-label are both `<label for="popup-toggle">` for a visually-hidden checkbox;
-`.popup-toggle:checked ~ .popup-overlay { display: none }`. `.popup-stage`
-(850×876, the mockup's own board composition) is centred and cover-fit by
-`transform: translate(-50%,-50%) scale(0.611)`. Inside it the flier species
-(`.popup-flier`: `.note` paper, `0 8px 20px rgba(0,0,0,.4)` shadow, the two
-tape strips `rgba(236,227,199,.78)` and their tilts) carries the title flier
-(700px, −1°), the story flier, and seven small fliers whose sizes —
-16/20/23/26/28/30/32px, all distinct — are, under §3.1's single font,
-re-spaced to zero bounding-box overlap (B34's standing no-overlap ruling).
-Emoji ride on the fliers (`.popup-tag-emoji`) and two perch on the title's
-tape (`.popup-tape-emoji`); the palette is 🎃 👻 🍂 only. Fonts resolve through
-§3.1 (B26); the chrome introduces no new hex (the attachment's darker-rust
-hover shade is dropped, B36). **Desktop only**: `.popup-overlay` is
-`display: none` at ≤760px (the owner's ruling).
-
 ---
 
 ## §5 Layout — the board
 
-One spatial board: `body { overflow: hidden }` on desktop — one viewport, no
-document scroll in any direction. `.board` is `100vh/100dvh`; the `.field`
+One spatial board: `body { overflow: hidden }` on desktop — one
+viewport, no document scroll in any direction. `.board` is `100vh/100dvh`; the `.field`
 children are absolutely pinned by percentage. Position encodes meaning
-(the file's own architecture comment, verbatim): "**left = what happened**
+(the file's architecture comment describes the board this way): "**left = what happened**
 (What We've Done), **center = the lot as it stands** (one pinned photo, #64)
 above your turn and the ask (What We'd Like To Do beside WHAT WE NEED,
 #122/B25 — the middle pane's bottom row), right = the
-GIVE US A SHOUT! sheet alone in the fliers' pane (#122, B25; the Palooza
-board is gone — #151/B35). #132/#142 history: the Palooza flier board
-joined, then replaced, the right pane's run; #151 (B35) removes the entire
-board — all of its little fliers and emojis — and moves the one title
-flier up into the header pane, anchored top right above the .head-rule
-border line, scaled to the header's height."
+GIVE US A SHOUT! sheet alone in the right pane (#122, B25). The Palooza
+board is gone: B35 removes its small fliers and emojis and moves the
+title flier into the header pane, anchored top right above the
+.head-rule border line, scaled to the header's height. The stories
+sheet keeps the pane (B25's pins restored)."
 
 ### §5.1 Desktop pins
 
 | Element | Pin |
 |---|---|
-| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B17: the plan sheet leaves the right pane at 27.5%, so the two sheets' widths no longer match — the week sheet's 20.5% stands) |
-| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--stories-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
-| `.popup-overlay` | (B36, §4.4) `position: fixed; inset: 0; z-index: 1000` — the on-load pop-up; not a `.field` child, desktop only |
+| `.note--week` | `left: 1.2%; top: 2%; width: 20.5%; height: 96%` (B15: the side panes are equally sized; B18 supersedes B17's pane split: the plan is now 49.5% of `.middle-row`) |
+| `.window` | `left: 22%; top: 2%; width: 56%; height: calc(96% - var(--needs-row))`, z-index 1, `container-type: size`, flex-centered (#101: the mat inside it hugs the print, UIUX §4.2; B18: the photo takes the middle pane's full width and the top of its stack) |
 | `.middle-row` | `left: 22%; bottom: 2%; width: 56%` — B18: the middle pane's bottom row; B25: holding `.note--plan` and the WHAT WE NEED flier as equal halves (49.5% each, 1% fence air between them). Dissolves to `display: contents` on phone |
 | `.note--plan` | inside `.middle-row`: `position: absolute; left: 0; top: 0; bottom: 0; width: 49.5%` — B18: the row's left half, filling the height-setter's height exactly (B25: the WHAT WE NEED flier's natural height); `#panel-plan` keeps the sheet's vertical scrollbar. B15's right-pane pin and B17's photo-beside-plan pin are both superseded; the B15/#102 flier-headroom clamp is retired |
-| `.head-lines--needs` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (§4.3) |
-| `.note--stories` | inside `.party-pane` (B29): in flow, the column's bottom sheet — the pane carries the `right: 1.2%; bottom: 2%; width: 20.5%` pins B25 set here (issue #122; keeps the `.note` species, −0.3° tilt, #56: never a scroll region, the form prints full-length inside the paper). B18's middle-row right-half pin is superseded. B37 (issue #155): the form's Send button prints underneath the story field and the field takes the form's full inner width; the sheet grows vertically to fit (content-driven height — +60px measured: button 48.4 + the rendered 11.5px gap) |
-| `.head-lines` | the Come Say Hi flier's species — removed from the board by B32 (issue #142); the rules now serve the WHAT WE NEED flier (B23) only, which lives in `.middle-row` (row above). B29's party-pane re-pin is removed with it |
-| `.party-pane` | B30 (issue #138): `position: fixed; top: 0; right: calc(1.2vw + 0.976 * clamp(0.75rem, 2vw, 1.75rem)); width: calc(20.5vw - 0.41 * clamp(0.75rem, 2vw, 1.75rem)); bottom: calc(clamp(0.5rem, 1.4vh, 1rem) + 2vh - 4px)` — the right pane as one flex column whose fit region is the Come Say Hi column itself from the very top of the page down to just above the pane's last flier, GIVE US A SHOUT! since B32 (issue #142; the B29 re-derivation at viewport scale: `.field` spans 100vw minus body's side padding, `clamp(0.75rem, 2vw, 1.75rem)` a side, so `right` = padding + 1.2% of the field's width and `width` = 20.5% of it — a flat-margin first draft came out up to 5.3px narrow at 761vw; `bottom` keeps the field's 2% pin — body's bottom padding `clamp(0.5rem, 1.4vh, 1rem)` + 2% of field height, the field's top edge 183.5–238.4px down across the desktop band making its 2% a ~4px constant, measured residual ≤0.4px against main). Holding the Palooza board and GIVE US A SHOUT! in flow (Come Say Hi! removed by B32), gap `var(--space-3)`. Dissolves to `display: contents` on phone |
-| `.party-stage` | inside `.party-pane`: `flex: 1 1 0; min-height: 0; container-type: size; overflow: clip` (both gated in `@supports (container-type: size)` — the file's own .window/.cmp pattern; a browser without container queries gets `display: none` on the stage rather than a viewport-scaled board) — B29, fit region re-anchored by B30 (issue #138): the Palooza board takes the column from the page top down to whatever the pane's last flier leaves (GIVE US A SHOUT! since B32, issue #142 — the removed Come Say Hi! flier's space goes to the board); its `.stage` (the mockup's 850×876 composition, transcribed wholesale) scales by `min(tan(atan2(100cqw, 850px)), tan(atan2(100cqh, 876px)))`, origin `50% 0` — centered horizontally in the column (never wider than it), anchored to the TOP of the page (the owner's ruling: "the park party flier should anchor to the top of the page"), hanging from the page top and growing downward, stopping above GIVE US A SHOUT! without overlapping it. On phone, its own grid row (`party`, above the stories sheet) at `aspect-ratio: 850/876`, inline-size container, width-scaled, origin `0 0` |
+| `.needs-list` | inside `.middle-row` (B25): in flow, `position: relative; margin-left: 50.5%; width: 49.5%` — B23 created the flier pinned `top: 2%` in the right pane; B25 (issue #122) swaps it into the middle pane's lower right, the stories sheet's old slot and old job as the row's height-setter (#56 pattern: content-driven height, no scroll region). Same flier species as Come Say Hi (UIUX §4.3) |
+| `.note--stories` | a direct `.field` child, pinned `right: 1.2%; bottom: 2%; width: 20.5%` (B25; B35 removed `.party-pane`). It keeps the `.note` species, −0.3° tilt, and #56's no-scroll rule; the form prints full-length inside the paper. B37 (issue #155): the Send button prints underneath the story field, which takes the form's full inner width; the sheet grows vertically to fit (content-driven height — +60px measured: button 48.4 + the rendered 11.5px gap) |
 
-Sheet clearances are computed, never eyeballed: `--stories-row:
+
+Sheet clearances are computed, never eyeballed: `--needs-row:
 clamp(240px, 462px - 12vw, 365px)` (B25, re-measured for the new
 height-setter — the WHAT WE NEED flier's natural re-wrap: 359.6px at 761vw,
 ~304px at 850–950vw, a flat ~288–291px band to 1350vw, ~235px at 1400vw and
@@ -327,7 +297,7 @@ These are calc tokens, not guesses. #92's measured split at the issue's
 viewport: photo pane 55.3% of the middle pane's vertical space, stories
 sheet 40.6% — B13 records why the 70-80/20-30 ask cannot go lower without
 touching a ruled floor. Issue #101 changed the render B13 shipped: the mat
-hugs the print now (§4.2), and no ruled floor is touched —
+hugs the print now (UIUX §4.2), and no ruled floor is touched —
 the B6 textarea floor and #75's never-crop all stand.
 Issue #102 re-derived the pins (B15): the side panes are equally sized
 (20.5% each), the middle pane is larger (56%) and centered between them —
@@ -338,7 +308,9 @@ it instead (B18): the photo takes the pane's top at full 56% width, and the
 plan and stories sheets share the pane's bottom row as equal halves — plan
 left, stories right. Issue #122 (B25) swaps the fliers: WHAT WE NEED takes
 the stories sheet's old right half of the bottom row, and the GIVE US A
-SHOUT! sheet moves to the right pane below the Come Say Hi! flier.
+SHOUT! sheet moves to the right pane. B32 (issue #142) removes the Come
+Say Hi! flier; B35 (issue #151) removes the Palooza board and moves its
+title-only flier into the header pane.
 
 ### §5.2 Scroll regions
 
@@ -351,12 +323,10 @@ page scrolls instead — sheets print full-length in flow, `overflow: visible`
 
 ### §5.3 Phone (≤760px)
 
-Single-column grid, areas `party / needs / snap / week / plan / stories`
-(B29 adds the Palooza board at the top of the flier run, above Come Say Hi —
-the desktop stacking order, its own grid row at the stage's own 850/876
-aspect ratio; B23 adds the needs flier next in the run — the #46
-top-of-flow pin is not moved; B32 (issue #142) removes the Come Say Hi!
-flier and its `lines` grid row, the run reading needs / party / stories);
+Single-column grid, areas `needs / snap / week / plan / stories`
+(B23 adds the needs flier to the run; B32 (issue #142) removes the Come Say
+Hi! flier and its `lines` grid row; B35 (issue #151) removes the Palooza
+board and its `party` grid row);
 `.window`
 hidden, `.snapshot` shown; the lead becomes a real paper sheet with its own
 tape; page-level scrolling with `overflow-x: clip` (horizontal scroll
@@ -369,8 +339,8 @@ forbidden everywhere).
 - **Zero JavaScript.** No `<script>` tags, no event handlers, no framework.
   Every behavior is CSS/HTML. Do not introduce JS unless the owner asks.
 - **One external service:** the form POSTs to Formspree
-  (`https://formspree.io/f/mbglkalb`). Everything else is data-URI inlined —
-  zero other external requests.
+  (`https://formspree.io/f/mbglkalb`). The two self-hosted Montserrat Alternates
+  WOFF2 files are same-origin requests; there are no other external requests.
 - **Form:** name (optional), email (optional), story (required); `_gotcha`
   honeypot (CSS-hidden, `tabindex="-1"`, `aria-hidden="true"`); button "Send"
   (B4), printing **underneath** the story field at the form's full inner
@@ -380,14 +350,9 @@ forbidden everywhere).
   visible lines, scrollbar beyond
   (B6). **Never add a Referrer-Policy of `no-referrer`/`same-origin`** — B1's
   landmine: it gets real submissions marked as spam.
-- **Focus:** scroll panels and inputs/button get `outline: 3px solid
-  var(--rust)` (`outline-offset: 2px` panels / `1px` inputs) on
-  `:focus-visible`.
-- **The on-load pop-up (B36).** Dismissed by CSS only: one visually-hidden
-  `#popup-toggle` checkbox whose checked state sets `.popup-overlay` to
-  `display: none`; the ✕ (`.popup-close`) and the backdrop (`.popup-backdrop`)
-  are its `<label>`s. No JS, so Escape-to-close does not exist; the checkbox
-  is the keyboard control and shows the rust focus ring on the ✕.
+- **Focus:** scroll panels get `outline: 3px solid var(--rust)` with
+  `outline-offset: 2px` on `:focus-visible`; inputs and the textarea use
+  `:focus` with a 1px offset, while the button uses `:focus-visible`.
 
 ---
 
@@ -400,32 +365,31 @@ animate sheet reflow between viewports:
 keyframes. `prefers-reduced-motion: reduce` kills them (`transition: none`).
 ## §8 Radii and spacing
 
-Radii: `border-radius: 0` on form inputs, plus the B36 pop-up close
-control's `0 0 0 6px` corner — the file's only two radii; everything else is
-square. Spacing tokens: `--space-1: 0.35rem`,
+CSS radii: `border-radius: 0` on form inputs; everything else is square. The favicon SVG
+also uses `rx="6"` and `rx="0.8"`. Spacing tokens: `--space-1: 0.35rem`,
 `--space-2: 0.75rem`, `--space-3: 1.25rem`; deviations are declared raw
-values with ruling comments in `index.html` (e.g. the flier's
-`var(--space-3) 0.85rem 0.6rem` paper margin from B5's spec).
+values with ruling comments in `site/index.html` (e.g. the flier's
+`var(--space-3) 0.85rem 0.6rem` paper margin from #76).
 
 ## §9 The favicon (B14)
 
-One inline SVG data URI on `<link rel="icon">`, embedded in `index.html` —
+One inline SVG data URI on `<link rel="icon">`, embedded in `site/index.html` —
 the repo ships no icon files. The drawing is a picnic bench side profile on a
 rounded-square field (rx 6 of 32): the field is the `--paper` tone, the
 tabletop and bench-seat planks `--fence`, the legs `--rust` — the owner's
 palette choice on issue #99: paper background, fence-brown bench, rust
 accents. The seat plank overhangs the legs; the legs pass behind it to the
 ground. An internal `@media (prefers-color-scheme: dark)` block inside the
-SVG applies the §2.2 remaps (`--paper #3a3329`, `--ink-faded #b5ac9b` for
+SVG applies the UIUX §2.2 remaps (`--paper #3a3329`, `--ink-faded #b5ac9b` for
 the planks — the dark `--fence` value is too close to the dark paper to
 survive 16px, so the planks take the dark faded-ink tan instead — and
 `--rust #dd8a4a`), so the icon re-tones with the browser's scheme. The SVG
-ships only hexes the tokens already declare — no new values enter the §2
+ships only hexes the tokens already declare — no new values enter the UIUX §2
 census.
 
 ---
 
-*The rendered reference is the shipped `index.html` itself — there is no
+*The rendered reference is the shipped `site/index.html` itself — there is no
 separate specimen. Where this document and the render disagree, the render is
 the earlier authority and the disagreement is a defect here.* (DRAFT: the
 owner's amendment stands above this rule.)
