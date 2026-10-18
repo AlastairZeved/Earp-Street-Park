@@ -21,7 +21,7 @@ whole product, verbatim: "One neighbor is fixing up the Earp Street lot — no
 group, no committee — so the kids who already play here have somewhere worth
 being. Follow the work, see what's next, and share your stories of the lot."
 
-It is one `site/index.html` (1,188,407 bytes), alongside two self-hosted
+It is one `site/index.html` (1,066,454 bytes), alongside two self-hosted
 Montserrat Alternates font files under `site/fonts/` (B26): no framework, no
 build step, no package manager, no backend of its own, zero JavaScript, zero
 external requests except one form endpoint. Keep it that way — do not
@@ -92,10 +92,6 @@ dug-up planters), not a marketing page.
    field (B37, issue #155), three visible lines with
    a scrollbar beyond (B6), posting to Formspree with a `_gotcha` honeypot.
    The form is the site's only external request.
-8. **The Park Party Palooza pop-up** (B36, UIUX §4.4) — a fixed on-load
-   overlay carrying the Palooza flier board as its own component; shown on
-   every visit and **desktop only**, dismissed by the ✕ or a backdrop click
-   through one CSS-only checkbox (zero JS).
 
 ## §5 What the site is not (observed reality)
 

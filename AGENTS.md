@@ -7,7 +7,7 @@ Code, Codex, Cursor, …). Humans should read the governing records instead.
 
 Earp Street Park — the community-engagement website for one neighbor's work
 restoring an abandoned lot. The published site has one `site/index.html`
-(1,188,407 bytes) and two self-hosted font files under `site/fonts/` (B26): a
+(1,066,454 bytes) and two self-hosted font files under `site/fonts/` (B26): a
 fixed spatial board styled as a wooden fence, everything on it a physical
 object (paper sheets, tape, photo prints, marker ink). **No frameworks, no
 build step, no package manager, no dependencies, no backend, no JavaScript.**
@@ -79,8 +79,7 @@ repository keeps no `package.json`; the suites use Node stdlib only.
    photo mat was ruled out — "let the white space live."
 4. **Weight map is law (B9, amended by B12).** Body text is 400, including
    entry dates. Bold remains on the Send button and headings, plus the title-
-   flier and pop-up h1s and `.popup-close`. If new body text renders bold, the
-   change is wrong.
+   flier h1. If new body text renders bold, the change is wrong.
 5. **Zero JavaScript.** Every behavior is CSS/HTML. A change that needs JS
    needs an owner ruling first.
 6. **The form is load-bearing and fragile in one specific way (B1's
