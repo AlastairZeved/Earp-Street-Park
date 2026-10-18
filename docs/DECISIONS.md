@@ -1150,3 +1150,14 @@ This PR does not include removing the flier from the upper right hand corner of 
 **The record.** `site/index.html` no longer carries the B36 pop-up: the `#popup-toggle` checkbox, `.popup-overlay` and everything inside it, every `.popup-*` rule, the phone rule that hid it, and the `.popup-flier` members of the B43 grouped tape recipe are deleted. The B35 header-pane title flier (`.flier-banner`) is unchanged. `docs/UIUX.md` drops §4.4 and the pop-up's §2.4 shadow/backdrop rows, §3 bold-weight entries, §4.1/§4.3 B43 references, §5.1 pin row, §6 focus bullet, and §8 radius; `docs/PRD.md` §4 drops item 8. `AGENTS.md` fact 4 and the byte counts in `AGENTS.md` and `docs/PRD.md` are updated to match.
 
 **Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/184; chat, 2026-10-18
+
+### B50. A 10/17/2026 entry is added at the top of What We've Done, the owner's copy verbatim (issue #185, owner instruction)
+
+**Source:** issue #185 (owner instruction), transcribed verbatim: "In the "What We've Done" section, we need a new entry added as written below:
+
+"10/17/2026
+We raised $43 from the Park Party Palooza and mulched all 4 planters! That's enough money to buy new wood for one of the benches (and some paint!) and we couldn't be prouder. Thanks so much to all who came out with us!!!"" And the owner's rulings in chat with the site's agent, 2026-10-18, transcribed verbatim from the owner's selected answers: on the record — "Yes, add B50"; on the apostrophe in "That's" — "Exactly as typed". — https://github.com/AlastairZeved/Earp-Street-Park/issues/185
+
+**The record.** `#panel-week` gains one `.entry` above the 9/25/2026 entry (the sheet lists newest first): an `.entry-date` reading `10/17/2026` and one `<p>` carrying the owner's sentence verbatim, straight apostrophes included. The entry joins the existing entry species — no new class, rule, token, or hex — so `test/tokens.js` needs no assertion rewrite and `docs/UIUX.md` needs no edit; `docs/PRD.md` §3 quotes no entry copy. The byte counts in `AGENTS.md` and `docs/PRD.md` are updated to match. The record space gains this entry — `test/records.js` reads B1..B50.
+
+**Source addendum:** https://github.com/AlastairZeved/Earp-Street-Park/issues/185; chat, 2026-10-18
